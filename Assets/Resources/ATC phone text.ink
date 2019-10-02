@@ -1,5 +1,10 @@
 //note: every paragraph break should be interpreted as a break between texts
 VAR conversant_name = "Unknown Number"
+VAR current_name = ""
+VAR rosa_knew_duane = false
+VAR rosa_consented_to_kiss = false
+VAR rosa_alcohol_level = 0 //levels of drunkenness: 0 (sober), 1 (tipsy), 2 (drunk)
+VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said no multiple times), 2 (pushed Duane away)
 
     hi Rosa. this is Rosa, right?
     my name is Olivia Montgomery. I'm a junior in the engineering school
@@ -19,12 +24,8 @@ VAR conversant_name = "Unknown Number"
         do you know Duane Hammond? he's a junior in the business school, I think?
 
         *...yes, I know Duane <>
-        //    -> Duane_did_something
         *Fuck Duane. we don't talk <>
-        //    -> Duane_did_something
         *Duane and I aren't friends anymore<>
-        //    -> Duane_did_something
-   // = Duane_did_something    
         -   something happened. he did something to me.
         Mikaela said he did something to you too.
         did he?
@@ -37,25 +38,147 @@ VAR conversant_name = "Unknown Number"
         Mikaela told me only a little bit about what happened to you. she said it would help me to know he'd done what he did to me to...someone else
         what would you call it? what happened with him?
         *a bad night
-            -> it_was_bad_night
+            a bad night, huh?
+            I had one of those too.
+            a horrible night. the worst of my life.
+            but before I get into that...what made your night bad?
+            -> Rosa_explains_what_happened
         *a sexual assault
-            -> it_was_sexual_assault
+                yeah. that's what Mikaela made it sound like.
+            I'm so sorry that happened to you.
+            but I texted you because it happened to me too.
+            and now I don't know what to do
+            I don't want to make you relive something so awful, but
+            what exactly did he do to you
+            -> Rosa_explains_what_happened
         *just an asshole exhibiting typical asshole behavior
-            -> it_was_Duane_being_asshole
-    = it_was_bad_night
-        a bad night, huh?
-        I had one of those too.
-        a horrible night. the worst of my life.
-        but before I get into that...what made your night bad?
-        ->END
-    = it_was_sexual_assault
-        yeah. that's what Mikaela made it sound like.
-        I'm so sorry that happened to you.
-        but I texted you because it happened to me too.
-        and now I don't know what to do 
-        ->END
-    = it_was_Duane_being_asshole
-        yeah he's an asswipe, that can't be denied
-        but was that all? because for me, it was more than just him acting like a jerk
-        ->END
+            yeah he's an asswipe, that can't be denied
+            but was that all? because for me, it was more than just him acting like a jerk
+            * * there was more.
+            haha yeah. isn't there always?
+            oh sorry that sounded bad
+            not funny 'haha,' of course. more like exhausted, can't control myself 'haha'
+            -   don't worry. it's fine.
+                -> Rosa_explains_what_happened
+    = Rosa_explains_what_happened
+        ~ current_name = "Rosa"
+        I was at a Halloween party that some theater kids threw, and Duane was there too
+        * I'd never met him before
+            -> Rosa_Duane_strangers
+        * he was in a class with me. we'd worked on a project before
+            -> Rosa_Duane_acquaintances
+    = Rosa_Duane_strangers
+        ~ current_name = "Rosa"
+        he was dressed as Burt Macklin from Parks and Rec, and I hate to say this now, but he was killing it 
+        looked a lot like Chris Pratt 
+        so I told him I liked his costume
+        -> Duane_kissed_Rosa
+    = Rosa_Duane_acquaintances
+        ~ current_name = "Rosa"
+        {rosa_knew_duane: true}
+        he pulled his weight in the group project. he said smart stuff in class. I didn't know him THAT well but he seemed like a nice guy, so I was happy to see him randomly at the party
+    -> Duane_kissed_Rosa
+    = Duane_kissed_Rosa
+        ~ current_name = "Rosa"
+        we went out to the back porch where a few other people were
+        we were all talking
+        then after a while it was just Duane and me. everyone else had wandered off
+        he started kissing me and
+        * I didn't mind that
+         -> Rosa_consented_to_kissing
+        * I pulled back
+        -> Rosa_consented_to_nothing
+    = Rosa_consented_to_kissing
+        ~ current_name = "Rosa"
+        but then he started doing other things
+        touching me over my clothes, and then underneath them
+        that was too much, so
+        -> why_Rosa_didnt_want_sex
+    = Rosa_consented_to_nothing
+        ~ current_name = "Rosa"
+        I wasn't giving him any signals that I wanted him to kiss me anyway. I really thought we were just talking
+        but he kept putting his hands on me
+        -> why_Rosa_didnt_want_sex
+    = why_Rosa_didnt_want_sex
+        ~ current_name = "Rosa"
+        I asked him to stop
+        * I wasn't into him <>
+        * I just wanted to get back to the party <>
+        * I'm not that interested in guys, anyway <>
+        -  but he didn't stop. it was like he didn't hear me at all. so then I
+        * shut my eyes and stopped moving and waited it out 
+            -> Rosa_said_no_once
+        * said what the fuck, I'm not joking
+            -> Rosa_said_no_twice
+        * shoved him. not hard, but enough to make him notice
+            -> Rosa_pushed_Duane_away
+    = Rosa_said_no_once
+        ~ current_name = "Rosa"
+        {rosa_resistance_level:0}
+        he got bored after a few minutes. it's no fun to grope someone who's acting like a dead body, I guess
+        I wish I'd done something else but idk what I was supposed to do
+        -> Duane_says_keep_secret
+    = Rosa_said_no_twice
+    -> END
+        ~ current_name = "Rosa"
+        {rosa_resistance_level: 1}
+        he said come on, we both know why we've been sitting out here waiting for everyone else to leave
+        and I was like ???
+        "we" don't know anything about that, my dude
+        didn't matter to him. he pressed me up against the railing and went for the zipper on my pants
+        I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+        and that did it. he stopped.
+        -> Duane_says_keep_secret
+    = Rosa_pushed_Duane_away
+        ~ current_name = "Rosa"
+        {rosa_resistance_level: 2}
+        he got this weird look in his eye that I'll never forget
+        he said "I didn't know you were into rape play" and then he grabbed my wrists
+        he kept trying to kiss me while he held my hands down
+        I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+        and that did it. he stopped.
+        -> Duane_says_keep_secret
+    = Duane_says_keep_secret
+        ~ current_name = "Rosa"
+        before he went inside, he said let's make sure this stays between us.
+        and he smiled as if we'd had a good time
+        I didn't say anything because I was just trying not to lose it
+        and...that's it
+        we didn't talk again, ever
+        -> Olivia_asks_about_drunkenness
+    = Olivia_asks_about_drunkenness
+        ~ current_name = "conversant"
+        wow. okay. when Mikaela said something had happened, I didn't think it would be
+        well
+        that
+        that's horrifying
+        I feel sick
+        * oh shit sorry. I didn't mean to make you feel bad <>
+        * you asked to hear it, didn't you? <>
+        -   it's fine. I'm the one who texted you, anyway
+        can I ask you something?
+        were you drinking at that party?
+        * no. I don't drink
+            -> Rosa_was_sober
+        * yeah, but I wasn't drinking so much that I was out of it 
+            -> Rosa_was_buzzed
+        * it was Halloween haha. I was pretty drunk
+            -> Rosa_was_drunk
+    = Rosa_was_sober
+     -> END
+   
+    = Rosa_was_buzzed
+    {rosa_alcohol_level:
+    1
+    }
+     -> END
+   
+    = Rosa_was_drunk
+    {rosa_alcohol_level:
+    2
+    }
+     -> END
+   
+        
+        
     

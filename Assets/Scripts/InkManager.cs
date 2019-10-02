@@ -28,6 +28,7 @@ public class InkManager : MonoBehaviour
 	private GameObject texterIdentity;
 	private TextMeshProUGUI dialogue;
 	private string currentText;
+	private string currentName;
 	public Button choicetext1;
 	public Button choicetext2;
 	public Button choicetext3;
@@ -84,8 +85,11 @@ public class InkManager : MonoBehaviour
 
 		while (story.canContinue)
 		{
+			currentName = (string) story.variablesState["current_name"];
+
 			GameObject talkerText;
-			if (isRosaSpeaking == false)
+			//if the variable that checks for user input (Rosa speech) is false, and the currentName variable from the Ink file is not Rosa...
+			if (isRosaSpeaking == false && currentName != "Rosa")
 			{
 				talkerText = Instantiate(conversationalistPrefab);
 
