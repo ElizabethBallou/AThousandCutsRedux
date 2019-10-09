@@ -1,11 +1,13 @@
 //note: every paragraph break should be interpreted as a break between texts
 VAR conversant_name = "Unknown Number"
-VAR current_name = ""
+VAR current_name = "" //can be "Rosa" or "conversant"
 VAR rosa_knew_duane = ""
 VAR rosa_consented_to_kiss = ""
 VAR rosa_alcohol_level = 0 //levels of drunkenness: 0 (sober), 1 (tipsy), 2 (drunk)
 VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said no multiple times), 2 (pushed Duane away)
 
+->Rosa_knot_1
+=== Rosa_knot_1 ===
     hi Rosa. this is Rosa, right?
     my name is Olivia Montgomery. I'm a junior in the engineering school
     we met once at Mikaela's birthday party
@@ -30,10 +32,12 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
         *...yes, I know Duane <>
         *Fuck Duane. we don't talk <>
         *Duane and I aren't friends anymore<>
-        -   something happened. he did something to me.
+        - -> something_happened_to_unknown
+    = something_happened_to_unknown
+    ~ current_name = "conversant"
+        something happened. he did something to me.
         Mikaela said he did something to you too.
         did he?
-    
         * I don't like discussing it
             I get that, but...
             it was bad, Rosa.

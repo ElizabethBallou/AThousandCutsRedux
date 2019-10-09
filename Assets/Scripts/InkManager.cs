@@ -23,9 +23,9 @@ public class InkManager : MonoBehaviour
 	// UI stuff
 	public GameObject conversationalistPrefab;
 	public GameObject RosaPrefab;
-	private GameObject textingBackground;
-	private GameObject responseBox;
-	private GameObject texterIdentity;
+	public GameObject textingContentHolder;
+	public GameObject responseBox;
+	public GameObject texterIdentityUIText;
 	private TextMeshProUGUI dialogue;
 	private string currentText;
 	private string currentName;
@@ -36,9 +36,6 @@ public class InkManager : MonoBehaviour
 	public void Start()
 	{
 		//Find all the UI components
-		textingBackground = GameObject.FindWithTag("TextingBackground");
-		responseBox = GameObject.FindWithTag("ResponseBox");
-		texterIdentity = GameObject.FindWithTag("TexterIdentity");
 		choicetext1.onClick.AddListener(()=>ChoiceButtonPressed(0));
 		choicetext2.onClick.AddListener(()=>ChoiceButtonPressed(1));
 		choicetext3.onClick.AddListener(()=>ChoiceButtonPressed(2));
@@ -67,11 +64,11 @@ public class InkManager : MonoBehaviour
 	private void EpisodeStart()
 	{
 		//load the story file
-		TextAsset storyFile = Resources.Load<TextAsset>("ATC phone text");
+		TextAsset storyFile = Resources.Load<TextAsset>("Rosa conversations");
 		Debug.Log("Story file loaded");
 		
 		//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
-		TextMeshProUGUI nameText = texterIdentity.GetComponentInChildren<TextMeshProUGUI>();
+		TextMeshProUGUI nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
 		story = new Story(storyFile.text);
 		string texterName = (string) story.variablesState["conversant_name"];
 		nameText.text = texterName;
@@ -102,7 +99,7 @@ public class InkManager : MonoBehaviour
 			}
 			dialogue = talkerText.GetComponent<TextMeshProUGUI>();
 			dialogue.text = story.Continue();
-			dialogue.transform.SetParent(textingBackground.transform);
+			dialogue.transform.SetParent(textingContentHolder.transform);
 		}
 
 		PrintStory();
