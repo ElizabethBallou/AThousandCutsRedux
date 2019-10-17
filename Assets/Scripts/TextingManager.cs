@@ -6,19 +6,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
-public class InkManager : MonoBehaviour
+public class TextingManager : MonoBehaviour
 {
+	public GameManager _gameManager;
 	[SerializeField] private TextAsset inkJSONAsset;
-	
 	private Story story;
-
-	[Header("Story Information")] [SerializeField]
 	public StoryState CurrentStoryState;
 
 	private bool textDone = false;
 	private bool isRosaSpeaking = false;
 
 	private int buttonNumber;
+	public float TextingSpeed = 1f;
+
 	
 	// UI stuff
 	public GameObject conversationalistPrefab;
@@ -35,6 +35,8 @@ public class InkManager : MonoBehaviour
 	
 	public void Start()
 	{
+		//Set the phone state to texting
+		_gameManager.phoneUseState = PhoneState.TextingState;
 		//Find all the UI components
 		choicetext1.onClick.AddListener(()=>ChoiceButtonPressed(0));
 		choicetext2.onClick.AddListener(()=>ChoiceButtonPressed(1));
@@ -53,8 +55,8 @@ public class InkManager : MonoBehaviour
 			case StoryState.EpisodeStart:
 				EpisodeStart();
 				break;
-			case StoryState.TextAppear:
-				TextAppearStoryUpdate();
+			case StoryState.StartNextInteraction:
+				StartCoroutine(TextAppearStoryUpdate());
 				break;
 			case StoryState.EpisodeEnd:
 				break;
@@ -64,7 +66,7 @@ public class InkManager : MonoBehaviour
 	private void EpisodeStart()
 	{
 		//load the story file
-		TextAsset storyFile = Resources.Load<TextAsset>("Rosa conversations");
+		TextAsset storyFile = Resources.Load<TextAsset>("Olivia conversations");
 		Debug.Log("Story file loaded");
 		
 		//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
@@ -74,10 +76,11 @@ public class InkManager : MonoBehaviour
 		nameText.text = texterName;
 		
 		//begin running the Ink story!
-		TextAppearStoryUpdate();
+		StartCoroutine(TextAppearStoryUpdate());
 	}
-	public void TextAppearStoryUpdate()
+	public IEnumerator TextAppearStoryUpdate()
 	{
+		CurrentStoryState = StoryState.TextPrintInIntervals;
 		print("Is Rosa Speaking?" + isRosaSpeaking);
 
 		while (story.canContinue)
@@ -100,9 +103,12 @@ public class InkManager : MonoBehaviour
 			dialogue = talkerText.GetComponent<TextMeshProUGUI>();
 			dialogue.text = story.Continue();
 			dialogue.transform.SetParent(textingContentHolder.transform);
+			yield return new WaitForSeconds(TextingSpeed);
 		}
-
 		PrintStory();
+
+		yield return new WaitForSeconds(TextingSpeed);
+
 	}
 	
 	//Function to print text letter-by-letter
@@ -111,16 +117,7 @@ public class InkManager : MonoBehaviour
 		textDone = true;
 		ShowChoiceButtons();
 	}
-
-	public void ContinueButtonPressed()
-	{
-		PrintStory();
-
-		if (textDone)
-		{
-			ShowChoiceButtons();
-		}
-	}
+	
 	public void ShowChoiceButtons()
 	{ 
 		//Change the Storystate so that the player can choose one of the buttons
@@ -174,7 +171,7 @@ public class InkManager : MonoBehaviour
 	public void ChoiceButtonPressed(int buttonNumber)
 	{
 		story.ChooseChoiceIndex(buttonNumber);
-		CurrentStoryState = StoryState.TextAppear;
+		CurrentStoryState = StoryState.StartNextInteraction;
 		
 		choicetext1.gameObject.SetActive(false);
 		choicetext2.gameObject.SetActive(false);
@@ -186,7 +183,8 @@ public class InkManager : MonoBehaviour
 	public enum StoryState
 	{
 		EpisodeStart,
-		TextAppear,
+		StartNextInteraction,
+		TextPrintInIntervals,
 		WaitForInteraction,
 		EpisodeEnd
 	}
