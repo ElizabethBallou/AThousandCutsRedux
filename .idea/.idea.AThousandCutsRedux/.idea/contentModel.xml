@@ -141,6 +141,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="CharacterManager.cs" t="Include" />
           <e p="ConversantManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="TextingManager.cs" t="Include" />

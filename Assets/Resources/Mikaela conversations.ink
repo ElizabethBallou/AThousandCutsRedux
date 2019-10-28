@@ -1,9 +1,7 @@
-VAR conversant_name = "Mikaela"
-VAR current_name = ""
-
 
 -> Mikaela_knot_1
 === Mikaela_knot_1 ===
+    ~conversant_name = "Mikaela"
         Rosaaaaaa
         two things
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you
@@ -46,7 +44,7 @@ VAR current_name = ""
     = Mikaela_begs_Rosa
         please, Rosa.
         whatever happened with Duane really messed with Olivia.
-        she needs to talk to someone, and honestly...so do you. I know why you don't go to the dining hall anymore. or to a lot of other places. it's so you don't run the risk of seeing him, isn't it?
+        she needs to talk to someone, and honestly...so do you. like, I've been thinking about why you don't go to the dining hall anymore. or to a lot of other places. is it because of him?
         * fine. give her my number.
         -   ok. I will. are you mad at me?
             * * sort of <>

@@ -32,7 +32,15 @@ public class TextingManager : MonoBehaviour
 	public Button choicetext1;
 	public Button choicetext2;
 	public Button choicetext3;
-	
+
+
+	private void Awake()
+	{
+		TextAsset storyFile = Resources.Load<TextAsset>("ATC Master Ink File");
+		Debug.Log("Story file loaded");
+		story = new Story(storyFile.text);    
+	}
+
 	public void Start()
 	{
 		//Set the phone state to texting
@@ -65,19 +73,17 @@ public class TextingManager : MonoBehaviour
 
 	private void EpisodeStart()
 	{
-		//load the story file
-		TextAsset storyFile = Resources.Load<TextAsset>("Olivia conversations");
-		Debug.Log("Story file loaded");
-		
+
 		//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
 		TextMeshProUGUI nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
-		story = new Story(storyFile.text);
 		string texterName = (string) story.variablesState["conversant_name"];
 		nameText.text = texterName;
 		
 		//begin running the Ink story!
 		StartCoroutine(TextAppearStoryUpdate());
 	}
+	
+	
 	public IEnumerator TextAppearStoryUpdate()
 	{
 		CurrentStoryState = StoryState.TextPrintInIntervals;
