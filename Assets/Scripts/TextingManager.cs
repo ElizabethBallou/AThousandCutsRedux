@@ -96,9 +96,8 @@ public class TextingManager : MonoBehaviour
 		string texterName = (string) story.variablesState["conversant_name"];
 		Debug.Log("The name of the conversant is " + story.variablesState["conversant_name"]);
 		nameText.text = texterName;
-
-		lockScreen.DOFade(0, 3f);
-		lockScreen.gameObject.SetActive(false);
+		//work on timing so that texts don't display while lock screen is fading away
+		lockScreen.DOFade(0, 3f).OnComplete(()=>lockScreen.gameObject.SetActive(false));
 		TextAppearStoryUpdate();
 	}
 	

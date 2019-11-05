@@ -9,6 +9,7 @@ using TMPro;
 
 public class CharacterManager : MonoBehaviour
 {
+    //this is a note!
     public static CharacterManager instance;
 
     public List<string> Keys = new List<string>();
