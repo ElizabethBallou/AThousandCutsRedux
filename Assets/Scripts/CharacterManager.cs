@@ -6,20 +6,14 @@ using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
 
-[Serializable]
-    public class Conversation
-{
-    public TextAsset text;
-    public int InkKnotIndex;
-}
 
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager instance;
 
     public List<string> Keys = new List<string>();
-    public List<Conversation> Values = new List<Conversation>();
-    public Dictionary<string, Conversation> conversationData = new Dictionary<string, Conversation>();
+    public List<int> Values = new List<int>();
+    public Dictionary<string, int> conversationData = new Dictionary<string, int>();
 
     private TextMeshProUGUI[] ConversantNames;
     private Image[] ConversantPictures;

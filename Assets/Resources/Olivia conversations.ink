@@ -3,9 +3,9 @@ VAR rosa_consented_to_kiss = ""
 VAR rosa_alcohol_level = 0 //levels of drunkenness: 0 (sober), 1 (tipsy), 2 (drunk)
 VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said no multiple times), 2 (pushed Duane away)
 
-->Olivia_knot_1
-=== Rosa_knot_1 ===
-~conversant_name = "Rosa"
+=== Olivia_knot_1 ===
+~conversant_name = "unknown"
+~current_speaker = "conversant"
     hi Rosa. this is Rosa, right?
     my name is Olivia Montgomery. I'm a junior in the engineering school
     we met once at Mikaela's birthday party
@@ -20,20 +20,20 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
         I'm not sure how to start talking about this
         do you know Duane Hammond? he's a junior in the business school, I think?
 
-        *...yes, I know Duane <>
-        *Fuck Duane. we don't talk <>
-        *Duane and I aren't friends anymore<>
+        *...yes, I know Duane
+        *Fuck Duane. we don't talk
+        *Duane and I aren't friends anymore
         - -> something_happened_to_unknown
         
     = something_happened_to_unknown
-    ~ current_name = "conversant"
+    ~ current_speaker = "conversant"
         something happened. he did something to me.
         Mikaela said he did something to you too.
         did he?
         * I don't like discussing it
             I get that, but...
             it was bad, Rosa.
-            Mikaela told me only a little bit about what happened to you. she said it would help me to know he'd done what he did to me to...someone else
+            Mikaela told me only a little bit about what happened to you. she said it would help me to know he'd done what he did to me to someone else
             what would you call it? what happened with him?
             * * a bad night
                 a bad night, huh?
@@ -61,14 +61,14 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> Rosa_explains_what_happened
     
     = Rosa_explains_what_happened
-        ~ current_name = "Rosa"
+        ~ current_speaker = "Rosa"
         I was at a Halloween party that some theater kids threw, and Duane was there too
         * I'd never met him before
             -> Rosa_Duane_strangers
         * he was in a class with me. we'd worked on a project before
             -> Rosa_Duane_acquaintances
         = Rosa_Duane_strangers
-            ~ current_name = "Rosa"
+            ~ current_speaker = "Rosa"
             ~ rosa_knew_duane = "false"
             he was dressed as Burt Macklin from Parks and Rec, and I hate to say this now, but he was killing it 
             looked a lot like Chris Pratt 
@@ -76,13 +76,13 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             -> Duane_kissed_Rosa
         
         = Rosa_Duane_acquaintances
-            ~ current_name = "Rosa"
+            ~ current_speaker = "Rosa"
             ~ rosa_knew_duane = "true"
             he pulled his weight in the group project. he said smart stuff in class. I didn't know him THAT well but he seemed like a nice guy, so I was happy to see him randomly at the party
             -> Duane_kissed_Rosa
         
         = Duane_kissed_Rosa
-            ~ current_name = "Rosa"
+            ~ current_speaker = "Rosa"
             we went out to the back porch where a few other people were
             we were all talking
             then after a while it was just Duane and me. everyone else had wandered off
@@ -91,19 +91,19 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 ~ rosa_consented_to_kiss = "true"
                 but then he started doing other things
                 touching me over my clothes, and then underneath them
-                that was too much, so <>
+                that was too much, so
             * I pulled back
                 ~ rosa_consented_to_kiss = "false"
                 I wasn't giving him any signals that I wanted him to kiss me anyway. I really thought we were just talking
-                but he kept putting his hands on me <>
+                but he kept putting his hands on me 
             -    -> why_Rosa_didnt_want_sex
         
         = why_Rosa_didnt_want_sex
-            ~ current_name = "Rosa"
+            ~ current_speaker = "Rosa"
             I asked him to stop
-            * I wasn't into him <>
-            * I just wanted to get back to the party <>
-            * I'm not that interested in guys, anyway <>
+            * I wasn't into him
+            * I just wanted to get back to the party
+            * I'm not that interested in guys, anyway
             -  but he didn't stop. it was like he didn't hear me at all.
                 -> Rosa_reaction
                 
@@ -131,7 +131,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                     -   -> Duane_says_keep_secret
                     
                     = Duane_says_keep_secret
-                        ~ current_name = "Rosa"
+                        ~ current_speaker = "Rosa"
                         before he went inside, he said let's make sure this stays between us.
                         and he smiled as if we'd had a good time
                         I didn't say anything because I was just trying not to lose it
@@ -140,26 +140,20 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                         -> Olivia_asks_about_drunkenness
                         
     = Olivia_asks_about_drunkenness
-        ~ current_name = "conversant"
-        wow. okay. when Mikaela said something had happened, I didn't think it would be
-        well
-        that
-        that's horrifying
+        ~ current_speaker = "conversant"
+        god. when Mikaela said something had happened, I didn't think it would be, well, that
         I feel sick
-        * sorry. I didn't mean to make you feel bad <>
-        * you asked to hear it, didn't you? <>
+        * sorry. I didn't mean to make you feel bad
+        * you asked to hear it
         -   it's fine. I'm the one who texted you, anyway
         can I ask you something?
         were you drinking at that party?
             * * no. I don't drink
                 ~rosa_alcohol_level = 0
-                <>
             * *yeah, but I wasn't drinking so much that I was out of it 
                 ~rosa_alcohol_level = 1
-                <>
             * *it was Halloween haha. I was pretty drunk
                 ~rosa_alcohol_level = 2
-                <>
         - -   -> Olivia_remarks_on_drunkenness_level
 
     = Olivia_remarks_on_drunkenness_level
@@ -183,7 +177,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> Olivia_explains_ideal_outcome
                 
         = title_ix_office_explainer
-            it's where people go to tell the deans if they've been...whatevered. harassed, assaulted, etc etc etc 
+            it's where people go to tell the deans if they've been whatevered. harassed, assaulted, etc etc etc 
             there's a literal office on the 3rd floor of the dean's hall 
             and the people who work there are supposed to make sure that whoever pulls this shit gets punished
             I've been doing some research and it's part of federal law for every college to have title ix staff.
@@ -202,21 +196,22 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
         oh yeah
         I guess I haven't said
         you were really open with me, so I'll tell you whatever you want to know
-        * can you text me tomorrow about this? it's all so much for me to think about today<>
+        * can you text me tomorrow about this? it's all so much for me to think about today
         -   sure. sorry. I shouldve checked earlier
             -> Rosa_says_goodbye
         = Rosa_says_goodbye
-            ~conversant_name = "Rosa"
+            ~current_speaker = "conversant"
             it's fine. I have a feeling we'll be talking to each other for a while, anyway
             we have time to get used to each other 
             talk to you later, Olivia.
-            * (Rosa_says_thanks) and thanks for saying something to me <>
-            * (Rosa_says_nothing) - say nothing - <>
+            * (Rosa_says_thanks) and thanks for saying something to me
+            * (Rosa_says_nothing) - say nothing -
             -   {Rosa_says_thanks: I just felt like I had to.}
                 {Rosa_says_nothing: until tomorrow}
-                    -> DONE
+                    -> Olivia_knot_2
 
 === Olivia_knot_2 ===
+    ~current_speaker = "conversant"
     I thought for a while about what I should text you 
     like if I should just say "hello" as if we were talking about something normal
     or be really gentle with you in case I freaked you out yesterday
@@ -226,19 +221,20 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             ->Olivia_greets_Rosa
         * (Rosa_response_freaked) you did freak me out, but I'm fine now
             ->Olivia_greets_Rosa
-        * (Rosa_response_guarded) ...hello
+        * (Rosa_response_guarded) hello i guess?
             ->Olivia_greets_Rosa
+            
     = Olivia_greets_Rosa
         {Rosa_response_chill: this would be easier if there were}
         {Rosa_response_freaked: sorry. I didn't mean to}
-        {Rosa_response_guarded: hahaha I guess that's something}
+        {Rosa_response_guarded: hahaha hello and good day to you}
         anyway, thanks for replying. it's good to talk to you again.
-            *you too.<>
+            *you too.
                 - ~conversant_name = "Rosa"
                     you were going to tell me what happened with you and Duane?
                     ->Olivia_begins_story
         
-        =Olivia_begins_story
+        = Olivia_begins_story
             yes.
             ...
             can you ask me some questions to get me started? it's hard for me to know where to begin
@@ -252,23 +248,58 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> Olivia_says_she_knew_Duane
             * what did he do?
                 -> Olivia_says_what_Duane_did
-                
-        = Olivia_says_when_rape_happened
-            it was at the end of last semester. Duane and I are both in the engineering school, and some people were celebrating the end of exams by going to Jolly Molly's. you know it?
-                * (Rosa_knows_JM) I've had way too many vodka lemonades from JM's, haha
-                    ->Olivia_replies_to_JM_knowledge
-                * (Rosa_doesnt_know_JM) yeah but it's not the kind of place I go
-                    ->Olivia_replies_to_JM_knowledge
-
-                = Olivia_replies_to_JM_knowledge
-                {Rosa_knows_JM: ah ha. that means you must have a fake ID too. so you won't judge me too much, which I was afraid of}
-                {Rosa_doesnt_know_JM: yeah it's a shithole. but the bouncer never looks too hard at my ID, so I don't have to worry about using a fake}
-                
-        = Olivia_says_she_knew_Duane
-        ->DONE
-        
-        = Olivia_says_what_Duane_did
-        ->DONE
+            *   -> Olivia_explains_possible_actions     
+            = Olivia_says_when_rape_happened
+                it was at the end of last semester. Duane and I are both in the engineering school, and some people were celebrating the end of exams by going to Jolly Molly's. you know it?
+                    * (Rosa_knows_JM) I've had way too many vodka lemonades from JM's, haha
+                        ->Olivia_replies_to_JM_knowledge
+                    * (Rosa_doesnt_know_JM) yeah but it's not the kind of place I go
+                        ->Olivia_replies_to_JM_knowledge
+    
+                    = Olivia_replies_to_JM_knowledge
+                    {Rosa_knows_JM: ah ha. that means you must have a fake ID too. so you won't judge me too much, which I was afraid of}
+                    {Rosa_doesnt_know_JM: oh no judgment there. its a real shithole. but the bouncer never looks too hard at my ID, so I don't have to worry about using a fake}
+                        anyway I'd studied really hard, so I was happy to just hang out and drink a little. I wasn't on my guard
+                        that was a mistake
+                            -> Rosa_asks_Olivia_questions
+                        
+            = Olivia_says_she_knew_Duane
+                mhmm I knew him. since last year, when he transferred here. there aren't that many engineers so he was in a lot of my classes
+                specifically there aren't a lot of women engineers. I'm used to getting hit on at this point, and Duane did that sometimes
+                but I just brushed him off
+                so many asshats treat anyone in the e school who's not a straight white dude like they're rare pokemon cards
+                Duane was just one of the many
+                    -> Rosa_asks_Olivia_questions
+            
+            = Olivia_says_what_Duane_did
+                I had two beers. that was it. just two. I can handle two beers
+                except that night I couldn't
+                I started fading. I remember my thoughts sort of drifting away, and I tried to catch them and pull them back towards me, but that didn't work
+                the rest of the night is just flashes
+                when I woke up, like really woke up, I was in my bed and Duane was there too. and I was horrified because I knew right away what had happened
+                maybe this is tmi, but I could feel it. I was in pain. it was a deep ache, like period cramps, but I wasn't on my period
+                I woke him up and said he had to go right away. he wouldn't stop grinning. he was so pleased with himself.
+                I wanted to take a shower. one of those showers that lasts for an hour. but I knew I wasn't supposed to. so I told my roommate, Ally. Ally said we needed to go to the hospital and get a rape kit done. and we did.
+                the nurse was so fucking businesslike. she kept telling me to relax because if I relaxed, it would be over faster.
+                fuck now I'm crying. something to do with talking about all these little details
+                give me a second
+                * (Rosa_is_empathetic) I am so so sorry, Olivia
+                * (Rosa_says_no_crying) don't give him the pleasure of tears
+                * (Rosa_says_stop_talking) please don't tell me any more. I can't handle this
+                -    -> Olivia_says_what_Duane_did_2
+                    
+                    = Olivia_says_what_Duane_did_2
+                        {Rosa_is_empathetic: Im sorry too. I didn't realize how bad it would be to get a rape kit. no one should have to have them.}
+                        {Rosa_says_no_crying: what does it matter? he doesn't know I'm crying. he doesn't give a shit about me, or you}
+                        {Rosa_says_stop_talking: then just don't read it. delete the texts or whatever. but I have to say all this or I will scream}
+                        anyway. I messaged Duane and asked him to explain what had happened. he asked if I had a good time and I said "no one has a good time when they're raped"
+                        it took a while for him to respond but he finally said that I was crazy. and that if I called it rape again, I'd be sorry
+                        and that's the last time we ever spoke
+                        ->Rosa_asks_Olivia_questions
+                        
+        = Olivia_explains_possible_actions
+            filler dialogue
+            -> DONE
     
    
         

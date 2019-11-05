@@ -1,5 +1,4 @@
 
--> Mikaela_knot_1
 === Mikaela_knot_1 ===
     ~conversant_name = "Mikaela"
         Rosaaaaaa

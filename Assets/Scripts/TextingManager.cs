@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
+using DG.Tweening;
+
 public class TextingManager : MonoBehaviour
 {
 	public GameManager _gameManager;
@@ -27,11 +29,16 @@ public class TextingManager : MonoBehaviour
 	public GameObject responseBox;
 	public GameObject texterIdentityUIText;
 	private TextMeshProUGUI dialogue;
+	private RectTransform dialogueRect;
+	private RectTransform dialogueBoxRect;
 	private string currentText;
 	private string currentName;
 	public Button choicetext1;
 	public Button choicetext2;
 	public Button choicetext3;
+
+	public Image lockScreen;
+	public TextMeshProUGUI lockScreenDateText;
 
 
 	private void Awake()
@@ -52,12 +59,18 @@ public class TextingManager : MonoBehaviour
 		choicetext1.gameObject.SetActive(false);
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
-		
+		KnotSelection("Mikaela");
 		CurrentStoryState = StoryState.EpisodeStart;
 	}
 
 	private void Update()
 	{
+
+		if (!story.canContinue && story.currentChoices.Count == 0)
+		{
+			CurrentStoryState = StoryState.EpisodeEnd;
+		}
+
 		switch (CurrentStoryState)
 		{
 			case StoryState.EpisodeStart:
@@ -67,18 +80,30 @@ public class TextingManager : MonoBehaviour
 				StartCoroutine(TextAppearStoryUpdate());
 				break;
 			case StoryState.EpisodeEnd:
+				EpisodeEndUIReset();
 				break;
 		}
 	}
 
-	private void EpisodeStart()
+	private void KnotSelection(string characterName)
 	{
-
+		string knotName = characterName + "_knot_" + CharacterManager.instance.conversationData[characterName];
+		CharacterManager.instance.conversationData[characterName]++;
+		story.ChoosePathString(knotName);
+		
 		//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
 		TextMeshProUGUI nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
 		string texterName = (string) story.variablesState["conversant_name"];
+		Debug.Log("The name of the conversant is " + story.variablesState["conversant_name"]);
 		nameText.text = texterName;
-		
+
+		lockScreen.DOFade(0, 3f);
+		lockScreen.gameObject.SetActive(false);
+		TextAppearStoryUpdate();
+	}
+	
+	private void EpisodeStart()
+	{
 		//begin running the Ink story!
 		StartCoroutine(TextAppearStoryUpdate());
 	}
@@ -106,9 +131,19 @@ public class TextingManager : MonoBehaviour
 				isRosaSpeaking = false;
 
 			}
-			dialogue = talkerText.GetComponent<TextMeshProUGUI>();
+			
+			//get the text component from the prefab that just got instantiated
+			dialogue = talkerText.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+			//set the text from the story
 			dialogue.text = story.Continue();
-			dialogue.transform.SetParent(textingContentHolder.transform);
+			//transform the text-holding object so that it is parented to the canvas
+			talkerText.transform.SetParent(textingContentHolder.transform);
+			
+			//resize the dialogue box to be the same size as the dialogue
+			dialogueBoxRect = talkerText.transform.GetChild(0).GetComponent<RectTransform>();
+			dialogueRect = dialogue.GetComponent<RectTransform>();
+			dialogueBoxRect.sizeDelta = dialogueRect.sizeDelta;
+
 			yield return new WaitForSeconds(TextingSpeed);
 		}
 		PrintStory();
@@ -182,6 +217,12 @@ public class TextingManager : MonoBehaviour
 		choicetext1.gameObject.SetActive(false);
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
+	}
+
+	private void EpisodeEndUIReset()
+	{
+		lockScreen.DOFade(255, 3f);
+
 	}
 
 }
