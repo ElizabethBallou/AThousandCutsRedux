@@ -5,5 +5,6 @@ INCLUDE Duane conversations
 
 VAR conversant_name = ""
 VAR current_speaker = ""
+VAR current_date = ""
 
--> Duane_knot_1
+-> Olivia_knot_2

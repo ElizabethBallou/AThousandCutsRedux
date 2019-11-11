@@ -11,6 +11,7 @@ using DG.Tweening;
 public class TextingManager : MonoBehaviour
 {
 	public GameManager _gameManager;
+	public static TextingManager instance;
 	[SerializeField] private TextAsset inkJSONAsset;
 	private Story story;
 	public StoryState CurrentStoryState;
@@ -40,11 +41,21 @@ public class TextingManager : MonoBehaviour
 	public Image lockScreen;
 	public TextMeshProUGUI lockScreenDateText;
 
+	//numbers that let you control the size/shape of the text bubbles
+	public float textBubbleOffsetScale = 2;
+	public float textBubbleOffsetSizeX = 1;
+	public float textBubbleOffsetSizeY = 1;
 
 	private void Awake()
 	{
+		//create singleton for TextingManager
+		instance = this;
+		
+		//set tweens capacity
+		DOTween.SetTweensCapacity(2000, 100);
+		
+		//load in ink file and grab the story text
 		TextAsset storyFile = Resources.Load<TextAsset>("ATC Master Ink File");
-		Debug.Log("Story file loaded");
 		story = new Story(storyFile.text);    
 	}
 
@@ -59,6 +70,9 @@ public class TextingManager : MonoBehaviour
 		choicetext1.gameObject.SetActive(false);
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
+		
+	
+		
 		KnotSelection("Mikaela");
 		CurrentStoryState = StoryState.EpisodeStart;
 	}
@@ -80,7 +94,7 @@ public class TextingManager : MonoBehaviour
 				StartCoroutine(TextAppearStoryUpdate());
 				break;
 			case StoryState.EpisodeEnd:
-				EpisodeEndUIReset();
+				GameManager.instance.phoneUseState = PhoneState.BlackoutState;
 				break;
 		}
 	}
@@ -91,14 +105,10 @@ public class TextingManager : MonoBehaviour
 		CharacterManager.instance.conversationData[characterName]++;
 		story.ChoosePathString(knotName);
 		
-		//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
-		TextMeshProUGUI nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
-		string texterName = (string) story.variablesState["conversant_name"];
-		Debug.Log("The name of the conversant is " + story.variablesState["conversant_name"]);
-		nameText.text = texterName;
+		
 		//work on timing so that texts don't display while lock screen is fading away
 		lockScreen.DOFade(0, 3f).OnComplete(()=>lockScreen.gameObject.SetActive(false));
-		TextAppearStoryUpdate();
+		lockScreenDateText.DOFade(0, 3f).OnComplete(() => lockScreenDateText.gameObject.SetActive(false));
 	}
 	
 	private void EpisodeStart()
@@ -111,7 +121,7 @@ public class TextingManager : MonoBehaviour
 	public IEnumerator TextAppearStoryUpdate()
 	{
 		CurrentStoryState = StoryState.TextPrintInIntervals;
-		print("Is Rosa Speaking?" + isRosaSpeaking);
+		//print("Is Rosa Speaking?" + isRosaSpeaking);
 
 		while (story.canContinue)
 		{
@@ -128,7 +138,6 @@ public class TextingManager : MonoBehaviour
 			{
 				talkerText = Instantiate(RosaPrefab);
 				isRosaSpeaking = false;
-
 			}
 			
 			//get the text component from the prefab that just got instantiated
@@ -140,8 +149,24 @@ public class TextingManager : MonoBehaviour
 			
 			//resize the dialogue box to be the same size as the dialogue
 			dialogueBoxRect = talkerText.transform.GetChild(0).GetComponent<RectTransform>();
-			dialogueRect = dialogue.GetComponent<RectTransform>();
-			dialogueBoxRect.sizeDelta = dialogueRect.sizeDelta;
+			dialogue.GetComponent<TextMeshProUGUI>().ForceMeshUpdate();
+			Vector2 offsetSize = dialogue.GetComponent<TextMeshProUGUI>().textBounds.extents*textBubbleOffsetScale;
+			offsetSize.x += textBubbleOffsetSizeX;
+			offsetSize.y += textBubbleOffsetSizeY;
+			dialogueBoxRect.sizeDelta = offsetSize;
+
+			//dialogueRect = dialogue.GetComponent<RectTransform>();
+			
+			//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
+			TextMeshProUGUI nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
+			Debug.Log("nameText.text is " + nameText.text);
+			if (nameText.text == "")
+			{
+				string texterName = (string) story.variablesState["conversant_name"];
+				Debug.Log("The name of the conversant is " + story.variablesState["conversant_name"]);
+				nameText.text = texterName;
+			}
+			
 
 			yield return new WaitForSeconds(TextingSpeed);
 		}
@@ -217,13 +242,7 @@ public class TextingManager : MonoBehaviour
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
 	}
-
-	private void EpisodeEndUIReset()
-	{
-		lockScreen.DOFade(255, 3f);
-
-	}
-
+	
 }
 
 	public enum StoryState
