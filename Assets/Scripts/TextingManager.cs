@@ -85,6 +85,12 @@ public class TextingManager : MonoBehaviour
 			CurrentStoryState = StoryState.EpisodeEnd;
 		}
 
+		if (EvaluateInkBool("conversation_happening") == false)
+		{
+			KnotSelection("Olivia");
+			CurrentStoryState = StoryState.EpisodeStart;
+		}
+
 		switch (CurrentStoryState)
 		{
 			case StoryState.EpisodeStart:
@@ -111,6 +117,18 @@ public class TextingManager : MonoBehaviour
 		lockScreenDateText.DOFade(0, 3f).OnComplete(() => lockScreenDateText.gameObject.SetActive(false));
 	}
 	
+	public bool EvaluateInkBool(string inkVariableName)
+	{
+		int inkNumber = (int) story.variablesState[inkVariableName];
+		if (inkNumber == 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 	private void EpisodeStart()
 	{
 		//begin running the Ink story!

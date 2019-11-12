@@ -1,10 +1,11 @@
 INCLUDE Olivia conversations.ink
 INCLUDE Mikaela conversations.ink
-INCLUDE Duane conversations
+INCLUDE Duane conversations.ink
 
 
 VAR conversant_name = ""
 VAR current_speaker = ""
 VAR current_date = ""
+VAR conversation_happening = true
 
--> Olivia_knot_2
+-> Mikaela_knot_1

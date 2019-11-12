@@ -4,6 +4,7 @@ VAR rosa_alcohol_level = 0 //levels of drunkenness: 0 (sober), 1 (tipsy), 2 (dru
 VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said no multiple times), 2 (pushed Duane away)
 
 === Olivia_knot_1 ===
+~conversation_happening = true
 ~conversant_name = "unknown"
 ~current_speaker = "conversant"
     hi Rosa. this is Rosa, right?
@@ -205,10 +206,12 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             * (Rosa_says_nothing) - say nothing -
             -   {Rosa_says_thanks: I just felt like I had to.}
                 {Rosa_says_nothing: until tomorrow}
-                    -> Olivia_knot_2
+                ~ conversation_happening = false
+                ->DONE
 
 === Olivia_knot_2 ===
     ~current_speaker = "conversant"
+    ~conversation_happening = true
     I thought for a while about what I should text you 
     like should I say "hello" as if we were talking about something normal
     or be really gentle in case I freaked you out yesterday
@@ -372,6 +375,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                ->Rosa_investigates_options
         
         = Rosa_makes_decision
+          ~conversation_happening = false  
             ->END
    
         

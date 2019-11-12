@@ -1,5 +1,6 @@
 
 === Mikaela_knot_1 ===
+    ~conversation_happening = true
     ~conversant_name = "Mikaela"
         Rosaaaaaa
         two things
@@ -58,4 +59,5 @@
         {Rosa_is_nervous_about_dinner: I'm buying you some Krak mac n cheese tonight. you need it}
         {Rosa_doesnt_have_time: I'll come by your dorm after rehearsal with some hot chocolate, k? you need it}
         * thanks <3
+            ~conversation_happening = false
             -> DONE
