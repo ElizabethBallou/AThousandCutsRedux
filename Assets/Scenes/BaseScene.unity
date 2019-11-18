@@ -1271,7 +1271,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1279,14 +1278,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1428,6 +1419,7 @@ GameObject:
   - component: {fileID: 558350720}
   - component: {fileID: 558350722}
   - component: {fileID: 558350721}
+  - component: {fileID: 558350723}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1462,9 +1454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 0}
-  textingSounds:
-  - {fileID: 8300000, guid: d980eb111846342408c8922f8301a47a, type: 3}
-  - {fileID: 8300000, guid: a8661444e9996154db6d69f6a7c8eb4e, type: 3}
+  textReceivedSound: {fileID: 8300000, guid: d980eb111846342408c8922f8301a47a, type: 3}
+  textSentSound: {fileID: 8300000, guid: a8661444e9996154db6d69f6a7c8eb4e, type: 3}
 --- !u!82 &558350722
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1561,6 +1552,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &558350723
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558350719}
+  m_Enabled: 1
 --- !u!1 &631052634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2517,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1099092202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099092203}
+  - component: {fileID: 1099092204}
+  m_Layer: 0
+  m_Name: SceneOrderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1099092203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099092202}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -145.01779, y: -32.497986, z: -66.82202}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1628877948}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1099092204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099092202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c7365cd5f24094fadeac7df42d4972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1125144366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,7 +2907,8 @@ MonoBehaviour:
   messagesScreen: {fileID: 1735087822}
   blackoutBox: {fileID: 1342406343}
   phoneUseState: 0
-  textingManager: {fileID: 0}
+  currentCharacterName: 
+  currentCharacterConversation: 
 --- !u!4 &1292580239
 Transform:
   m_ObjectHideFlags: 0
@@ -3864,6 +3907,7 @@ Transform:
   - {fileID: 1292580239}
   - {fileID: 1597738940}
   - {fileID: 558350720}
+  - {fileID: 1099092203}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4024,7 +4068,6 @@ GameObject:
   - component: {fileID: 1735087823}
   - component: {fileID: 1735087825}
   - component: {fileID: 1735087824}
-  - component: {fileID: 1735087826}
   m_Layer: 5
   m_Name: Messages Screen
   m_TagString: Untagged
@@ -4095,18 +4138,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735087822}
   m_CullTransparentMesh: 0
---- !u!114 &1735087826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735087822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64fd822ba68bb4448920384d1f865261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1942530912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4352,7 +4383,7 @@ MonoBehaviour:
   _gameManager: {fileID: 1292580238}
   inkJSONAsset: {fileID: 4900000, guid: 4e7ae8bec7701fe419b18be4913e2ab0, type: 3}
   CurrentStoryState: 0
-  TextingSpeed: 0.5
+  TextingSpeed: 1
   conversationalistPrefab: {fileID: 4169279239973447889, guid: 660016e1d899d0c44a54df2dedc9ec89,
     type: 3}
   RosaPrefab: {fileID: 4169279239973447889, guid: a86cc35bc55e1fd44988a9c2d58b1a61,

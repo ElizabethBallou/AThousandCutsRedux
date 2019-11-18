@@ -304,18 +304,61 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             I spent all of winter break depressed. but then I got angry.
             I am so, so angry, Rosa
             aren't you angry?
-            * every day
-            * I try not to think about it. if I do I'll go crazy
-            * I don't know how to feel angry anymore
+            * (angry_every_day) every day
+            * (dont_consider_anger) I try not to think about it. if I do I'll go crazy
+            * (dont_know_how_to_feel) I don't know how to feel angry anymore
             -   ~current_speaker = "conversant"
                 well
-                I want Duane to suffer SOMETHING. so I've made a list of things we can do to make that happen.
-                    * * and what are they?
-                    -> Olivia_explains_actions
-                    * * (Rosa_is_recalcitrant) I don't want to hear them
-                    -> Olivia_explains_actions
+                I want Duane to suffer SOMETHING.
+                shit I have to go 
+                I'm late to class 
+                talk to you later?
+                * * okay
+                    {angry_every_day: today I will be angry for you, too}
+                    {dont_consider_anger: I'll keep trying not to go crazy, same as always}
+                    {dont_know_how_to_feel: I'll keep pushing all my emotions away, same as always. that's healthy, right?}
+                    {dont_know_how_to_feel: that was a joke btw}
+                    {dont_know_how_to_feel: awkward. ok. talk tomorrow.}
+                        ->DONE
                     
-        = Olivia_explains_actions
+                
+=== Olivia_knot_3 ===                
+    sorry it took me so long to text you again
+    I had a paper due for my humanities class 
+    I hate writing papers. I thought being in the E School meant I'd never have to write a paper again but here we are 
+    do you have to write a lot for linguistics classes?
+        * (Rosa_hates_papers) yeah and I hate it too
+            -> Rosa_writes_papers
+        * (Rosa_doesnt_mind_papers) yeah, but I don't mind it
+            -> Rosa_writes_papers
+        * (Rosa_enjoys_papers) I enjoy writing papers actually
+            -> Rosa_writes_papers
+            
+    = Rosa_writes_papers
+    ~ current_speaker = "Rosa"
+        linguistics is like a puzzle. you have to figure out how the parts go together. like, how two languages are connected
+        {Rosa_hates_papers: THAT'S the fun part, not writing about it}
+        {Rosa_doesnt_mind_papers: writing a paper is how you prove you know what you're talking about}
+        {Rosa_enjoys_papers: then the paper is how you break it down and make people care}
+        ~current_speaker = "conversant"
+        {Rosa_hates_papers: oh good you get it}
+        {Rosa_hates_papers: I knew I liked you :)}
+        {Rosa_doesnt_mind_papers: whatever you say}
+        {Rosa_enjoys_papers: NERD}
+        * What you said yesterday...
+            -> Olivia_explains_actions_1
+            
+
+    = Olivia_explains_actions_1
+        ah yeah
+        about Duane suffering
+        I've made a list of things we can do to make that happen.
+                    * * and what are they?
+                    -> Olivia_explains_actions_2
+                    * * (Rosa_is_recalcitrant) I don't want to hear them
+                    -> Olivia_explains_actions_2
+                    
+        = Olivia_explains_actions_2
             {Rosa_is_recalcitrant: ok, you don't have to do anything, but at least listen to me}
             first, we can both make a report to the Title IX office
             second, we can report to the police
@@ -363,7 +406,31 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
 
 
             = police_explanation
-            
+                we would both go to the police office and file a police report. then they'd decide whether to bring charges against Duane
+                if they do, we get to argue that hes a fuckwad in court
+                if they don't, we're back where we started
+                    -> police_explanation_pros_cons
+                    
+                = police_explanation_pros_cons
+                    * why should we do this?
+                        -> why_police_report
+                    * what are the drawbacks?
+                        -> why_not_police_report
+                    * hmm. let's talk about the other options
+                        -> Rosa_investigates_options
+                        
+                    = why_police_report
+                        this is the only chance we have of getting criminal charges to stick to Duane
+                        unlikely, but if we're smart, it could happen 
+                        and if he's convicted he could get jail time
+                        -> police_explanation_pros_cons
+                        
+                    = why_not_police_report
+                        the reason why people dont report to the police is that the cops suck at handling sexual assault cases 
+                        it is so so hard to prove that anything happened
+                        and if they DO bring charges, we'll have to face Duane in court
+                        I think I can handle that, but it'll be hard
+                
                ->Rosa_investigates_options
                 
             = office_of_civil_rights_explanation

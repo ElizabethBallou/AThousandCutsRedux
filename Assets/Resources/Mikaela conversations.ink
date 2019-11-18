@@ -13,7 +13,7 @@
     = Rosa_is_nervous_about_dinner
         The Krak? I know you don't like the dining hall
         plus I could use a burger
-        * yeah, the Krak works <>
+        * yeah, the Krak works
         - okay, perfect! see you at 6
         -> Mikaela_second_question
     = Rosa_doesnt_have_time
@@ -33,7 +33,7 @@
         {Rosa_remembers_Olivia: ah good! Olivia is great.}
         {Rosa_forgets_Olivia: I'm sure you all talked! but there were tons of people there that night}
         we met playing in the pit for Into the Woods. she was the first violinist and she killed it
-        *this doesn't sound like a downer! <>
+        *this doesn't sound like a downer!
             -   I'm getting there
                 Olivia and I were talking yesterday and
                 she mentioned that she had a bad run-in with Duane

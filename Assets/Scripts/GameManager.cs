@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -17,10 +18,18 @@ public class GameManager : MonoBehaviour
     public GameObject messagesScreen;
     public Image blackoutBox;
 
-
     public PhoneState phoneUseState;
+    
+    public string currentCharacterName;
 
-    public TextingManager textingManager;
+    public string currentCharacterConversation;
+    
+    public Image lockScreen;
+    public TextMeshProUGUI lockScreenDateText;
+    public float fadeDuration = 1;
+
+    private bool _fadeComplete = false;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,8 +37,13 @@ public class GameManager : MonoBehaviour
         
         //make the blackoutBox inactive so that it doesn't block clicking
         blackoutBox.gameObject.SetActive(false);
+        
+        //the scene must be loaded in Awake so that TextingManager can find it in Start
+        currentCharacterName = "Mikaela";
+        currentCharacterConversation = currentCharacterName + "Conversations";
+        SceneOrderManager.instance.LoadNewScene(currentCharacterConversation);
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +56,12 @@ public class GameManager : MonoBehaviour
                 SetMessageScreen();
                 break;
             case PhoneState.BlackoutState:
-                SetBlackoutScreen();
+                if (!_fadeComplete)
+                {
+                    _fadeComplete = true;
+                    SetBlackoutScreen();
+                }
+
                 break;
         }
     }
@@ -51,6 +70,10 @@ public class GameManager : MonoBehaviour
     {
         messagesScreen.SetActive(false);
         textingScreen.SetActive(true);
+        
+        //this fades away the lock screen and the lock screen date text
+        lockScreen.DOFade(0, fadeDuration).OnComplete(()=>lockScreen.gameObject.SetActive(false));
+        lockScreenDateText.DOFade(0, fadeDuration).OnComplete(() => lockScreenDateText.gameObject.SetActive(false));
     }
 
     public void SetMessageScreen()
@@ -62,7 +85,9 @@ public class GameManager : MonoBehaviour
     public void SetBlackoutScreen()
     {
         blackoutBox.gameObject.SetActive(true);
-        TextingManager.instance.lockScreen.DOFade(255, 2f).OnComplete(()=> blackoutBox.DOFade(255, 1f));
+        lockScreen.gameObject.SetActive(true);
+        lockScreen.DOFade(255, 2f).OnComplete(() => blackoutBox.DOFade(255, 1f));
+        SceneManager.UnloadSceneAsync(currentCharacterConversation);
     }
 }
 
@@ -70,5 +95,6 @@ public enum PhoneState
 {
     TextingState,
     MessageScreenState,
-    BlackoutState
+    BlackoutState,
+    BetweenConversations
 };

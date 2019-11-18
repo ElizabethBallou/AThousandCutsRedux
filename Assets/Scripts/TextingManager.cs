@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+using Object = System.Object;
 
 public class TextingManager : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class TextingManager : MonoBehaviour
 	private int buttonNumber;
 	public float TextingSpeed = 1f;
 
+	private bool fadeComplete = false;
+
 	
 	// UI stuff
 	public GameObject conversationalistPrefab;
@@ -33,19 +37,20 @@ public class TextingManager : MonoBehaviour
 	private RectTransform dialogueRect;
 	private RectTransform dialogueBoxRect;
 	private string currentText;
-	private string currentName;
+	private string currentSpeaker;
 	public Button choicetext1;
 	public Button choicetext2;
 	public Button choicetext3;
 
-	public Image lockScreen;
-	public TextMeshProUGUI lockScreenDateText;
+	private GameObject secondCanvas;
+
+	
 
 	//numbers that let you control the size/shape of the text bubbles
 	public float textBubbleOffsetScale = 2;
 	public float textBubbleOffsetSizeX = 1;
 	public float textBubbleOffsetSizeY = 1;
-
+	
 	private void Awake()
 	{
 		//create singleton for TextingManager
@@ -70,51 +75,59 @@ public class TextingManager : MonoBehaviour
 		choicetext1.gameObject.SetActive(false);
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
-		
-	
-		
-		KnotSelection("Mikaela");
+
+		GameObject[] newSceneObjects = SceneManager.GetSceneByName(GameManager.instance.currentCharacterConversation)
+			.GetRootGameObjects();
+		for (int i = 0; i < newSceneObjects.Length; i++)
+		{
+			if (newSceneObjects[i].tag == "Canvas")
+			{
+				secondCanvas = newSceneObjects[i];
+				Debug.Log("found the second canvas!");
+			}
+		}
+
+		textingContentHolder = secondCanvas.GetComponent<NewSceneCanvasManager>().newSceneTextingContentHolder;
+
+		StartCoroutine(KnotSelection());
 		CurrentStoryState = StoryState.EpisodeStart;
 	}
 
 	private void Update()
 	{
-
-		if (!story.canContinue && story.currentChoices.Count == 0)
+		//run EvaluateInkBool with an Ink variable that says whether a specific conversation is happening
+		if (EvaluateInkBool("conversation_happening") == false)
 		{
 			CurrentStoryState = StoryState.EpisodeEnd;
 		}
 
-		if (EvaluateInkBool("conversation_happening") == false)
+		if (fadeComplete)
 		{
-			KnotSelection("Olivia");
-			CurrentStoryState = StoryState.EpisodeStart;
-		}
-
-		switch (CurrentStoryState)
-		{
-			case StoryState.EpisodeStart:
-				EpisodeStart();
-				break;
-			case StoryState.StartNextInteraction:
-				StartCoroutine(TextAppearStoryUpdate());
-				break;
-			case StoryState.EpisodeEnd:
-				GameManager.instance.phoneUseState = PhoneState.BlackoutState;
-				break;
+			switch (CurrentStoryState)
+			{
+				case StoryState.EpisodeStart:
+					EpisodeStart();
+					break;
+				case StoryState.StartNextInteraction:
+					StartCoroutine(TextAppearStoryUpdate());
+					break;
+				case StoryState.EpisodeEnd:
+					GameManager.instance.phoneUseState = PhoneState.BlackoutState;
+					break;
+			}
 		}
 	}
 
-	private void KnotSelection(string characterName)
+	private IEnumerator KnotSelection()
 	{
-		string knotName = characterName + "_knot_" + CharacterManager.instance.conversationData[characterName];
-		CharacterManager.instance.conversationData[characterName]++;
+		//this function picks a knot, then waits until the lock screen has faded away until anything else happens.
+		//fadeDuration is a variable from GameManager.
+		string knotName = GameManager.instance.currentCharacterName + "_knot_" + CharacterManager.instance.conversationData[GameManager.instance.currentCharacterName];
+		CharacterManager.instance.conversationData[GameManager.instance.currentCharacterName]++;
 		story.ChoosePathString(knotName);
-		
-		
-		//work on timing so that texts don't display while lock screen is fading away
-		lockScreen.DOFade(0, 3f).OnComplete(()=>lockScreen.gameObject.SetActive(false));
-		lockScreenDateText.DOFade(0, 3f).OnComplete(() => lockScreenDateText.gameObject.SetActive(false));
+
+		yield return new WaitForSeconds(GameManager.instance.fadeDuration);
+		fadeComplete = true;
 	}
 	
 	public bool EvaluateInkBool(string inkVariableName)
@@ -139,22 +152,25 @@ public class TextingManager : MonoBehaviour
 	public IEnumerator TextAppearStoryUpdate()
 	{
 		CurrentStoryState = StoryState.TextPrintInIntervals;
-		//print("Is Rosa Speaking?" + isRosaSpeaking);
 
 		while (story.canContinue)
 		{
-			currentName = (string) story.variablesState["current_name"];
+			currentSpeaker = (string) story.variablesState["current_speaker"];
 
 			GameObject talkerText;
-			//if the variable that checks for user input (Rosa speech) is false, and the currentName variable from the Ink file is not Rosa...
-			if (isRosaSpeaking == false && currentName != "Rosa")
-			{
-				talkerText = Instantiate(conversationalistPrefab);
 
+			//if the variable that checks for user input (Rosa speech) is false, and the currentName variable from the Ink file is not Rosa...
+			if (isRosaSpeaking == false && currentSpeaker != "Rosa")
+			{
+				//this is when the other person speaks
+				talkerText = Instantiate(conversationalistPrefab);
+				AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound);
 			}
 			else
 			{
+				//this is when Rosa (main character) speaks
 				talkerText = Instantiate(RosaPrefab);
+				AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
 				isRosaSpeaking = false;
 			}
 			
@@ -172,16 +188,12 @@ public class TextingManager : MonoBehaviour
 			offsetSize.x += textBubbleOffsetSizeX;
 			offsetSize.y += textBubbleOffsetSizeY;
 			dialogueBoxRect.sizeDelta = offsetSize;
-
-			//dialogueRect = dialogue.GetComponent<RectTransform>();
 			
 			//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
 			TextMeshProUGUI nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
-			Debug.Log("nameText.text is " + nameText.text);
 			if (nameText.text == "")
 			{
 				string texterName = (string) story.variablesState["conversant_name"];
-				Debug.Log("The name of the conversant is " + story.variablesState["conversant_name"]);
 				nameText.text = texterName;
 			}
 			
@@ -260,7 +272,7 @@ public class TextingManager : MonoBehaviour
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
 	}
-	
+
 }
 
 	public enum StoryState
@@ -269,5 +281,6 @@ public class TextingManager : MonoBehaviour
 		StartNextInteraction,
 		TextPrintInIntervals,
 		WaitForInteraction,
-		EpisodeEnd
+		EpisodeEnd,
+		DontSetAnythingForTheLoveofGod
 	}

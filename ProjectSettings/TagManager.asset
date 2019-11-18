@@ -8,6 +8,7 @@ TagManager:
   - TextingBackground
   - Canvas
   - TexterIdentity
+  - MikaelaSceneContentHolder
   layers:
   - Default
   - TransparentFX

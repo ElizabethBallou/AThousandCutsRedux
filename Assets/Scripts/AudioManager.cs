@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public AudioSource _audioSource;
-    public AudioClip[] textingSounds;
+    public AudioClip textReceivedSound;
+    public AudioClip textSentSound;
     private void Awake()
     {
         instance = this;
@@ -24,5 +25,11 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void playTextingSound(AudioClip audioClip)
+    {
+        _audioSource.clip = audioClip;
+        _audioSource.Play();
     }
 }
