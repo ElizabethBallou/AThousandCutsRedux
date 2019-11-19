@@ -8,7 +8,6 @@ using Ink.Runtime;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
-using Object = System.Object;
 
 public class TextingManager : MonoBehaviour
 {
@@ -96,9 +95,10 @@ public class TextingManager : MonoBehaviour
 	private void Update()
 	{
 		//run EvaluateInkBool with an Ink variable that says whether a specific conversation is happening
-		if (EvaluateInkBool("conversation_happening") == false)
+		if (EvaluateInkBool("conversation_happening") == false && CurrentStoryState == StoryState.TextPrintInIntervals)
 		{
 			CurrentStoryState = StoryState.EpisodeEnd;
+			StopCoroutine(TextAppearStoryUpdate());
 		}
 
 		if (fadeComplete)
@@ -114,6 +114,7 @@ public class TextingManager : MonoBehaviour
 					break;
 				case StoryState.EpisodeEnd:
 					GameManager.instance.SetBlackoutScreen();
+					CurrentStoryState = StoryState.Intermission;
 					break;
 				case StoryState.ChooseNewConversant:
 					GameManager.instance.SetNewEpisode(GameManager.instance.characterTexterOrder[GameManager.instance.characterTexterOrderIndex]);
@@ -286,5 +287,6 @@ public class TextingManager : MonoBehaviour
 		TextPrintInIntervals,
 		WaitForInteraction,
 		EpisodeEnd,
+		Intermission,
 		ChooseNewConversant
 	}

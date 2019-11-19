@@ -77,10 +77,11 @@ public class GameManager : MonoBehaviour
     }
     public void SetBlackoutScreen()
     {
+        Debug.Log("SetBlackoutScreen is getting called");
         blackoutBox.gameObject.SetActive(true);
         lockScreen.gameObject.SetActive(true);
 
-        lockScreen.DOFade(1, fadeDuration).OnComplete(() => blackoutBox.DOFade(1, 1f));
+        lockScreen.DOFade(1, fadeDuration).OnComplete(() => blackoutBox.DOFade(1, 1f).OnComplete(()=> TextingManager.instance.CurrentStoryState = StoryState.EpisodeStart));
         SceneManager.UnloadSceneAsync(currentCharacterConversation);
         characterTexterOrderIndex++;
     }
