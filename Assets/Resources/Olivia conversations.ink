@@ -319,10 +319,12 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                     {dont_know_how_to_feel: I'll keep pushing all my emotions away, same as always. that's healthy, right?}
                     {dont_know_how_to_feel: that was a joke btw}
                     {dont_know_how_to_feel: awkward. ok. talk tomorrow.}
+                        ~ conversation_happening = false
                         ->DONE
                     
                 
-=== Olivia_knot_3 ===                
+=== Olivia_knot_3 ===
+    ~conversation_happening = true
     sorry it took me so long to text you again
     I had a paper due for my humanities class 
     I hate writing papers. I thought being in the E School meant I'd never have to write a paper again but here we are 

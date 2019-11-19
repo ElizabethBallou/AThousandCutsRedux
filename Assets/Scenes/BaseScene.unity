@@ -2909,6 +2909,9 @@ MonoBehaviour:
   phoneUseState: 0
   currentCharacterName: 
   currentCharacterConversation: 
+  lockScreen: {fileID: 1349979536}
+  lockScreenDateText: {fileID: 361250231}
+  fadeDuration: 1
 --- !u!4 &1292580239
 Transform:
   m_ObjectHideFlags: 0
@@ -4383,7 +4386,7 @@ MonoBehaviour:
   _gameManager: {fileID: 1292580238}
   inkJSONAsset: {fileID: 4900000, guid: 4e7ae8bec7701fe419b18be4913e2ab0, type: 3}
   CurrentStoryState: 0
-  TextingSpeed: 1
+  TextingSpeed: 0.1
   conversationalistPrefab: {fileID: 4169279239973447889, guid: 660016e1d899d0c44a54df2dedc9ec89,
     type: 3}
   RosaPrefab: {fileID: 4169279239973447889, guid: a86cc35bc55e1fd44988a9c2d58b1a61,
@@ -4394,8 +4397,6 @@ MonoBehaviour:
   choicetext1: {fileID: 694735466}
   choicetext2: {fileID: 1627823352}
   choicetext3: {fileID: 1206451174}
-  lockScreen: {fileID: 1349979536}
-  lockScreenDateText: {fileID: 361250231}
   textBubbleOffsetScale: 2
   textBubbleOffsetSizeX: 15
   textBubbleOffsetSizeY: 15

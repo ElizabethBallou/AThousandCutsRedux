@@ -12,7 +12,6 @@ using Object = System.Object;
 
 public class TextingManager : MonoBehaviour
 {
-	public GameManager _gameManager;
 	public static TextingManager instance;
 	[SerializeField] private TextAsset inkJSONAsset;
 	private Story story;
@@ -67,7 +66,6 @@ public class TextingManager : MonoBehaviour
 	public void Start()
 	{
 		//Set the phone state to texting
-		_gameManager.phoneUseState = PhoneState.TextingState;
 		//Find all the UI components
 		choicetext1.onClick.AddListener(()=>ChoiceButtonPressed(0));
 		choicetext2.onClick.AddListener(()=>ChoiceButtonPressed(1));
@@ -76,14 +74,16 @@ public class TextingManager : MonoBehaviour
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
 
+		//make an array of the root objects in the new scene just loaded in
+		//find the canvas
+		//find the textingcontentholder
 		GameObject[] newSceneObjects = SceneManager.GetSceneByName(GameManager.instance.currentCharacterConversation)
 			.GetRootGameObjects();
 		for (int i = 0; i < newSceneObjects.Length; i++)
 		{
-			if (newSceneObjects[i].tag == "Canvas")
+			if (newSceneObjects[i].CompareTag("Canvas"))
 			{
 				secondCanvas = newSceneObjects[i];
-				Debug.Log("found the second canvas!");
 			}
 		}
 
@@ -106,13 +106,17 @@ public class TextingManager : MonoBehaviour
 			switch (CurrentStoryState)
 			{
 				case StoryState.EpisodeStart:
+					GameManager.instance.SetTextingScreen();
 					EpisodeStart();
 					break;
 				case StoryState.StartNextInteraction:
 					StartCoroutine(TextAppearStoryUpdate());
 					break;
 				case StoryState.EpisodeEnd:
-					GameManager.instance.phoneUseState = PhoneState.BlackoutState;
+					GameManager.instance.SetBlackoutScreen();
+					break;
+				case StoryState.ChooseNewConversant:
+					GameManager.instance.SetNewEpisode(GameManager.instance.characterTexterOrder[GameManager.instance.characterTexterOrderIndex]);
 					break;
 			}
 		}
@@ -282,5 +286,5 @@ public class TextingManager : MonoBehaviour
 		TextPrintInIntervals,
 		WaitForInteraction,
 		EpisodeEnd,
-		DontSetAnythingForTheLoveofGod
+		ChooseNewConversant
 	}

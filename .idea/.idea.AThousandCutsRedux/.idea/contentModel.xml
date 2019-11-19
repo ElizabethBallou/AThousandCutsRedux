@@ -116,7 +116,6 @@
           <e p="AudioManager.cs" t="Include" />
           <e p="CharacterManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
-          <e p="SceneOrderManager.cs" t="Include" />
           <e p="TextingManager.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
