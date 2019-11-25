@@ -11,48 +11,68 @@ using UnityEngine.SceneManagement;
 
 public class TextingManager : MonoBehaviour
 {
+	//SINGLETON
 	public static TextingManager instance;
+	
+	//INK ASSETS/WRAPPER
 	[SerializeField] private TextAsset inkJSONAsset;
 	private Story story;
 	public StoryState CurrentStoryState;
-
+	
+	//STORY FLOW VARIABLES/OBJECTS
 	private bool textDone = false;
 	private bool isRosaSpeaking = false;
-
-	private int buttonNumber;
 	public float TextingSpeed = 1f;
-
 	private bool fadeComplete = false;
-
+	private string currentText;
+	private string currentSpeaker;
 	
-	// UI stuff
-	public GameObject conversationalistPrefab;
-	public GameObject RosaPrefab;
-	public GameObject textingContentHolder;
-	public GameObject responseBox;
+	//BLACKOUT/LOCK SCREEN OBJECTS/VARIABLES
+	public GameObject textingScreen;
+	public Image blackoutBox;
+	public Image lockScreen;
+	public TextMeshProUGUI lockScreenDateText;
+	public float lockScreenFadeDuration = 1;
+	private bool lockScreenFadeComplete;
+	
+	//TEXT BOX PREFABS/OBJECTS
 	public GameObject texterIdentityUIText;
 	private TextMeshProUGUI dialogue;
 	private RectTransform dialogueRect;
 	private RectTransform dialogueBoxRect;
-	private string currentText;
-	private string currentSpeaker;
+	
+		//numbers that let you control the size/shape of the text bubbles
+		public float textBubbleOffsetScale = 2;
+		public float textBubbleOffsetSizeX = 1;
+		public float textBubbleOffsetSizeY = 1;
+	
+	// ADDITIVE SCENE LOADING OBJECTS
+	public GameObject conversationalistPrefab;
+	public GameObject RosaPrefab;
+	public GameObject textingContentHolder;
+	private GameObject secondCanvas;
+	public GameObject responseBox;
+	
+	//CHOICE UI
+	private int buttonNumber;
 	public Button choicetext1;
 	public Button choicetext2;
 	public Button choicetext3;
-
-	private GameObject secondCanvas;
-
 	
+	//EPISODE SWITCHING VARIABLES
+	public string currentCharacterName;
+	public string currentCharacterConversation;
+	public string[] characterTexterOrder;
+	public int characterTexterOrderIndex = 0;
 
-	//numbers that let you control the size/shape of the text bubbles
-	public float textBubbleOffsetScale = 2;
-	public float textBubbleOffsetSizeX = 1;
-	public float textBubbleOffsetSizeY = 1;
-	
 	private void Awake()
 	{
 		//create singleton for TextingManager
 		instance = this;
+	}
+
+	public void Start()
+	{
 		
 		//set tweens capacity
 		DOTween.SetTweensCapacity(2000, 100);
@@ -60,12 +80,8 @@ public class TextingManager : MonoBehaviour
 		//load in ink file and grab the story text
 		TextAsset storyFile = Resources.Load<TextAsset>("ATC Master Ink File");
 		story = new Story(storyFile.text);    
-	}
 
-	public void Start()
-	{
-		//Set the phone state to texting
-		//Find all the UI components
+		//Add listeners to the buttons, then set them inactive
 		choicetext1.onClick.AddListener(()=>ChoiceButtonPressed(0));
 		choicetext2.onClick.AddListener(()=>ChoiceButtonPressed(1));
 		choicetext3.onClick.AddListener(()=>ChoiceButtonPressed(2));
@@ -73,23 +89,8 @@ public class TextingManager : MonoBehaviour
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
 
-		//make an array of the root objects in the new scene just loaded in
-		//find the canvas
-		//find the textingcontentholder
-		GameObject[] newSceneObjects = SceneManager.GetSceneByName(GameManager.instance.currentCharacterConversation)
-			.GetRootGameObjects();
-		for (int i = 0; i < newSceneObjects.Length; i++)
-		{
-			if (newSceneObjects[i].CompareTag("Canvas"))
-			{
-				secondCanvas = newSceneObjects[i];
-			}
-		}
-
-		textingContentHolder = secondCanvas.GetComponent<NewSceneCanvasManager>().newSceneTextingContentHolder;
-
-		StartCoroutine(KnotSelection());
-		CurrentStoryState = StoryState.EpisodeStart;
+		SetNewEpisode(characterTexterOrder[characterTexterOrderIndex]);
+		
 	}
 
 	private void Update()
@@ -106,34 +107,61 @@ public class TextingManager : MonoBehaviour
 			switch (CurrentStoryState)
 			{
 				case StoryState.EpisodeStart:
-					GameManager.instance.SetTextingScreen();
+					SetTextingScreen();
 					EpisodeStart();
 					break;
 				case StoryState.StartNextInteraction:
 					StartCoroutine(TextAppearStoryUpdate());
 					break;
 				case StoryState.EpisodeEnd:
-					GameManager.instance.SetBlackoutScreen();
+					SetBlackoutScreen();
 					CurrentStoryState = StoryState.Intermission;
 					break;
 				case StoryState.ChooseNewConversant:
-					GameManager.instance.SetNewEpisode(GameManager.instance.characterTexterOrder[GameManager.instance.characterTexterOrderIndex]);
+					CurrentStoryState = StoryState.EpisodeStart;
+					//This gnarly line of code calls SetNewEpisode, which takes a string - in this case, a specific string in an array of 'em
+					//that determines the order in which characters speak.
+					SetNewEpisode(characterTexterOrder[characterTexterOrderIndex]);
+					//Then the state has to get set to EpisodeStart right away, or ChooseNewConversant runs forever
 					break;
 			}
 		}
+	}
+
+	#region FunctionsCalledInEpisodeStart
+
+	public void SetTextingScreen()
+	{
+		textingScreen.SetActive(true);
+		blackoutBox.gameObject.SetActive(true);
+        
+		//this fades away the lock screen and the lock screen date text
+		blackoutBox.DOFade(0, .5f).OnComplete(() => blackoutBox.gameObject.SetActive(false));
+		lockScreen.DOFade(0, lockScreenFadeDuration).SetDelay(.5f).OnComplete(() => lockScreen.gameObject.SetActive(false));
+		lockScreenDateText.DOFade(0, lockScreenFadeDuration).SetDelay(.5f).OnComplete(() => lockScreenDateText.gameObject.SetActive(false));
 	}
 
 	private IEnumerator KnotSelection()
 	{
 		//this function picks a knot, then waits until the lock screen has faded away until anything else happens.
 		//fadeDuration is a variable from GameManager.
-		string knotName = GameManager.instance.currentCharacterName + "_knot_" + CharacterManager.instance.conversationData[GameManager.instance.currentCharacterName];
-		CharacterManager.instance.conversationData[GameManager.instance.currentCharacterName]++;
+		string knotName = currentCharacterName + "_knot_" + CharacterManager.instance.conversationData[currentCharacterName];
+		CharacterManager.instance.conversationData[currentCharacterName]++;
 		story.ChoosePathString(knotName);
 
-		yield return new WaitForSeconds(GameManager.instance.fadeDuration);
+		yield return new WaitForSeconds(lockScreenFadeDuration);
 		fadeComplete = true;
 	}
+	
+	private void EpisodeStart()
+	{
+		//begin running the Ink story!
+		StartCoroutine(TextAppearStoryUpdate());
+	}
+	
+	#endregion
+
+	#region InkVariableEvaluationFunctions
 	
 	public bool EvaluateInkBool(string inkVariableName)
 	{
@@ -147,12 +175,11 @@ public class TextingManager : MonoBehaviour
 			return true;
 		}
 	}
-	private void EpisodeStart()
-	{
-		//begin running the Ink story!
-		StartCoroutine(TextAppearStoryUpdate());
-	}
 	
+
+	#endregion
+
+	#region StoryProcessFunctions
 	
 	public IEnumerator TextAppearStoryUpdate()
 	{
@@ -277,6 +304,68 @@ public class TextingManager : MonoBehaviour
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
 	}
+	
+	#endregion
+
+	#region FunctionsCalledInEpisodeEnd
+
+	    public void SetBlackoutScreen()
+        {
+            blackoutBox.gameObject.SetActive(true);
+            lockScreen.gameObject.SetActive(true);
+    
+            lockScreen.DOFade(1, lockScreenFadeDuration).OnComplete(() => blackoutBox.DOFade(1, 1f).OnComplete(()=> CurrentStoryState = StoryState.ChooseNewConversant));
+            SceneManager.UnloadSceneAsync(currentCharacterConversation);
+            characterTexterOrderIndex++;
+        }
+
+	#endregion
+
+	#region FunctionsCalledInChooseNewConversant
+
+	public void SetNewEpisode(string character)
+	{
+		currentCharacterName = character;
+		currentCharacterConversation = character + "Conversations";
+		LoadNewScene(currentCharacterConversation);
+	}
+	
+	public void LoadNewScene(string sceneName)
+	{
+		SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+
+		StartCoroutine(ReparentNewAdditiveScene(.5f));
+
+	}
+	
+	public IEnumerator ReparentNewAdditiveScene(float time)
+	{
+		yield return new WaitForSeconds(time);
+
+		//make an array of the root objects in the new scene just loaded in
+		//find the canvas
+		//find the textingcontentholder
+		Debug.Log(currentCharacterConversation);
+
+		GameObject[] newSceneObjects = SceneManager.GetSceneByName(currentCharacterConversation)
+			.GetRootGameObjects();
+		for (int i = 0; i < newSceneObjects.Length; i++)
+		{
+			if (newSceneObjects[i].CompareTag("Canvas"))
+			{
+				secondCanvas = newSceneObjects[i];
+			}
+		}
+
+		
+		textingContentHolder = secondCanvas.GetComponent<NewSceneCanvasManager>().newSceneTextingContentHolder;
+
+		StartCoroutine(KnotSelection());
+		CurrentStoryState = StoryState.EpisodeStart;
+
+	}
+
+	#endregion
 
 }
 
