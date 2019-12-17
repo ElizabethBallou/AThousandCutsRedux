@@ -39,8 +39,9 @@ public class TextingManager : MonoBehaviour
 	public Button choicetext1;
 	public Button choicetext2;
 	public Button choicetext3;
+    private TextMeshProUGUI nameText;
 
-	private GameObject secondCanvas;
+    private GameObject secondCanvas;
 
 	
 
@@ -53,9 +54,6 @@ public class TextingManager : MonoBehaviour
 	{
 		//create singleton for TextingManager
 		instance = this;
-		
-		//set tweens capacity
-		DOTween.SetTweensCapacity(2000, 100);
 		
 		//load in ink file and grab the story text
 		TextAsset storyFile = Resources.Load<TextAsset>("ATC Master Ink File");
@@ -73,9 +71,13 @@ public class TextingManager : MonoBehaviour
 		choicetext2.gameObject.SetActive(false);
 		choicetext3.gameObject.SetActive(false);
 
-		//make an array of the root objects in the new scene just loaded in
-		//find the canvas
-		//find the textingcontentholder
+        //Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
+         nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
+
+        //make an array of the root objects in the new scene just loaded in
+        //find the canvas
+        //find the textingcontentholder
+        Debug.Log(GameManager.instance.currentCharacterConversation);
 		GameObject[] newSceneObjects = SceneManager.GetSceneByName(GameManager.instance.currentCharacterConversation)
 			.GetRootGameObjects();
 		for (int i = 0; i < newSceneObjects.Length; i++)
@@ -88,7 +90,7 @@ public class TextingManager : MonoBehaviour
 
 		textingContentHolder = secondCanvas.GetComponent<NewSceneCanvasManager>().newSceneTextingContentHolder;
 
-		StartCoroutine(KnotSelection());
+		//StartCoroutine(KnotSelection());
 		CurrentStoryState = StoryState.EpisodeStart;
 	}
 
@@ -101,7 +103,7 @@ public class TextingManager : MonoBehaviour
 			StopCoroutine(TextAppearStoryUpdate());
 		}
 
-		if (fadeComplete)
+		if (fadeComplete) //this is where FadeComplete will go back in
 		{
 			switch (CurrentStoryState)
 			{
@@ -114,25 +116,30 @@ public class TextingManager : MonoBehaviour
 					break;
 				case StoryState.EpisodeEnd:
 					GameManager.instance.SetBlackoutScreen();
-					CurrentStoryState = StoryState.Intermission;
+					//CurrentStoryState = StoryState.Intermission;
 					break;
 				case StoryState.ChooseNewConversant:
+					Debug.Log("help");
 					GameManager.instance.SetNewEpisode(GameManager.instance.characterTexterOrder[GameManager.instance.characterTexterOrderIndex]);
+					CurrentStoryState = StoryState.EpisodeStart;
 					break;
 			}
 		}
 	}
 
-	private IEnumerator KnotSelection()
+	public IEnumerator KnotSelection()
 	{
+
 		//this function picks a knot, then waits until the lock screen has faded away until anything else happens.
 		//fadeDuration is a variable from GameManager.
+		Debug.Log("KnotSelection is getting called");
+        Debug.Log(CharacterManager.instance);
 		string knotName = GameManager.instance.currentCharacterName + "_knot_" + CharacterManager.instance.conversationData[GameManager.instance.currentCharacterName];
 		CharacterManager.instance.conversationData[GameManager.instance.currentCharacterName]++;
 		story.ChoosePathString(knotName);
 
 		yield return new WaitForSeconds(GameManager.instance.fadeDuration);
-		fadeComplete = true;
+        fadeComplete = true;
 	}
 	
 	public bool EvaluateInkBool(string inkVariableName)
@@ -183,6 +190,24 @@ public class TextingManager : MonoBehaviour
 			dialogue = talkerText.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
 			//set the text from the story
 			dialogue.text = story.Continue();
+            //if there is no textingContentHolder - that is, there's a new scene - findd that textingContentHolder)
+            if (textingContentHolder == null)
+            {
+                GameObject[] newSceneObjects = SceneManager.GetSceneByName(GameManager.instance.currentCharacterConversation)
+            .GetRootGameObjects();
+                for (int i = 0; i < newSceneObjects.Length; i++)
+                {
+                    if (newSceneObjects[i].CompareTag("Canvas"))
+                    {
+                        secondCanvas = newSceneObjects[i];
+                    }
+                }
+
+                textingContentHolder = secondCanvas.GetComponent<NewSceneCanvasManager>().newSceneTextingContentHolder;
+
+                string texterName = (string)story.variablesState["conversant_name"];
+                nameText.text = texterName;
+            }
 			//transform the text-holding object so that it is parented to the canvas
 			talkerText.transform.SetParent(textingContentHolder.transform);
 			
@@ -194,8 +219,7 @@ public class TextingManager : MonoBehaviour
 			offsetSize.y += textBubbleOffsetSizeY;
 			dialogueBoxRect.sizeDelta = offsetSize;
 			
-			//Get the texterIdentity text component, then set the texter name via an Ink variable called conversant_name
-			TextMeshProUGUI nameText = texterIdentityUIText.GetComponentInChildren<TextMeshProUGUI>();
+			
 			if (nameText.text == "")
 			{
 				string texterName = (string) story.variablesState["conversant_name"];
@@ -237,7 +261,7 @@ public class TextingManager : MonoBehaviour
 					switch (i)
 					{
 						case 0:
-							choicetext1.GetComponent<TextMeshProUGUI>().text =
+							choicetext1.GetComponent<TextMeshProUGUI>().text = "1. " + 
 								choice.text.Trim();
 							if (textDone)
 							{
@@ -246,7 +270,7 @@ public class TextingManager : MonoBehaviour
 
 							break;
 						case 1:
-							choicetext2.GetComponent<TextMeshProUGUI>().text =
+							choicetext2.GetComponent<TextMeshProUGUI>().text = "2. " + 
 								choice.text.Trim();
 							if (textDone)
 							{
@@ -254,7 +278,7 @@ public class TextingManager : MonoBehaviour
 							}
 							break;
 						case 2:
-							choicetext3.GetComponent<TextMeshProUGUI>().text =
+							choicetext3.GetComponent<TextMeshProUGUI>().text = "3. " + 
 								choice.text.Trim();
 							if (textDone)
 							{

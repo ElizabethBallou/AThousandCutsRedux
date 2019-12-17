@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MikaelaConversations.unity
     guid: cca17f3acdeee144d8efe91e9be903d8
+  - enabled: 1
+    path: Assets/Scenes/OliviaConversations.unity
+    guid: 9d69f810b75ebea458e9a49fbe3bac9b
   m_configObjects: {}

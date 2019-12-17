@@ -5,7 +5,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
 
 === Olivia_knot_1 ===
 ~conversation_happening = true
-~conversant_name = "unknown"
+~conversant_name = "Unknown"
 ~current_speaker = "conversant"
     hi Rosa. this is Rosa, right?
     my name is Olivia Montgomery. I'm a junior in the engineering school

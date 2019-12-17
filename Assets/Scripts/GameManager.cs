@@ -29,20 +29,25 @@ public class GameManager : MonoBehaviour
 
     public string[] characterTexterOrder;
     public int characterTexterOrderIndex = 0;
-    
+
     // Start is called before the first frame update
+
+    private void OnDisable()
+    {
+        Debug.Log("DisNABLED");
+    }
     void Awake()
     {
         instance = this;
-        
+
+        Debug.Log("AWAKE RUNNING");
         //make the blackoutBox inactive so that it doesn't block clicking
         blackoutBox.gameObject.SetActive(false);
         
         //the scene must be loaded in Awake so that TextingManager can find it in Start
         SetNewEpisode(characterTexterOrder[characterTexterOrderIndex]);
+        Debug.Log("The new episode is " + characterTexterOrder + characterTexterOrderIndex);
 
-
-        DOTween.logBehaviour = LogBehaviour.Verbose;
     }
     
     // Update is called once per frame
@@ -53,6 +58,8 @@ public class GameManager : MonoBehaviour
     public void LoadNewScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        Debug.Log("sceneName is " + sceneName);
+        Debug.Log("LoadNewScene is getting called");
     }
     public void SetTextingScreen()
     {
@@ -71,8 +78,12 @@ public class GameManager : MonoBehaviour
 
     public void SetNewEpisode(string character)
     {
+        
+        Debug.Log("SetNewEpisode is getting called");
         currentCharacterName = character;
         currentCharacterConversation = character + "Conversations";
+        StartCoroutine(TextingManager.instance.KnotSelection());
+
         LoadNewScene(currentCharacterConversation);
     }
     public void SetBlackoutScreen()
@@ -84,6 +95,8 @@ public class GameManager : MonoBehaviour
         lockScreen.DOFade(1, fadeDuration).OnComplete(() => blackoutBox.DOFade(1, 1f).OnComplete(()=> TextingManager.instance.CurrentStoryState = StoryState.EpisodeStart));
         SceneManager.UnloadSceneAsync(currentCharacterConversation);
         characterTexterOrderIndex++;
+        TextingManager.instance.CurrentStoryState = StoryState.ChooseNewConversant;
+        Debug.Log("The current storystate is " + TextingManager.instance.CurrentStoryState);
     }
 }
 
