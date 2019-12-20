@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 public class TextingManager : MonoBehaviour
 {
 	public static TextingManager instance;
+	[HideInInspector]
 	[SerializeField] private TextAsset inkJSONAsset;
 	private Story story;
 	public StoryState CurrentStoryState;

@@ -9,5 +9,4 @@ VAR current_speaker = "conversant"
 // is it conversant or Rosa?
 VAR current_date = ""
 VAR conversation_happening = true
-
--> Olivia_knot_3
+VAR anger_level = 0

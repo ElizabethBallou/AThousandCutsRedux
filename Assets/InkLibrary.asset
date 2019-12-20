@@ -26,6 +26,10 @@ MonoBehaviour:
     jsonAssetPath: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 9a3a3ec66e6a81847969f0672e5f51e9, type: 3}
   - compileAutomatically: 0
+    inkAsset: {fileID: 102900000, guid: 2c11278cc1517364a9bb4cd3bb174656, type: 3}
+    jsonAssetPath: {fileID: 0}
+    jsonAsset: {fileID: 0}
+  - compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: 614f794d7b24f7f42a7434094e3aaaa1, type: 3}
     jsonAssetPath: {fileID: 0}
     jsonAsset: {fileID: 0}
@@ -33,9 +37,18 @@ MonoBehaviour:
     inkAsset: {fileID: 102900000, guid: d47cc9ef72c42d043a0964595c8baa58, type: 3}
     jsonAssetPath: {fileID: 0}
     jsonAsset: {fileID: 0}
-  - compileAutomatically: 0
-    inkAsset: {fileID: 102900000, guid: 2c11278cc1517364a9bb4cd3bb174656, type: 3}
-    jsonAssetPath: {fileID: 0}
-    jsonAsset: {fileID: 0}
   pendingCompilationStack: []
-  compilationStack: []
+  compilationStack:
+  - state: 1
+    inkFile:
+      compileAutomatically: 0
+      inkAsset: {fileID: 102900000, guid: 509bd26ceb17fcf4f8ab0ccf2213bcd2, type: 3}
+      jsonAssetPath: {fileID: 0}
+      jsonAsset: {fileID: 4900000, guid: 9a3a3ec66e6a81847969f0672e5f51e9, type: 3}
+    inkAbsoluteFilePath: D:/Documents/Game Project Files/AThousandCutsRedux/Assets/Resources/ATC
+      Master Ink File.ink
+    jsonAbsoluteFilePath: D:/Documents/Game Project Files/AThousandCutsRedux/Assets/Resources/ATC
+      Master Ink File.json
+    output: []
+    errorOutput: []
+    timeTaken: 0

@@ -3,6 +3,7 @@ VAR rosa_consented_to_kiss = ""
 VAR rosa_alcohol_level = 0 //levels of drunkenness: 0 (sober), 1 (tipsy), 2 (drunk)
 VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said no multiple times), 2 (pushed Duane away)
 
+
 === Olivia_knot_1 ===
 ~conversation_happening = true
 ~conversant_name = "Unknown"
@@ -48,9 +49,10 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 what exactly did he do to you
                 -> Rosa_explains_what_happened
                 
-            * * just an asshole exhibiting typical asshole behavior
-                he's an asswipe, that can't be denied
-                but was that all? because for me, it was more
+            * * nothing much. just, you know, the normal stuff
+                ~ anger_level = anger_level + 1
+                I hear you
+                but was that all? because for me, it was more than 'nothing much'
                 * * * there was more.
                 haha yeah. isn't there always?
                 oh sorry that sounded bad
@@ -109,24 +111,24 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                     so then I
                     *  shut my eyes and stopped moving and waited it out
                     ~ rosa_resistance_level = 0
-                    he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
-                    I wish I'd done something else but idk what I was supposed to do<>
+                        he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
+                    I wish I'd done something else but idk what I was supposed to do
                     *  said what the fuck, I'm not joking
                     ~ rosa_resistance_level = 1
-                    he said come on, we both know why we've been sitting out here waiting for everyone else to leave
-                    and I was like ???
-                    "we" don't know anything about that, my dude
-                    didn't matter to him. he shoved me against the railing and unzipped my pants
-                    I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
-                    and that did it. he stopped.<>
+                        he said come on, we both know why we've been sitting out here waiting for everyone else to leave
+                        and I was like ???
+                        "we" don't know anything about that, my dude
+                        didn't matter to him. he shoved me against the railing and unzipped my pants
+                        I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+                        and that did it. he stopped.
                     *  shoved him. not hard, but enough to make him notice
                     ~ rosa_resistance_level = 2
-                    he got this weird look
-                    he said "I didn't think you'd be into rape play" or something
-                    he kept trying to kiss me while he held my hands down
-                    I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
-                    and that did it. he stopped.<>
-                    -   -> Duane_says_keep_secret
+                        he got this weird look
+                        he said "I didn't think you'd be into rape play" or something
+                        he kept trying to kiss me while he held my hands down
+                        I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+                        and that did it. he stopped.
+                        -   -> Duane_says_keep_secret
                     
                     = Duane_says_keep_secret
                         ~ current_speaker = "Rosa"
@@ -210,7 +212,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 ->DONE
 
 === Olivia_knot_2 ===
-    ~current_speaker = "conversant"
+    ~conversant_name = "Olivia"
     ~conversation_happening = true
     I thought for a while about what I should text you 
     like should I say "hello" as if we were talking about something normal
@@ -287,13 +289,14 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 give me a second
                 * (Rosa_is_empathetic) I am so so sorry, Olivia
                 * (Rosa_says_no_crying) don't give him the pleasure of tears
-                * (Rosa_says_stop_talking) please don't tell me any more. I can't handle this
+                * (Rosa_says_stop_talking) please don't tell me any more. I can't handle this ~anger_level = anger_level + 2
                 -    -> Olivia_says_what_Duane_did_2
                     
                     = Olivia_says_what_Duane_did_2
                         {Rosa_is_empathetic: Im sorry too. I didn't realize how bad it would be to get a rape kit. no one should have to go through that.}
                         {Rosa_says_no_crying: what does it matter? he doesn't know I'm crying. he doesn't give a shit about me, or you}
                         {Rosa_says_stop_talking: then just don't read it. delete the texts or whatever. but I have to say all this or I will scream}
+                       
                         anyway. I messaged Duane and asked him to explain what had happened. he asked if I had a good time and I said "no one has a good time when they're raped"
                         it took a while for him to respond but he finally said that I was crazy. and that if I called it rape again, I'd be sorry
                         and that's the last time we ever spoke
@@ -304,26 +307,51 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             I spent all of winter break depressed. but then I got angry.
             I am so, so angry, Rosa
             aren't you angry?
-            * (angry_every_day) every day
-            * (dont_consider_anger) I try not to think about it. if I do I'll go crazy
+            * every day
+                -> Rosa_angry_every_day
+            * I try not to think about it. if I do I'll go crazy
+                ->Rosa_doesnt_consider_anger
             * (dont_know_how_to_feel) I don't know how to feel angry anymore
-            -   ~current_speaker = "conversant"
-                well
-                I want Duane to suffer SOMETHING.
+                ->Rosa_doesnt_know_how_to_feel
+            
+            = Rosa_angry_every_day
+                yeah, you get it
                 shit I have to go 
                 I'm late to class 
                 talk to you later?
-                * * okay
-                    {angry_every_day: today I will be angry for you, too}
-                    {dont_consider_anger: I'll keep trying not to go crazy, same as always}
-                    {dont_know_how_to_feel: I'll keep pushing all my emotions away, same as always. that's healthy, right?}
-                    {dont_know_how_to_feel: that was a joke btw}
-                    {dont_know_how_to_feel: awkward. ok. talk tomorrow.}
-                        ~ conversation_happening = false
-                        ->DONE
+                -> end_second_knot
+                
+            = Rosa_doesnt_consider_anger
+                ~ anger_level = anger_level + 1
+                well that's fucked
+                ahhh no I have to go 
+                I'm late to class 
+                talk to you later?
+                -> end_second_knot
+                
+            = Rosa_doesnt_know_how_to_feel
+                ~anger_level = anger_level + 2
+                there are a lot of girls who don't know how to get their anger back, aren't there?
+                shit I have to go 
+                I'm late to class 
+                talk to you later?
+                -> end_second_knot
+        
+        = end_second_knot
+            ~ current_speaker = "Rosa"
+            * okay
+            {Rosa_angry_every_day: today I will be angry for you, too}
+            {Rosa_doesnt_consider_anger: I'll keep trying not to go crazy, same as always}
+            {Rosa_doesnt_know_how_to_feel: I'll keep pushing all my emotions away, same as always. that's healthy, right?}
+            {Rosa_doesnt_know_how_to_feel: that was a joke btw}
+            {Rosa_doesnt_know_how_to_feel: awkward. ok. talk tomorrow.}
+            ~ conversant_name = "conversant"
+            ~ conversation_happening = false
+            ->DONE
                     
                 
 === Olivia_knot_3 ===
+    ~conversant_name = "Olivia"
     ~conversation_happening = true
     sorry it took me so long to text you again
     I had a paper due for my humanities class 
@@ -364,8 +392,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             {Rosa_is_recalcitrant: ok, you don't have to do anything, but at least listen to me}
             first, we can both make a report to the Title IX office
             second, we can report to the police
-            third, we can submit a case to the office of civil rights
-            and finally, we can write about what happened and try to get a website somewhere to publish it 
+            third, we can write about what happened and try to get a website somewhere to publish it 
             there may be more options, but that's my shortlist
                 -> Rosa_investigates_options
                 
@@ -374,12 +401,17 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> Title_IX_explanation
             *tell me about reporting to the police
                 -> police_explanation
-            *tell me about the Office of Civil Rights
-                ->office_of_civil_rights_explanation
             *tell me about publishing what happened online
                 ->publishing_online_explanation
-            * ->Rosa_makes_decision
-            
+            * {Rosa_investigates_options > 3} let's make a Title IX report
+                -> Rosa_wants_title_ix
+            * {Rosa_investigates_options > 3} let's go to the police
+                -> Rosa_wants_police_report
+            * {Rosa_investigates_options > 3} let's talk to the media
+                -> Rosa_wants_article
+            * {Rosa_investigates_options > 3} I'm sorry, I can't risk any of this
+                -> Rosa_wants_nothing
+                
             = Title_IX_explanation
                 we would both go to the Title IX office and explain what happened to whoever works there. then they'd decide if it's serious enough to bring a case against Duane
                 and it has to be, right?
@@ -434,18 +466,115 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                         I think I can handle that, but it'll be hard
                 
                ->Rosa_investigates_options
-                
-            = office_of_civil_rights_explanation
-            
-               ->Rosa_investigates_options
+                c
                 
             = publishing_online_explanation
-            
+                one way we can MAKE people pay attention is to talk to the media
+                like, contact news sites and tell them what happened
+                and get an article published
+                    -> publishing_explanation_pros_cons
+                    
+                = publishing_explanation_pros_cons
+                    * why should we do this?
+                        -> why_publishing
+                    * what are the drawbacks?
+                        -> why_not_publishing
+                    * hmm. let's talk about the other options
+                        -> Rosa_investigates_options
+                
+                    = why_publishing
+                        if enough people read a story and get angry, then Fortuna has to do something. they won't be able to ignore it.
+                        and this kind of shit is in the news a lot more now than it used to be
+                        there was Brock Turner, and the girl who carried that mattress at Columbia
+                        -> publishing_explanation_pros_cons
+                        
+                    = why_not_publishing
+                        if we don't write the story ourselves, we won't have control over how Joe Schmoe Journalist handles it 
+                        we could come off to the whole world like sluts 
+                        entitled, crazy sluts 
+                        plus maybe Duane could sue us? I honestly don't know
+                        -> publishing_explanation_pros_cons
+                    
                ->Rosa_investigates_options
         
-        = Rosa_makes_decision
-          ~conversation_happening = false  
-            ->END
+        = Rosa_wants_title_ix
+            that's what I was leaning towards, too.
+            -> system_choice_2
+            
+        = Rosa_wants_police_report
+             that's what I was leaning towards, too.
+            -> system_choice_2
+            
+        = Rosa_wants_article
+            that's what I was leaning towards, too.
+            -> system_choice_2
+            
+        = system_choice_2
+            wow, so 
+            I guess we're really doing this?
+            * I guess...
+            * we're gonna try!
+            * fuck yeah we're doing this
+                -   I can't believe this is happening. like, I didn't even know if you'd answer my text. so thank you.
+                    and now I need to take some time to cry it out before class 
+                    let's talk later and we'll plan our attack
+                    go eat some chocolate, okay?
+                    or whatever kind of food you like 
+                    something that comforts you
+                        * hahahaha I will
+                            -> Rosa_eats_comfort_food
+                        * I can't eat anything right now. I'm too nervous
+                            -> Rosa_too_nervous
+                
+                = Rosa_eats_comfort_food
+                    atta girl <3
+                    alright, later
+                    and don't forget: we are dynamite
+                    ~ conversation_happening = false
+                    -> DONE
+                    
+                = Rosa_too_nervous
+                    save the nerves for later. right now, just take care of yourself.
+                    we have to be be gentle with ourselves, or we won't get through this 
+                    alright, later
+                    ~ conversation_happening = false
+                    -> DONE
+            
+        = Rosa_wants_nothing
+            are you serious
+            youre not going to do anything
+            you realize how this affects me, right?
+            it makes my story weaker
+            aren't you angry? don't you want to do SOMETHING
+            * look we should both get over what happened
+                ->Rosa_says_get_over_it
+            * yes, but I can't risk it
+                -> Rosa_says_hamstrung
+            * actually, I change my mind 
+                -> Rosa_investigates_options
+            
+            = Rosa_says_get_over_it
+                ~ anger_level = (anger_level + 2)
+                okay.
+                we very clearly have different opinions on what people should be allowed to do with other people's bodies.
+                jesus. I can't believe you'd say this after everything.
+                I need some time.
+                bye.
+                ~ conversation_happening = false
+                -> DONE
+            
+            = Rosa_says_hamstrung
+                ~anger_level = (anger_level + 1)
+                that's cowardly. you're a coward.
+                * you're being unfair
+                    -   I know and I don't care 
+                        this is fucking me up 
+                        I need to go
+                        bye
+                ~ conversation_happening = false
+                -> DONE
+                        
+
    
         
         
