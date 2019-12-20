@@ -34,7 +34,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
         * I don't like discussing it
             I get that, but...
             it was bad, Rosa.
-            Mikaela told me only a little about what happened with you. she said it would help to know he'd done something to someone else. that it was a pattern.
+            Mikaela told me only a little about what happened with you. but now I'm afraid that this is a pattern.
             so what would you call the thing with Duane?
             * * a bad night
                 a bad night, huh?
