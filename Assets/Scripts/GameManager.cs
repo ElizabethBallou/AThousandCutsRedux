@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        
 
         Debug.Log("AWAKE RUNNING");
         //make the blackoutBox inactive so that it doesn't block clicking
