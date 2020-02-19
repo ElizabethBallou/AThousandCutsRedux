@@ -6,29 +6,32 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
 
 === Olivia_knot_1 ===
 ~conversation_happening = true
-~conversant_name = "Unknown"
-~current_speaker = "conversant"
+~conversant_name = "Olivia"
+~know_conversant = false
+~is_rosa = false
     hi Rosa. this is Rosa, right?
     my name is Olivia Montgomery. I'm a junior in the engineering school
+    ~know_conversant = true
     we met once at Mikaela's birthday party
     she gave me your number yesterday
     did she tell you I was going to text?
-        * yeah, she mentioned it
+        * yeah, she mentioned it 
+         ~is_rosa = true
             ->Mikaela_said_Olivia_would_text
     
     = Mikaela_said_Olivia_would_text
+        ~is_rosa = false
         okay good
         well
         I'm not sure how to start talking about this
         do you know Duane Hammond? he's a junior in the business school, I think?
-
         *...yes, I know Duane
         *Fuck Duane. we don't talk
         *Duane and I aren't friends anymore
         - -> something_happened_to_unknown
         
     = something_happened_to_unknown
-    ~ current_speaker = "conversant"
+    ~ is_rosa = false
         something happened. he did something to me.
         Mikaela said he did something to you too.
         * I don't like discussing it
@@ -61,14 +64,14 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> Rosa_explains_what_happened
     
     = Rosa_explains_what_happened
-        ~ current_speaker = "Rosa"
+        ~ is_rosa = true
         I was at a theater kid Halloween party, and Duane was there too
         * I'd never met him before
             -> Rosa_Duane_strangers
         * he was in a class with me. we'd worked on a project together
             -> Rosa_Duane_acquaintances
         = Rosa_Duane_strangers
-            ~ current_speaker = "Rosa"
+            ~ is_rosa = true
             ~ rosa_knew_duane = "false"
             he was dressed as Burt Macklin from Parks and Rec, and I hate to say this now, but he was killing it 
             looked a lot like Chris Pratt 
@@ -76,13 +79,13 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             -> Duane_kissed_Rosa
         
         = Rosa_Duane_acquaintances
-            ~ current_speaker = "Rosa"
+            ~ is_rosa = true
             ~ rosa_knew_duane = "true"
             he pulled his weight in the group project. he said smart stuff in class. I didn't know him that well but he seemed nice enough
             -> Duane_kissed_Rosa
         
         = Duane_kissed_Rosa
-            ~ current_speaker = "Rosa"
+            ~ is_rosa = true
             we went out to the back porch where a few other people were
             we were all talking
             then after a while it was just Duane and me. everyone else had wandered off
@@ -99,7 +102,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             -    -> why_Rosa_didnt_want_sex
         
         = why_Rosa_didnt_want_sex
-            ~ current_speaker = "Rosa"
+            ~ is_rosa = true
             I asked him to stop
             * I wasn't into him
             * I just wanted to get back to the party
@@ -140,7 +143,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                         -> Olivia_asks_about_drunkenness
                         
     = Olivia_asks_about_drunkenness
-        ~ current_speaker = "conversant"
+        ~ is_rosa = false
         god. when Mikaela said something had happened, I didn't think it would be that
         I feel sick
         * sorry. I didn't mean to make you feel bad
