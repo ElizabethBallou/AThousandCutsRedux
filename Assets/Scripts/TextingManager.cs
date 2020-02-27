@@ -186,9 +186,10 @@ public class TextingManager : MonoBehaviour
 				AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
 				isRosaSpeaking = false;
 			}
-			
-			//get the text component from the prefab that just got instantiated
-			dialogue = talkerText.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+            //get the text component from the prefab that just got instantiated
+            //Destina: simplified this and made it more robust to child structure
+            dialogue = talkerText.GetComponentInChildren<TextMeshProUGUI>();//talkerText.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
 			//set the text from the story
 			dialogue.text = story.Continue();
             //if there is no textingContentHolder - that is, there's a new scene - findd that textingContentHolder)
@@ -211,6 +212,9 @@ public class TextingManager : MonoBehaviour
             }
 			//transform the text-holding object so that it is parented to the canvas
 			talkerText.transform.SetParent(textingContentHolder.transform);
+
+            //Destina: scales were going weird in my version so added this
+            talkerText.transform.localScale = new Vector3(1f, 1f, 1f);
 			
 			//resize the dialogue box to be the same size as the dialogue
 			dialogueBoxRect = talkerText.transform.GetChild(0).GetComponent<RectTransform>();
@@ -218,7 +222,10 @@ public class TextingManager : MonoBehaviour
 			Vector2 offsetSize = dialogue.GetComponent<TextMeshProUGUI>().textBounds.extents*textBubbleOffsetScale;
 			offsetSize.x += textBubbleOffsetSizeX;
 			offsetSize.y += textBubbleOffsetSizeY;
+            //Destina: this was handled by the layout groups, but that was messing up other stuff, so just doing it explicitly here
 			dialogueBoxRect.sizeDelta = offsetSize;
+
+            talkerText.GetComponent<RectTransform>().sizeDelta = offsetSize;
 			
 			
 			if (nameText.text == "")
