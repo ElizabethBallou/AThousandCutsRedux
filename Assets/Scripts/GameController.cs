@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class GameController : MonoBehaviour
     public GameObject rosaPrefab;
     public Transform choicesParent;
     public TextAsset inkJsonAsset;
-    public GameObject mainPageParent;
+    public List<TextMeshProUGUI> characterNotificationDisplays;
+    public RectTransform textingScreen;
     public bool isTexting;
     public bool textWaiting;
     // Start is called before the first frame update
@@ -21,20 +23,21 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if(isTexting){
+            textingScreen.localPosition += (Vector3.zero - textingScreen.localPosition)*0.1f;
             textWaiting = false;
             Services.InkManager.Update();
         }else{
+            textingScreen.localPosition += ((Vector3.right*1100f) - textingScreen.localPosition) * 0.1f;
             if(textWaiting == false){
                 Services.InkManager.Update();
                 string talkingTo = Services.InkManager.currentConversant;
                 Services.CharacterManager.characters[talkingTo].textNotification.text = talkingTo+"(1)";
+                Services.CharacterManager.characters[talkingTo].textPreview.text = Services.InkManager.latestText;
                 textWaiting = true;
             }
         }
         if(Input.GetKeyDown(KeyCode.Backspace)){
-            foreach(string character in Services.CharacterManager.characters.Keys){
-                Services.CharacterManager.characters[character].transform.gameObject.SetActive(false);
-            }
+            BackToMessageScreen();
         }
     }
 
@@ -42,7 +45,7 @@ public class GameController : MonoBehaviour
         Services.GameController = this;
 
         Services.CharacterManager = new NewCharacterManager();
-        Services.CharacterManager.Initialize(mainPageParent.transform);
+        Services.CharacterManager.Initialize(characterNotificationDisplays);
 
         Services.InkManager = new InkManager(inkJsonAsset);
 
@@ -57,5 +60,12 @@ public class GameController : MonoBehaviour
         Services.CharacterManager.characters[character].transform.gameObject.SetActive(true);
         Services.CharacterManager.characters[character].textNotification.text = character;
         isTexting = true;
+    }
+    public void BackToMessageScreen(){
+        isTexting = false;
+        foreach(string character in Services.CharacterManager.characters.Keys){
+                Services.CharacterManager.characters[character].transform.gameObject.SetActive(false);
+            }
+
     }
 }

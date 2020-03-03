@@ -81,11 +81,11 @@ public class GameManager : MonoBehaviour
     {
         
         Debug.Log("SetNewEpisode is getting called");
-        currentCharacterName = character;
+        /*currentCharacterName = character;
         currentCharacterConversation = character + "Conversations";
         StartCoroutine(TextingManager.instance.KnotSelection());
 
-        LoadNewScene(currentCharacterConversation);
+        LoadNewScene(currentCharacterConversation);*/
     }
     public void SetBlackoutScreen()
     {

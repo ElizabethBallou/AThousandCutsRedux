@@ -21,6 +21,8 @@ public class InkManager : MonoBehaviour
     bool madeChoices = false;
     bool justDidAChoice = false;//if this is true, rosa should always be speaking
     // Start is called before the first frame update
+
+    public string latestText = "";
     public InkManager(TextAsset jsonFile){
         inkJSONAsset = jsonFile;
         story = new Story(inkJSONAsset.text);
@@ -32,6 +34,7 @@ public class InkManager : MonoBehaviour
         if(story.canContinue){//text is being drawn
             //Debug.Log(GetNextContent());
             string text = GetNextContent();
+            latestText = text;
             currentConversant = story.variablesState["conversant_name"] as string;
             isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
             Services.DisplayManager.WriteText(text,currentConversant,isRosaSpeaking);

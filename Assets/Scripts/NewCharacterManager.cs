@@ -16,14 +16,15 @@ public class NewCharacterManager
     private Image[] ConversantPictures;
 
     // Start is called before the first frame update
-    public void Initialize(Transform mainPageParent)
+    public void Initialize(List<TextMeshProUGUI> characterDisplayText)
     {
         characters.Add("Olivia",new Character("Olivia",GameObject.Find("Olivia").transform));
-        characters["Olivia"].textNotification = mainPageParent.GetChild(0).GetComponent<TextMeshProUGUI>();
+        characters["Olivia"].textNotification = characterDisplayText[0];
+        characters["Olivia"].textPreview = characterDisplayText[0].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         characters.Add("Mikaela",new Character("Mikaela",GameObject.Find("Mikaela").transform));
-        characters["Mikaela"].textNotification = mainPageParent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        characters["Mikaela"].textNotification = characterDisplayText[1];
         characters.Add("Duane", new Character("Duane",GameObject.Find("Duane").transform));
-        characters["Duane"].textNotification = mainPageParent.GetChild(2).GetComponent<TextMeshProUGUI>();
+        characters["Duane"].textNotification = characterDisplayText[2];
     }
 }
 public class Character
@@ -34,6 +35,7 @@ public class Character
     public float height = 0;
     public List<string> texts = new List<string>();
     public TextMeshProUGUI textNotification;
+    public TextMeshProUGUI textPreview;
     public Character(string name, Transform place){
         this.name = name;
         this.transform = place;
