@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
         Services.GameController = this;
 
         Services.CharacterManager = new NewCharacterManager();
-        Services.CharacterManager.Initialize(characterNotificationDisplays);
+        Services.CharacterManager.Initialize(characterNotificationDisplays,choicesParent);
 
         Services.InkManager = new InkManager(inkJsonAsset);
 
@@ -58,6 +58,7 @@ public class GameController : MonoBehaviour
     public void SelectCharacter(string character){
         Debug.Log(character);
         Services.CharacterManager.characters[character].transform.gameObject.SetActive(true);
+        Services.CharacterManager.characters[character].choices.gameObject.SetActive(true);
         Services.CharacterManager.characters[character].textNotification.text = character;
         isTexting = true;
     }
@@ -65,6 +66,7 @@ public class GameController : MonoBehaviour
         isTexting = false;
         foreach(string character in Services.CharacterManager.characters.Keys){
                 Services.CharacterManager.characters[character].transform.gameObject.SetActive(false);
+                Services.CharacterManager.characters[character].choices.gameObject.SetActive(false);
             }
 
     }

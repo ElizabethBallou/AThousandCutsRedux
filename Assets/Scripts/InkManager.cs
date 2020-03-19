@@ -23,6 +23,9 @@ public class InkManager : MonoBehaviour
     // Start is called before the first frame update
 
     public string latestText = "";
+
+    float lastPrint;
+    float timeBetweenPrints = 0;
     public InkManager(TextAsset jsonFile){
         inkJSONAsset = jsonFile;
         story = new Story(inkJSONAsset.text);
@@ -32,14 +35,19 @@ public class InkManager : MonoBehaviour
         
         Debug.Log(currentConversant);
         if(story.canContinue){//text is being drawn
-            //Debug.Log(GetNextContent());
-            string text = GetNextContent();
-            latestText = text;
-            currentConversant = story.variablesState["conversant_name"] as string;
-            isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
-            Services.DisplayManager.WriteText(text,currentConversant,isRosaSpeaking);
-            madeChoices = false;
-            justDidAChoice = false;
+            if(Time.time >= lastPrint+timeBetweenPrints){
+                lastPrint = Time.time;
+                timeBetweenPrints = Random.Range(0.5f,1.0f);
+
+                string text = GetNextContent();
+                latestText = text;
+                currentConversant = story.variablesState["conversant_name"] as string;
+                isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
+                Services.DisplayManager.WriteText(text,currentConversant,isRosaSpeaking);
+                madeChoices = false;
+                justDidAChoice = false;
+            }
+            
         }else{//choices!!
             if(!madeChoices){
                 for(int i = 0; i < 3;i++){
@@ -65,6 +73,10 @@ public class InkManager : MonoBehaviour
     }
     public void SelectChoice(int choiceNum){
         story.ChooseChoiceIndex(choiceNum);
+        for(int i = 0; i < 3;i++){
+            Services.DisplayManager.choices[i].text = "";
+        }
+        Debug.Log("A");
         justDidAChoice = true;
     }
    

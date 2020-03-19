@@ -130,7 +130,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 9.700576, y: 0, z: 89.54383, w: 0}
   m_textInfo:
     textComponent: {fileID: 472486997763388236}
     characterCount: 14
@@ -166,6 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2584002466724859089}
   - component: {fileID: 8793571286981059555}
+  - component: {fileID: 218068597166424262}
   m_Layer: 0
   m_Name: RosaTextingContainer
   m_TagString: Untagged
@@ -218,6 +219,19 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
+--- !u!114 &218068597166424262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169279239973447889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0645dcbcc93f0444d99def0711cd6000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stretcher: {fileID: 0}
 --- !u!1 &4580481404128750778
 GameObject:
   m_ObjectHideFlags: 0
