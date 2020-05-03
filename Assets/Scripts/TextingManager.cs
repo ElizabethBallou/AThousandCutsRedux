@@ -116,6 +116,7 @@ public class TextingManager : MonoBehaviour
 					StartCoroutine(TextAppearStoryUpdate());
 					break;
 				case StoryState.EpisodeEnd:
+					Debug.Log("WE ARE IN EPISODE END");
 					GameManager.instance.SetBlackoutScreen();
 					//CurrentStoryState = StoryState.Intermission;
 					break;
@@ -274,6 +275,7 @@ public class TextingManager : MonoBehaviour
 							if (textDone)
 							{
 								choicetext1.gameObject.SetActive(true);
+								choicetext1.colors = ColorBlock.defaultColorBlock;
 							}
 
 							break;
@@ -283,6 +285,8 @@ public class TextingManager : MonoBehaviour
 							if (textDone)
 							{
 								choicetext2.gameObject.SetActive(true);
+								choicetext2.colors = ColorBlock.defaultColorBlock;
+
 							}
 							break;
 						case 2:
@@ -291,6 +295,8 @@ public class TextingManager : MonoBehaviour
 							if (textDone)
 							{
 								choicetext3.gameObject.SetActive(true);
+								choicetext3.colors = ColorBlock.defaultColorBlock;
+
 							}
 							break;
 					}

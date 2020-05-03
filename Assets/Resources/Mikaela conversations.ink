@@ -53,9 +53,11 @@
         * fine. give her my number.
         -   ok. I will. are you mad at me?
             * * sort of
+                ->Mikaela_is_sorry
             * * of course not
+                ->Mikaela_is_sorry
             * * I'm mad, but not at you
-               -  -> Mikaela_is_sorry
+                ->Mikaela_is_sorry
                
         = Mikaela_is_sorry
             I'm sorry any of this ever happened. and I hate to see both of you going through this.
@@ -92,12 +94,40 @@
             }
             
     = Rosa_Olivia_take_action
-        look
-        Olivia told me what you all decided to do, and so I just wanted to check 
-        {Olivia_knot_3.Rosa_wants_title_ix:are you sure this is a good idea?}
-        {Olivia_knot_3.Rosa_wants_police_report: are you sure this is a good idea?}
-        {Olivia_knot_3.Rosa_wants_article: are you sure this is a good idea?}
-        ->DONE
+        hey so I said this to Olivia and I just want to tell you too
+        {Olivia_knot_3.Rosa_wants_title_ix:I don't think going to the Title IX people is a good idea}
+        {Olivia_knot_3.Rosa_wants_police_report: I don't think talking to the police is a good idea}
+        {Olivia_knot_3.Rosa_wants_article: I don't think trying to get an article written is a good idea}
+        *wait, what?
+            ->Mikaela_doesnt_support_action
+            
+        = Mikaela_doesnt_support_action
+            {Olivia_knot_3.Rosa_wants_title_ix:I've known some people who reported to the Title IX council and it never works out the way it should}
+            {Olivia_knot_3.Rosa_wants_title_ix: I just don't want to see you all dragged through the mud}
+            {Olivia_knot_3.Rosa_wants_police_report: this sucks to say, but do you know how few people actually get convicted of sexual assault?}
+            {Olivia_knot_3.Rosa_wants_police_report: I just don't want to see you all dragged through the mud}
+            {Olivia_knot_3.Rosa_wants_article: if you attack Duane that publicly, he might get dangerous}
+            * stop freaking me out
+                ->knot_2_goodbye
+            * I can't believe you're saying this
+                ->knot_2_goodbye
         
     = Rosa_does_nothing
-        ->DONE
+        Olivia seemed upset that you didn't want to do anything but I think you made the right call
+        I've known some people who reported to the Title IX council and it never works out the way it should
+        *(knot_2_agree)I agree
+            ->Mikaela_doesnt_trust_systems
+        *(knot_2_surprised)I'm surprised you'd say that, since you brought Olivia and me together in the first place
+            ->Mikaela_doesnt_trust_systems
+        
+        = Mikaela_doesnt_trust_systems
+        {knot_2_surprised: yeah, because now you two can talk to each other and get closure that way}
+        going to the police or Title IX would do you more harm than good
+        -> knot_2_goodbye
+        
+    = knot_2_goodbye
+        talk later then
+         ~conversation_happening = false
+            -> DONE
+        
+        

@@ -33,7 +33,7 @@ public class InkManager : MonoBehaviour
 
     public void Update(){
         
-        Debug.Log(currentConversant);
+        //Debug.Log(currentConversant);
         if(story.canContinue){//text is being drawn
             if(Time.time >= lastPrint+timeBetweenPrints){
                 lastPrint = Time.time;
@@ -76,7 +76,7 @@ public class InkManager : MonoBehaviour
         for(int i = 0; i < 3;i++){
             Services.DisplayManager.choices[i].text = "";
         }
-        Debug.Log("A");
+        //Debug.Log("A");
         justDidAChoice = true;
     }
    
