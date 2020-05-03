@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     public TextAsset inkJsonAsset;
     public List<TextMeshProUGUI> characterNotificationDisplays;
     public RectTransform textingScreen;
+    public LockButtonController lockScreen;
+    public GameObject oliviaBlur;
     public bool isTexting;
     public bool textWaiting;
     public float textingSpeed;
@@ -32,6 +34,9 @@ public class GameController : MonoBehaviour
             if(textWaiting == false){
                 Services.InkManager.Update();
                 string talkingTo = Services.InkManager.currentConversant;
+                if(talkingTo == "Olivia"){
+                    oliviaBlur.SetActive(false);
+                }
                 Services.CharacterManager.characters[talkingTo].textNotification.text = talkingTo+"(1)";
                 Services.CharacterManager.characters[talkingTo].textPreview.text = Services.InkManager.latestText;
                 textWaiting = true;

@@ -26,6 +26,7 @@ public class InkManager : MonoBehaviour
 
     float lastPrint;
     float timeBetweenPrints = 0;
+    public bool conversationHappening;
     public InkManager(TextAsset jsonFile){
         inkJSONAsset = jsonFile;
         story = new Story(inkJSONAsset.text);
@@ -41,8 +42,14 @@ public class InkManager : MonoBehaviour
 
                 string text = GetNextContent();
                 latestText = text;
+
                 currentConversant = story.variablesState["conversant_name"] as string;
                 isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
+                conversationHappening = (int)story.variablesState["conversation_happening"] == 1;
+                if(conversationHappening == false){
+                    Services.GameController.lockScreen.OnLockScreenLock();
+                }
+                
                 Services.DisplayManager.WriteText(text,currentConversant,isRosaSpeaking);
                 madeChoices = false;
                 justDidAChoice = false;

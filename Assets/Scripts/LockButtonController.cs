@@ -65,5 +65,13 @@ public class LockButtonController : MonoBehaviour
         notificationText.DOFade(0f, secondaryFadeTime);
         unlockScreenGraphic.DOFade(0f, secondaryFadeTime).OnComplete(() => unlockScreenGraphic.gameObject.SetActive(false));
     }
+    public void OnLockScreenLock(){
+        if(unlockButtonPressed){
+            unlockButtonPressed = false;
+            Debug.Log("I SHOULD FADE IN");
+            //put code in here to make it fade in
+        }
+        
+    }
   
 }

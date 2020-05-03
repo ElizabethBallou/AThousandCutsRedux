@@ -23,6 +23,7 @@ public class NewCharacterManager
         characters["Olivia"].textPreview = characterDisplayText[0].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         characters.Add("Mikaela",new Character("Mikaela",GameObject.Find("Mikaela").transform,choicesParent.GetChild(1)));
         characters["Mikaela"].textNotification = characterDisplayText[1];
+        characters["Mikaela"].textPreview = characterDisplayText[1].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         characters.Add("Duane", new Character("Duane",GameObject.Find("Duane").transform,choicesParent.GetChild(2)));
         characters["Duane"].textNotification = characterDisplayText[2];
     }

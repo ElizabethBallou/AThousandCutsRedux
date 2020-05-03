@@ -69,7 +69,7 @@
         {Rosa_doesnt_have_time: I'll come by your dorm after rehearsal with some hot chocolate, k? you need it}
         * thanks <3
             ~conversation_happening = false
-            -> DONE
+            -> Olivia_knot_1
             
 === Mikaela_knot_2 ===
     hey. Olivia told me you all talked
@@ -128,6 +128,6 @@
     = knot_2_goodbye
         talk later then
          ~conversation_happening = false
-            -> DONE
+            -> Olivia_knot_1
         
         

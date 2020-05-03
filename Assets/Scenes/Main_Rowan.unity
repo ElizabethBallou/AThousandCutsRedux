@@ -6913,8 +6913,11 @@ MonoBehaviour:
   - {fileID: 134438986}
   - {fileID: 1235651994}
   textingScreen: {fileID: 888743178}
+  lockScreen: {fileID: 1349979538}
+  oliviaBlur: {fileID: 1560632241}
   isTexting: 0
   textWaiting: 0
+  textingSpeed: 5
 --- !u!1 &1649744455
 GameObject:
   m_ObjectHideFlags: 0
