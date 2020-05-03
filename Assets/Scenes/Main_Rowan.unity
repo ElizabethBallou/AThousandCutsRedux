@@ -6912,6 +6912,7 @@ MonoBehaviour:
   - {fileID: 2024362218}
   - {fileID: 134438986}
   - {fileID: 1235651994}
+  texterName: {fileID: 83796494}
   textingScreen: {fileID: 888743178}
   lockScreen: {fileID: 1349979538}
   oliviaBlur: {fileID: 1560632241}

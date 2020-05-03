@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public Transform choicesParent;
     public TextAsset inkJsonAsset;
     public List<TextMeshProUGUI> characterNotificationDisplays;
+    public TextMeshProUGUI texterName;
     public RectTransform textingScreen;
     public LockButtonController lockScreen;
     public GameObject oliviaBlur;
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour
             textingScreen.localPosition += (Vector3.zero - textingScreen.localPosition)*0.1f;
             textWaiting = false;
             Services.InkManager.Update();
+            texterName.text = Services.InkManager.currentConversant;
         }else{
             textingScreen.localPosition += ((Vector3.right*1100f) - textingScreen.localPosition) * 0.1f;
             if(textWaiting == false){

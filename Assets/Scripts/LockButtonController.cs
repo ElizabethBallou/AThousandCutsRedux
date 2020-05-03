@@ -70,6 +70,7 @@ public class LockButtonController : MonoBehaviour
             unlockButtonPressed = false;
             Debug.Log("I SHOULD FADE IN");
             //put code in here to make it fade in
+            
         }
         
     }
