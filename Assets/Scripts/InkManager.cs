@@ -48,8 +48,9 @@ public class InkManager : MonoBehaviour
                 conversationHappening = (int)story.variablesState["conversation_happening"] == 1;
                 if(conversationHappening == false){
                     Services.GameController.lockScreen.OnLockScreenLock();
+                    Services.GameController.BackToMessageScreen();
                 }
-                
+
                 Services.DisplayManager.WriteText(text,currentConversant,isRosaSpeaking);
                 madeChoices = false;
                 justDidAChoice = false;
