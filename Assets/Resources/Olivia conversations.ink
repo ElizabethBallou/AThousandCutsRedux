@@ -52,7 +52,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 what exactly did he do to you
                 -> Rosa_explains_what_happened
                 
-            * * nothing much. just, you know, the normal stuff
+            * * nothing much. just the normal shitty stuff
                 ~ anger_level = anger_level + 1
                 I hear you
                 but was that all? because for me, it was more than 'nothing much'
@@ -492,7 +492,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                         -> publishing_explanation_pros_cons
                         
                     = why_not_publishing
-                        if we don't write the story ourselves, we won't have control over how Joe Schmoe Journalist handles it 
+                        if we don't write the story ourselves, we won't have control over how a random journalist handles it 
                         we could come off to the whole world like sluts 
                         entitled, crazy sluts 
                         plus maybe Duane could sue us? I honestly don't know
@@ -551,7 +551,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             aren't you angry? don't you want to do SOMETHING
             * look we should both get over what happened
                 ->Rosa_says_get_over_it
-            * yes, but I can't risk it
+            * yes, but I can't do this right now
                 -> Rosa_says_hamstrung
             * actually, I change my mind 
                 -> Rosa_investigates_options
@@ -560,21 +560,34 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 ~ anger_level = (anger_level + 2)
                 okay.
                 we very clearly have different opinions on what people should be allowed to do with other people's bodies.
-                jesus. I can't believe you'd say this after everything.
-                I need some time.
-                bye.
-                ~ conversation_happening = false
-                -> DONE
-            
+                jesus I can't believe you'd say this after everything
+                *not everyone wants the same thing you want
+                ->Will_Olivia_respect_Rosa
+
             = Rosa_says_hamstrung
                 ~anger_level = (anger_level + 1)
                 that's cowardly. you're a coward.
                 * you're being unfair
                     -   I know and I don't care 
-                        this is fucking me up 
-                        I need to go
-                        bye
+                        *not everyone wants the same thing you want
+                        ->Will_Olivia_respect_Rosa
+
+            = Will_Olivia_respect_Rosa
+                *you have to respect my choice or we're done talking
+                    ->yes_she_will
+                
+            = yes_she_will
+                ...ok 
+                I dont get it but ok 
+                I'm still going to do something though 
+                probably Ill go the title ix way 
+                can we keep talking? once Ive made the report? you're the only one who will get it fully
+                *as long as you don't pull me into making a report I don't want to make right now
+                    ->Olivia_promises
+            = Olivia_promises
+                I won't. I promise.
                 ~ conversation_happening = false
+
                 -> DONE
                         
 

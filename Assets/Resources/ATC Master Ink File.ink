@@ -12,4 +12,4 @@ VAR current_speaker = "conversant"
 VAR current_date = ""
 VAR conversation_happening = true
 VAR anger_level = 0
--> Olivia_knot_1
+-> Mikaela_knot_1

@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0645dcbcc93f0444d99def0711cd6000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stretcher: {fileID: 0}
 --- !u!1 &5059852291153016771
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,9 +321,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 12
-    m_Right: 0
-    m_Top: 7
-    m_Bottom: 0
+    m_Right: 12
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
