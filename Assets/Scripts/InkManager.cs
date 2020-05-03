@@ -37,7 +37,7 @@ public class InkManager : MonoBehaviour
         if(story.canContinue){//text is being drawn
             if(Time.time >= lastPrint+timeBetweenPrints){
                 lastPrint = Time.time;
-                timeBetweenPrints = Random.Range(0.5f,1.0f);
+                timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
 
                 string text = GetNextContent();
                 latestText = text;

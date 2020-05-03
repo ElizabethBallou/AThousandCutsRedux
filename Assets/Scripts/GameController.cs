@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public RectTransform textingScreen;
     public bool isTexting;
     public bool textWaiting;
+    public float textingSpeed;
     // Start is called before the first frame update
     void Awake()
     {
