@@ -5,7 +5,6 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
 
 
 === Olivia_knot_1 ===
-~conversation_happening = true
 ~conversant_name = "Olivia"
 ~know_conversant = false
 ~is_rosa = false
@@ -17,6 +16,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
     did she tell you I was going to text?
         * yeah, she mentioned it 
          ~is_rosa = true
+         ~conversation_happening = true
             ->Mikaela_said_Olivia_would_text
     
     = Mikaela_said_Olivia_would_text

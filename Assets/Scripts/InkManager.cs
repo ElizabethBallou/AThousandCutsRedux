@@ -46,6 +46,7 @@ public class InkManager : MonoBehaviour
                 currentConversant = story.variablesState["conversant_name"] as string;
                 isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
                 conversationHappening = (int)story.variablesState["conversation_happening"] == 1;
+                Debug.Log(conversationHappening);
                 if(conversationHappening == false){
                     Services.GameController.lockScreen.OnLockScreenLock();
                     Services.GameController.BackToMessageScreen();
@@ -80,6 +81,9 @@ public class InkManager : MonoBehaviour
         return story.Continue();
     }
     public void SelectChoice(int choiceNum){
+        if(story.canContinue){
+            return;
+        }
         story.ChooseChoiceIndex(choiceNum);
         for(int i = 0; i < 3;i++){
             Services.DisplayManager.choices[i].text = "";
