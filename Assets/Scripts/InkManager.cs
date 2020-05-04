@@ -90,6 +90,9 @@ public class InkManager : MonoBehaviour
         return story.Continue();
     }
     public void SelectChoice(int choiceNum){
+        if(story.canContinue){
+            return;
+        }
         story.ChooseChoiceIndex(choiceNum);
         for(int i = 0; i < 3;i++){
             Services.DisplayManager.choices[i].text = "";
