@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource _audioSource;
     public AudioClip textReceivedSound;
     public AudioClip textSentSound;
+    public AudioClip unlockSound;
+    private float beginnerTimer = 0f;
+    private bool beginnerTimerDone = false;
     private void Awake()
     {
         instance = this;
@@ -24,12 +27,23 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!beginnerTimerDone)
+        {
+            beginnerTimer += Time.deltaTime;
+            if (beginnerTimer >= .5f)
+            {
+                beginnerTimerDone = true;
+            }
+        }
     }
 
     public void playTextingSound(AudioClip audioClip)
     {
-        _audioSource.clip = audioClip;
-        _audioSource.Play();
+        if (beginnerTimerDone)
+        {
+            _audioSource.clip = audioClip;
+            _audioSource.Play();
+        }
+
     }
 }

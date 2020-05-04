@@ -17,7 +17,7 @@ public class LockButtonController : MonoBehaviour
     public float secondaryFadeTime = .2f;
     public float longFade = 3f;
     private bool unlockButtonPressed = false;
-    private bool SwitchingEpisodes = false;
+    public bool SwitchingEpisodes = false;
     private bool isFadingIn = false;
     private bool isFadingOut = false;
     private float fadeTimer = 0;
@@ -42,6 +42,7 @@ public class LockButtonController : MonoBehaviour
         dateText.text = dateArray[dateArrayIndex];
 
         //hide quit button
+        quitButton.image.color = clearWhite;
         quitButton.gameObject.SetActive(false);
     }
 
@@ -50,12 +51,12 @@ public class LockButtonController : MonoBehaviour
     {
         if (!unlockButtonPressed && !SwitchingEpisodes)
         {
-            Debug.Log("Unlock button is NOT pressed");
+            //Debug.Log("Unlock button is NOT pressed");
             if (isFadingOut)
             {
                 fadeTimer += Time.deltaTime;
                 unlockButton.image.DOFade(.5f, fadeTime);
-                Debug.Log("Fading out...");
+                //Debug.Log("Fading out...");
                 if (fadeTimer >= fadeTime)
                 {
                     isFadingOut = false;
@@ -67,7 +68,7 @@ public class LockButtonController : MonoBehaviour
             {
                 fadeTimer += Time.deltaTime;
                 unlockButton.image.DOFade(1f, fadeTime);
-                Debug.Log("Fading in...");
+                //Debug.Log("Fading in...");
                 if (fadeTimer >= fadeTime)
                 {
                     isFadingOut = true;
@@ -82,17 +83,21 @@ public class LockButtonController : MonoBehaviour
             switchTimer += Time.deltaTime;
             if (switchTimer >= longFade + fadeTime)
             {
+                Services.InkManager.FakeChoice();
+
                 Services.GameController.BackToMessageScreen();
                 switchTimer = 0;
                 isFadingIn = true;
                 SwitchingEpisodes = false;
 
+                blackBackdrop.color = Color.clear;
             }
         }
     }
 
     public void OnUnlockButtonPress()
     {
+        AudioManager.instance.playTextingSound(AudioManager.instance.unlockSound);
         unlockButtonPressed = true;
         unlockButton.image.DOFade(0f, secondaryFadeTime);
         dateText.DOFade(0f, secondaryFadeTime).OnComplete(() => dateText.gameObject.SetActive(false));
@@ -114,6 +119,7 @@ public class LockButtonController : MonoBehaviour
     public void OnLockScreenLock(){
         if (unlockButtonPressed)
         {
+            Services.GameController.characterWithOpenMessages = "";
             unlockButtonPressed = false;
             Debug.Log("Calling OnLockScreenLock");
             SwitchingEpisodes = true;
@@ -129,6 +135,7 @@ public class LockButtonController : MonoBehaviour
 
             //switch the date text so it's accurate
             dateArrayIndex++;
+            Debug.Log("dateArrayIndex is " + dateArrayIndex);
             dateText.text = dateArray[dateArrayIndex];
 
             //begin by fading in the backdrop
@@ -142,12 +149,15 @@ public class LockButtonController : MonoBehaviour
                 unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
                 unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
                 notificationText.DOFade(1f, fadeTime).SetDelay(longFade)
-                    .OnComplete(() => blackBackdrop.color = Color.clear)
                     .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
             }
 
             if (dateArrayIndex == 5)
             {
+                quitButton.gameObject.SetActive(true);
+                unlockButton.gameObject.SetActive(false);
+                notificationText.gameObject.SetActive(false);
+                quitButton.gameObject.transform.SetAsLastSibling();
                 dateText.DOFade(1f, fadeTime).SetDelay(longFade);
                 unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
                 quitButton.image.DOFade(1f, fadeTime).SetDelay(longFade);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -14,9 +15,13 @@ public class GameController : MonoBehaviour
     public RectTransform textingScreen;
     public LockButtonController lockScreen;
     public GameObject oliviaBlur;
+    public Button oliviaButton;
+    public GameObject mikaelaButton;
     public bool isTexting;
     public bool textWaiting;
     public float textingSpeed;
+    public string characterWithOpenMessages;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,15 +34,27 @@ public class GameController : MonoBehaviour
         if(isTexting){
             textingScreen.localPosition += (Vector3.zero - textingScreen.localPosition)*0.1f;
             textWaiting = false;
-            Services.InkManager.Update();
-            texterName.text = Services.InkManager.currentConversant;
-        }else{
+            if(characterWithOpenMessages == Services.InkManager.currentConversant){
+                Services.InkManager.Update();
+                texterName.text = Services.InkManager.currentConversant;
+            }
+            
+        }else if (lockScreen.SwitchingEpisodes == false)
+        {
             textingScreen.localPosition += ((Vector3.right*1100f) - textingScreen.localPosition) * 0.1f;
             if(textWaiting == false){
                 Services.InkManager.Update();
                 string talkingTo = Services.InkManager.currentConversant;
                 if(talkingTo == "Olivia"){
                     oliviaBlur.SetActive(false);
+                    oliviaButton.interactable = true;
+                    oliviaButton.gameObject.transform.SetSiblingIndex(0);
+                    mikaelaButton.gameObject.transform.SetSiblingIndex(2);
+                }
+                if (talkingTo == "Mikaela")
+                {
+                    mikaelaButton.gameObject.transform.SetSiblingIndex(0);
+                    oliviaButton.gameObject.transform.SetSiblingIndex(2);
                 }
                 Services.CharacterManager.characters[talkingTo].textNotification.text = talkingTo+"(1)";
                 Services.CharacterManager.characters[talkingTo].textPreview.text = Services.InkManager.latestText;
@@ -69,9 +86,11 @@ public class GameController : MonoBehaviour
         Services.CharacterManager.characters[character].choices.gameObject.SetActive(true);
         Services.CharacterManager.characters[character].textNotification.text = character;
         isTexting = true;
+        characterWithOpenMessages = character;
     }
     public void BackToMessageScreen(){
         isTexting = false;
+        characterWithOpenMessages = "";
         foreach(string character in Services.CharacterManager.characters.Keys){
                 Services.CharacterManager.characters[character].transform.gameObject.SetActive(false);
                 Services.CharacterManager.characters[character].choices.gameObject.SetActive(false);

@@ -134,7 +134,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                         -   -> Duane_says_keep_secret
                     
                     = Duane_says_keep_secret
-                        ~ current_speaker = "Rosa"
+                        ~ is_rosa = true
                         before he went inside, he said let's make sure this stays between us.
                         and he smiled as if we'd had a good time
                         I didn't say anything because I was just trying not to lose it
@@ -203,19 +203,24 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
         -   sure. sorry. I shouldve checked earlier
             -> Rosa_says_goodbye
         = Rosa_says_goodbye
-            ~current_speaker = "conversant"
+            ~is_rosa = true
             it's fine. I have a feeling we'll be talking to each other for a while, anyway
             we have time to get used to each other 
             talk to you later, Olivia.
             * (Rosa_says_thanks) and thanks for saying something to me
             * (Rosa_says_nothing) - say nothing -
-            -   {Rosa_says_thanks: I just felt like I had to.}
+            -   ~is_rosa = false
+                {Rosa_says_thanks: I just felt like I had to.}
                 {Rosa_says_nothing: until tomorrow}
                 ~ conversation_happening = false
                 -> Olivia_knot_2
 
 === Olivia_knot_2 ===
-    ~conversant_name = "Olivia"
+    * @
+        ->Olivia_knot_2_ridiculous_intro
+    
+    = Olivia_knot_2_ridiculous_intro
+     ~conversant_name = "Olivia"
     I thought for a while about what I should text you 
     like should I say "hello" as if we were talking about something normal
     or be really gentle in case I freaked you out yesterday
@@ -224,15 +229,12 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
     that's your cue to say something
         * (Rosa_response_chill) ha. don't worry about being confused. there's no guide for talking about this stuff
                 ~conversation_happening = true
-
             ->Olivia_greets_Rosa
         * (Rosa_response_freaked) you did freak me out, but I'm fine now
                 ~conversation_happening = true
-
             ->Olivia_greets_Rosa
         * (Rosa_response_guarded) hello i guess?
                 ~conversation_happening = true
-
             ->Olivia_greets_Rosa
             
     = Olivia_greets_Rosa
@@ -241,11 +243,12 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
         {Rosa_response_guarded: hahaha hello and good day to you}
         it's good to talk to you again
             *you too.
-                - ~conversant_name = "Rosa"
+                - ~is_rosa = true
                     you were going to tell me what happened with Duane?
                     ->Olivia_begins_story
         
         = Olivia_begins_story
+        ~is_rosa = false
             yes.
             ...
             can you ask me some questions to get me started? it's hard for me to know where to begin
@@ -276,6 +279,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                             -> Rosa_asks_Olivia_questions
                         
             = Olivia_says_she_knew_Duane
+            ~is_rosa = false
                 mhmm I knew him. since last year, when he transferred here. there aren't that many engineers so he was in a lot of my classes
                 specifically there aren't a lot of women engineers. I'm used to getting hit on at this point, and Duane did that sometimes
                 but I just brushed him off
@@ -297,7 +301,8 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 give me a second
                 * (Rosa_is_empathetic) I am so so sorry, Olivia
                 * (Rosa_says_no_crying) don't give him the pleasure of tears
-                * (Rosa_says_stop_talking) please don't tell me any more. I can't handle this ~anger_level = anger_level + 2
+                * (Rosa_says_stop_talking) please don't tell me any more. I can't handle this
+                    ~anger_level = anger_level + 2
                 -    -> Olivia_says_what_Duane_did_2
                     
                     = Olivia_says_what_Duane_did_2
@@ -346,39 +351,45 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> end_second_knot
         
         = end_second_knot
-            ~ current_speaker = "Rosa"
+            ~ is_rosa = true
             * okay
             {Rosa_angry_every_day: today I will be angry for you, too}
             {Rosa_doesnt_consider_anger: I'll keep trying not to go crazy, same as always}
             {Rosa_doesnt_know_how_to_feel: I'll keep pushing all my emotions away, same as always. that's healthy, right?}
             {Rosa_doesnt_know_how_to_feel: that was a joke btw}
             {Rosa_doesnt_know_how_to_feel: awkward. ok. talk tomorrow.}
-            ~ conversant_name = "conversant"
             ~ conversation_happening = false
-            ->DONE
+            ->Olivia_knot_3
                     
                 
 === Olivia_knot_3 ===
     ~conversant_name = "Olivia"
-    ~conversation_happening = true
+    ~is_rosa = false
+     * @
+        ->Olivia_knot_3_ridiculous_intro
+        
+    = Olivia_knot_3_ridiculous_intro    
     sorry it took me so long to text you again
     I had a paper due for my humanities class 
     I hate writing papers. I thought being in the E School meant I'd never have to write a paper again but here we are 
     do you have to write a lot for linguistics classes?
         * (Rosa_hates_papers) yeah and I hate it too
+            ~conversation_happening = true
             -> Rosa_writes_papers
         * (Rosa_doesnt_mind_papers) yeah, but I don't mind it
+            ~conversation_happening = true
             -> Rosa_writes_papers
         * (Rosa_enjoys_papers) I enjoy writing papers actually
+            ~conversation_happening = true
             -> Rosa_writes_papers
             
     = Rosa_writes_papers
-    ~ current_speaker = "Rosa"
+    ~ is_rosa = true
         linguistics is like a puzzle. you have to figure out how the parts go together. like, how two languages are connected
         {Rosa_hates_papers: THAT'S the fun part, not writing about it}
         {Rosa_doesnt_mind_papers: writing a paper is how you prove you know what you're talking about}
         {Rosa_enjoys_papers: then the paper is how you break it down and make people care}
-        ~current_speaker = "conversant"
+        ~ is_rosa = false 
         {Rosa_hates_papers: oh good you get it}
         {Rosa_hates_papers: I knew I liked you :)}
         {Rosa_doesnt_mind_papers: whatever you say}
@@ -537,16 +548,15 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 = Rosa_eats_comfort_food
                     atta girl <3
                     alright, later
-                    and don't forget: we are dynamite
                     ~ conversation_happening = false
-                    -> DONE
+                    -> Mikaela_knot_2
                     
                 = Rosa_too_nervous
                     save the nerves for later. right now, just take care of yourself.
                     we have to be be gentle with ourselves, or we won't get through this 
                     alright, later
                     ~ conversation_happening = false
-                    -> DONE
+                    -> Mikaela_knot_2
             
         = Rosa_wants_nothing
             are you serious
@@ -593,7 +603,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 I won't. I promise.
                 ~ conversation_happening = false
 
-                -> DONE
+                -> Mikaela_knot_2
                         
 
    

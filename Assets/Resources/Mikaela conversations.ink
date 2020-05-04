@@ -72,12 +72,16 @@
             -> Olivia_knot_1
             
 === Mikaela_knot_2 ===
+    ~conversant_name = "Mikaela"
     hey. Olivia told me you all talked
     thank you for answering her <3 
     how do you feel now?
     * (knot_2_angry) angry at Duane all over again
+    ~conversation_happening = true
     * (knot_2_guilty) guilty that I didn't say anything when it happened
+    ~conversation_happening = true
     * (knot_2_glad) just glad to have Olivia
+    ~conversation_happening = true
         -   {knot_2_angry: and who could blame you}
             {knot_2_guilty: you can't think like that. you're not responsible for what Duane does}
             {knot_2_guilty: only he is}
@@ -107,11 +111,23 @@
             {Olivia_knot_3.Rosa_wants_police_report: this sucks to say, but do you know how few people actually get convicted of sexual assault?}
             {Olivia_knot_3.Rosa_wants_police_report: I just don't want to see you all dragged through the mud}
             {Olivia_knot_3.Rosa_wants_article: if you attack Duane that publicly, he might get dangerous}
-            * stop freaking me out
-                ->knot_2_goodbye
-            * I can't believe you're saying this
-                ->knot_2_goodbye
-        
+            * (stop_freaking_me_out)stop freaking me out
+                ->Rosa_does_something
+            * (cant_believe_saying)I can't believe you're saying this
+                ->Rosa_does_something
+                
+    = Rosa_does_something
+        {stop_freaking_me_out: I'm not trying to freak you out! Just being honest}
+        {cant_believe_saying: I'm sorry, it sounds like I don't support you}
+        {cant_believe_saying: I do, promise}
+        {cant_believe_saying: I'm just being honest}
+        *we've made up our minds, okay
+            ->Mikaela_rattles_Rosa
+            
+        = Mikaela_rattles_Rosa
+            *you're the one who gave Olivia my number in the first place
+            -> option1_goodbye
+            
     = Rosa_does_nothing
         Olivia seemed upset that you didn't want to do anything but I think you made the right call
         I've known some people who reported to the Title IX council and it never works out the way it should
@@ -123,11 +139,33 @@
         = Mikaela_doesnt_trust_systems
         {knot_2_surprised: yeah, because now you two can talk to each other and get closure that way}
         going to the police or Title IX would do you more harm than good
-        -> knot_2_goodbye
+        * I hope Olivia doesn't hate me
+            -> option2_goodbye
         
-    = knot_2_goodbye
-        talk later then
+    = option1_goodbye
+        I thought you all would just talk
+        not put yourselves out there like this
+        you know what, you're right, it isn't my place
+        still, I have a bad feeling about this
+        are you there?
+        Rosa?
+        ~conversation_happening = false
+            -> Mikaela_knot_3
+        
+    = option2_goodbye
+        she doesn't, I promise
+        she'll come around soon
+        in the meantime...things are going to get hard for her.
          ~conversation_happening = false
-            -> Olivia_knot_1
-        
+            ->Mikaela_knot_3
+
+= Mikaela_knot_3
+honestly it doesn't matter what goes here 
+    *wow really?
+    ~conversation_happening = true
+        -> thatsright
+    
+    = thatsright
+        oh absolutely
+        ->DONE
         
