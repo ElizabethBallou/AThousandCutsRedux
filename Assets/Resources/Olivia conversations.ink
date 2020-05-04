@@ -14,9 +14,9 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
     we met once at Mikaela's birthday party
     she gave me your number yesterday
     did she tell you I was going to text?
-        * yeah, she mentioned it 
+        * yeah, she mentioned it
+        ~conversation_happening = true
          ~is_rosa = true
-         ~conversation_happening = true
             ->Mikaela_said_Olivia_would_text
     
     = Mikaela_said_Olivia_would_text
@@ -212,22 +212,27 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             -   {Rosa_says_thanks: I just felt like I had to.}
                 {Rosa_says_nothing: until tomorrow}
                 ~ conversation_happening = false
-                ->DONE
+                -> Olivia_knot_2
 
 === Olivia_knot_2 ===
     ~conversant_name = "Olivia"
-    ~conversation_happening = true
     I thought for a while about what I should text you 
     like should I say "hello" as if we were talking about something normal
     or be really gentle in case I freaked you out yesterday
     but I really didn't know
     so I figured I would tell you I'm confused
     that's your cue to say something
-        * (Rosa_response_chill) ha. don't worry about being confused. there's no guide for talking about this stuff 
+        * (Rosa_response_chill) ha. don't worry about being confused. there's no guide for talking about this stuff
+                ~conversation_happening = true
+
             ->Olivia_greets_Rosa
         * (Rosa_response_freaked) you did freak me out, but I'm fine now
+                ~conversation_happening = true
+
             ->Olivia_greets_Rosa
         * (Rosa_response_guarded) hello i guess?
+                ~conversation_happening = true
+
             ->Olivia_greets_Rosa
             
     = Olivia_greets_Rosa
