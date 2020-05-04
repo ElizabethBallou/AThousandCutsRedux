@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public bool isTexting;
     public bool textWaiting;
     public float textingSpeed;
+    public string characterWithOpenMessages;
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,8 +30,11 @@ public class GameController : MonoBehaviour
         if(isTexting){
             textingScreen.localPosition += (Vector3.zero - textingScreen.localPosition)*0.1f;
             textWaiting = false;
-            Services.InkManager.Update();
-            texterName.text = Services.InkManager.currentConversant;
+            if(characterWithOpenMessages == Services.InkManager.currentConversant){
+                Services.InkManager.Update();
+                texterName.text = Services.InkManager.currentConversant;
+            }
+            
         }else{
             textingScreen.localPosition += ((Vector3.right*1100f) - textingScreen.localPosition) * 0.1f;
             if(textWaiting == false){
@@ -69,9 +73,11 @@ public class GameController : MonoBehaviour
         Services.CharacterManager.characters[character].choices.gameObject.SetActive(true);
         Services.CharacterManager.characters[character].textNotification.text = character;
         isTexting = true;
+        characterWithOpenMessages = character;
     }
     public void BackToMessageScreen(){
         isTexting = false;
+        characterWithOpenMessages = "";
         foreach(string character in Services.CharacterManager.characters.Keys){
                 Services.CharacterManager.characters[character].transform.gameObject.SetActive(false);
                 Services.CharacterManager.characters[character].choices.gameObject.SetActive(false);

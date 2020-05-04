@@ -37,6 +37,7 @@ public class InkManager : MonoBehaviour
         //Debug.Log(currentConversant);
         if(story.canContinue){//text is being drawn
             if(Time.time >= lastPrint+timeBetweenPrints){
+                AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound);
                 lastPrint = Time.time;
                 timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
 
@@ -45,6 +46,11 @@ public class InkManager : MonoBehaviour
 
                 currentConversant = story.variablesState["conversant_name"] as string;
                 isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
+                if(isRosaSpeaking){
+                    AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
+                }else{
+                    AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound);
+                }
                 bool check = (int)story.variablesState["conversation_happening"] == 1;
                 if(check == false && conversationHappening == true){
                     conversationHappening = false;
@@ -90,6 +96,7 @@ public class InkManager : MonoBehaviour
         }
         //Debug.Log("A");
         justDidAChoice = true;
+        AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
     }
    
 }
