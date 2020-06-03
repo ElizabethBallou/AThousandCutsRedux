@@ -65,7 +65,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
     
     = Rosa_explains_what_happened
         ~ is_rosa = true
-        I was at a theater kid Halloween party, and Duane was there too
+        I was at a theater kid Halloween party with Mikaela, and Duane was there too
         * I'd never met him before
             -> Rosa_Duane_strangers
         * he was in a class with me. we'd worked on a project together
@@ -606,7 +606,83 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> Mikaela_knot_2
                         
 
-   
+  === Olivia_TitleIXpath_1 ===
+        * @
+        ->Olivia_knot_2_ridiculous_intro
+    
+    = Olivia_knot_2_ridiculous_intro 
+      ~conversant_name = "Olivia"
+    all right I just got home from making my report to the Title IX rep 
+    you did yours, right?
+        * yeah, yesterday
+                ~conversation_happening = true
+            ->Rosa_responds
+    
+        = Rosa_responds
+            was it that Irene lady? the one who laughs weird and wears the wrong shade of foundation?
+            *(Rosa_chides) aww that's not nice 
+                -> Olivia_answers
+            *(Rosa_agrees) yes! the very one!!
+                -> Olivia_answers
+            
+        = Olivia_answers
+            {Rosa_chides: but it's true}
+            {Rosa_agrees: haha I wonder if Irene is the only one who takes these statements}
+            she pissed me off
+            she kept saying "we will treat this with the utmost seriousness" over and over
+            like...I get it, Irene
+            *there's an investigation now, right?
+                - yeah
+                    - *how long is that supposed to take?
+                        ->investigation_discussion
+                        
+        = investigation_discussion
+          a month maybe? longer?
+          they have to interview duane
+          and anyone either of us gave as witnesses
+          did you know that you can give the names of people who didn't actually see it happen?
+          like, random people who saw you and duane together
+          or friends you told about the assault the day after
+          they're not technically witnesses, but they make your case stronger
+          Irene didn't tell me any of that bc she sucks at her job apparently
+          but I found a general title ix reporting guide online
+          so...any witnesses for you?
+            ->Rosa_lists_witnesses
+            
+        = Rosa_lists_witnesses
+            * {not Mikaela_witness} Mikaela was there
+                **she knows when we got there and when we left
+                    -> Mikaela_witness
+            * {not Rudy_witness} this guy, Rudy, hosted the party
+                **he was outside for a while and saw Duane and me talking
+                    -> Rudy_witness
+            * {Mikaela_witness} {Rudy_witness} -> any_final_witnesses
+            = Mikaela_witness
+            {not Rudy_witness: ok good start}
+            {not Rudy_witness: anyone else?}
+            {Rudy_witness: also a good idea}
+                ->Rosa_lists_witnesses
+                
+            = Rudy_witness
+            {not Mikaela_witness: ok good start}
+            {not Mikaela_witness: anyone else?}
+            {Mikaela_witness: also a good idea}
+                ->Rosa_lists_witnesses
         
-        
+        = any_final_witnesses
+        anyone else?
+        * not that I can think of
+            -> move_to_Olivia
+            
+        = move_to_Olivia
+        2 people, that's pretty good
+        * what about you?
+            ->Olivia_witnesses
+            
+        = Olivia_witnesses
+        first there's my roommate, Aryn
+        they took me to the hospital the morning after
+        ->DONE
+          
+          
     

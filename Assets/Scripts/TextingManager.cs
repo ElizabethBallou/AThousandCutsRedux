@@ -25,6 +25,8 @@ public class TextingManager : MonoBehaviour
 
 	private bool fadeComplete = false;
 
+	public float inkSidePauseTime = 0;
+
 	
 	// UI stuff
 	public GameObject conversationalistPrefab;
@@ -156,6 +158,8 @@ public class TextingManager : MonoBehaviour
 			return true;
 		}
 	}
+
+	
 	private void EpisodeStart()
 	{
 		//begin running the Ink story!
@@ -179,6 +183,7 @@ public class TextingManager : MonoBehaviour
 				//this is when the other person speaks
 				talkerText = Instantiate(conversationalistPrefab);
 				AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound);
+				//Elizabeth: I think this is where 
 			}
 			else
 			{
@@ -193,8 +198,20 @@ public class TextingManager : MonoBehaviour
             dialogue = talkerText.GetComponentInChildren<TextMeshProUGUI>();//talkerText.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
 			//set the text from the story
 			dialogue.text = story.Continue();
-            //if there is no textingContentHolder - that is, there's a new scene - findd that textingContentHolder)
-            if (textingContentHolder == null)
+
+			//Elizabeth: this is where I'm trying out evaluating the pause tags
+			//take current tags
+			List<string> pauseTags = story.currentTags;
+			//convert to array (so that we can move through an array of tags in a chunk of content)
+			string[] pauseTagArray = pauseTags.ToArray();
+			int pauseTagIndex = 0;
+			//get the tag at the right index in the array
+			string myPauseTagString = pauseTagArray[pauseTagIndex];
+			//tags are initially in string format, so set them as floats
+			float myPauseTag = Int32.Parse(myPauseTagString);
+
+			//if there is no textingContentHolder - that is, there's a new scene - findd that textingContentHolder)
+			if (textingContentHolder == null)
             {
                 GameObject[] newSceneObjects = SceneManager.GetSceneByName(GameManager.instance.currentCharacterConversation)
             .GetRootGameObjects();
@@ -236,7 +253,7 @@ public class TextingManager : MonoBehaviour
 			}
 			
 
-			yield return new WaitForSeconds(TextingSpeed);
+			yield return new WaitForSeconds(myPauseTag);
 		}
 		PrintStory();
 

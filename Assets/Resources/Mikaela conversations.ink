@@ -2,9 +2,13 @@
 === Mikaela_knot_1 ===
     ~conversation_happening = true
     ~conversant_name = "Mikaela"
+        # pause: 0
         Rosaaaaaa
+        #pause: 1
         two things
+        #pause: 3
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you
+        #pause: 1.5
         you're always so busy!
         * depends. where do you want to go?
             -> Rosa_is_nervous_about_dinner
