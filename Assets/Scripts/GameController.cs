@@ -21,11 +21,13 @@ public class GameController : MonoBehaviour
     public bool textWaiting;
     public float textingSpeed;
     public string characterWithOpenMessages;
+    public GameObject[] textingInProgressIcons;
 
     // Start is called before the first frame update
     void Awake()
     {
         InitializeServices();
+        Services.CharacterManager.characters["Mikaela"].textingInProgressIcon = textingInProgressIcons[0];
     }
 
     // Update is called once per frame
@@ -69,7 +71,7 @@ public class GameController : MonoBehaviour
     public void InitializeServices(){
         Services.GameController = this;
 
-        Services.CharacterManager = new NewCharacterManager();
+        Services.CharacterManager = new CharacterManager();
         Services.CharacterManager.Initialize(characterNotificationDisplays,choicesParent);
 
         Services.InkManager = new InkManager(inkJsonAsset);

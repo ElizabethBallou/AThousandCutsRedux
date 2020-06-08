@@ -44,6 +44,28 @@ public class InkManager : MonoBehaviour
                 timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
 
                 string text = GetNextContent();
+
+                float myPauseTag = 0;
+
+                //Elizabeth: this is where I'm trying out evaluating the pause tags
+                //take current tags
+                List<string> pauseTags = story.currentTags;
+                if (pauseTags.Count > 0)
+                {
+                    string myPauseTagString = pauseTags[0];
+                    //tags are initially in string format, so set them as floats
+
+                    if (myPauseTagString.Contains(":"))
+                    {
+                        myPauseTag = float.Parse(myPauseTagString.Split(':')[1]);
+                    }
+                    Debug.Log("myPauseTag = " + myPauseTag);
+ 
+                }
+
+                timeBetweenPrints = myPauseTag;
+
+
                 latestText = text;
 
                 currentConversant = story.variablesState["conversant_name"] as string;

@@ -2,13 +2,13 @@
 === Mikaela_knot_1 ===
     ~conversation_happening = true
     ~conversant_name = "Mikaela"
-        # pause: 0
+        #pause:1
         Rosaaaaaa
-        #pause: 1
+        #pause:3
         two things
-        #pause: 3
+        #pause:1.5
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you
-        #pause: 1.5
+        #pause:0
         you're always so busy!
         * depends. where do you want to go?
             -> Rosa_is_nervous_about_dinner
@@ -16,21 +16,29 @@
             ->Rosa_doesnt_have_time
             
     = Rosa_is_nervous_about_dinner
+        #pause:1
         The Krak? I know you don't like the dining hall
+        #pause:.25
         plus I could use a burger
         * yeah, the Krak works
         - okay, perfect! see you at 6
         -> Mikaela_second_question
         
     = Rosa_doesnt_have_time
+        #pause:.25 
         awww okay
+        #pause:.5
         I understand though
+        #pause:.25
         another time!
         -> Mikaela_second_question
         
     = Mikaela_second_question
+        #pause:.25
         here's the second thing
+        #pause:.5
         it's kind of a downer
+        #3
         do you remember Olivia? she came to my birthday party last month?
         * (Rosa_remembers_Olivia) we didn't talk much, but yeah, I remember
             -> Mikaela_talked_with_Olivia
@@ -161,6 +169,7 @@
         she'll come around soon
         in the meantime...things are going to get hard for her.
          ~conversation_happening = false
+        {Olivia_knot_3.Rosa_wants_title_ix: -> Olivia_TitleIXpath_witnesses}
             ->Mikaela_knot_3
 
 = Mikaela_knot_3

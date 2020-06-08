@@ -1,6 +1,8 @@
 INCLUDE Olivia conversations.ink
 INCLUDE Mikaela conversations.ink
 INCLUDE Duane conversations.ink
+INCLUDE Rudy_conversations.ink
+INCLUDE Jia_conversations.ink
 
 
 VAR conversant_name = ""
@@ -12,7 +14,7 @@ VAR current_speaker = "conversant"
 VAR current_date = ""
 VAR conversation_happening = true
 VAR anger_level = 0
--> Mikaela_knot_1
+-> Rudy_knot_1
 
 === FINAL_KNOT ===
 ->DONE

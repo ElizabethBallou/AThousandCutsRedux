@@ -5,7 +5,7 @@ using UnityEngine;
 public class Services
 {
     public static GameController GameController;
-    public static NewCharacterManager CharacterManager;
+    public static CharacterManager CharacterManager;
     public static InkManager InkManager;
     public static DisplayManager DisplayManager;
 }

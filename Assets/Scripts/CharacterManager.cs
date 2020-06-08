@@ -1,38 +1,52 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Ink.Runtime;
 using TMPro;
 
-
-public class CharacterManager : MonoBehaviour
+public enum CharacterState{
+    NoText,
+    OnRead,
+    TalkingTo
+}
+public class CharacterManager
 {
-    //this is a note!
-    public static CharacterManager instance;
-
-    public List<string> Keys = new List<string>();
-    public List<int> Values = new List<int>();
-    public Dictionary<string, int> conversationData = new Dictionary<string, int>();
-
+    public Dictionary<string, Character> characters = new Dictionary<string, Character>();
     private TextMeshProUGUI[] ConversantNames;
     private Image[] ConversantPictures;
 
     // Start is called before the first frame update
-    void Awake()
+    public void Initialize(List<TextMeshProUGUI> characterDisplayText, Transform choicesParent)
     {
-        instance = this;
-
-        for (int i = 0; i < Values.Count; i++)
-        {
-            conversationData.Add(Keys[i], Values[i]);
-        }
+        characters.Add("Olivia",new Character("Olivia",GameObject.Find("Olivia").transform,choicesParent.GetChild(0)));
+        characters["Olivia"].textNotification = characterDisplayText[0];
+        characters["Olivia"].textPreview = characterDisplayText[0].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        characters.Add("Mikaela",new Character("Mikaela",GameObject.Find("Mikaela").transform,choicesParent.GetChild(1)));
+        characters["Mikaela"].textNotification = characterDisplayText[1];
+        characters["Mikaela"].textPreview = characterDisplayText[1].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        characters.Add("Duane", new Character("Duane",GameObject.Find("Duane").transform,choicesParent.GetChild(2)));
+        characters["Duane"].textNotification = characterDisplayText[2];
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+}
+public class Character
+{
+    public string name;
+    public CharacterState state = CharacterState.NoText;
+    public Transform transform;
+    public Transform choices;
+    public float height = 0;
+    public List<string> texts = new List<string>();
+    public TextMeshProUGUI textNotification;
+    public TextMeshProUGUI textPreview;
+    public GameObject textingInProgressIcon;
+    public Character(string name, Transform place, Transform choices){
+        this.name = name;
+        this.transform = place;
+        transform.gameObject.SetActive(false);
+        this.choices = choices;
+        choices.gameObject.SetActive(false);
+        
     }
+    
+    
 }

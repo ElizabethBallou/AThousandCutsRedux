@@ -606,11 +606,11 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                 -> Mikaela_knot_2
                         
 
-  === Olivia_TitleIXpath_1 ===
+  === Olivia_TitleIXpath_witnesses ===
         * @
-        ->Olivia_knot_2_ridiculous_intro
+        ->Olivia_TitleIXpath_1_ridiculous_intro
     
-    = Olivia_knot_2_ridiculous_intro 
+    = Olivia_TitleIXpath_1_ridiculous_intro
       ~conversant_name = "Olivia"
     all right I just got home from making my report to the Title IX rep 
     you did yours, right?
@@ -680,9 +680,40 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
             ->Olivia_witnesses
             
         = Olivia_witnesses
-        first there's my roommate, Aryn
+        #pause:1
+        first there's my roommate, Ally
+        #pause:1.3
         they took me to the hospital the morning after
-        ->DONE
-          
+        #pause:2.2
+        then there's one of my professors. I wasn't turning in work for about two weeks and she was the only one who asked if I was okay
+        #pause:.5
+        so I told her
+        #pause:1.5
+        she can confirm that I said the same shit to her as I did to Irene
+        #pause:2
+        and then there's Mikaela of course
+        #pause:1.2
+        so those are the 3
+        *will Mikaela agree to be interviewed twice?
+            ->conversation_end
+            
+        = conversation_end
+        I dunno
+        we can only hope I guess...
+        ~conversation_happening = false
+
+        ->Rudy_knot_1
+
+
+=== Olivia_TitleIxpath_Investigation ===
+    * @
+        ->Olivia_investigation_ridiculous_intro
+    
+    = Olivia_investigation_ridiculous_intro
+    #pause:0
+    did you see the email??
+    pause:2
+    the Title IX people said there's enough credible material for the case to ACTUALLY HAPPEN 
+    ->DONE
           
     
