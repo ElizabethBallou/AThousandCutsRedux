@@ -26,8 +26,19 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         InitializeServices();
-        Services.CharacterManager.characters["Mikaela"].textingInProgressIcon = textingInProgressIcons[0];
+        
+        Services.CharacterManager.characters["Olivia"].textingInProgressIcon = textingInProgressIcons[0];
+        Services.CharacterManager.characters["Mikaela"].textingInProgressIcon = textingInProgressIcons[1];
+        Services.CharacterManager.characters["Duane"].textingInProgressIcon = textingInProgressIcons[2];
+        Services.CharacterManager.characters["Rudy"].textingInProgressIcon = textingInProgressIcons[3];
+        Services.CharacterManager.characters["Jia"].textingInProgressIcon = textingInProgressIcons[4];
+        
+        foreach (GameObject textingIcon in textingInProgressIcons)
+        {
+            textingIcon.SetActive(false);
+        }
     }
 
     // Update is called once per frame

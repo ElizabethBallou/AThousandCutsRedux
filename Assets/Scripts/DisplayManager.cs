@@ -43,6 +43,7 @@ public class DisplayManager
             textObj = GameObject.Instantiate(rosaPrefab,parent);
         }else{
             textObj = GameObject.Instantiate(conversantPrefab,parent);
+            Services.CharacterManager.characters[Services.InkManager.currentConversant].textingInProgressIcon.transform.SetAsLastSibling();
         }
         textObj.transform.localPosition = new Vector2(0,character.height);
         TextMeshProUGUI textDisplay = textObj.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
