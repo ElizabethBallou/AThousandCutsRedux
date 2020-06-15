@@ -21,6 +21,7 @@ public class InkManager : MonoBehaviour
     bool madeChoices = false;
     bool justDidAChoice = false;//if this is true, rosa should always be speaking
     // Start is called before the first frame update
+    bool showInProgressIcon = false;
 
     public string latestText = "";
 
@@ -64,7 +65,10 @@ public class InkManager : MonoBehaviour
                 }
 
                 timeBetweenPrints = myPauseTag;
-
+                if (myPauseTag > 0)
+                {
+                    showInProgressIcon = true;
+                }
 
                 latestText = text;
 
@@ -91,6 +95,7 @@ public class InkManager : MonoBehaviour
             }
             
         }else{//choices!!
+            showInProgressIcon = false;
             if(!madeChoices){
                 for(int i = 0; i < 4;i++){
                     if(i < story.currentChoices.Count){
@@ -105,6 +110,15 @@ public class InkManager : MonoBehaviour
 
             }
             
+        }
+
+        if (showInProgressIcon)
+        {
+            Services.CharacterManager.characters[currentConversant].textingInProgressIcon.SetActive(true);
+        }
+        else if (!showInProgressIcon)
+        {
+            Services.CharacterManager.characters[currentConversant].textingInProgressIcon.SetActive(false);
         }
     }
 

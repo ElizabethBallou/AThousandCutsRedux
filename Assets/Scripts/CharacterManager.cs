@@ -26,6 +26,13 @@ public class CharacterManager
         characters["Mikaela"].textPreview = characterDisplayText[1].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         characters.Add("Duane", new Character("Duane",GameObject.Find("Duane").transform,choicesParent.GetChild(2)));
         characters["Duane"].textNotification = characterDisplayText[2];
+        characters["Duane"].textPreview = characterDisplayText[2].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        characters.Add("Rudy", new Character("Rudy", GameObject.Find("Rudy").transform, choicesParent.GetChild(3)));
+        characters["Rudy"].textNotification = characterDisplayText[3];
+        characters["Rudy"].textPreview = characterDisplayText[3].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        characters.Add("Jia", new Character("Jia", GameObject.Find("Jia").transform, choicesParent.GetChild(4)));
+        characters["Jia"].textNotification = characterDisplayText[4];
+        characters["Jia"].textPreview = characterDisplayText[4].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 }
 public class Character
@@ -39,6 +46,7 @@ public class Character
     public TextMeshProUGUI textNotification;
     public TextMeshProUGUI textPreview;
     public GameObject textingInProgressIcon;
+    public GameObject blurLayer;
     public Character(string name, Transform place, Transform choices){
         this.name = name;
         this.transform = place;
