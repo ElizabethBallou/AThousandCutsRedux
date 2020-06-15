@@ -1,7 +1,6 @@
 
 === Rudy_knot_1 ===
  ~conversant_name = "Rudy"
- ~conversation_happening = true
  Hi Rosa. This is Rudy. Long time no talk! I hope you're doing well.
  #pause:4
  I got an email from the Title IX investigation committee - they want to interview me. I hope this is appropriate to ask, but I was wondering if you could tell me more? I'm happy to talk to them, I just don't know what this is about.
@@ -9,10 +8,13 @@
  All the email said was that something happened during my Halloween party, and it was related to you?
  
  *Hi Rudy. I'm fine I guess.
+  ~conversation_happening = true
     ->Rosa_polite
  *damn that's all the email said?
+  ~conversation_happening = true
     ->Rosa_disbelieving
  *oh god here we go again
+  ~conversation_happening = true
     ->Rosa_overwhelmed
  
     = Rosa_polite

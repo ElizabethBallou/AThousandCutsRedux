@@ -2,17 +2,22 @@ VAR rosa_knew_duane = ""
 VAR rosa_consented_to_kiss = ""
 VAR rosa_alcohol_level = 0 //levels of drunkenness: 0 (sober), 1 (tipsy), 2 (drunk)
 VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said no multiple times), 2 (pushed Duane away)
+VAR olivia_family_knowledge = 0
 
 
 === Olivia_knot_1 ===
 ~conversant_name = "Olivia"
 ~know_conversant = false
 ~is_rosa = false
+    #pause:0
     hi Rosa. this is Rosa, right?
-    my name is Olivia Montgomery. I'm a junior in the engineering school
+    #pause:.9
+    my name is Olivia. I'm a junior in the engineering school
     ~know_conversant = true
     we met once at Mikaela's birthday party
+    #pause:1.3
     she gave me your number yesterday
+    #pause:2
     did she tell you I was going to text?
         * yeah, she mentioned it
         ~conversation_happening = true
@@ -21,10 +26,14 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
     
     = Mikaela_said_Olivia_would_text
         ~is_rosa = false
+        #pause:.4
         okay good
+        #pause:.3
         well
+        #pause:1.4
         I'm not sure how to start talking about this
-        do you know Duane Hammond? he's a junior in the business school, I think?
+        #pause:2.2
+        do you know Duane? he's a junior in the business school, I think?
         *...yes, I know Duane
         *Fuck Duane. we don't talk
         *Duane and I aren't friends anymore
@@ -32,83 +41,111 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
         
     = something_happened_to_unknown
     ~ is_rosa = false
-        something happened. he did something to me.
-        Mikaela said he did something to you too.
+        #pause:1
+        he was weird to me. if you know what I mean.
+        #pause:.9
+        Mikaela said he was weird to you too.
         * I don't like discussing it
+            #pause:.6
             I get that, but...
+            #pause:.8
             it was bad, Rosa.
-            Mikaela told me only a little about what happened with you. but now I'm afraid that this is a pattern.
-            so what would you call the thing with Duane?
+            #pause:2.5
+            and when I told Mikaela, she said it wasn't the first time Duane had done that
+            #pause:1.4
+            so now I'm afraid there's a pattern
+            #pause:1.2
+            what would you call the thing with Duane?
             * * a bad night
-                a bad night, huh?
+                #pause:.5
+                a bad night huh?
+                #pause:.7
                what made your night bad?
                 -> Rosa_explains_what_happened
                 
             * * a sexual assault
+                #pause:2
                 I'm so sorry that happened to you.
+                #pause:.9
                 but I texted you because it happened to me too.
+                #pause:.8
                 and now I don't know what to do
+                #pause:1.8
                 I don't want to make you relive something so awful, but
                 what exactly did he do to you
                 -> Rosa_explains_what_happened
                 
             * * nothing much. just the normal shitty stuff
                 ~ anger_level = anger_level + 1
+                #pause:.4
                 I hear you
+                #pause:1.6
                 but was that all? because for me, it was more than 'nothing much'
                 * * * there was more.
+                #pause:.8
                 haha yeah. isn't there always?
+                #pause:.7
                 oh sorry that sounded bad
-                not funny 'haha,' of course. more like exhausted 'haha'
+                #pause:2
+                not funny 'haha' more like exhausted 'haha'
             -   don't worry. it's fine.
                 -> Rosa_explains_what_happened
     
     = Rosa_explains_what_happened
-        ~ is_rosa = true
-        I was at a theater kid Halloween party with Mikaela, and Duane was there too
-        * I'd never met him before
+        *I was at a theater kid Halloween party with Mikaela, and Duane was there too
+            ** I'd never met him before
             -> Rosa_Duane_strangers
-        * he was in a class with me. we'd worked on a project together
+            ** he was in a class with me. we'd worked on a project together
             -> Rosa_Duane_acquaintances
         = Rosa_Duane_strangers
-            ~ is_rosa = true
             ~ rosa_knew_duane = "false"
-            he was dressed as Burt Macklin from Parks and Rec, and I hate to say this now, but he was killing it 
-            looked a lot like Chris Pratt 
-            so I told him I liked his costume
+            *he was dressed as Burt Macklin from Parks and Rec
+                **and I hate to say this now, but he was killing it 
+                    ***looked a lot like Chris Pratt 
+                        ****so I told him I liked his costume
             -> Duane_kissed_Rosa
         
         = Rosa_Duane_acquaintances
-            ~ is_rosa = true
             ~ rosa_knew_duane = "true"
-            he pulled his weight in the group project. he said smart stuff in class. I didn't know him that well but he seemed nice enough
+            *he pulled his weight in the group project. he said smart stuff in class
+                **I didn't know him that well but he seemed nice enough
             -> Duane_kissed_Rosa
         
         = Duane_kissed_Rosa
-            ~ is_rosa = true
-            we went out to the back porch where a few other people were
-            we were all talking
-            then after a while it was just Duane and me. everyone else had wandered off
-            he started kissing me and
-            * I didn't mind that
-                ~ rosa_consented_to_kiss = "true"
-                but then he started doing other things
-                touching me over my clothes, and then underneath them
-                that was too much, so
-            * I pulled back
-                ~ rosa_consented_to_kiss = "false"
-                I wasn't giving him any signals that I wanted him to kiss me anyway. I really thought we were just talking
-                but he kept putting his hands on me 
-            -    -> why_Rosa_didnt_want_sex
+            *we went out to the back porch where a few other people were
+                **we were all talking
+                    ***then after a while it was just Duane and me. everyone else had wandered off
+                        ****he started kissing me and
+                            ***** I didn't mind that
+                                ->Rosa_consented_kiss
+                            ***** I pulled back
+                                ->didnt_consent_kiss
+
+        = Rosa_consented_kiss
+            ~ rosa_consented_to_kiss = "true"
+            *but then he started doing other things
+                **touching me over my clothes, and then underneath them
+                    ***that was too much, so
+                        ->why_Rosa_didnt_want_sex
+                        
+        = didnt_consent_kiss
+            ~ rosa_consented_to_kiss = "false"
+            *I wasn't giving him any signals that I wanted him to kiss me anyway
+                **I really thought we were just talking
+                    ***but he kept putting his hands on me 
+                        -> why_Rosa_didnt_want_sex
         
         = why_Rosa_didnt_want_sex
-            ~ is_rosa = true
-            I asked him to stop
-            * I wasn't into him
-            * I just wanted to get back to the party
-            * I'm not that interested in guys, anyway
-            -  but he didn't stop. it was like he didn't hear me at all.
-                -> Rosa_reaction
+            *I asked him to stop
+                ** I wasn't into him
+                    *** but he didn't stop. it was like he didn't hear me at all.
+                        -> Rosa_reaction
+                ** I just wanted to get back to the party
+                    *** but he didn't stop. it was like he didn't hear me at all.
+                        -> Rosa_reaction
+                ** I'm not that interested in guys, anyway
+                    *** but he didn't stop. it was like he didn't hear me at all.
+                        -> Rosa_reaction
                 
                 = Rosa_reaction
                     so then I
@@ -440,11 +477,11 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                     -> Title_IX_explanation_pros_cons
                     
                 = Title_IX_explanation_pros_cons
-                    * why should we do this?
+                    * so why a Title IX case?
                         -> why_title_ix_report
-                    * what are the drawbacks?
+                    * what are the dangers here?
                         -> why_not_title_ix_report
-                    * hmm. let's talk about the other options
+                    * tell me about the other stuff you mentioned
                         -> Rosa_investigates_options
                     
                     = why_title_ix_report
@@ -494,11 +531,11 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                     -> publishing_explanation_pros_cons
                     
                 = publishing_explanation_pros_cons
-                    * why should we do this?
+                    * okay, that seems unconventional. why do it?
                         -> why_publishing
-                    * what are the drawbacks?
+                    * this could go wrong though
                         -> why_not_publishing
-                    * hmm. let's talk about the other options
+                    * what else can we try?
                         -> Rosa_investigates_options
                 
                     = why_publishing
@@ -508,7 +545,7 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
                         -> publishing_explanation_pros_cons
                         
                     = why_not_publishing
-                        if we don't write the story ourselves, we won't have control over how a random journalist handles it 
+                        yeah. if we don't write the story ourselves, we won't have control over how a random journalist handles it 
                         we could come off to the whole world like sluts 
                         entitled, crazy sluts 
                         plus maybe Duane could sue us? I honestly don't know
@@ -605,7 +642,198 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
 
                 -> Mikaela_knot_2
                         
+=== Olivia_mom_storylet ===
+    ~conversant_name = "Olivia"
+    #pause:0
+    hey what are you doing tomorrow around 1?
+    #pause:1.7
+    my mom's coming up from the city for her monthly attempt at parenting
+    #pause:2
+    we usually go somewhere nice for lunch so maybe I can treat you to a fancy ass sandwich
+    #pause:1.2
+    you n me both deserve one at this point haha
+        *(thats_nice)that's so nice!
+            ~conversation_happening = true
+            ->Olivia_explains_mom
+        *(thats_awkward)that sounds awkward
+            ~conversation_happening = true
+            ->Olivia_explains_mom
+        
+        = Olivia_explains_mom
+        {thats_nice:
+            #pause:.8
+            I mean...I guess
+            }
+        {thats_awkward:
+            #pause:1.2
+            oh lol it will be. but eyes on the prize, Rosa
+            #pause:1.5
+            (the prize is the free food in case that was not clear)
+            }
+            #pause:1.3
+            my mom isn't a huge part of my life
+            #pause:2
+            something she has been trying to fix ever since I started at fortuna
+            #pause:2.4
+            she is doing her best now, bless her heart, as my dad's mom would say
+                ->questions_about_mom
+        
+        = questions_about_mom
+            *what IS your mom's life, then?
+                ->olivias_moms_career
+            *are you close to your grandma?
+                ->olivias_grandma
+            *what about your dad?
+                ->olivias_dad
+            {olivia_family_knowledge == 3:
+            *ok now that I know all this...are you SURE you want me to come?
+                ->rosa_feels_awkward
+                }
+        
+        = olivias_moms_career
+        ~olivia_family_knowledge += 1
+            #pause:.8
+            oh her job is her life
+            #pause:1.5
+            she's an investment banker in the city. pretty good at it, so she's made a lot of money
+                ->questions_about_mom
 
+        = olivias_grandma
+            ~olivia_family_knowledge += 1
+            #pause:.6
+            I was, yeah
+            #pause:2
+            I lived with her after my mom realized that being a single mom working in finance was impossible
+            #pause:2.9
+            I also like...don't know how much my mom WANTED a kid. I found out later my dad was the one who was really gunning for a baby
+            #pause:2.4
+            Gran died last year, which is why my mom is trying to make up for all the years we hardly talked
+                ->questions_about_mom
+        = olivias_dad
+            ~olivia_family_knowledge += 1
+            #pause:1.2
+            he died when I was really little
+            #pause:.7
+            I don't remember him very much
+            *I'm really sorry to hear that
+                -   #pause:.4
+                    eh don't be
+                    #pause:1.5
+                    I worked that shit out in therapy years ago
+                    ->questions_about_mom
+        
+        = rosa_feels_awkward
+            *I mean we only met recently    
+    ->DONE
+    
+=== Olivia_date_storylet ===
+    ~conversant_name = "Olivia"
+    #pause:0
+    band t shirt or crop top?
+    *what?
+        ~conversation_happening = true
+        - #pause:.7
+            for a first date 
+            #pause:1.6
+            should I wear a band t shirt or a crop top?
+            #pause:2
+            I have clothes all over the floor and none of my other friends have texted me back yet
+            #pause:1
+            and I only have 30 minutes before I'm supposed to be at Grit
+            **(Rosa_fashionable)oh you have come to the right person
+                    #pause:.5
+                    I knew it!!!
+                    #pause:.8
+                    I knew it from the tone of our texts
+                        ***Olivia that makes no sense
+                            ->comments_on_fashion
+            **(Rosa_unfashionable)trust me, you don't want my fashion advice
+                #pause:.6
+                o but Rosa
+                #pause:.5
+                this is an emergency
+                #pause:1
+                and you answered my text so now you have to help :P
+                    ***if you insist...
+                        ->comments_on_fashion
+            **(Rosa_bewildered)I can't believe you have energy for dates right now
+                #pause:.7
+                awww don't judge
+                #pause:.9
+                they're a fun distraction
+                ***I'm not judging, just impressed
+                    ->comments_on_fashion
+                ***whatever works for you
+                    ->comments_on_fashion
+            
+        = comments_on_fashion
+            #pause:.9
+            so her name is Rae
+            #pause:1.9
+            I met her on a dating app and we've been chatting for a few days
+            #pause:2.5
+            she's really into photography and she's on the ballroom dancing team, which I didn't know Fortuna even had
+            #pause:1.3
+            and she dyes her hair pretty colors and plays video games
+            #1.9
+            last night she suggested continuing our convo over coffee at Grit
+            #pause:1.5
+            Grit has shit coffee imho but I'm still excited!
+            *(coffee_snob)haha yeah it tastes like hot pee dirt
+            *(coffee_whatever)I'm not a coffee snob but sure
+                -   {coffee_snob:
+                    #pause:.4
+                    that is disgusting
+                    #pause:.6
+                    but also correct
+                        }
+                    {coffee_whatever:
+                    #pause:.7
+                    just trust me on this
+                        }
+                    #pause:1
+                    so do I wear the crop top and look Hot and Confident
+                    #pause:1.3
+                    or the band shirt and look Chill and Approachable?
+                    ->shirt_choice_point
+        
+        = shirt_choice_point
+            *(crop_top)go for Hot and Confident
+                ->shirt_decision
+            *(band_shirt)go for Chill and Approachable
+                ->shirt_decision
+            *(overthinking)you're overthinking this
+                ->overthinking_it
+                
+        = overthinking_it
+            #pause:.6
+            that is a nonanswer!!
+            #pause:.7
+            CHOOSE I AM DYING HERE
+            *geez ok fine
+                ->shirt_choice_point
+        = shirt_decision
+            #pause:.5
+            excellent choice
+            {crop_top:
+                #pause:1.2
+                I will stun her with my BOLDNESS
+                }
+            {band_shirt:
+                #pause:2
+                I will woo her with my relatable love of Portugal. The Man
+                }
+            #pause:1
+            thank you for your crucial input
+            #pause:1.4
+            all right gotta finish getting ready or I'll be late
+            *tell me how it goes!
+                - #pause:.5
+                    oh I will ;P
+                    ~conversation_happening = false
+                    ->DONE
+                
+            
   === Olivia_TitleIXpath_witnesses ===
         * @
         ->Olivia_TitleIXpath_1_ridiculous_intro
@@ -712,8 +940,76 @@ VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said 
     = Olivia_investigation_ridiculous_intro
     #pause:0
     did you see the email??
-    pause:2
-    the Title IX people said there's enough credible material for the case to ACTUALLY HAPPEN 
+    *what email?
+        ->case_judgment
+    
+    = case_judgment
+    {convinced_jia == true && convinced_mikaela == true:
+        #pause:1
+        from the Title IX people
+        #pause:.7
+        they're taking BOTH of our cases!!
+        ~TitleIX_taking_Rosas_case = true
+        }
+    {convinced_jia == true:
+        #pause:1
+        from the Title IX people
+        #pause:.7
+        they're taking BOTH of our cases!!
+        ~TitleIX_taking_Rosas_case = true
+        }
+    {convinced_mikaela == true:
+        #pause:1
+        from the Title IX people
+        #pause:.7
+        they're taking BOTH of our cases!!
+        ~TitleIX_taking_Rosas_case = true
+        }
+    {convinced_mikaela == false && convinced_jia == false:
+        #pause:1
+        from the Title IX people
+        #pause:.8
+        my case is moving forward!!
+        #pause:3
+        but...yours isn't
+        #pause:1.4
+        I'm really sorry, Rosa. you can still testify as a witness in mine I think
+        }
+    {TitleIX_taking_Rosas_case == true:
+        *(shocked)ARE YOU SERIOUS
+            ->taking_Rosas_case
+        *(Rosa_terrified)well this is terrifying
+            ->taking_Rosas_case
+        *(get_this_far)I didn't think we'd actually get this far
+            ->taking_Rosas_case
+        }
+    {TitleIX_taking_Rosas_case == false:
+        *(relieved)that is a relief tbh
+            ->not_taking_Rosas_case
+        *(disappointed)but I was so ready to go the whole way
+            ->not_taking_Rosas_case
+        }
+    = taking_Rosas_case
+        {shocked:
+        #.9
+        YES I AM 
+        }
+        {Rosa_terrified:
+        #1.5
+        are you joking???? I cant sit still right now Im so excited
+        }
+        {get_this_far:
+        #pause:1.6
+        I was trying not to get ahead of myself
+        #pause:1
+        THEY THINK WE'RE TELLING THE TRUTH
+        #pause:.8
+        I mean maybe they think that
+        #pause:.4
+        whatever, this is a victory
+        }
+        ->DONE
+    = not_taking_Rosas_case
     ->DONE
           
     

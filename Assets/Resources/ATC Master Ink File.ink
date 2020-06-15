@@ -14,7 +14,13 @@ VAR current_speaker = "conversant"
 VAR current_date = ""
 VAR conversation_happening = true
 VAR anger_level = 0
--> Rudy_knot_1
+VAR jia_trust_level = 0
+VAR mikaela_trust_level = 0
+VAR convinced_jia = false
+VAR convinced_mikaela = false
+VAR TitleIX_taking_Rosas_case = false
+
+-> Olivia_mom_storylet
 
 === FINAL_KNOT ===
 ->DONE

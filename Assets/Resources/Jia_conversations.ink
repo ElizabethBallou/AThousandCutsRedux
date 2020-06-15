@@ -1,14 +1,15 @@
 
 === Jia_knot_1 ===
  ~conversant_name = "Jia"
- ~conversation_happening = true
     #pause:0
     hi! this is Jia. Rudy told me what was happening
     #pause:.5
     I'm so sorry you got Duaned
     *haha, Duaned, I like that
+     ~conversation_happening = true
         ->Jia_asks_questions
     *yeah...
+     ~conversation_happening = true
         ->Jia_asks_questions
     
     = Jia_asks_questions
@@ -132,7 +133,89 @@
                 it's more complex than being a coward or not.
                 }
             {Rosa_reminds_hurt:
-                #pause:
+                #pause:1.4
+                yeah. people like that don't stop 
+                #pause:3
+                but I've done enough therapy to know I don't have to take responsibility for everything Duane might do
+                #pause:2.
+                neither do you. you know that, right?
+                ~jia_trust_level += 1
                 }
-                ->DONE
+            {Rosa_expresses_solidarity:
+                #pause:2.5
+                yeah and that means a lot. but also I barely know you. so I can't someone else's idea steer me
+                ~jia_trust_level += 2
+                }
+            *(Rosa_manipulative)you don't want to regret this 10 years later, right?
+                ->Jia_explains_3
+            *(Rosa_kind)then all I can do is ask politely for you to be interviewed
+                ->Jia_explains_3
+            *(Rosa_numbers)it's not just me, remember? there's a third person and she'll be there too 
+                ->Jia_explains_3
+
+        = Jia_explains_3
+            {Rosa_manipulative:
+                #pause:2
+                holy shit that's so manipulative!! why would you say that?
+                #pause:2.3 
+                I'M the one who decides what I regret, not you 
+                }
+            {Rosa_kind:
+                #pause:1.4
+                thanks for being polite at least
+                ~jia_trust_level += 2
+                }
+            {Rosa_numbers:
+                #pause:2.7
+                ah yeah I did forget that for a sec. 2 people saying Duane did fucked up shit is good, but 3 is a pattern
+                ~jia_trust_level += 1
+                }
+            {jia_trust_level >= 1:
+                #pause:2
+                you know what? good luck to you but fuck this. I'm not gonna be a part of it
+                    ->Jia_not_helping
+                    }
+            {jia_trust_level == 2:
+                #pause:3.4
+                I might regret this but okay.
+                #pause:4
+                I'm in
+                *thank you so much
+                    ->Jia_helping
+                }
+            {jia_trust_level == 3:
+                #pause:3.4
+                I might regret this but okay.
+                #pause:4
+                I'm in
+                *thank you so much
+                    ->Jia_helping
+                }
+            {jia_trust_level == 4:
+                #pause:2.4
+                god you're so nice. how could I say no?
+                #pause:2
+                give the interviewers my name
+                *thank you so much
+                    ->Jia_helping
+                }
+                
+        = Jia_not_helping
+            #pause:1.9
+            your fight is not my fight
+            #pause:2.1
+            now good DAY 
+            ~conversation_happening = false
+                ->Mikaela_scared_testifying
+
+        = Jia_helping
+            ~convinced_jia = true
+            #pause:1.1
+            I hope they interview me fast 
+            #pause:1.9
+            then I don't have time to change my mind
+            #pause:3.5
+            whatever happens...I hope Duane gets what's coming to him.
+            ~conversation_happening = false
+                ->Mikaela_scared_testifying
         
