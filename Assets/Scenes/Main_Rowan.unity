@@ -9762,13 +9762,9 @@ MonoBehaviour:
   secondaryFadeTime: 0.4
   longFade: 3
   SwitchingEpisodes: 0
-  dateArray:
-  - February 2, 2020
-  - February 3, 2020
-  - February 4, 2020
-  - February 5, 2020
-  - February 6, 2020
-  - Thank you for playing this demo of A Thousand Cuts!
+  preBranchingDateText: {fileID: 4900000, guid: 442e4908b525d4d488a9546ad3e10543,
+    type: 3}
+  TitleIXDateText: {fileID: 4900000, guid: 407a7f9c60b7dd043aec062f23c0ad16, type: 3}
 --- !u!1 &1390479890
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.Linq;
 
-public class LockButtonController : MonoBehaviour
+public class LockScreenController : MonoBehaviour
 {
     public Image blackBackdrop;
     private Image unlockScreenGraphic;
@@ -24,9 +25,26 @@ public class LockButtonController : MonoBehaviour
     private float switchTimer = 0;
     private Color clearWhite = new Color(255, 255, 255, 0);
 
-    public string[] dateArray;
-    private int dateArrayIndex = 0;
-    // Start is called before the first frame update
+    public TextAsset preBranchingDateText;
+    public TextAsset TitleIXDateText;
+    private List<string> preBranchingDateList;
+    private List<string> TitleIXDateList;
+    private List<string> currentDateList;
+    private int preBranchingDateIndex = 0;
+    private int TitleIXDateIndex = 0;
+    private int dateListIndex = 0;
+
+
+    private void Awake()
+    {
+        preBranchingDateList = preBranchingDateText.text.Split('\n').ToList();
+        Debug.Log("The length of preBranchingDateArray is " + preBranchingDateList.Count);
+        TitleIXDateList = TitleIXDateText.text.Split('\n').ToList();
+        Debug.Log("The length of TitleIXDateArray is " + TitleIXDateList.Count);
+        currentDateList = preBranchingDateList;
+
+    }
+
     void Start()
     {
         blackBackdrop.gameObject.SetActive(false);
@@ -39,7 +57,7 @@ public class LockButtonController : MonoBehaviour
         isFadingOut = true;
 
         //set date text to proper date
-        dateText.text = dateArray[dateArrayIndex];
+        dateText.text = currentDateList[dateListIndex];
 
         //hide quit button
         quitButton.image.color = clearWhite;
@@ -134,25 +152,31 @@ public class LockButtonController : MonoBehaviour
 
 
             //switch the date text so it's accurate
-            dateArrayIndex++;
-            Debug.Log("dateArrayIndex is " + dateArrayIndex);
-            dateText.text = dateArray[dateArrayIndex];
+            dateListIndex++;
+            Debug.Log("dateArrayIndex is " + dateListIndex);
+            dateText.text = currentDateList[dateListIndex];
 
             //begin by fading in the backdrop
             blackBackdrop.DOFade(1f, longFade);
 
             //now fade in the lock screen components
-            if (dateArrayIndex < 5)
-            {
-                //unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-                dateText.DOFade(1f, fadeTime).SetDelay(longFade);
-                unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
-                unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-                notificationText.DOFade(1f, fadeTime).SetDelay(longFade)
-                    .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
+           
+             dateText.DOFade(1f, fadeTime).SetDelay(longFade);
+             unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
+             unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
+             notificationText.DOFade(1f, fadeTime).SetDelay(longFade)
+                .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
             }
 
-            if (dateArrayIndex == 5)
+            if(dateListIndex == currentDateList.Count)
+            {
+                //switch the date list
+                currentDateList.Clear();
+                currentDateList = TitleIXDateList;
+                dateListIndex = 0;
+            }
+
+            /*if (dateListIndex == 5)
             {
                 quitButton.gameObject.SetActive(true);
                 unlockButton.gameObject.SetActive(false);
@@ -161,10 +185,10 @@ public class LockButtonController : MonoBehaviour
                 dateText.DOFade(1f, fadeTime).SetDelay(longFade);
                 unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
                 quitButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-            }
+            }*/
 
-        }
     }
         
 
 }
+

@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public List<TextMeshProUGUI> characterNotificationDisplays;
     public TextMeshProUGUI texterName;
     public RectTransform textingScreen;
-    public LockButtonController lockScreen;
+    public LockScreenController lockScreen;
     public GameObject oliviaBlur;
     public Button oliviaButton;
     public GameObject mikaelaButton;

@@ -11,11 +11,11 @@ VAR olivia_family_knowledge = 0
 ~is_rosa = false
     #pause:0
     hi Rosa. this is Rosa, right?
-    #pause:.9
+    #pause:1.9
     my name is Olivia. I'm a junior in the engineering school
     ~know_conversant = true
     we met once at Mikaela's birthday party
-    #pause:1.3
+    #pause:2.3
     she gave me your number yesterday
     #pause:2
     did she tell you I was going to text?
@@ -26,11 +26,11 @@ VAR olivia_family_knowledge = 0
     
     = Mikaela_said_Olivia_would_text
         ~is_rosa = false
-        #pause:.4
-        okay good
-        #pause:.3
-        well
         #pause:1.4
+        okay good
+        #pause:1.3
+        well
+        #pause:2.4
         I'm not sure how to start talking about this
         #pause:2.2
         do you know Duane? he's a junior in the business school, I think?
@@ -41,52 +41,52 @@ VAR olivia_family_knowledge = 0
         
     = something_happened_to_unknown
     ~ is_rosa = false
-        #pause:1
+        #pause:2
         he was weird to me. if you know what I mean.
-        #pause:.9
+        #pause:1.9
         Mikaela said he was weird to you too.
         * I don't like discussing it
-            #pause:.6
+            #pause:1.6
             I get that, but...
-            #pause:.8
+            #pause:1.8
             it was bad, Rosa.
-            #pause:2.5
+            #pause:3.5
             and when I told Mikaela, she said it wasn't the first time Duane had done that
-            #pause:1.4
+            #pause:2.4
             so now I'm afraid there's a pattern
-            #pause:1.2
+            #pause:2.2
             what would you call the thing with Duane?
             * * a bad night
                 #pause:.5
                 a bad night huh?
-                #pause:.7
+                #pause:1.7
                what made your night bad?
                 -> Rosa_explains_what_happened
                 
             * * a sexual assault
-                #pause:2
+                #pause:3
                 I'm so sorry that happened to you.
-                #pause:.9
+                #pause:1.9
                 but I texted you because it happened to me too.
-                #pause:.8
-                and now I don't know what to do
                 #pause:1.8
+                and now I don't know what to do
+                #pause:2.8
                 I don't want to make you relive something so awful, but
                 what exactly did he do to you
                 -> Rosa_explains_what_happened
                 
             * * nothing much. just the normal shitty stuff
                 ~ anger_level = anger_level + 1
-                #pause:.4
+                #pause:1.4
                 I hear you
-                #pause:1.6
+                #pause:2.6
                 but was that all? because for me, it was more than 'nothing much'
                 * * * there was more.
-                #pause:.8
+                #pause:1.8
                 haha yeah. isn't there always?
-                #pause:.7
+                #pause:1.7
                 oh sorry that sounded bad
-                #pause:2
+                #pause:3
                 not funny 'haha' more like exhausted 'haha'
             -   don't worry. it's fine.
                 -> Rosa_explains_what_happened
@@ -151,43 +151,49 @@ VAR olivia_family_knowledge = 0
                     so then I
                     *  shut my eyes and stopped moving and waited it out
                     ~ rosa_resistance_level = 0
-                        he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
-                    I wish I'd done something else but idk what I was supposed to do
+                        **he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
+                            ***I wish I'd done something else but idk what I was supposed to do
+                                ->Duane_says_keep_secret
                     *  said what the fuck, I'm not joking
                     ~ rosa_resistance_level = 1
-                        he said come on, we both know why we've been sitting out here waiting for everyone else to leave
-                        and I was like ???
-                        "we" don't know anything about that, my dude
-                        didn't matter to him. he shoved me against the railing and unzipped my pants
-                        I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
-                        and that did it. he stopped.
+                        **he said come on, we both know why we've been sitting out here waiting for everyone else to leave
+                            ***and I was like ???
+                                ****"we" don't know anything about that, my dude
+                                    *****didn't matter to him. he shoved me against the railing and unzipped my pants
+                                        ******I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+                                                *******and that did it. he stopped.
+                                                    ->Duane_says_keep_secret
                     *  shoved him. not hard, but enough to make him notice
                     ~ rosa_resistance_level = 2
-                        he got this weird look
-                        he said "I didn't think you'd be into rape play" or something
-                        he kept trying to kiss me while he held my hands down
-                        I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
-                        and that did it. he stopped.
-                        -   -> Duane_says_keep_secret
+                        **he got this weird look
+                            ***he said "I didn't think you'd be into rape play" or something
+                                ****he kept trying to kiss me while he held my hands down
+                                    *****I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+                                        ******and that did it. he stopped.
+                                            -> Duane_says_keep_secret
                     
                     = Duane_says_keep_secret
                         ~ is_rosa = true
-                        before he went inside, he said let's make sure this stays between us.
-                        and he smiled as if we'd had a good time
-                        I didn't say anything because I was just trying not to lose it
-                        and that's it
-                        we didn't talk again, ever
-                        -> Olivia_asks_about_drunkenness
+                        *before he went inside, he said let's make sure this stays between us.
+                            **and he smiled as if we'd had a good time
+                                ***I didn't say anything because I was just trying not to lose it
+                                    ****and that's it
+                                        *****we didn't talk again, ever
+                                            -> Olivia_asks_about_drunkenness
                         
     = Olivia_asks_about_drunkenness
-        ~ is_rosa = false
+        #pause:2.5
         god. when Mikaela said something had happened, I didn't think it would be that
+        #pause:1.2
         I feel sick
         * sorry. I didn't mean to make you feel bad
         * you asked to hear it
-        -   it's fine. I'm the one who texted you, anyway
-        can I ask you something?
-        were you drinking at that party?
+        -   #pause:2.7
+            it's fine. I'm the one who texted you, anyway
+            #pause:4
+            can I ask you something?
+            #pause:2.8
+            were you drinking at that party?
             * * no. I don't drink
                 ~rosa_alcohol_level = 0
             * *yeah, but I wasn't drinking so much that I was out of it 
@@ -197,17 +203,32 @@ VAR olivia_family_knowledge = 0
         - -   -> Olivia_remarks_on_drunkenness_level
 
     = Olivia_remarks_on_drunkenness_level
-      {rosa_alcohol_level == 0: good. it'll be easier to report this if you weren't drinking}
-      {rosa_alcohol_level == 1: hmm could be worse. it would be easier to report this if you were sober, but who's sober on Halloween?}
-      {rosa_alcohol_level == 2: damn. that'll make this harder to report}
+      {rosa_alcohol_level == 0:
+        #pause:3.2
+        good. it'll be easier to report this if you weren't drinking
+        }
+      {rosa_alcohol_level == 1:
+        #pause:1.8
+        hmm could be worse
+        #pause:4.3
+        it would be easier to report this if you were sober but who's sober on Halloween?
+        }
+      {rosa_alcohol_level == 2:
+        #pause:2.9
+        damn. that'll make this harder to report
+        }
       * report to who?
         ->report_to_who
       
     = report_to_who
+        #pause:1.9
         the title IX office
-        they're always so quick to throw out reports if someone's had literally anything to drink 
-        it becomes a bad hookup, blah blah blah
+        #pause:3.5
+        they throw out reports if someone's had literally anything to drink 
+        #pause:2.7
+        it becomes a bad hookup blah blah blah
             -> Rosa_reacts_to_title_ix_mention
+            
         = Rosa_reacts_to_title_ix_mention
             * the what office?
                 -> title_ix_office_explainer
@@ -217,39 +238,64 @@ VAR olivia_family_knowledge = 0
                 -> Olivia_explains_ideal_outcome
                 
         = title_ix_office_explainer
+            #pause:3.2
             it's where people go to tell the deans if they've been whatevered. harassed, assaulted
+            #pause:3.8
             there's a literal office on the 3rd floor of the dean's hall 
+            #pause:4.3
             and the people who work there are supposed to make sure that whoever pulls this shit gets punished
+            #pause:4.7
             I've been doing some research and it's part of federal law for every college to have title ix staff.
             -> Rosa_reacts_to_title_ix_mention
             
         = Olivia_explains_ideal_outcome
-        {Rosa_trepidatious: sorry, I thought it was obvious that that's where I was going with this}
-        {Rosa_negative: wait, really?}
-            Duane assaulted both of us 
+        {Rosa_trepidatious:
+            #pause:3.4
+            sorry, I thought it was obvious that that's where I was going with this
+            }
+        {Rosa_negative:
+            #pause:1.8
+            wait, really?
+            }
+            #pause:1.9
+            Duane assaulted both of us
+            #pause:2.3
             he's obviously a danger
+            #pause:2.6
             shouldn't we both report him?
             * but I don't even know what happened to you 
                 -> Rosa_cuts_off_Olivia
                 
     = Rosa_cuts_off_Olivia
+        #pause:1
         oh yeah
+        #pause:1.5
         I guess I haven't said
+        #pause:2.4
         you were really open with me, so I'll tell you whatever you want to know
         * can you text me tomorrow about this? you gave me so much to think about
-        -   sure. sorry. I shouldve checked earlier
+        -   #pause:2.8
+            sure. sorry. I shouldve checked earlier
             -> Rosa_says_goodbye
         = Rosa_says_goodbye
-            ~is_rosa = true
-            it's fine. I have a feeling we'll be talking to each other for a while, anyway
-            we have time to get used to each other 
-            talk to you later, Olivia.
-            * (Rosa_says_thanks) and thanks for saying something to me
-            * (Rosa_says_nothing) - say nothing -
-            -   ~is_rosa = false
-                {Rosa_says_thanks: I just felt like I had to.}
-                {Rosa_says_nothing: until tomorrow}
-                ~ conversation_happening = false
+            *it's fine. I have a feeling we'll be talking for a while anyway
+                **we have time to get used to each other 
+                    ***talk to you later, Olivia.
+                        ****(Rosa_says_thanks) and thanks for saying something to me
+                            ->final_goodbye_knot
+                        ****(Rosa_says_nothing) - say nothing -
+                            ->final_goodbye_knot
+                
+        = final_goodbye_knot  
+            {Rosa_says_thanks:
+                #pause:2.4
+                I just felt like I had to.
+                }
+            {Rosa_says_nothing:
+                #pause:2
+                until tomorrow
+                }
+            ~ conversation_happening = false
                 -> Olivia_knot_2
 
 === Olivia_knot_2 ===
@@ -258,11 +304,17 @@ VAR olivia_family_knowledge = 0
     
     = Olivia_knot_2_ridiculous_intro
      ~conversant_name = "Olivia"
+     #pause:0
     I thought for a while about what I should text you 
+    #pause:3
     like should I say "hello" as if we were talking about something normal
+    #pause:2.8
     or be really gentle in case I freaked you out yesterday
+    #pause:2
     but I really didn't know
+    #pause:2.2
     so I figured I would tell you I'm confused
+    #pause:2
     that's your cue to say something
         * (Rosa_response_chill) ha. don't worry about being confused. there's no guide for talking about this stuff
                 ~conversation_happening = true
@@ -586,14 +638,14 @@ VAR olivia_family_knowledge = 0
                     atta girl <3
                     alright, later
                     ~ conversation_happening = false
-                    -> Mikaela_knot_2
+                    -> Olivia_date_storylet
                     
                 = Rosa_too_nervous
                     save the nerves for later. right now, just take care of yourself.
                     we have to be be gentle with ourselves, or we won't get through this 
                     alright, later
                     ~ conversation_happening = false
-                    -> Mikaela_knot_2
+                    -> Olivia_date_storylet
             
         = Rosa_wants_nothing
             are you serious
@@ -640,7 +692,7 @@ VAR olivia_family_knowledge = 0
                 I won't. I promise.
                 ~ conversation_happening = false
 
-                -> Mikaela_knot_2
+                -> Olivia_mom_storylet
                         
 === Olivia_mom_storylet ===
     ~conversant_name = "Olivia"
@@ -723,9 +775,70 @@ VAR olivia_family_knowledge = 0
                     ->questions_about_mom
         
         = rosa_feels_awkward
-            *I mean we only met recently    
-    ->DONE
-    
+            *I mean we only met recently
+                -   #pause:2.3 
+                    oh. well of course you don't have to come
+                    #pause:2.5
+                    I just thought itd be nice
+                    **no no, I'll come! I wanted to make sure
+                        ->rosa_goes_to_lunch
+                    **why don't you call me after and tell me how it goes?
+                        ->rosa_refrains_from_lunch
+                        
+            = rosa_goes_to_lunch
+                #pause:2
+                yessssssss thank god
+                #pause:3
+                I truly did not wanna go by myself
+                #pause:4
+                mom wants to try that new fusion thai mexican american whatever place on cranston st
+                #pause:2
+                so I'll see you there at 1!!
+                #pause:2.8
+                you're a lifesaver :)
+                ~conversation_happening = false
+                    ->Olivia_mom_storylet_lunch_followup
+            
+            = rosa_refrains_from_lunch
+                #pause:3.3
+                you're subjecting me to mom torture :((((((
+                #pause:2.9
+                death by well meaning parental smothering
+                *you might actually have a good time, you know
+                    -   #pause:2.4
+                        ugh I hate it when other people are right
+                        #pause:2
+                        ok call you tomorrow
+                        ~conversation_happening = false
+                            ->Olivia_mom_storylet_phone_followup
+
+=== Olivia_mom_storylet_lunch_followup ===
+    ~conversant_name = "Olivia"
+    ~conversation_happening = true
+    #pause:0
+    hey thanks again for coming!
+    #pause:2.5
+    you are a Mother Whisperer
+    #pause:3
+    and...I did actually have a good time
+    #pause:3.5
+    you must be a good luck charm <3
+    ~conversation_happening = false
+        -> Jia_knot_1
+        
+=== Olivia_mom_storylet_phone_followup ===
+    ~conversant_name = "Olivia"
+    ~conversation_happening = true
+    #pause:0
+    hey thanks for calling tonight
+    #pause:2.8
+    it was really nice to have someone to talk to about awkward parent shit
+    #pause:3
+    you make it easy to say what I'm actually thinking.
+    ~conversation_happening = false
+        ->Jia_knot_1
+
+
 === Olivia_date_storylet ===
     ~conversant_name = "Olivia"
     #pause:0
@@ -831,7 +944,7 @@ VAR olivia_family_knowledge = 0
                 - #pause:.5
                     oh I will ;P
                     ~conversation_happening = false
-                    ->DONE
+                    ->Mikaela_knot_2
                 
             
   === Olivia_TitleIXpath_witnesses ===

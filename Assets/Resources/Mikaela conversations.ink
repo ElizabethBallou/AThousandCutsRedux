@@ -2,13 +2,13 @@
 === Mikaela_knot_1 ===
     ~conversation_happening = true
     ~conversant_name = "Mikaela"
-        #pause:1
+        #pause:0
         Rosaaaaaa
         #pause:3
         two things
-        #pause:1.5
+        #pause:3.5
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you
-        #pause:0
+        #pause:2
         you're always so busy!
         * depends. where do you want to go?
             -> Rosa_is_nervous_about_dinner
@@ -16,29 +16,29 @@
             ->Rosa_doesnt_have_time
             
     = Rosa_is_nervous_about_dinner
-        #pause:1
+        #pause:2.7
         The Krak? I know you don't like the dining hall
-        #pause:.25
+        #pause:1.5
         plus I could use a burger
         * yeah, the Krak works
         - okay, perfect! see you at 6
         -> Mikaela_second_question
         
     = Rosa_doesnt_have_time
-        #pause:.25 
+        #pause:1
         awww okay
-        #pause:.5
+        #pause:1.3
         I understand though
-        #pause:.25
+        #pause:.9
         another time!
         -> Mikaela_second_question
         
     = Mikaela_second_question
-        #pause:.25
+        #pause:.2
         here's the second thing
-        #pause:.5
+        #pause:.9
         it's kind of a downer
-        #3
+        #pause:3
         do you remember Olivia? she came to my birthday party last month?
         * (Rosa_remembers_Olivia) we didn't talk much, but yeah, I remember
             -> Mikaela_talked_with_Olivia
@@ -46,24 +46,42 @@
             -> Mikaela_talked_with_Olivia
             
     = Mikaela_talked_with_Olivia
-        {Rosa_remembers_Olivia: ah good! Olivia is great.}
-        {Rosa_forgets_Olivia: I'm sure you all talked! but there were tons of people there that night}
+        {Rosa_remembers_Olivia:
+            #pause:2.3
+            ah good! Olivia is great.
+            }
+        {Rosa_forgets_Olivia:
+            #pause:3
+            I'm sure you all talked! but there were tons of people there that night
+            }
+            #pause:3.4
         we met playing in the pit for Into the Woods. she was the first violinist and she killed it
         *this doesn't sound like a downer!
-            -   I'm getting there
+            -   #pause:1.2
+                I'm getting there
+                #pause:2
                 Olivia and I were talking yesterday and
+                #pause:4
                 she mentioned that she had a bad run-in with Duane
+                #pause:3
                 she wasn't sure what to do, so I thought I could give her your number?
+                #pause:2.6
                 then you guys can talk and figure it out?
             * * ...fuck
                 -> Mikaela_begs_Rosa
                 
     = Mikaela_begs_Rosa
-        please, Rosa.
+        #1.3
+        please?
+        #pause:3
         whatever happened with Duane really messed with Olivia.
-        she needs to talk to someone, and honestly...so do you. like, I've been thinking about why you don't go to the dining hall anymore. or to a lot of other places. is it because of him?
+        #pause:4.5
+        she needs to talk to someone, and honestly so do you. like I've been thinking about why you don't go to the dining hall anymore. or to a lot of other places
+        #pause:2
+        is it because of him?
         * fine. give her my number.
-        -   ok. I will. are you mad at me?
+        -   #pause:2.3
+            ok. I will. are you mad at me?
             * * sort of
                 ->Mikaela_is_sorry
             * * of course not
@@ -72,13 +90,22 @@
                 ->Mikaela_is_sorry
                
         = Mikaela_is_sorry
-            I'm sorry any of this ever happened. and I hate to see both of you going through this.
+            #pause:3.6
+            I'm sorry any of this ever happened. and I hate to see both of you going through this
                 * me, too.
                     -> dinner_or_not
                     
     = dinner_or_not
-        {Rosa_is_nervous_about_dinner: I'm buying you some Krak mac n cheese tonight. you need it}
-        {Rosa_doesnt_have_time: I'll come by your dorm after rehearsal with some hot chocolate, k? you need it}
+        {Rosa_is_nervous_about_dinner:
+            #pause:2.6
+            I'm buying you some Krak mac n cheese tonight. you need it
+            }
+        {Rosa_doesnt_have_time:
+            #pause:3.4
+            I'll come by your dorm after rehearsal with some hot chocolate, k?
+            #pause:2
+            you need it
+            }
         * thanks <3
             ~conversation_happening = false
             -> Olivia_mom_storylet
