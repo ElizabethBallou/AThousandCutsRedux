@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using DG.Tweening;
 
 public enum NewStoryState{
     EpisodeStart,
@@ -21,7 +22,17 @@ public class InkManager : MonoBehaviour
     bool madeChoices = false;
     bool justDidAChoice = false;//if this is true, rosa should always be speaking
     // Start is called before the first frame update
-    bool showInProgressIcon = false;
+
+    public enum dotState
+    {
+        showing,
+        holding,
+        shrinking,
+        off
+    }
+    public dotState currentDotState;
+    public bool dotsShowingAlready = false;
+    public bool dotsShrinkingAlready = false;
 
     public string latestText = "";
 
@@ -60,14 +71,13 @@ public class InkManager : MonoBehaviour
                     {
                         myPauseTag = float.Parse(myPauseTagString.Split(':')[1]);
                     }
-                    Debug.Log("myPauseTag = " + myPauseTag);
  
                 }
 
                 timeBetweenPrints = myPauseTag;
                 if (myPauseTag > 0)
                 {
-                    showInProgressIcon = true;
+                    currentDotState = dotState.showing;
                 }
 
                 latestText = text;
@@ -88,14 +98,13 @@ public class InkManager : MonoBehaviour
                 if(check == true && conversationHappening == false){
                     conversationHappening = true;
                 }
-                Debug.Log(currentConversant);
                 Services.DisplayManager.WriteText(text,currentConversant,isRosaSpeaking);
                 madeChoices = false;
                 justDidAChoice = false;
             }
             
         }else{//choices!!
-            showInProgressIcon = false;
+            currentDotState = dotState.shrinking;
             if(!madeChoices){
                 for(int i = 0; i < 4;i++){
                     if(i < story.currentChoices.Count){
@@ -112,14 +121,36 @@ public class InkManager : MonoBehaviour
             
         }
 
-        if (showInProgressIcon)
+        switch(currentDotState)
         {
-            Services.CharacterManager.characters[currentConversant].textingInProgressIcon.SetActive(true);
+            case dotState.showing:
+                if (!dotsShowingAlready)
+                {
+                    Debug.Log("Dots are showing");
+                    Services.CharacterManager.characters[currentConversant].textingInProgressIcon.SetActive(true);
+                    GrowDots();
+                    dotsShowingAlready = true;
+                }
+                break;
+            case dotState.holding:
+                dotsShowingAlready = false;
+                Debug.Log("Dots are holding");
+                break;
+            case dotState.shrinking:
+                if (!dotsShrinkingAlready)
+                {
+                    Debug.Log("Dots are shrinking");
+                    ShrinkDots();
+                    dotsShrinkingAlready = true;
+                }
+                break;
+            case dotState.off:
+                Debug.Log("Dots are off");
+                dotsShrinkingAlready = false;
+                Services.CharacterManager.characters[currentConversant].textingInProgressIcon.SetActive(false);
+                break;
         }
-        else if (!showInProgressIcon)
-        {
-            Services.CharacterManager.characters[currentConversant].textingInProgressIcon.SetActive(false);
-        }
+
     }
 
     // Update is called once per frame
@@ -140,7 +171,6 @@ public class InkManager : MonoBehaviour
         for(int i = 0; i < 4;i++){
             Services.DisplayManager.choices[i].text = "";
         }
-        //Debug.Log("A");
         justDidAChoice = true;
         AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
     }
@@ -159,5 +189,23 @@ public class InkManager : MonoBehaviour
         Debug.Log("Ï JUST FAKE WENT");
         Debug.Log(story.canContinue);
     }
+
+    public void GrowDots()
+    {
+        Debug.Log("IM SHOWIN");
+        Services.CharacterManager.characters[currentConversant].textingInProgressIcon.transform.DOScale(new Vector3(1.155703f, 1.155703f, 10.40116f), .15f)
+                 .OnComplete(() => currentDotState = dotState.holding);
+       
+    }
+    public void ShrinkDots()
+    {
+        Debug.Log("IM HIDIN");
+        Services.CharacterManager.characters[currentConversant].textingInProgressIcon.transform.DOScale(new Vector3(.1f, .1f, .1f), .15f)
+            .OnComplete(() => currentDotState = dotState.off);
+    }
+            
    
 }
+
+
+

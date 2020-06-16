@@ -90,7 +90,6 @@ public class GameController : MonoBehaviour
         Services.DisplayManager = new DisplayManager(conversantPrefab,rosaPrefab,choicesParent);
     }
      public void SelectChoice(int choice){
-        Debug.Log(choice);
         Services.InkManager.SelectChoice(choice);
     }
     public void SelectCharacter(string character){

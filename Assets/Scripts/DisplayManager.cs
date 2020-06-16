@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 //handles displaying text
 public class DisplayManager
@@ -46,10 +47,15 @@ public class DisplayManager
             Services.CharacterManager.characters[Services.InkManager.currentConversant].textingInProgressIcon.transform.SetAsLastSibling();
         }
         textObj.transform.localPosition = new Vector2(0,character.height);
+        
         TextMeshProUGUI textDisplay = textObj.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         textDisplay.text = text;
         character.texts.Add(text);
         character.height -= 0;
-        
+
+        textDisplay.DOFade(1f, 1f);
+        textObj.GetComponentInChildren<Image>().DOFade(1f, 1f);
+        textObj.transform.DOShakeScale(.5f, .03f, 10, 0f, true);
+
     }
 }
