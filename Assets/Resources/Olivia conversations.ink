@@ -11,13 +11,13 @@ VAR olivia_family_knowledge = 0
 ~is_rosa = false
     #pause:0
     hi Rosa. this is Rosa, right?
-    #pause:1.9
+    #pause:2.9
     my name is Olivia. I'm a junior in the engineering school
     ~know_conversant = true
     we met once at Mikaela's birthday party
-    #pause:2.3
+    #pause:2.6
     she gave me your number yesterday
-    #pause:2
+    #pause:2.3
     did she tell you I was going to text?
         * yeah, she mentioned it
         ~conversation_happening = true
@@ -41,9 +41,9 @@ VAR olivia_family_knowledge = 0
         
     = something_happened_to_unknown
     ~ is_rosa = false
-        #pause:2
+        #pause:2.6
         he was weird to me. if you know what I mean.
-        #pause:1.9
+        #pause:2.5
         Mikaela said he was weird to you too.
         * I don't like discussing it
             #pause:1.6
@@ -57,20 +57,20 @@ VAR olivia_family_knowledge = 0
             #pause:2.2
             what would you call the thing with Duane?
             * * a bad night
-                #pause:.5
+                #pause:1.5
                 a bad night huh?
-                #pause:1.7
+                #pause:2.7
                what made your night bad?
                 -> Rosa_explains_what_happened
                 
             * * a sexual assault
                 #pause:3
                 I'm so sorry that happened to you.
-                #pause:1.9
+                #pause:2.5
                 but I texted you because it happened to me too.
-                #pause:1.8
+                #pause:2.3
                 and now I don't know what to do
-                #pause:2.8
+                #pause:3.4
                 I don't want to make you relive something so awful, but
                 what exactly did he do to you
                 -> Rosa_explains_what_happened
@@ -79,7 +79,7 @@ VAR olivia_family_knowledge = 0
                 ~ anger_level = anger_level + 1
                 #pause:1.4
                 I hear you
-                #pause:2.6
+                #pause:3.6
                 but was that all? because for me, it was more than 'nothing much'
                 * * * there was more.
                 #pause:1.8
@@ -182,7 +182,7 @@ VAR olivia_family_knowledge = 0
                                             -> Olivia_asks_about_drunkenness
                         
     = Olivia_asks_about_drunkenness
-        #pause:2.5
+        #pause:3
         god. when Mikaela said something had happened, I didn't think it would be that
         #pause:1.2
         I feel sick
@@ -327,9 +327,19 @@ VAR olivia_family_knowledge = 0
             ->Olivia_greets_Rosa
             
     = Olivia_greets_Rosa
-        {Rosa_response_chill: this would be easier if there were}
-        {Rosa_response_freaked: sorry. I didn't mean to}
-        {Rosa_response_guarded: hahaha hello and good day to you}
+        {Rosa_response_chill:
+            #pause:2.6
+            this would be easier if there were
+            }
+        {Rosa_response_freaked:
+            #pause:2.3
+            sorry. I didn't mean to
+            }
+        {Rosa_response_guarded:
+            #pause:2.6
+            hahaha hello and good day to you
+            }
+            #pause:3
         it's good to talk to you again
             *you too.
                 - ~is_rosa = true
@@ -338,8 +348,9 @@ VAR olivia_family_knowledge = 0
         
         = Olivia_begins_story
         ~is_rosa = false
+            #pause:2
             yes.
-            ...
+            #pause:6
             can you ask me some questions to get me started? it's hard for me to know where to begin
                 * okay
                     -> Rosa_asks_Olivia_questions
@@ -354,39 +365,70 @@ VAR olivia_family_knowledge = 0
             *   -> Olivia_is_angry
             
             = Olivia_says_when_rape_happened
-                it was at the end of last semester. Duane and I are both in the engineering school, and some people were celebrating the end of exams by going to Jolly Molly's. you know it?
+                #pause:2.5
+                it was at the end of last semester
+                #pause:3.8
+                Duane and I are both in the engineering school, and some people were celebrating the end of exams by going to Jolly Molly's
+                #pause:2
+                you know it?
                     * (Rosa_knows_JM) I've had way too many vodka lemonades from JM's, haha
                         ->Olivia_replies_to_JM_knowledge
                     * (Rosa_doesnt_know_JM) yeah but it's not the kind of place I go
                         ->Olivia_replies_to_JM_knowledge
     
                     = Olivia_replies_to_JM_knowledge
-                    {Rosa_knows_JM: ah ha. that means you must have a fake ID too. so you won't judge me too much, which I was afraid of}
-                    {Rosa_doesnt_know_JM: oh no judgment there. its a real shithole. but the bouncer never looks too hard at my ID, so I don't have to worry about using a fake}
-                        anyway I'd studied really hard, so I was happy to just hang out and drink. I wasn't on my guard
+                    {Rosa_knows_JM:
+                    #pause:3.2
+                    ah ha. that means you must have a fake ID too. so you won't judge me too much, which I was afraid of
+                        }
+                    {Rosa_doesnt_know_JM:
+                    #pause:2.4
+                    oh no judgment there. its a real shithole
+                    #pause:3.8
+                    but the bouncer never looks too hard at my ID, so I don't have to worry about using a fake
+                        }
+                        #pause:3
+                        that semester I worked really hard, so I was happy to just hang out and drink. I wasn't on my guard
+                        #pause:1.6
                         that was a mistake
                             -> Rosa_asks_Olivia_questions
                         
             = Olivia_says_she_knew_Duane
-            ~is_rosa = false
+                #pause:2.5
                 mhmm I knew him. since last year, when he transferred here. there aren't that many engineers so he was in a lot of my classes
+                #pause:2.4
                 specifically there aren't a lot of women engineers. I'm used to getting hit on at this point, and Duane did that sometimes
+                #pause:1.8
                 but I just brushed him off
+                #pause:3
                 so many asshats treat anyone in the e school who's not a straight white dude like they're rare pokemon cards
+                #pause:2.2
                 Duane was just one of many
                     -> Rosa_asks_Olivia_questions
             
             = Olivia_says_what_Duane_did
+                #pause:3.1
                 I had two beers. that was it. just two. I can handle two beers
                 except that night I couldn't
-                I started fading. I remember my thoughts sort of drifting away, and I tried to catch them and pull them back towards me, but that didn't work
+                #pause:3.4
+                my thoughts started drifting away and I tried to pull them back towards me but that didn't work
+                #pause:2.8
                 the rest of the night is just flashes
-                when I woke up, like really woke up, I was in my bed and Duane was there too. and I was horrified because I knew right away what had happened
-                maybe this is tmi, but I could feel it. I was in pain. it was a deep ache, like period cramps, but I wasn't on my period
-                I woke him up and said he had to go right away. he wouldn't stop grinning. he was so pleased with himself.
-                I wanted to take a shower but I knew I wasn't supposed to. so I told my roommate, Ally. Ally said we needed to go to the hospital and get a rape kit done. and we did.
-                the nurse was so fucking businesslike. she kept telling me to relax because if I did it would be over faster.
+                #pause:4
+                when I woke up, like really woke up, I was in my bed and Duane was there too
+                #pause:3.5
+                and I was horrified because I knew right away what had happened
+                #pause:5.2
+                maybe this is tmi, but I could feel it. it was a deep ache, like period cramps, but I wasn't on my period
+                #pause:3.3
+                I woke him up and said he had to go right away. he wouldn't stop grinning. he was so pleased with himself
+                #pause:3.5
+                then I told my roommate what happened. Ally said we needed to go to the hospital and get a rape kit done. and we did
+                #pause:3.6
+                the nurse was so fucking businesslike. she kept telling me to relax because if I did it would be over faster
+                #pause:4
                 now I'm crying. something to do with talking about all these little details
+                #pause:2
                 give me a second
                 * (Rosa_is_empathetic) I am so so sorry, Olivia
                 * (Rosa_says_no_crying) don't give him the pleasure of tears
@@ -395,19 +437,44 @@ VAR olivia_family_knowledge = 0
                 -    -> Olivia_says_what_Duane_did_2
                     
                     = Olivia_says_what_Duane_did_2
-                        {Rosa_is_empathetic: Im sorry too. I didn't realize how bad it would be to get a rape kit. no one should have to go through that.}
-                        {Rosa_says_no_crying: what does it matter? he doesn't know I'm crying. he doesn't give a shit about me, or you}
-                        {Rosa_says_stop_talking: then just don't read it. delete the texts or whatever. but I have to say all this or I will scream}
-                       
-                        anyway. I messaged Duane and asked him to explain what had happened. he asked if I had a good time and I said "no one has a good time when they're raped"
-                        it took a while for him to respond but he finally said that I was crazy. and that if I called it rape again, I'd be sorry
-                        and that's the last time we ever spoke
+                        {Rosa_is_empathetic:
+                        #pause:2
+                        Im sorry too.
+                        #pause:3.1
+                        I didn't realize how bad it would be to get a rape kit
+                        #pause:2.8
+                        no one should have to go through that
+                        }
+                        {Rosa_says_no_crying:
+                        #pause:3.5
+                        what does it matter? he doesn't know I'm crying. he doesn't give a shit about me
+                        #pause:2
+                        or you
+                        }
+                        {Rosa_says_stop_talking:
+                        #pause:2.6
+                        then just don't read it. delete the texts or whatever
+                        #pause:2
+                        but I have to say it to someone or I will scream
+                        }
+                       #pause:3
+                        so. I messaged Duane and asked him to explain what had happened.
+                        #pause:3.4
+                        he asked if I had a good time and I said "no one has a good time when they're raped"
+                        #pause:3.9
+                        it took a while for him to respond but he finally said that I was crazy. and that if I called it rape to anyone else, he'd "take action"
+                        #pause:2.2
+                        that's the last time we ever spoke
                         ->Rosa_asks_Olivia_questions
                         
         = Olivia_is_angry
+            #pause:2.1
             so that's the story.
-            I spent all of winter break depressed. but then I got angry.
-            I am so, so angry, Rosa
+            #pause:3.1
+            I spent all of winter break depressed but then I got angry
+            #pause:2.9
+            I am so so angry, Rosa
+            #pause:2
             aren't you angry?
             * every day
                 -> Rosa_angry_every_day
@@ -417,38 +484,55 @@ VAR olivia_family_knowledge = 0
                 ->Rosa_doesnt_know_how_to_feel
             
             = Rosa_angry_every_day
-                yeah, you get it
+                #pause:1.9
+                you get it then
+                #pause:2.1
                 shit I have to go 
-                I'm late to class 
+                #pause:3.2
+                I wasn't paying attention to the time and now I'm late to class
+                #pause:2
                 talk to you later?
                 -> end_second_knot
                 
             = Rosa_doesnt_consider_anger
                 ~ anger_level = anger_level + 1
+                #pause:2.2
                 well that's fucked
-                ahhh no I have to go 
-                I'm late to class 
+                #pause:2.4
+                ahhh no I have to go
+                #pause:3.2
+                I wasn't paying attention to the time and now I'm late to class
+                #pause:2
                 talk to you later?
                 -> end_second_knot
                 
             = Rosa_doesnt_know_how_to_feel
                 ~anger_level = anger_level + 2
-                there are a lot of girls who don't know how to get their anger back, aren't there?
-                shit I have to go 
-                I'm late to class 
+                #pause:2.9
+                then you have to learn how to get your anger back
+                #pause:2.4
+                ahhh no I have to go
+                #pause:3.2
+                I wasn't paying attention to the time and now I'm late to class
+                #pause:2
                 talk to you later?
                 -> end_second_knot
         
         = end_second_knot
             ~ is_rosa = true
             * okay
-            {Rosa_angry_every_day: today I will be angry for you, too}
+            {Rosa_angry_every_day:
+                **today I will be angry for you, too
+                    ->second_knot_rerouting
+                }
             {Rosa_doesnt_consider_anger: I'll keep trying not to go crazy, same as always}
             {Rosa_doesnt_know_how_to_feel: I'll keep pushing all my emotions away, same as always. that's healthy, right?}
             {Rosa_doesnt_know_how_to_feel: that was a joke btw}
             {Rosa_doesnt_know_how_to_feel: awkward. ok. talk tomorrow.}
+            
+        = second_knot_rerouting
             ~ conversation_happening = false
-            ->Olivia_knot_3
+                -   ->Olivia_knot_3
                     
                 
 === Olivia_knot_3 ===
@@ -953,13 +1037,16 @@ VAR olivia_family_knowledge = 0
     
     = Olivia_TitleIXpath_1_ridiculous_intro
       ~conversant_name = "Olivia"
-    all right I just got home from making my report to the Title IX rep 
+      #pause:0
+    all right I just got home from making my report to the Title IX rep
+    #pause:1.2
     you did yours, right?
         * yeah, yesterday
                 ~conversation_happening = true
             ->Rosa_responds
     
         = Rosa_responds
+        #pause:2.9
             was it that Irene lady? the one who laughs weird and wears the wrong shade of foundation?
             *(Rosa_chides) aww that's not nice 
                 -> Olivia_answers
@@ -967,18 +1054,51 @@ VAR olivia_family_knowledge = 0
                 -> Olivia_answers
             
         = Olivia_answers
-            {Rosa_chides: but it's true}
-            {Rosa_agrees: haha I wonder if Irene is the only one who takes these statements}
+            {Rosa_chides:
+                #pause:1
+                but it's true
+                }
+            {Rosa_agrees:
+                #pause:1.7
+                haha I wonder if Irene is the only one who takes these statements
+                }
+                #pause:1.3
             she pissed me off
+            #pause:2.4
             she kept saying "we will treat this with the utmost seriousness" over and over
+            #pause:1.9
             like...I get it, Irene
-            *there's an investigation now, right?
-                - yeah
-                    - *how long is that supposed to take?
+            #pause:2.5
+            also she said I'd get a title ix advocate, whatever that is
+            #pause:2
+            did you get one too?
+            *mhmm. I got an email this morning
+                **her name is Pradhya. she wants to meet at Grit so we can get to know each other
                         ->investigation_discussion
                         
         = investigation_discussion
-          a month maybe? longer?
+          #pause:3.5
+          that's kinda nice. then you can at least pretend like you're going to Grit to study or whatever
+          #pause:2.9
+          you can stay away from the sterile ass dean's hall
+          #pause:3
+          I swear, that place makes me feel like I'm in a funeral parlor
+          #pause:2
+          tell me how it goes!
+          ~conversation_happening = false
+            ->Pradhya_initial_text
+
+=== Olivia_titleIXpath_witnesses_2 ===          
+    #pause:0
+    so? how was Pradhya the Advocate?
+    #pause:3.3
+    btw I keep misspelling advocate and my phone autocorrects it to avocado
+    #pause:2.8
+    one of these days I won't catch it before I hit send
+    *she was very thorough
+        **which was comforting
+        **which was intimidating
+        
           they have to interview duane
           and anyone either of us gave as witnesses
           did you know that you can give the names of people who didn't actually see it happen?

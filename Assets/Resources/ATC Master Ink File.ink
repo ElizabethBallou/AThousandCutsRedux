@@ -3,6 +3,7 @@ INCLUDE Mikaela conversations.ink
 INCLUDE Duane conversations.ink
 INCLUDE Rudy_conversations.ink
 INCLUDE Jia_conversations.ink
+INCLUDE Pradhya_conversations.ink
 
 
 VAR conversant_name = ""

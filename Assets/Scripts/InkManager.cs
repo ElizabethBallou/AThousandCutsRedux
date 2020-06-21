@@ -21,6 +21,8 @@ public class InkManager : MonoBehaviour
     //state stuff
     bool madeChoices = false;
     bool justDidAChoice = false;//if this is true, rosa should always be speaking
+
+    float elapsedTime = 0;
     // Start is called before the first frame update
 
     public enum dotState
@@ -46,17 +48,16 @@ public class InkManager : MonoBehaviour
 
     public void Update(){
         
-        //Debug.Log(currentConversant);
 
         if(story.canContinue){//text is being drawn
-            //Debug.Log("STORY SHOULD CONTINUE");
-            if(Time.time >= lastPrint+timeBetweenPrints){
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= lastPrint+timeBetweenPrints){
                 AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound);
-                lastPrint = Time.time;
+                lastPrint = elapsedTime;
                 timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
 
                 string text = GetNextContent();
-
+                
                 float myPauseTag = 0;
 
                 //Elizabeth: this is where I'm trying out evaluating the pause tags
@@ -80,6 +81,7 @@ public class InkManager : MonoBehaviour
                     currentDotState = dotState.showing;
                 }
 
+                
                 latestText = text;
 
                 currentConversant = story.variablesState["conversant_name"] as string;
@@ -161,6 +163,7 @@ public class InkManager : MonoBehaviour
         {
             return "";
         }
+        
         return s;
     }
     public void SelectChoice(int choiceNum){

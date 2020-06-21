@@ -4,22 +4,32 @@
     ~conversant_name = "Mikaela"
         #pause:0
         Rosaaaaaa
+        
         #pause:3
         two things
+        
         #pause:3.5
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you
+        
         #pause:2
         you're always so busy!
+        
         * depends. where do you want to go?
+            #pause:.1
+            
             -> Rosa_is_nervous_about_dinner
         * wish I could, but I have a problem set due at 9:00 tonight :/
+            #pause:.1
+            
             ->Rosa_doesnt_have_time
             
     = Rosa_is_nervous_about_dinner
         #pause:2.7
         The Krak? I know you don't like the dining hall
+        
         #pause:1.5
         plus I could use a burger
+        
         * yeah, the Krak works
         - okay, perfect! see you at 6
         -> Mikaela_second_question
@@ -34,9 +44,9 @@
         -> Mikaela_second_question
         
     = Mikaela_second_question
-        #pause:.2
+        #pause:1.2
         here's the second thing
-        #pause:.9
+        #pause:1.4
         it's kind of a downer
         #pause:3
         do you remember Olivia? she came to my birthday party last month?

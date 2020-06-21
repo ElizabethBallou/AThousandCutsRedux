@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
         Services.CharacterManager.characters["Duane"].textingInProgressIcon = textingInProgressIcons[2];
         Services.CharacterManager.characters["Rudy"].textingInProgressIcon = textingInProgressIcons[3];
         Services.CharacterManager.characters["Jia"].textingInProgressIcon = textingInProgressIcons[4];
+        Services.CharacterManager.characters["Pradhya"].textingInProgressIcon = textingInProgressIcons[5];
         
         foreach (GameObject textingIcon in textingInProgressIcons)
         {
