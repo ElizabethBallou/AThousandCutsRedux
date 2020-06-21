@@ -57,24 +57,23 @@ public class InkManager : MonoBehaviour
                 timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
 
                 string text = GetNextContent();
+                Debug.Log("just read this text: "+text);
                 
                 float myPauseTag = 0;
 
                 //Elizabeth: this is where I'm trying out evaluating the pause tags
                 //take current tags
                 List<string> pauseTags = story.currentTags;
-                if (pauseTags.Count > 0)
-                {
-                    string myPauseTagString = pauseTags[0];
-                    //tags are initially in string format, so set them as floats
-
-                    if (myPauseTagString.Contains(":"))
-                    {
-                        myPauseTag = float.Parse(myPauseTagString.Split(':')[1]);
+                foreach(string tag in story.currentTags){
+                    if(tag.Contains(":")){
+                        //tags are initially in string format, so set them as floats
+                        float temp = float.Parse(tag.Split(':')[1]);
+                        if(temp > myPauseTag){
+                            myPauseTag = temp;
+                            Debug.Log("Has a tag of "+myPauseTag);
+                        }
                     }
- 
                 }
-
                 timeBetweenPrints = myPauseTag;
                 if (myPauseTag > 0)
                 {
@@ -171,6 +170,10 @@ public class InkManager : MonoBehaviour
             return;
         }
         story.ChooseChoiceIndex(choiceNum);
+        Debug.Log("you have this many tags: "+story.currentTags.Count);
+        if(story.currentTags.Count > 0){
+            Debug.Log("current tag: "+story.currentTags[0]);
+        }
         for(int i = 0; i < 4;i++){
             Services.DisplayManager.choices[i].text = "";
         }

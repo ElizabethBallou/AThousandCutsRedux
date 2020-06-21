@@ -14,12 +14,10 @@
         #pause:2
         you're always so busy!
         
-        * depends. where do you want to go?
-            #pause:.1
+        * depends. where do you want to go? #pause:0.1
             
             -> Rosa_is_nervous_about_dinner
-        * wish I could, but I have a problem set due at 9:00 tonight :/
-            #pause:.1
+        * wish I could, but I have a problem set due at 9:00 tonight :/ #pause:.1
             
             ->Rosa_doesnt_have_time
             
