@@ -105,7 +105,9 @@ public class InkManager : MonoBehaviour
             }
             
         }else{//choices!!
-            currentDotState = dotState.shrinking;
+            if(currentDotState == dotState.showing || currentDotState == dotState.holding){
+                currentDotState = dotState.shrinking;
+            }
             if(!madeChoices){
                 for(int i = 0; i < 4;i++){
                     if(i < story.currentChoices.Count){
