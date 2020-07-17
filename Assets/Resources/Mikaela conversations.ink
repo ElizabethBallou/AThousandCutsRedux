@@ -2,137 +2,106 @@
 === Mikaela_knot_1 ===
     ~conversation_happening = true
     ~conversant_name = "Mikaela"
-        #pause:0
-        Rosaaaaaa
-        
-        #pause:3
-        two things
-        
-        #pause:3.5
-        first, do you have dinner plans? I have space today between class and rehearsal and I want to see you
-        
-        #pause:2
+        Rosaaaaaa #pause:1
+        two things #pause:3.6
+        first, do you have dinner plans? I have space today between class and rehearsal and I want to see you #pause:1.7
         you're always so busy!
-        
-        * depends. where do you want to go? #pause:0.1
-            
+        * depends. where do you want to go? #pause:2.7
             -> Rosa_is_nervous_about_dinner
-        * wish I could, but I have a problem set due at 9:00 tonight :/ #pause:.1
-            
+        * wish I could, but I have a problem set due at 9:00 tonight :/ #pause:1
             ->Rosa_doesnt_have_time
             
     = Rosa_is_nervous_about_dinner
-        #pause:2.7
-        The Krak? I know you don't like the dining hall
-        
-        #pause:1.5
+        The Krak? I know you don't like the dining hall #pause:2.5
         plus I could use a burger
-        
-        * yeah, the Krak works
-        - okay, perfect! see you at 6
-        -> Mikaela_second_question
+            * yeah, the Krak works #pause:2.1
+                - okay, perfect! see you at 6
+                    -> Mikaela_second_question
         
     = Rosa_doesnt_have_time
-        #pause:1
-        awww okay
-        #pause:1.3
-        I understand though
-        #pause:.9
-        another time!
-        -> Mikaela_second_question
+        awww okay #pause:1.9
+        I understand though #pause:2.2
+        another time! #pause:1.7
+            -> Mikaela_second_question
         
     = Mikaela_second_question
-        #pause:1.2
-        here's the second thing
-        #pause:1.4
-        it's kind of a downer
-        #pause:3
+        here's the second thing #pause:2.6
+        it's kind of a downer #pause:3.2
         do you remember Olivia? she came to my birthday party last month?
-        * (Rosa_remembers_Olivia) we didn't talk much, but yeah, I remember
+        * (Rosa_remembers_Olivia) we didn't talk much, but yeah, I remember #pause:1.8
             -> Mikaela_talked_with_Olivia
-        * (Rosa_forgets_Olivia) hmm, no, I don't remember meeting an Olivia
+        * (Rosa_forgets_Olivia) hmm, no, I don't remember meeting an Olivia #pause:3.7
             -> Mikaela_talked_with_Olivia
             
     = Mikaela_talked_with_Olivia
         {Rosa_remembers_Olivia:
-            #pause:2.3
-            ah good! Olivia is great.
+            ah good! Olivia is great.#pause:3
             }
         {Rosa_forgets_Olivia:
-            #pause:3
-            I'm sure you all talked! but there were tons of people there that night
+            I'm sure you all talked! but there were tons of people there that night #pause:3.4
             }
-            #pause:3.4
         we met playing in the pit for Into the Woods. she was the first violinist and she killed it
-        *this doesn't sound like a downer!
-            -   #pause:1.2
-                I'm getting there
-                #pause:2
-                Olivia and I were talking yesterday and
-                #pause:4
-                she mentioned that she had a bad run-in with Duane
-                #pause:3
-                she wasn't sure what to do, so I thought I could give her your number?
-                #pause:2.6
+        *this doesn't sound like a downer! #pause:1.2
+            -   I'm getting there #pause:2
+                Olivia and I were talking yesterday and  #pause:4
+                she mentioned that she had a bad run-in with Duane #pause:3
+                she wasn't sure what to do, so I thought I could give her your number? #pause:2.6
                 then you guys can talk and figure it out?
-            * * ...fuck
-                -> Mikaela_begs_Rosa
+                * * ...fuck #pause:1.3
+                    -> Mikaela_begs_Rosa
                 
     = Mikaela_begs_Rosa
-        #1.3
-        please?
-        #pause:3
-        whatever happened with Duane really messed with Olivia.
-        #pause:4.5
-        she needs to talk to someone, and honestly so do you. like I've been thinking about why you don't go to the dining hall anymore. or to a lot of other places
-        #pause:2
+        please? #pause:3
+        whatever happened with Duane really messed with Olivia. #pause:4.5
+        she needs to talk to someone, and honestly so do you. like I've been thinking about why you don't go to the dining hall anymore. or to a lot of other places #pause:2
         is it because of him?
-        * fine. give her my number.
-        -   #pause:2.3
-            ok. I will. are you mad at me?
-            * * sort of
+        * fine. give her my number. #pause:2.3
+        -   ok. I will. are you mad at me?
+            * * sort of #pause:3.6
                 ->Mikaela_is_sorry
-            * * of course not
+            * * of course not #pause:3.6
                 ->Mikaela_is_sorry
-            * * I'm mad, but not at you
+            * * I'm mad, but not at you #pause:3.6
                 ->Mikaela_is_sorry
                
         = Mikaela_is_sorry
-            #pause:3.6
             I'm sorry any of this ever happened. and I hate to see both of you going through this
-                * me, too.
+                * me, too. #pause:3
                     -> dinner_or_not
                     
     = dinner_or_not
         {Rosa_is_nervous_about_dinner:
-            #pause:2.6
             I'm buying you some Krak mac n cheese tonight. you need it
             }
         {Rosa_doesnt_have_time:
-            #pause:3.4
-            I'll come by your dorm after rehearsal with some hot chocolate, k?
-            #pause:2
+            I'll come by your dorm after rehearsal with some hot chocolate, k? #pause:2
             you need it
             }
         * thanks <3
             ~conversation_happening = false
-            -> Olivia_mom_storylet
+            -> Olivia_knot_1
             
 === Mikaela_knot_2 ===
     ~conversant_name = "Mikaela"
-    hey. Olivia told me you all talked
-    thank you for answering her <3 
+    hey. Olivia told me you all talked #pause:2.6
+    thank you for answering her <3  #pause:2.5
     how do you feel now?
-    * (knot_2_angry) angry at Duane all over again
+    * (knot_2_angry) angry at Duane all over again #pause:1.9
     ~conversation_happening = true
-    * (knot_2_guilty) guilty that I didn't say anything when it happened
+    * (knot_2_guilty) guilty that I didn't say anything when it happened #pause:3.2
     ~conversation_happening = true
-    * (knot_2_glad) just glad to have Olivia
+    * (knot_2_glad) just glad to have Olivia #pause:3.8
     ~conversation_happening = true
-        -   {knot_2_angry: and who could blame you}
-            {knot_2_guilty: you can't think like that. you're not responsible for what Duane does}
-            {knot_2_guilty: only he is}
-            {knot_2_glad: yeah Olivia does not stand down when she sees something she doesn't think is right}
+        -   {knot_2_angry:
+                and who could blame you #pause:3
+                }
+            {knot_2_guilty:
+                you can't think like that. you're not responsible for what Duane does #pause:1
+                only he is #pause:3
+                }
+            {knot_2_glad:
+                yeah Olivia does not stand down when she sees something she doesn't think is right #pause:3
+                }
             {
                 - Olivia_knot_3.Rosa_wants_title_ix:
                     -> Rosa_Olivia_take_action
@@ -145,35 +114,42 @@
             }
             
     = Rosa_Olivia_take_action
-        hey so I said this to Olivia and I just want to tell you too
+        hey so I said this to Olivia and I just want to tell you too #pause:3.1
         {Olivia_knot_3.Rosa_wants_title_ix:I don't think going to the Title IX people is a good idea}
         {Olivia_knot_3.Rosa_wants_police_report: I don't think talking to the police is a good idea}
         {Olivia_knot_3.Rosa_wants_article: I don't think trying to get an article written is a good idea}
-        *wait, what?
+        *wait, what? #pause:3.9
             ->Mikaela_doesnt_support_action
             
         = Mikaela_doesnt_support_action
-            {Olivia_knot_3.Rosa_wants_title_ix:I've known some people who reported to the Title IX council and it never works out the way it should}
-            {Olivia_knot_3.Rosa_wants_title_ix: I just don't want to see you all dragged through the mud}
-            {Olivia_knot_3.Rosa_wants_police_report: this sucks to say, but do you know how few people actually get convicted of sexual assault?}
-            {Olivia_knot_3.Rosa_wants_police_report: I just don't want to see you all dragged through the mud}
-            {Olivia_knot_3.Rosa_wants_article: if you attack Duane that publicly, he might get dangerous}
-            * (stop_freaking_me_out)stop freaking me out
+            {Olivia_knot_3.Rosa_wants_title_ix:
+                I've known some people who reported to the Title IX council and it never works out the way it should #pause:2.7
+                I just don't want to see you all dragged through the mud
+                }
+            {Olivia_knot_3.Rosa_wants_police_report:
+                this sucks to say, but do you know how few people actually get convicted of sexual assault?
+                I just don't want to see you all dragged through the mud #pause:2.7
+                }
+            {Olivia_knot_3.Rosa_wants_article:
+                if you attack Duane that publicly, he might get dangerous
+                }
+            * (stop_freaking_me_out)stop freaking me out #pause:2.2
                 ->Rosa_does_something
-            * (cant_believe_saying)I can't believe you're saying this
+            * (cant_believe_saying)I can't believe you're saying this #pause:2
                 ->Rosa_does_something
                 
     = Rosa_does_something
-        {stop_freaking_me_out: I'm not trying to freak you out! Just being honest}
-        {cant_believe_saying: I'm sorry, it sounds like I don't support you}
-        {cant_believe_saying: I do, promise}
-        {cant_believe_saying: I'm just being honest}
+        {stop_freaking_me_out:
+            I'm not trying to freak you out! Just being honest
+            }
+        {cant_believe_saying:
+            I'm sorry, it sounds like I don't support you #pause:1.6
+            I do, promise #pause:1.8
+            I'm just being honest
+            }
         *we've made up our minds, okay
-            ->Mikaela_rattles_Rosa
-            
-        = Mikaela_rattles_Rosa
-            *you're the one who gave Olivia my number in the first place
-            -> option1_goodbye
+            **you're the one who gave Olivia my number in the first place #pause:2
+                ->option1_goodbye
             
     = Rosa_does_nothing
         Olivia seemed upset that you didn't want to do anything but I think you made the right call
@@ -190,11 +166,11 @@
             -> option2_goodbye
         
     = option1_goodbye
-        I thought you all would just talk
-        not put yourselves out there like this
-        you know what, you're right, it isn't my place
-        still, I have a bad feeling about this
-        are you there?
+        I thought you all would just talk #pause:2.4
+        not put yourselves out there like this #pause:2.6
+        you know what, you're right, it isn't my place #pause:2.3
+        still, I have a bad feeling about this #pause:1.6
+        are you there? #pause:1
         Rosa?
         ~conversation_happening = false
             -> Mikaela_knot_3
@@ -219,22 +195,20 @@ honestly it doesn't matter what goes here
         
 === Mikaela_scared_testifying ===
     ~conversant_name = "Mikaela"
-    so I got a call from a Title IX lady
-    #pause:2
+    so I got a call from a Title IX lady #pause:2
     she wants to interview me about your story AND Olivia's story? what is going on?
-    *you're a witness for both of us
+    *you're a witness for both of us #pause:1.3 
         ~conversation_happening = true
         -> Mikaela_is_witness
     
     = Mikaela_is_witness
-    #pause:1.3 
     I'm not though. I didn't see what happened either time 
     *no, but both of us talked to you and told you details pretty soon after stuff happened
         **that's what makes you a witness
             - #pause:.5
             ok but 
             #pause:1.2
-            I already told you I don't know about Title IX in the first place
+            I told you I don't know about Title IX in the first place
                     ***(Rosa_upset)are you seriously still thinking about yourself??
                     ->Rosa_reacts_to_Mikaela
                     ***(Rosa_frustrated)we already talked about that...
@@ -288,7 +262,7 @@ honestly it doesn't matter what goes here
         #pause:.6
         guess I deserved that
         }
-        *why do you think that doing anything with Title IX is such a bad idea?
+        *why do you think that a Title IX case is such a bad idea?
             **did something happen?
                 -> Mikaela_explains_past
                 
@@ -296,9 +270,9 @@ honestly it doesn't matter what goes here
         #pause:.5
         no!
         #pause:.8
-        I mean not like what you're thinking
+        not like what you're thinking
         #pause:3.5
-        it's more about shit that happened before I ever came to fortuna. long-time-ago shit
+        it's more about things that happened before I ever came to fortuna. long-time-ago things
         #pause:1.7
         and it's kind of complicated
         *I have time
@@ -339,7 +313,7 @@ honestly it doesn't matter what goes here
                 **I am so so sorry that happened
                     ~mikaela_trust_level += 1
                     ->Rosa_persuades_Mikaela
-                **don't apologize! you didn't do anything wrong
+                **don't apologize. it's hard to talk about
                      ~mikaela_trust_level += 1
                     ->Rosa_persuades_Mikaela
 
@@ -356,8 +330,9 @@ honestly it doesn't matter what goes here
         *(Rosa_hopeful)maybe, with my and Olivia's case, we'll beat the odds. especially if you're a witness
             ~mikaela_trust_level += 1
             ->Mikaela_gives_answer
-        *(Rosa_forthright)look...if you're not a witness you'll be stabbing me in the back
-            ->Mikaela_gives_answer
+        *(Rosa_forthright)look...if you're not a witness then what is the point of our friendship
+            **come through for me
+                ->Mikaela_gives_answer
         *(Rosa_mistrustful)I hate this system too but it's all we have
             ~mikaela_trust_level += 2
             ->Mikaela_gives_answer
@@ -401,7 +376,7 @@ honestly it doesn't matter what goes here
         #pause:1.9
         thank YOU for reminding me of that.
         ~conversation_happening = false
-            ->Olivia_TitleIxpath_Investigation
+            ->Olivia_TitleIXpath_Mikaela_in
             }
         {mac_n_cheese:
         ~convinced_mikaela = true
@@ -414,7 +389,7 @@ honestly it doesn't matter what goes here
         #pause:2.6
         if I run for student council that will be my platform <3
         ~conversation_happening = false
-            ->Olivia_TitleIxpath_Investigation
+            ->Olivia_TitleIXpath_Mikaela_in
             }
         {asking_a_lot:
         ~convinced_mikaela = true
@@ -423,7 +398,7 @@ honestly it doesn't matter what goes here
         #pause:2
         whew. gonna go take a walk and clear my head. talk later
         ~conversation_happening = false
-            ->Olivia_TitleIxpath_Investigation
+            ->Olivia_TitleIXpath_Mikaela_in
             }
         {not_asking:
         ~convinced_mikaela = true
@@ -432,7 +407,7 @@ honestly it doesn't matter what goes here
         #pause:2
         whew. gonna go take a walk and clear my head. talk later
         ~conversation_happening = false
-            ->Olivia_TitleIxpath_Investigation
+            ->Olivia_TitleIXpath_Mikaela_in
             }
         {are_you_serious:
         #pause:1.5
@@ -442,8 +417,8 @@ honestly it doesn't matter what goes here
         #pause:2.1
         when in reality it takes so many people just to turn the stagelights on at the right time
         #pause:2
-        I need some time. text me later, or don't I guess. I'm overwhelmed
+        I need some time. I'm overwhelmed
             ~conversation_happening = false
-            ->Olivia_TitleIxpath_Investigation
+            ->Olivia_TitleIXpath_Mikaela_out
             }
         

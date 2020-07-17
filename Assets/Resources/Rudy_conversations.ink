@@ -3,7 +3,7 @@
  ~conversant_name = "Rudy"
  Hi Rosa. This is Rudy. Long time no talk! I hope you're doing well.
  #pause:4
- I got an email from the Title IX investigation committee - they want to interview me. I hope this is appropriate to ask, but I was wondering if you could tell me more? I'm happy to talk to them, I just don't know what this is about.
+ I got an email from a Title IX investigation committee - they want to interview me. I hope this is appropriate to ask, but I was wondering if you could tell me more? I'm happy to talk to them, I just don't know what this is about.
  #pause:2
  All the email said was that something happened during my Halloween party, and it was related to you?
  
@@ -55,10 +55,18 @@
     When I went inside and you were alone with him, I thought "I hope Rosa is okay"
     #pause:1
     I should have stayed
-        *you didn't know what he'd do
+        *(Rosa_angry)I wish you had
+            ->Rudy_interview
+        *(Rosa_understanding)you didn't know what he'd do
             -> Rudy_interview
     
     = Rudy_interview
+        {Rosa_angry:
+            I'm so sorry. I really, really am.
+            }
+        {Rosa_understanding:
+            No, but I suspected.
+            }
         #pause:1.6
         I didn't see anything actually happen, though. I don't want to disappoint you.
             *that's ok. it's helpful just to have someone say I was on the porch talking to Duane
@@ -74,17 +82,24 @@
         
     = Rudy_goodbye
     #pause:1.2
-    {Rosa_thankful: You're very welcome. ->Rudy_mentions_Jia}
+    {Rosa_thankful:
+        You're very welcome.
+        Actually I think there's someone else you should talk to.
+        ->Rudy_mentions_Jia
+        }
     {Rosa_questioning:
         Because I hate the idea of you being assaulted.
         #pause:.9
         Of anyone being assaulted actually.
         #pause: 3.2
-        I'm part of the LGBTQA+ Alliance and we talk a lot about campus sexual assault. I don't know how to stop it, but I'd be a hypocrite if I didn't support you now.
+        I'm part of the LGBTQIA+ Alliance and we talk a lot about campus sexual assault. I don't know how to stop it, but I'd be a hypocrite if I didn't support you now.
+        Actually
+        There's one other thing I can maybe do. Another person you should talk to.
+            ->Rudy_mentions_Jia
         }
     = Rudy_mentions_Jia
         #pause:3
-        Actually I think there's someone else you should talk to. She had something similar happen with Duane. Let me text her and see if she wants to have that conversation...
+        She had something similar happen with Duane. Let me text her and see if she wants to have that conversation...
             *he got to another person. god.
                 -> Jia_talk
             *of COURSE there's someone else

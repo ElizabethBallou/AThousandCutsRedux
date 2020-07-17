@@ -5,7 +5,7 @@
     hi! this is Jia. Rudy told me what was happening
     #pause:.5
     I'm so sorry you got Duaned
-    *haha, Duaned, I like that
+    *I hate that Duane is now a verb, but yes
      ~conversation_happening = true
         ->Jia_asks_questions
     *yeah...
@@ -170,7 +170,7 @@
                 ah yeah I did forget that for a sec. 2 people saying Duane did fucked up shit is good, but 3 is a pattern
                 ~jia_trust_level += 1
                 }
-            {jia_trust_level >= 1:
+            {jia_trust_level <= 1:
                 #pause:2
                 you know what? good luck to you but fuck this. I'm not gonna be a part of it
                     ->Jia_not_helping

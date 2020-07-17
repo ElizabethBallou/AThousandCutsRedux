@@ -8,69 +8,44 @@ VAR olivia_family_knowledge = 0
 === Olivia_knot_1 ===
 ~conversant_name = "Olivia"
 ~know_conversant = false
-~is_rosa = false
-    #pause:0
-    hi Rosa. this is Rosa, right?
-    #pause:2.9
+    hi Rosa. this is Rosa, right? #pause:2.9
     my name is Olivia. I'm a junior in the engineering school
     ~know_conversant = true
-    we met once at Mikaela's birthday party
-    #pause:2.6
-    she gave me your number yesterday
-    #pause:2.3
+    we met once at Mikaela's birthday party #pause:2.6
+    she gave me your number yesterday #pause:2.3
     did she tell you I was going to text?
-        * yeah, she mentioned it
+        * yeah, she mentioned it #pause:1.4
         ~conversation_happening = true
-         ~is_rosa = true
             ->Mikaela_said_Olivia_would_text
     
     = Mikaela_said_Olivia_would_text
-        ~is_rosa = false
-        #pause:1.4
-        okay good
-        #pause:1.3
-        well
-        #pause:2.4
-        I'm not sure how to start talking about this
-        #pause:2.2
+        okay good #pause:1.3
+        well #pause:2.4
+        I'm not sure how to start talking about this #pause:2.2
         do you know Duane? he's a junior in the business school, I think?
-        *...yes, I know Duane
-        *Fuck Duane. we don't talk
-        *Duane and I aren't friends anymore
+        *...yes, I know Duane  #pause:2.6
+        *Fuck Duane. we don't talk  #pause:2.6
+        *Duane and I aren't friends anymore  #pause:2.6
         - -> something_happened_to_unknown
         
     = something_happened_to_unknown
-    ~ is_rosa = false
-        #pause:2.6
-        he was weird to me. if you know what I mean.
-        #pause:2.5
+        he was weird to me. if you know what I mean. #pause:2.5
         Mikaela said he was weird to you too.
-        * I don't like discussing it
-            #pause:1.6
-            I get that, but...
-            #pause:1.8
-            it was bad, Rosa.
-            #pause:3.5
-            and when I told Mikaela, she said it wasn't the first time Duane had done that
-            #pause:2.4
-            so now I'm afraid there's a pattern
-            #pause:2.2
+        * I don't like discussing it #pause:1.6
+            I get that, but... #pause:1.8
+            it was bad, Rosa. #pause:3.5
+            and when I told Mikaela, she said it wasn't the first time Duane had done that #pause:2.4
+            so now I'm afraid there's a pattern #pause:2.2
             what would you call the thing with Duane?
-            * * a bad night
-                #pause:1.5
-                a bad night huh?
-                #pause:2.7
-               what made your night bad?
-                -> Rosa_explains_what_happened
+            * * a bad night #pause:1.5
+                -   -   a bad night huh? #pause:2.7
+                        what made your night bad?
+                            -> Rosa_explains_what_happened
                 
-            * * a sexual assault
-                #pause:3
-                I'm so sorry that happened to you.
-                #pause:2.5
-                but I texted you because it happened to me too.
-                #pause:2.3
-                and now I don't know what to do
-                #pause:3.4
+            * * a sexual assault #pause:3
+                I'm so sorry that happened to you. #pause:2.5
+                but I texted you because it happened to me too. #pause:2.3
+                and now I don't know what to do #pause:3.4
                 I don't want to make you relive something so awful, but
                 what exactly did he do to you
                 -> Rosa_explains_what_happened
@@ -173,126 +148,99 @@ VAR olivia_family_knowledge = 0
                                             -> Duane_says_keep_secret
                     
                     = Duane_says_keep_secret
-                        ~ is_rosa = true
                         *before he went inside, he said let's make sure this stays between us.
                             **and he smiled as if we'd had a good time
                                 ***I didn't say anything because I was just trying not to lose it
                                     ****and that's it
-                                        *****we didn't talk again, ever
+                                        *****we didn't talk again, ever #pause:3
                                             -> Olivia_asks_about_drunkenness
                         
     = Olivia_asks_about_drunkenness
-        #pause:3
-        god. when Mikaela said something had happened, I didn't think it would be that
-        #pause:1.2
+        god. when Mikaela said something had happened, I didn't think it would be that #pause:1.2
         I feel sick
-        * sorry. I didn't mean to make you feel bad
-        * you asked to hear it
-        -   #pause:2.7
-            it's fine. I'm the one who texted you, anyway
-            #pause:4
-            can I ask you something?
-            #pause:2.8
+        * sorry. I didn't mean to make you feel bad #pause:2.7
+        * you asked to hear it #pause:2.7
+        -   it's fine. I'm the one who texted you, anyway #pause:4
+            can I ask you something? #pause:2.8
             were you drinking at that party?
-            * * no. I don't drink
+            * * no. I don't drink #pause:3.2
                 ~rosa_alcohol_level = 0
-            * *yeah, but I wasn't drinking so much that I was out of it 
+            * *yeah, but I wasn't drinking so much that I was out of it #pause:1.8
                 ~rosa_alcohol_level = 1
-            * *it was Halloween haha. I was pretty drunk
+            * *it was Halloween haha. I was pretty drunk #pause:2.9
                 ~rosa_alcohol_level = 2
         - -   -> Olivia_remarks_on_drunkenness_level
 
     = Olivia_remarks_on_drunkenness_level
       {rosa_alcohol_level == 0:
-        #pause:3.2
         good. it'll be easier to report this if you weren't drinking
         }
       {rosa_alcohol_level == 1:
-        #pause:1.8
-        hmm could be worse
-        #pause:4.3
+        hmm could be worse #pause:4.3
         it would be easier to report this if you were sober but who's sober on Halloween?
         }
       {rosa_alcohol_level == 2:
-        #pause:2.9
         damn. that'll make this harder to report
         }
-      * report to who?
+      * report to who? #pause:1.9
         ->report_to_who
       
     = report_to_who
-        #pause:1.9
-        the title IX office
-        #pause:3.5
-        they throw out reports if someone's had literally anything to drink 
-        #pause:2.7
+        the title IX office #pause:3.5
+        they throw out reports if someone's had literally anything to drink #pause:2.7
         it becomes a bad hookup blah blah blah
             -> Rosa_reacts_to_title_ix_mention
             
         = Rosa_reacts_to_title_ix_mention
-            * the what office?
+            * the what office? #pause:3.2
                 -> title_ix_office_explainer
-            * (Rosa_trepidatious) who said anything about going to the title IX office???
-                -> Olivia_explains_ideal_outcome
-            * (Rosa_negative) I am never fucking talking to the title IX office about this
+            * (Rosa_trepidatious) who said anything about going to the title IX office??? #pause:3.4
+                -> Olivia_explains_ideal_outcome 
+            * (Rosa_negative) I am never fucking talking to the title IX office about this #pause:1.8
                 -> Olivia_explains_ideal_outcome
                 
         = title_ix_office_explainer
-            #pause:3.2
-            it's where people go to tell the deans if they've been whatevered. harassed, assaulted
-            #pause:3.8
-            there's a literal office on the 3rd floor of the dean's hall 
-            #pause:4.3
-            and the people who work there are supposed to make sure that whoever pulls this shit gets punished
-            #pause:4.7
+            it's where people go to tell the deans if they've been whatevered. harassed, assaulted #pause:3.8
+            there's a literal office on the 3rd floor of the dean's hall #pause:4.3
+            and the people who work there are supposed to make sure that whoever pulls this shit gets punished #pause:4.7
             I've been doing some research and it's part of federal law for every college to have title ix staff.
             -> Rosa_reacts_to_title_ix_mention
             
         = Olivia_explains_ideal_outcome
         {Rosa_trepidatious:
-            #pause:3.4
-            sorry, I thought it was obvious that that's where I was going with this
+            sorry, I thought it was obvious that that's where I was going with this #pause:1.9
             }
         {Rosa_negative:
-            #pause:1.8
-            wait, really?
+            wait, really? #pause:1.9
             }
-            #pause:1.9
-            Duane assaulted both of us
-            #pause:2.3
-            he's obviously a danger
-            #pause:2.6
+            Duane assaulted both of us #pause:2.3
+            he's obviously a danger #pause:2.6
             shouldn't we both report him?
-            * but I don't even know what happened to you 
+            * but I don't even know what happened to you #pause:1
                 -> Rosa_cuts_off_Olivia
                 
     = Rosa_cuts_off_Olivia
-        #pause:1
-        oh yeah
-        #pause:1.5
-        I guess I haven't said
-        #pause:2.4
+        oh yeah #pause:1.5
+        I guess I haven't said #pause:2.4
         you were really open with me, so I'll tell you whatever you want to know
-        * can you text me tomorrow about this? you gave me so much to think about
-        -   #pause:2.8
-            sure. sorry. I shouldve checked earlier
+        * can you text me tomorrow about this? you gave me so much to think about #pause:2.8
+        -   sure. sorry. I shouldve checked earlier
             -> Rosa_says_goodbye
+            
         = Rosa_says_goodbye
             *it's fine. I have a feeling we'll be talking for a while anyway
                 **we have time to get used to each other 
                     ***talk to you later, Olivia.
-                        ****(Rosa_says_thanks) and thanks for saying something to me
+                        ****(Rosa_says_thanks) and thanks for saying something to me #pause:2.4
                             ->final_goodbye_knot
-                        ****(Rosa_says_nothing) - say nothing -
+                        ****(Rosa_says_nothing) - say nothing - #pause:2
                             ->final_goodbye_knot
                 
         = final_goodbye_knot  
             {Rosa_says_thanks:
-                #pause:2.4
                 I just felt like I had to.
                 }
             {Rosa_says_nothing:
-                #pause:2
                 until tomorrow
                 }
             ~ conversation_happening = false
@@ -304,231 +252,172 @@ VAR olivia_family_knowledge = 0
     
     = Olivia_knot_2_ridiculous_intro
      ~conversant_name = "Olivia"
-     #pause:0
-    I thought for a while about what I should text you 
-    #pause:3
-    like should I say "hello" as if we were talking about something normal
-    #pause:2.8
-    or be really gentle in case I freaked you out yesterday
-    #pause:2
-    but I really didn't know
-    #pause:2.2
-    so I figured I would tell you I'm confused
-    #pause:2
+    I thought for a while about what I should text you #pause:3
+    like should I say "hello" as if we were talking about something normal #pause:2.8
+    or be really gentle in case I freaked you out yesterday #pause:2
+    but I really didn't know #pause:2.2
+    so I figured I would tell you I'm confused #pause:2
     that's your cue to say something
-        * (Rosa_response_chill) ha. don't worry about being confused. there's no guide for talking about this stuff
+        * (Rosa_response_chill) ha. don't worry about being confused. there's no guide for talking about this stuff #pause:2.6
                 ~conversation_happening = true
             ->Olivia_greets_Rosa
-        * (Rosa_response_freaked) you did freak me out, but I'm fine now
+        * (Rosa_response_freaked) you did freak me out, but I'm fine now #pause:2.3
                 ~conversation_happening = true
             ->Olivia_greets_Rosa
-        * (Rosa_response_guarded) hello i guess?
+        * (Rosa_response_guarded) hello i guess? #pause:2.6
                 ~conversation_happening = true
             ->Olivia_greets_Rosa
             
     = Olivia_greets_Rosa
         {Rosa_response_chill:
-            #pause:2.6
-            this would be easier if there were
+            this would be easier if there were #pause:3
             }
         {Rosa_response_freaked:
-            #pause:2.3
-            sorry. I didn't mean to
+            sorry. I didn't mean to #pause:3
             }
         {Rosa_response_guarded:
-            #pause:2.6
-            hahaha hello and good day to you
+            hahaha hello and good day to you #pause:3
             }
-            #pause:3
         it's good to talk to you again
             *you too.
-                - ~is_rosa = true
-                    you were going to tell me what happened with Duane?
+                **you were going to tell me what happened with Duane? #pause:2
                     ->Olivia_begins_story
         
         = Olivia_begins_story
-        ~is_rosa = false
-            #pause:2
-            yes.
-            #pause:6
+            yes. #pause:6
             can you ask me some questions to get me started? it's hard for me to know where to begin
                 * okay
                     -> Rosa_asks_Olivia_questions
                     
         = Rosa_asks_Olivia_questions
-            * when did it happen?
+            * when did it happen? #pause:2.5
                 -> Olivia_says_when_rape_happened
-            * did you know Duane before?
+            * did you know Duane before? #pause:2.5
                 -> Olivia_says_she_knew_Duane
-            * what did he do?
+            * what did he do? 
                 -> Olivia_says_what_Duane_did
-            *   -> Olivia_is_angry
+            *   -> Olivia_is_angry #pause:2.1
             
             = Olivia_says_when_rape_happened
-                #pause:2.5
-                it was at the end of last semester
-                #pause:3.8
-                Duane and I are both in the engineering school, and some people were celebrating the end of exams by going to Jolly Molly's
-                #pause:2
+                it was at the end of last semester #pause:3.8
+                Duane and I are both in the engineering school, and some people were celebrating the end of exams by going to Jolly Molly's #pause:2
                 you know it?
-                    * (Rosa_knows_JM) I've had way too many vodka lemonades from JM's, haha
+                    * (Rosa_knows_JM) I've had way too many vodka lemonades from JM's, haha #pause:3.2
                         ->Olivia_replies_to_JM_knowledge
-                    * (Rosa_doesnt_know_JM) yeah but it's not the kind of place I go
+                    * (Rosa_doesnt_know_JM) yeah but it's not the kind of place I go #pause:2.4
                         ->Olivia_replies_to_JM_knowledge
     
                     = Olivia_replies_to_JM_knowledge
                     {Rosa_knows_JM:
-                    #pause:3.2
-                    ah ha. that means you must have a fake ID too. so you won't judge me too much, which I was afraid of
+                    ah ha. that means you must have a fake ID too. so you won't judge me too much right? #pause:3
                         }
                     {Rosa_doesnt_know_JM:
-                    #pause:2.4
-                    oh no judgment there. its a real shithole
-                    #pause:3.8
-                    but the bouncer never looks too hard at my ID, so I don't have to worry about using a fake
+                    oh no judgment there. its a real shithole #pause:3.8
+                    but the bouncer never looks too hard at my ID, so I don't have to worry about using a fake #pause:3
                         }
-                        #pause:3
-                        that semester I worked really hard, so I was happy to just hang out and drink. I wasn't on my guard
-                        #pause:1.6
+                        that semester I worked really hard #pause:2
+                        I was happy to just hang out and drink. I wasn't on my guard #pause:1.6
                         that was a mistake
                             -> Rosa_asks_Olivia_questions
                         
             = Olivia_says_she_knew_Duane
-                #pause:2.5
-                mhmm I knew him. since last year, when he transferred here. there aren't that many engineers so he was in a lot of my classes
-                #pause:2.4
-                specifically there aren't a lot of women engineers. I'm used to getting hit on at this point, and Duane did that sometimes
-                #pause:1.8
-                but I just brushed him off
-                #pause:3
-                so many asshats treat anyone in the e school who's not a straight white dude like they're rare pokemon cards
-                #pause:2.2
+                mhmm I knew him. since last year, when he transferred here. there aren't that many engineers so he was in a lot of my classes #pause:2.4
+                specifically there aren't a lot of WOMEN engineers. I'm used to getting hit on and Duane did that sometimes #pause:1.8
+                but I just brushed him off #pause:3
+                so many asshats treat anyone in the e school who's not a straight white dude like they're rare pokemon cards #pause:2.2
                 Duane was just one of many
                     -> Rosa_asks_Olivia_questions
             
             = Olivia_says_what_Duane_did
-                #pause:3.1
-                I had two beers. that was it. just two. I can handle two beers
-                except that night I couldn't
-                #pause:3.4
-                my thoughts started drifting away and I tried to pull them back towards me but that didn't work
-                #pause:2.8
-                the rest of the night is just flashes
-                #pause:4
-                when I woke up, like really woke up, I was in my bed and Duane was there too
-                #pause:3.5
-                and I was horrified because I knew right away what had happened
-                #pause:5.2
-                maybe this is tmi, but I could feel it. it was a deep ache, like period cramps, but I wasn't on my period
-                #pause:3.3
-                I woke him up and said he had to go right away. he wouldn't stop grinning. he was so pleased with himself
-                #pause:3.5
-                then I told my roommate what happened. Ally said we needed to go to the hospital and get a rape kit done. and we did
-                #pause:3.6
-                the nurse was so fucking businesslike. she kept telling me to relax because if I did it would be over faster
-                #pause:4
-                now I'm crying. something to do with talking about all these little details
-                #pause:2
-                give me a second
-                * (Rosa_is_empathetic) I am so so sorry, Olivia
-                * (Rosa_says_no_crying) don't give him the pleasure of tears
-                * (Rosa_says_stop_talking) please don't tell me any more. I can't handle this
+                I had two beers. that was it. just two. I can handle two beers #pause:2
+                except that night I couldn't #pause:3.4
+                my thoughts started drifting away and I tried to pull them back towards me but that didn't work #pause:2.8
+                the rest of the night is just flashes  #pause:4
+                when I woke up, like really woke up, I was in my bed and Duane was there too #pause:3.5
+                and I was horrified because I knew right away what had happened #pause:5.2
+                maybe this is tmi, but I could feel it. it was a deep ache like period cramps. but I wasn't on my period #pause:3.3
+                I woke him up and said he had to go right away. he wouldn't stop grinning. he was so pleased with himself #pause:3.5
+                then I told my roommate what happened. Ally said we needed to go to the hospital and get a rape kit done. and we did #pause:3.6
+                the nurse was so fucking businesslike. she kept telling me to relax because if I did it would be over faster #pause:4
+                now I'm crying. something to do with talking about the little details #pause:2
+                give me a sec
+                * (Rosa_is_empathetic) I am so so sorry, Olivia #pause:2
+                * (Rosa_says_no_crying) don't give him the pleasure of tears #pause:3.5
+                * (Rosa_says_stop_talking) please don't tell me any more. I can't handle this #pause:2.6
                     ~anger_level = anger_level + 2
                 -    -> Olivia_says_what_Duane_did_2
                     
                     = Olivia_says_what_Duane_did_2
                         {Rosa_is_empathetic:
-                        #pause:2
-                        Im sorry too.
-                        #pause:3.1
-                        I didn't realize how bad it would be to get a rape kit
-                        #pause:2.8
-                        no one should have to go through that
+                        Im sorry too. #pause:3.1
+                        I didn't realize how bad it would be to get a rape kit #pause:2.8
+                        no one should have to go through that #pause:3
                         }
                         {Rosa_says_no_crying:
-                        #pause:3.5
-                        what does it matter? he doesn't know I'm crying. he doesn't give a shit about me
-                        #pause:2
-                        or you
+                        what does it matter? he doesn't know I'm crying. he doesn't give a shit about me #pause:2
+                        or you #pause:3
                         }
                         {Rosa_says_stop_talking:
-                        #pause:2.6
-                        then just don't read it. delete the texts or whatever
-                        #pause:2
-                        but I have to say it to someone or I will scream
+                        then don't read this. delete the texts or whatever #pause:2
+                        but I have to say it to someone or I will scream #pause:3
                         }
-                       #pause:3
-                        so. I messaged Duane and asked him to explain what had happened.
-                        #pause:3.4
-                        he asked if I had a good time and I said "no one has a good time when they're raped"
-                        #pause:3.9
-                        it took a while for him to respond but he finally said that I was crazy. and that if I called it rape to anyone else, he'd "take action"
-                        #pause:2.2
+                        so. I messaged Duane and asked him to explain what had happened. #pause:3.4
+                        he asked if I had a good time and I said "no one has a good time when they're raped" #pause:3.9
+                        it took a while for him to respond but he finally said that I was crazy. and that if I called it rape to anyone else, he'd "take action" #pause:2.2
                         that's the last time we ever spoke
                         ->Rosa_asks_Olivia_questions
                         
         = Olivia_is_angry
-            #pause:2.1
-            so that's the story.
-            #pause:3.1
-            I spent all of winter break depressed but then I got angry
-            #pause:2.9
-            I am so so angry, Rosa
-            #pause:2
+            so that's the story. #pause:3.1
+            I spent all of winter break depressed but then I got angry #pause:2.9
+            I am so so angry, Rosa #pause:2
             aren't you angry?
-            * every day
+            * every day #pause:1.9
                 -> Rosa_angry_every_day
-            * I try not to think about it. if I do I'll go crazy
+            * I try not to think about it. if I do I'll go crazy #pause:2.2
                 ->Rosa_doesnt_consider_anger
-            * (dont_know_how_to_feel) I don't know how to feel angry anymore
+            * (dont_know_how_to_feel) I don't know how to feel angry anymore #pause:2.9
                 ->Rosa_doesnt_know_how_to_feel
             
             = Rosa_angry_every_day
-                #pause:1.9
-                you get it then
-                #pause:2.1
-                shit I have to go 
-                #pause:3.2
-                I wasn't paying attention to the time and now I'm late to class
-                #pause:2
+                you get it then #pause:2.1
+                shit I have to go  #pause:3.2
+                I wasn't paying attention to the time and now I'm late to class #pause:2
                 talk to you later?
                 -> end_second_knot
                 
             = Rosa_doesnt_consider_anger
                 ~ anger_level = anger_level + 1
-                #pause:2.2
-                well that's fucked
-                #pause:2.4
-                ahhh no I have to go
-                #pause:3.2
-                I wasn't paying attention to the time and now I'm late to class
-                #pause:2
+                well that's fucked #pause:2.4
+                ahhh no I have to go #pause:3.2
+                I wasn't paying attention to the time and now I'm late to class #pause:2
                 talk to you later?
                 -> end_second_knot
                 
             = Rosa_doesnt_know_how_to_feel
                 ~anger_level = anger_level + 2
-                #pause:2.9
-                then you have to learn how to get your anger back
-                #pause:2.4
-                ahhh no I have to go
-                #pause:3.2
-                I wasn't paying attention to the time and now I'm late to class
-                #pause:2
+                then you have to learn how to get your anger back #pause:2.4
+                ahhh no I have to go #pause:3.2
+                I wasn't paying attention to the time and now I'm late to class #pause:2
                 talk to you later?
                 -> end_second_knot
         
         = end_second_knot
-            ~ is_rosa = true
             * okay
             {Rosa_angry_every_day:
                 **today I will be angry for you, too
                     ->second_knot_rerouting
                 }
-            {Rosa_doesnt_consider_anger: I'll keep trying not to go crazy, same as always}
-            {Rosa_doesnt_know_how_to_feel: I'll keep pushing all my emotions away, same as always. that's healthy, right?}
-            {Rosa_doesnt_know_how_to_feel: that was a joke btw}
-            {Rosa_doesnt_know_how_to_feel: awkward. ok. talk tomorrow.}
+            {Rosa_doesnt_consider_anger:
+                **I'll keep trying not to go crazy, same as always
+                    ->second_knot_rerouting
+                }
+            {Rosa_doesnt_know_how_to_feel:
+                **I'll keep pushing all my emotions away, same as always. that's healthy, right?
+                    ***that was a joke btw
+                        ****awkward. ok. talk tomorrow.
+                            ->second_knot_rerouting
+                        }
             
         = second_knot_rerouting
             ~ conversation_happening = false
@@ -537,15 +426,14 @@ VAR olivia_family_knowledge = 0
                 
 === Olivia_knot_3 ===
     ~conversant_name = "Olivia"
-    ~is_rosa = false
      * @
         ->Olivia_knot_3_ridiculous_intro
         
     = Olivia_knot_3_ridiculous_intro    
-    sorry it took me so long to text you again
-    I had a paper due for my humanities class 
-    I hate writing papers. I thought being in the E School meant I'd never have to write a paper again but here we are 
-    do you have to write a lot for linguistics classes?
+    sorry it took me so long to text you again #pause:2.6
+    I had a paper due for my humanities class  #pause:4.2
+    I hate writing papers. I thought being in the E School meant no more papers but here we are #pause:3
+    do you have to write a lot for English classes?
         * (Rosa_hates_papers) yeah and I hate it too
             ~conversation_happening = true
             -> Rosa_writes_papers
@@ -557,43 +445,60 @@ VAR olivia_family_knowledge = 0
             -> Rosa_writes_papers
             
     = Rosa_writes_papers
-    ~ is_rosa = true
-        linguistics is like a puzzle. you have to figure out how the parts go together. like, how two languages are connected
-        {Rosa_hates_papers: THAT'S the fun part, not writing about it}
-        {Rosa_doesnt_mind_papers: writing a paper is how you prove you know what you're talking about}
-        {Rosa_enjoys_papers: then the paper is how you break it down and make people care}
-        ~ is_rosa = false 
-        {Rosa_hates_papers: oh good you get it}
-        {Rosa_hates_papers: I knew I liked you :)}
-        {Rosa_doesnt_mind_papers: whatever you say}
-        {Rosa_enjoys_papers: NERD}
-        * What you said yesterday...
+        *analyzing a book is like a puzzle. you have to figure out how all the parts fit together
+        {Rosa_hates_papers:
+            **THAT'S the fun part, not writing about it
+                ->Olivia_reaction
+            }
+        {Rosa_doesnt_mind_papers:
+            **writing a paper is how you prove you know what you're talking about
+                ->Olivia_reaction
+            }
+        {Rosa_enjoys_papers:
+            **then the paper is how you break it down and make people care
+                ->Olivia_reaction
+            }
+        
+    = Olivia_reaction
+        {Rosa_hates_papers:
+            oh good you get it #pause:1.9
+            I knew I liked you :)
+            }
+        {Rosa_doesnt_mind_papers:
+            whatever you say
+            }
+        {Rosa_enjoys_papers:
+            NERD
+            }
+        * What you said yesterday... #pause:2
             -> Olivia_explains_actions_1
             
 
     = Olivia_explains_actions_1
-        ah yeah
-        about Duane suffering
+        ah yeah #pause:3.2
+        about Duane suffering #pause:4
         I've made a list of things we can do to make that happen.
-                    * * and what are they?
-                    -> Olivia_explains_actions_2
-                    * * (Rosa_is_recalcitrant) I don't want to hear them
-                    -> Olivia_explains_actions_2
+            *and what are they? #pause:3
+                -> Olivia_explains_actions_2
+            *(Rosa_is_recalcitrant) I don't want to hear them
+                -> Olivia_explains_actions_2
                     
         = Olivia_explains_actions_2
-            {Rosa_is_recalcitrant: ok, you don't have to do anything, but at least listen to me}
-            first, we can both make a report to the Title IX office
-            second, we can report to the police
-            third, we can write about what happened and try to get a website somewhere to publish it 
-            there may be more options, but that's my shortlist
+            {Rosa_is_recalcitrant:
+                ok, you don't have to do anything, but at least listen to me #pause:3.8
+                }
+            first, we can both make a report to the Title IX office #pause:2.8
+            second, we can report to the police #pause:3.7
+            third, we can write about what happened and try to get a website somewhere to publish it #pause:1.8
+            that's my shortlist
                 -> Rosa_investigates_options
                 
         = Rosa_investigates_options
-            *tell me about reporting to Title IX
+            *tell me about reporting to Title IX #pause:4.4
                 -> Title_IX_explanation
-            *tell me about reporting to the police
+            *tell me about reporting to the police #pause:2.6
                 -> police_explanation
-            *tell me about publishing what happened online
+            *tell me about publishing what happened online #pause:2.8
                 ->publishing_online_explanation
             * {Rosa_investigates_options > 3} let's make a Title IX report
                 -> Rosa_wants_title_ix
@@ -605,129 +510,129 @@ VAR olivia_family_knowledge = 0
                 -> Rosa_wants_nothing
                 
             = Title_IX_explanation
-                we would both go to the Title IX office and explain what happened to whoever works there. then they'd decide if it's serious enough to bring a case against Duane
-                and it has to be, right?
-                after that, I don't know what happens. it's hard to find much info
-                but if we win, Duane gets suspended, or maybe even expelled. and he gets a mark on his record that he got disciplined for 'sexual misconduct'
-                which is a bullshit, toned-down way of saying that he committed sexual assault
+                we would both go to the Title IX office and explain what happened to whoever works there. then they'd decide if it's serious enough to bring a case against Duane #pause:2.1
+                and it has to be. right? #pause:3
+                after that I don't know what happens. it's hard to find much info #pause:4.7
+                but if we win, Duane gets suspended or even expelled. and he gets a mark on his record for 'sexual misconduct' #pause:3.1
+                which is a bs/toned-down way of saying that he committed sexual assault
                     -> Title_IX_explanation_pros_cons
                     
                 = Title_IX_explanation_pros_cons
-                    * so why a Title IX case?
+                    * so why a Title IX case? #pause:3.3
                         -> why_title_ix_report
-                    * what are the dangers here?
+                    * what are the dangers here? #pause:4.5
                         -> why_not_title_ix_report
                     * tell me about the other stuff you mentioned
                         -> Rosa_investigates_options
                     
                     = why_title_ix_report
-                        we wouldn't have to be public about reporting Duane. no one would have to know.
+                        we wouldn't have to be public about reporting Duane. no one would have to know. #pause:4.6
                         also, our chances of getting some kind of punishment for Duane are higher than if we go to the police.
                         -> Title_IX_explanation_pros_cons
                     
                     = why_not_title_ix_report
-                        it's all really secretive. finding any info at all on the way the Title IX office works was so hard 
+                        it's all really secretive. finding any info on how title ix works was so hard #pause:3.9
                         it seems like Title IX works differently at every university...
                         -> Title_IX_explanation_pros_cons
 
 
             = police_explanation
-                we would both go to the police office and file a police report. then they'd decide whether to bring charges against Duane
-                if they do, we get to argue that hes a fuckwad in court
-                if they don't, we're back where we started
+                we would both go to the police office and file a police report #pause:2.8
+                then they'd decide whether to bring charges against Duane #pause:2.6
+                if they do, we get to argue that hes a fuckwad in court #pause:2.4
+                if they don't, we're back where we started #pause:2.2
                     -> police_explanation_pros_cons
                     
                 = police_explanation_pros_cons
-                    * why should we do this?
+                    * why should we do this? #pause:3.2
                         -> why_police_report
-                    * what are the drawbacks?
+                    * what are the drawbacks? #pause:4
                         -> why_not_police_report
                     * hmm. let's talk about the other options
                         -> Rosa_investigates_options
                         
                     = why_police_report
-                        this is the only chance we have of getting criminal charges to stick to Duane
-                        unlikely, but if we're smart, it could happen 
+                        this is the only chance we have of getting criminal charges to stick to Duane #pause:2.4
+                        unlikely, but if we're smart, it could happen #pause:2.3
                         and if he's convicted he could get jail time
                         -> police_explanation_pros_cons
                         
                     = why_not_police_report
-                        the reason why people dont report to the police is that the cops suck at handling sexual assault cases 
-                        it is so so hard to prove that anything happened
-                        and if they DO bring charges, we'll have to face Duane in court
-                        I think I can handle that, but it'll be hard
-                
-               ->Rosa_investigates_options
-                c
+                        the reason why people dont report to the cops is that they SUCK at sexual assault cases #pause:3.2
+                        it is so so hard to prove that anything happened #pause:2.8
+                        and if they DO bring charges, we'll have to face Duane in court #pause:3
+                        I think I can handle that, but it'll be hard #pause:2.7
+                        ->Rosa_investigates_options
                 
             = publishing_online_explanation
-                one way we can MAKE people pay attention is to talk to the media
-                like, contact news sites and tell them what happened
+                one way we can MAKE people pay attention is to talk to the media #pause:2.9
+                like, contact news sites and tell them what happened #pause:2.2
                 and get an article published
                     -> publishing_explanation_pros_cons
                     
                 = publishing_explanation_pros_cons
-                    * okay, that seems unconventional. why do it?
-                        -> why_publishing
-                    * this could go wrong though
+                    * that seems...unconventional. why do it? #pause:3.9
+                        -> why_publishing 
+                    * this could go wrong though #pause:3.1
                         -> why_not_publishing
                     * what else can we try?
                         -> Rosa_investigates_options
                 
                     = why_publishing
-                        if enough people read a story and get angry, then Fortuna has to do something. they won't be able to ignore it.
-                        and this kind of shit is in the news a lot more now than it used to be
-                        there was Brock Turner, and the girl who carried that mattress at Columbia
+                        if enough people read a story and get angry, then Fortuna has to do something. they won't be able to ignore it. #pause:3.5
+                        and this kind of shit is in the news a lot more now than it used to be #pause:2.9
+                        there was Brock Turner, and the girl who carried that mattress at Columbia #pause:3
                         -> publishing_explanation_pros_cons
                         
                     = why_not_publishing
-                        yeah. if we don't write the story ourselves, we won't have control over how a random journalist handles it 
-                        we could come off to the whole world like sluts 
-                        entitled, crazy sluts 
+                        yeah especially if we don't write the story ourselves #pause:2.5
+                        we won't have control over how a random journalist handles it #pause:2.6
+                        we could come off to the whole world like sluts #pause:1.5
+                        entitled, crazy sluts #pause:2.5
                         plus maybe Duane could sue us? I honestly don't know
                         -> publishing_explanation_pros_cons
                     
                ->Rosa_investigates_options
         
         = Rosa_wants_title_ix
-            that's what I was leaning towards, too.
+            that's what I was leaning towards, too. #pause:1
             -> system_choice_2
             
         = Rosa_wants_police_report
-             that's what I was leaning towards, too.
+             that's what I was leaning towards, too. #pause:1
             -> system_choice_2
             
         = Rosa_wants_article
-            that's what I was leaning towards, too.
+            that's what I was leaning towards, too. #pause:1
             -> system_choice_2
             
         = system_choice_2
-            wow, so 
+            wow, so #pause:1.8
             I guess we're really doing this?
-            * I guess...
-            * we're gonna try!
-            * fuck yeah we're doing this
-                -   I can't believe this is happening. like, I didn't even know if you'd answer my text. so thank you.
-                    and now I need to take some time to cry it out before class 
-                    let's talk later and we'll plan our attack
-                    go eat some chocolate, okay?
-                    or whatever kind of food you like 
+            * I guess... #pause:3.8
+            * we're gonna try! #pause:3.8
+            * fuck yeah we're doing this #pause:3.8
+                -   I can't believe this is happening. like I didn't even know if you'd answer my text. so thank you. #pause:3
+                    and now I need to take some time to cry it out before class #pause:2.6
+                    let's talk later and we'll plan our attack #pause:2.3
+                    go eat some chocolate ok? #pause:2.5
+                    or whatever kind of food you like  #pause:2.4
                     something that comforts you
-                        * hahahaha I will
+                        * hahahaha I will #pause:1.7
                             -> Rosa_eats_comfort_food
-                        * I can't eat anything right now. I'm too nervous
+                        * I can't eat anything right now. I'm too nervous #pause:2.9
                             -> Rosa_too_nervous
                 
                 = Rosa_eats_comfort_food
-                    atta girl <3
-                    alright, later
+                    atta girl <3 #pause:1.4
+                    alright later
                     ~ conversation_happening = false
                     -> Olivia_date_storylet
                     
                 = Rosa_too_nervous
-                    save the nerves for later. right now, just take care of yourself.
-                    we have to be be gentle with ourselves, or we won't get through this 
-                    alright, later
+                    save the nerves for later. right now just take care of yourself. #pause:3
+                    we have to be be gentle with ourselves or we won't get through this #pause:1.4
+                    alright later
                     ~ conversation_happening = false
                     -> Olivia_date_storylet
             
@@ -780,118 +685,87 @@ VAR olivia_family_knowledge = 0
                         
 === Olivia_mom_storylet ===
     ~conversant_name = "Olivia"
-    #pause:0
-    hey what are you doing tomorrow around 1?
-    #pause:1.7
-    my mom's coming up from the city for her monthly attempt at parenting
-    #pause:2
-    we usually go somewhere nice for lunch so maybe I can treat you to a fancy ass sandwich
-    #pause:1.2
+    hey what are you doing tomorrow around 1? #pause:1.7
+    my mom's coming up from the city for her monthly attempt at parenting #pause:2.4
+    we usually go somewhere nice for lunch so maybe I can treat you to a fancy ass sandwich #pause:1.8
     you n me both deserve one at this point haha
-        *(thats_nice)that's so nice!
+        *(thats_nice)that's so nice! #pause:1.2
             ~conversation_happening = true
             ->Olivia_explains_mom
-        *(thats_awkward)that sounds awkward
+        *(thats_awkward)that sounds awkward #pause:2.1
             ~conversation_happening = true
             ->Olivia_explains_mom
         
         = Olivia_explains_mom
         {thats_nice:
-            #pause:.8
             I mean...I guess
             }
         {thats_awkward:
-            #pause:1.2
-            oh lol it will be. but eyes on the prize, Rosa
-            #pause:1.5
-            (the prize is the free food in case that was not clear)
+            oh lol it will be. but eyes on the prize Rosa #pause:2.5
+            (the prize is the free food in case that was not clear) #pause:2.2
             }
-            #pause:1.3
-            my mom isn't a huge part of my life
-            #pause:2
-            something she has been trying to fix ever since I started at fortuna
-            #pause:2.4
+            my mom isn't a huge part of my life #pause:2
+            something she has been trying to fix ever since I started at fortuna #pause:2.8
             she is doing her best now, bless her heart, as my dad's mom would say
                 ->questions_about_mom
         
         = questions_about_mom
-            *what IS your mom's life, then?
+            *what IS your mom's life, then? #pause:1.1
                 ->olivias_moms_career
-            *are you close to your grandma?
+            *are you close to your grandma? #pause:.6
                 ->olivias_grandma
-            *what about your dad?
+            *what about your dad? #pause:1.1
                 ->olivias_dad
-            {olivia_family_knowledge == 3:
-            *ok now that I know all this...are you SURE you want me to come?
+            
+            *{olivia_family_knowledge == 3}ok now that I know all this...are you SURE you want me to come?
                 ->rosa_feels_awkward
-                }
         
         = olivias_moms_career
         ~olivia_family_knowledge += 1
-            #pause:.8
-            oh her job is her life
-            #pause:1.5
+            oh her job is her life #pause:1.5
             she's an investment banker in the city. pretty good at it, so she's made a lot of money
                 ->questions_about_mom
 
         = olivias_grandma
             ~olivia_family_knowledge += 1
-            #pause:.6
-            I was, yeah
-            #pause:2
-            I lived with her after my mom realized that being a single mom working in finance was impossible
-            #pause:2.9
-            I also like...don't know how much my mom WANTED a kid. I found out later my dad was the one who was really gunning for a baby
-            #pause:2.4
+            I was, yeah #pause:3.8
+            I lived with her after my mom realized that being a single mom working in finance was impossible #pause:4
+            I also like...don't know how much my mom WANTED a kid. I found out later my dad was the one who was really gunning for a baby #pause:2.8
             Gran died last year, which is why my mom is trying to make up for all the years we hardly talked
                 ->questions_about_mom
+                
         = olivias_dad
             ~olivia_family_knowledge += 1
-            #pause:1.2
-            he died when I was really little
-            #pause:.7
+            he died when I was really little #pause:1
             I don't remember him very much
-            *I'm really sorry to hear that
-                -   #pause:.4
-                    eh don't be
-                    #pause:1.5
+            *I'm really sorry to hear that #pause:.4
+                -   eh don't be #pause:2.5
                     I worked that shit out in therapy years ago
                     ->questions_about_mom
         
         = rosa_feels_awkward
-            *I mean we only met recently
-                -   #pause:2.3 
-                    oh. well of course you don't have to come
-                    #pause:2.5
+            *I mean we only met recently #pause:2.3 
+                -   oh. well of course you don't have to come #pause:2.5
                     I just thought itd be nice
-                    **no no, I'll come! I wanted to make sure
+                    **no no, I'll come! I wanted to make sure #pause:2
                         ->rosa_goes_to_lunch
-                    **why don't you call me after and tell me how it goes?
+                    **why don't you call me after and tell me how it goes? #pause:3.3
                         ->rosa_refrains_from_lunch
                         
             = rosa_goes_to_lunch
-                #pause:2
-                yessssssss thank god
-                #pause:3
-                I truly did not wanna go by myself
-                #pause:4
-                mom wants to try that new fusion thai mexican american whatever place on cranston st
-                #pause:2
-                so I'll see you there at 1!!
-                #pause:2.8
+                yessssssss thank god #pause:3
+                I truly did not wanna go by myself #pause:4
+                mom wants to try that new fusion thai mexican american whatever place on cranston st #pause:2
+                so I'll see you there at 1!! #pause:2.8
                 you're a lifesaver :)
                 ~conversation_happening = false
                     ->Olivia_mom_storylet_lunch_followup
             
             = rosa_refrains_from_lunch
-                #pause:3.3
-                you're subjecting me to mom torture :((((((
-                #pause:2.9
+                you're subjecting me to mom torture :(((((( #pause:2.9
                 death by well meaning parental smothering
-                *you might actually have a good time, you know
-                    -   #pause:2.4
-                        ugh I hate it when other people are right
-                        #pause:2
+                *you might actually have a good time, you know #pause:2.4
+                    -   ugh I hate it when other people are right #pause:2
                         ok call you tomorrow
                         ~conversation_happening = false
                             ->Olivia_mom_storylet_phone_followup
@@ -899,13 +773,9 @@ VAR olivia_family_knowledge = 0
 === Olivia_mom_storylet_lunch_followup ===
     ~conversant_name = "Olivia"
     ~conversation_happening = true
-    #pause:0
-    hey thanks again for coming!
-    #pause:2.5
-    you are a Mother Whisperer
-    #pause:3
-    and...I did actually have a good time
-    #pause:3.5
+    hey thanks again for coming! #pause:2.5
+    you are a Mother Whisperer #pause:3
+    and...I did actually have a good time #pause:3.5
     you must be a good luck charm <3
     ~conversation_happening = false
         -> Jia_knot_1
@@ -913,7 +783,6 @@ VAR olivia_family_knowledge = 0
 === Olivia_mom_storylet_phone_followup ===
     ~conversant_name = "Olivia"
     ~conversation_happening = true
-    #pause:0
     hey thanks for calling tonight
     #pause:2.8
     it was really nice to have someone to talk to about awkward parent shit
@@ -925,46 +794,33 @@ VAR olivia_family_knowledge = 0
 
 === Olivia_date_storylet ===
     ~conversant_name = "Olivia"
-    #pause:0
     band t shirt or crop top?
-    *what?
+    *what? #pause:.7
         ~conversation_happening = true
-        - #pause:.7
-            for a first date 
-            #pause:1.6
-            should I wear a band t shirt or a crop top?
-            #pause:2
-            I have clothes all over the floor and none of my other friends have texted me back yet
-            #pause:1
+        -   for a first date #pause:1.6
+            should I wear a band t shirt or a crop top? #pause:2
+            I have clothes all over the floor and none of my other friends have texted me back yet #pause:1
             and I only have 30 minutes before I'm supposed to be at Grit
-            **(Rosa_fashionable)oh you have come to the right person
-                    #pause:.5
-                    I knew it!!!
-                    #pause:.8
+            **(Rosa_fashionable)oh you have come to the right person #pause:1
+                    I knew it!!! #pause:1.8
                     I knew it from the tone of our texts
                         ***Olivia that makes no sense
                             ->comments_on_fashion
-            **(Rosa_unfashionable)trust me, you don't want my fashion advice
-                #pause:.6
-                o but Rosa
-                #pause:.5
-                this is an emergency
-                #pause:1
+            **(Rosa_unfashionable)trust me, you don't want my fashion advice #pause:.6
+                o but Rosa #pause:.5
+                this is an emergency #pause:1
                 and you answered my text so now you have to help :P
-                    ***if you insist...
+                    ***if you insist... #pause:1.2
                         ->comments_on_fashion
-            **(Rosa_bewildered)I can't believe you have energy for dates right now
-                #pause:.7
-                awww don't judge
-                #pause:.9
-                they're a fun distraction
-                ***I'm not judging, just impressed
-                    ->comments_on_fashion
-                ***whatever works for you
-                    ->comments_on_fashion
+            **(Rosa_bewildered)I can't believe you have energy for dates right now #pause:.7
+                -   awww don't judge #pause:1.2
+                    they're a fun distraction 
+                    ***I'm not judging, just impressed #pause:1.2
+                        ->comments_on_fashion
+                    ***whatever works for you #pause:1.2
+                        ->comments_on_fashion
             
         = comments_on_fashion
-            #pause:.9
             so her name is Rae
             #pause:1.9
             I met her on a dating app and we've been chatting for a few days
@@ -1029,7 +885,121 @@ VAR olivia_family_knowledge = 0
                     oh I will ;P
                     ~conversation_happening = false
                     ->Mikaela_knot_2
+ 
+ === Olivia_book_storylet
+    ~conversant_name = "Olivia"
+    Rooooooosaaaaaaaaa
+    heeeeeeeeeeeeeelp
+    *whaaaaaaaaaat
+        ~conversation_happening = true
+        - I'm going to an e school women's get-to-know-you thing and I have to bring a book to swap
+            **(Rosa_excited)AW YISS BOOK PARTY
+                ->Olivia_doesnt_like_books
+            **(can_Rosa_come)ooh great idea for a group hang
+                ->Olivia_doesnt_like_books
+            **(Rosa_confused)is that...a problem?
+                ->Olivia_doesnt_like_books
                 
+    = Olivia_doesnt_like_books
+    {Rosa_excited:
+        hahah that was NOT my reaction when I found out
+        }
+    {can_Rosa_come:
+        hahah I don't think so. it's for e schoolers
+        sorry!
+        the thing is, though
+        }
+    {Rosa_confused:
+        YES
+        }
+        I don't like reading that much!
+        I mean I like comics
+        and I read the news online
+        but I haven't finished a book in I don't even know how long
+        I never tell that to humanities majors. they always say YOU ARE UNLEARNED or whatever
+        *(Rosa_understanding)it's fine, I can understand how other people don't like books that much
+            ->Olivia_asks_for_advice
+        *(Rosa_book_god)yeah we all worship the Book God. the ones who go hard subsist on manuscript pages alone
+            ->Olivia_asks_for_advice
+        *(Rosa_says_unlearned)YOU ARE UNLEARNED
+            ->Olivia_asks_for_advice
+            
+    = Olivia_asks_for_advice
+        {Rosa_understanding:
+            oh thank god
+            people can be so pretentious about it
+            }
+        {Rosa_book_god:
+            ah yes and in the E School we worship the Volt Monster
+            we feed it batteries and in return it gives us good grades on the midterms
+            one day the Book God and the Volt Monster will go to war and we'll have to fight each other
+            tragic
+            also off-topic
+            here's what I actually wanted to ask:
+            }
+        {Rosa_says_unlearned:
+            well
+            I walked right into that one
+            still: RUDE
+            but I'm gonna ask for help anyway!
+            }
+        what book should I bring???
+        what's Hip n Fresh these days
+        *what genres do you like?
+            -   idk, all of them? what do YOU like? I'm asking YOU 
+                **(sci_fi_fantasy)sci fi and fantasy!
+                    ->Rosa_gives_rec
+                **(literary_fiction)literary fiction!
+                    ->Rosa_gives_rec
+                **(mysteries_thrillers)mysteries and thrillers!
+                    ->Rosa_gives_rec
+                    
+    = Rosa_gives_rec
+        {sci_fi_fantasy:
+            please don't say Harry Potter
+            JK Rowling can eat my ass, I'm not buying her books
+            *Olivia there is so much more out there than HP 
+                **bring Parable of the Sower. it's about a Black girl who gets magical powers during the apocalypse
+                        ->Olivia_reacts_book
+                
+                **bring The Three-Body Problem. it's about a Chinese physicist who gets weird signals from aliens
+                        ->Olivia_reacts_book
+                
+            }
+        {literary_fiction:
+            girl I barely know what that IS
+            *it's basically just 'realistic fiction' with a snooty title lol
+                **bring Normal People. it's about teens falling in love in modern Ireland
+                        ->Olivia_reacts_book
+                **bring Americanah. it's about a Nigerian student who moves to the US for school
+                        ->Olivia_reacts_book
+            }
+        {mysteries_thrillers:
+            so like...Agatha Christie?
+                *no no no
+                    **bring The Name of the Rose. it's a murder mystery set in a medieval Italian monastery
+                        ->Olivia_reacts_book
+                    **bring The Dark Maidens. it's a Japanese light novel about a student who's murdered at an all girls school                 ->Olivia_reacts_book
+                    
+        }
+        
+        = Olivia_reacts_book
+        damnnn that actually sounds really good!
+        I'll order it then. and maybe even read the first chapter before I go swap it for something else
+        bet I won't even like what I swap it for
+        I'll just give it to you!
+            *yes please. I won't stop collecting until my bookshelf collapses haha
+                -   that is a safety hazard, but you do you
+                    thanks for the rec!
+                    ~conversation_happening = false
+            *nahhh keep it. we'll make a book lover out of you yet
+                -   lol good luck
+                    thanks for the rec!
+                     ~conversation_happening = false
+                        ->DONE
+
+    
+        
             
   === Olivia_TitleIXpath_witnesses ===
         * @
@@ -1095,19 +1065,30 @@ VAR olivia_family_knowledge = 0
     btw I keep misspelling advocate and my phone autocorrects it to avocado
     #pause:2.8
     one of these days I won't catch it before I hit send
-    *she was very thorough
-        **which was comforting
-        **which was intimidating
-        
-          they have to interview duane
-          and anyone either of us gave as witnesses
-          did you know that you can give the names of people who didn't actually see it happen?
-          like, random people who saw you and duane together
-          or friends you told about the assault the day after
-          they're not technically witnesses, but they make your case stronger
-          Irene didn't tell me any of that bc she sucks at her job apparently
-          but I found a general title ix reporting guide online
-          so...any witnesses for you?
+    *she was so thorough and professional
+        **(Pradhya_comforting)it was comforting
+            ->advocate_discussion
+        **(Pradhya_intimidating)it was intimidating
+            ->advocate_discussion
+    = advocate_discussion
+    {Pradhya_comforting:
+        hell yeah Pradhya the avocado knows her shit
+        }
+    {Pradhya_intimidating:
+        better for her to know what she's talking about than the alternative...
+        }
+        I got an avocado too btw
+        their name is Shay. they called me this morning to go over the whole 'process' clusterfuckery and it is a lottttt
+        but I trust them
+        they're a local lawyer and they work with assault/gender discrimination victims
+        one thing they said got my attention. there's gonna be a lead investigator and that person will interview duane
+          and people we give as witnesses
+          I didn't realize we could just like
+          give them the names of ANYONE who knows about what happened
+          could be really helpful for us
+          did Pradhya tell you all that?
+          *she did
+            -   good. anyone you're thinking of?
             ->Rosa_lists_witnesses
             
         = Rosa_lists_witnesses
@@ -1164,8 +1145,93 @@ VAR olivia_family_knowledge = 0
         ~conversation_happening = false
 
         ->Rudy_knot_1
-
-
+        
+=== Olivia_TitleIXpath_Mikaela_in ===
+    whatever you said to Mikaela, it mustve worked
+    she just texted me and said she'd be a witness for both of us
+    good work, Agent Rosa
+        *(Rosa_glad)I'm glad she could see our perspective
+            ~conversation_happening = true
+            ->do_the_right_thing
+        *(Rosa_upset)don't congratulate me. it felt manipulative
+            ->do_the_right_thing
+            
+    = do_the_right_thing
+        {Rosa_glad:
+            me too. I thought she might pussy out
+            imho, if someone asks you to testify in a title ix case, you SHOULD do it. you have the chance to help a person in an incredibly shitty situation
+            anything else is cowardly
+                *Mikaela had her reasons for hesitating
+                    ->conclusion
+            }
+        {Rosa_upset:
+            what? how?
+                *because she's suffered too
+                    **in different ways, but...it still counts
+                            imho, if someone asks you to testify in a title ix case, you SHOULD do it. you have the chance to help a person in an incredibly shitty situation
+                            anything else is cowardly
+                                ***Mikaela had her reasons for hesitating
+                                    ->conclusion
+            }
+    = conclusion
+        if you say so
+        thanks for talking to her tho. I appreciate it
+            *any time
+                ~conversation_happening = false
+                    ->Olivia_book_storylet
+            *I hope Mikaela will be okay
+                ~conversation_happening = false
+                    ->Olivia_book_storylet
+                    
+=== Olivia_TitleIXpath_Mikaela_out ===
+    damn girl
+    whatever you said to Mikaela really pissed her off
+    now she's fucking us over by not testifying for EITHER of us
+        *(Rosa_no_blame)don't blame me
+            ->Olivia_angry_at_Mikaela
+        *(Rosa_betrayed)I can't believe her
+            ->Olivia_angry_at_Mikaela
+        *(Rosas_ruminating)she had her reasons
+            ->Olivia_angry_at_Mikaela
+        
+    = Olivia_angry_at_Mikaela
+    {Rosa_no_blame:
+        it's hard not to
+        she said you were an asshole and didn't listen to her
+        }
+    {Rosa_betrayed:
+        it was not a quality friend move, that's for sure
+        }
+    {Rosas_ruminating:
+        but what about us??
+        we're the ones who have an actual case!
+        }
+        I guess it doesn't matter
+        we lost that shot
+        at least you have Rudy and I have my roommate
+        so we still have witnesses
+            *(Rosa_worried_case)I'm worried about the case
+                ->conclusion
+            *(Rosa_worried_Mikaela)I'm worried about Mikaela
+                ->conclusion
+                
+    = conclusion
+        {Rosa_worried_case:
+            me too.
+            it'll be fine
+            I really really hope it'll still be fine.
+                ~conversation_happening = false
+                   -> Olivia_TitleIxpath_Investigation
+            }
+        {Rosa_worried_Mikaela:
+            she'll come around eventually, right?
+            she's still our friend
+            I think
+                ~conversation_happening = false
+                -> Olivia_TitleIxpath_Investigation
+            }
+            
+        
 === Olivia_TitleIxpath_Investigation ===
     * @
         ->Olivia_investigation_ridiculous_intro
