@@ -25,23 +25,15 @@ public class LockScreenController : MonoBehaviour
     private float switchTimer = 0;
     private Color clearWhite = new Color(255, 255, 255, 0);
 
-    public TextAsset preBranchingDateText;
-    public TextAsset TitleIXDateText;
-    private List<string> preBranchingDateList;
-    private List<string> TitleIXDateList;
-    private List<string> currentDateList;
-    private int preBranchingDateIndex = 0;
-    private int TitleIXDateIndex = 0;
+    public TextAsset DateText;
+    private List<string> DateList;
     private int dateListIndex = 0;
 
 
     private void Awake()
     {
-        preBranchingDateList = preBranchingDateText.text.Split('\n').ToList();
-        Debug.Log("The length of preBranchingDateArray is " + preBranchingDateList.Count);
-        TitleIXDateList = TitleIXDateText.text.Split('\n').ToList();
-        Debug.Log("The length of TitleIXDateArray is " + TitleIXDateList.Count);
-        currentDateList = preBranchingDateList;
+        DateList = DateText.text.Split('\n').ToList();
+        Debug.Log("The length of dateList is " + DateList.Count);
 
     }
 
@@ -57,7 +49,7 @@ public class LockScreenController : MonoBehaviour
         isFadingOut = true;
 
         //set date text to proper date
-        dateText.text = currentDateList[dateListIndex];
+        dateText.text = DateList[dateListIndex];
 
         //hide quit button
         quitButton.image.color = clearWhite;
@@ -69,12 +61,10 @@ public class LockScreenController : MonoBehaviour
     {
         if (!unlockButtonPressed && !SwitchingEpisodes)
         {
-            //Debug.Log("Unlock button is NOT pressed");
             if (isFadingOut)
             {
                 fadeTimer += Time.deltaTime;
                 unlockButton.image.DOFade(.5f, fadeTime);
-                //Debug.Log("Fading out...");
                 if (fadeTimer >= fadeTime)
                 {
                     isFadingOut = false;
@@ -154,7 +144,7 @@ public class LockScreenController : MonoBehaviour
             //switch the date text so it's accurate
             dateListIndex++;
             Debug.Log("dateArrayIndex is " + dateListIndex);
-            dateText.text = currentDateList[dateListIndex];
+            dateText.text = DateList[dateListIndex];
 
             //begin by fading in the backdrop
             blackBackdrop.DOFade(1f, longFade);
@@ -168,13 +158,13 @@ public class LockScreenController : MonoBehaviour
                 .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
             }
 
-            if(dateListIndex == currentDateList.Count)
+            /*if(dateListIndex == currentDateList.Count)
             {
-                //switch the date list
+            //switch the date list
                 currentDateList.Clear();
                 currentDateList = TitleIXDateList;
                 dateListIndex = 0;
-            }
+            }*/
 
             /*if (dateListIndex == 5)
             {

@@ -20,6 +20,7 @@ VAR convinced_jia = false
 VAR convinced_mikaela = false
 VAR TitleIX_taking_Rosas_case = false
 VAR is_rosa = false
+VAR episode_num = 0
 
 -> Mikaela_knot_1
 

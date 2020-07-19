@@ -123,29 +123,29 @@ VAR olivia_family_knowledge = 0
                         -> Rosa_reaction
                 
                 = Rosa_reaction
-                    so then I
-                    *  shut my eyes and stopped moving and waited it out
-                    ~ rosa_resistance_level = 0
-                        **he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
-                            ***I wish I'd done something else but idk what I was supposed to do
-                                ->Duane_says_keep_secret
-                    *  said what the fuck, I'm not joking
-                    ~ rosa_resistance_level = 1
-                        **he said come on, we both know why we've been sitting out here waiting for everyone else to leave
-                            ***and I was like ???
-                                ****"we" don't know anything about that, my dude
-                                    *****didn't matter to him. he shoved me against the railing and unzipped my pants
-                                        ******I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
-                                                *******and that did it. he stopped.
+                    *so then I
+                        **  shut my eyes and stopped moving and waited it out
+                        ~ rosa_resistance_level = 0
+                            ***he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
+                                ****I wish I'd done something else but idk what I was supposed to do
+                                    ->Duane_says_keep_secret
+                        **  said what the fuck, I'm not joking
+                        ~ rosa_resistance_level = 1
+                            ***he said come on, we both know why we've been sitting out here waiting for everyone else to leave
+                                ****and I was like ???
+                                    *****"we" don't know anything about that, my dude
+                                        ******didn't matter to him. he shoved me against the railing and unzipped my pants
+                                            *******I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+                                                    ********and that did it. he stopped.
                                                     ->Duane_says_keep_secret
-                    *  shoved him. not hard, but enough to make him notice
+                        **  shoved him. not hard, but enough to make him notice
                     ~ rosa_resistance_level = 2
-                        **he got this weird look
-                            ***he said "I didn't think you'd be into rape play" or something
-                                ****he kept trying to kiss me while he held my hands down
-                                    *****I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
-                                        ******and that did it. he stopped.
-                                            -> Duane_says_keep_secret
+                            ***he got this weird look
+                                ****he said "I didn't think you'd be into rape play" or something
+                                    *****he kept trying to kiss me while he held my hands down
+                                        ******I looked him in the eye and said "stop. now." like I would to a dog that wasn't behaving
+                                            *******and that did it. he stopped.
+                                                -> Duane_says_keep_secret
                     
                     = Duane_says_keep_secret
                         *before he went inside, he said let's make sure this stays between us.
@@ -248,9 +248,9 @@ VAR olivia_family_knowledge = 0
 
 === Olivia_knot_2 ===
     * @
-        ->Olivia_knot_2_ridiculous_intro
+        ->ridiculous_intro
     
-    = Olivia_knot_2_ridiculous_intro
+    = ridiculous_intro
      ~conversant_name = "Olivia"
     I thought for a while about what I should text you #pause:3
     like should I say "hello" as if we were talking about something normal #pause:2.8
@@ -294,7 +294,7 @@ VAR olivia_family_knowledge = 0
                 -> Olivia_says_when_rape_happened
             * did you know Duane before? #pause:2.5
                 -> Olivia_says_she_knew_Duane
-            * what did he do? 
+            * what did he do? #pause:2.5
                 -> Olivia_says_what_Duane_did
             *   -> Olivia_is_angry #pause:2.1
             
@@ -447,15 +447,15 @@ VAR olivia_family_knowledge = 0
     = Rosa_writes_papers
         *analyzing a book is like a puzzle. you have to figure out how all the parts fit together
         {Rosa_hates_papers:
-            **THAT'S the fun part, not writing about it
+            **THAT'S the fun part, not writing about it #pause:2
                 ->Olivia_reaction
             }
         {Rosa_doesnt_mind_papers:
-            **writing a paper is how you prove you know what you're talking about
+            **writing a paper is how you prove you know what you're talking about #pause:2
                 ->Olivia_reaction
             }
         {Rosa_enjoys_papers:
-            **then the paper is how you break it down and make people care
+            **then the paper is how you break it down and make people care #pause:2
                 ->Olivia_reaction
             }
         
@@ -477,16 +477,22 @@ VAR olivia_family_knowledge = 0
     = Olivia_explains_actions_1
         ah yeah #pause:3.2
         about Duane suffering #pause:4
-        I've made a list of things we can do to make that happen.
-            *and what are they? #pause:3
+        I thought about different stuff we could do #pause:2
+        like go to the police maybe #pause:3.2
+        or write an anonymous story and post it online#pause:4.2
+        but the safest thing would be reporting to the title ix office
+            *what does that even mean? #pause:4.9
+                ->Title_IX_explanation
+        
+            /**and what are they? #pause:3
                 -> Olivia_explains_actions_2
             *(Rosa_is_recalcitrant) I don't want to hear them
-                -> Olivia_explains_actions_2
+                -> Olivia_explains_actions_2*/
                     
         = Olivia_explains_actions_2
-            {Rosa_is_recalcitrant:
+            /*{Rosa_is_recalcitrant:
                 ok, you don't have to do anything, but at least listen to me #pause:3.8
-                }
+                }*/
             first, we can both make a report to the Title IX office #pause:2.8
             second, we can report to the police #pause:3.7
             third, we can write about what happened and try to get a website somewhere to publish it #pause:1.8
@@ -500,13 +506,13 @@ VAR olivia_family_knowledge = 0
                 -> police_explanation
             *tell me about publishing what happened online #pause:2.8
                 ->publishing_online_explanation
-            * {Rosa_investigates_options > 3} let's make a Title IX report
+            //* {Rosa_investigates_options > 3} let's make a Title IX report
                 -> Rosa_wants_title_ix
-            * {Rosa_investigates_options > 3} let's go to the police
+            //* {Rosa_investigates_options > 3} let's go to the police
                 -> Rosa_wants_police_report
-            * {Rosa_investigates_options > 3} let's talk to the media
+            //* {Rosa_investigates_options > 3} let's talk to the media
                 -> Rosa_wants_article
-            * {Rosa_investigates_options > 3} I'm sorry, I can't risk any of this
+            //rosa* {Rosa_investigates_options > 3} I'm sorry, I can't risk any of this
                 -> Rosa_wants_nothing
                 
             = Title_IX_explanation
@@ -520,10 +526,16 @@ VAR olivia_family_knowledge = 0
                 = Title_IX_explanation_pros_cons
                     * so why a Title IX case? #pause:3.3
                         -> why_title_ix_report
-                    * what are the dangers here? #pause:4.5
+                    * are there drawbacks? #pause:4.5
                         -> why_not_title_ix_report
-                    * tell me about the other stuff you mentioned
-                        -> Rosa_investigates_options
+                    *(Rosa_resigned) {Title_IX_explanation_pros_cons > 2}I guess there's no better option... #pause:2
+                        -> system_choice_2
+                    *(Rosa_scared) {Title_IX_explanation_pros_cons > 2} this scares the shit out of me but I'll do it #pause:2
+                        -> system_choice_2
+                    *(Rosa_ready) {Title_IX_explanation_pros_cons > 2} alright let's drive duane into the fucking ground #pause:2
+                        ->system_choice_2
+                    //* tell me about the other stuff you mentioned
+                        //-> Rosa_investigates_options
                     
                     = why_title_ix_report
                         we wouldn't have to be public about reporting Duane. no one would have to know. #pause:4.6
@@ -532,7 +544,9 @@ VAR olivia_family_knowledge = 0
                     
                     = why_not_title_ix_report
                         it's all really secretive. finding any info on how title ix works was so hard #pause:3.9
-                        it seems like Title IX works differently at every university...
+                        it seems like Title IX works differently at every university...#pause:1.3
+                        still #pause:3.5
+                        it's our best shot
                         -> Title_IX_explanation_pros_cons
 
 
@@ -607,11 +621,10 @@ VAR olivia_family_knowledge = 0
             -> system_choice_2
             
         = system_choice_2
-            wow, so #pause:1.8
-            I guess we're really doing this?
+            wow, so #pause:2.8
+            we're really gonna make a complaint
             * I guess... #pause:3.8
             * we're gonna try! #pause:3.8
-            * fuck yeah we're doing this #pause:3.8
                 -   I can't believe this is happening. like I didn't even know if you'd answer my text. so thank you. #pause:3
                     and now I need to take some time to cry it out before class #pause:2.6
                     let's talk later and we'll plan our attack #pause:2.3
@@ -681,15 +694,19 @@ VAR olivia_family_knowledge = 0
                 I won't. I promise.
                 ~ conversation_happening = false
 
-                -> Olivia_mom_storylet
+                -> Olivia_date_storylet
                         
 === Olivia_mom_storylet ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     ~conversant_name = "Olivia"
     hey what are you doing tomorrow around 1? #pause:1.7
     my mom's coming up from the city for her monthly attempt at parenting #pause:2.4
     we usually go somewhere nice for lunch so maybe I can treat you to a fancy ass sandwich #pause:1.8
     you n me both deserve one at this point haha
-        *(thats_nice)that's so nice! #pause:1.2
+        *(thats_nice)that's so nice of her #pause:1.2
             ~conversation_happening = true
             ->Olivia_explains_mom
         *(thats_awkward)that sounds awkward #pause:2.1
@@ -717,7 +734,7 @@ VAR olivia_family_knowledge = 0
             *what about your dad? #pause:1.1
                 ->olivias_dad
             
-            *{olivia_family_knowledge == 3}ok now that I know all this...are you SURE you want me to come?
+            *{olivia_family_knowledge == 3}ok this all sounds very personal. are you SURE you want me to come?
                 ->rosa_feels_awkward
         
         = olivias_moms_career
@@ -771,14 +788,19 @@ VAR olivia_family_knowledge = 0
                             ->Olivia_mom_storylet_phone_followup
 
 === Olivia_mom_storylet_lunch_followup ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     ~conversant_name = "Olivia"
     ~conversation_happening = true
     hey thanks again for coming! #pause:2.5
     you are a Mother Whisperer #pause:3
     and...I did actually have a good time #pause:3.5
     you must be a good luck charm <3
-    ~conversation_happening = false
-        -> Jia_knot_1
+        *you bet I am
+            ~conversation_happening = false
+            -> Jia_knot_1
         
 === Olivia_mom_storylet_phone_followup ===
     ~conversant_name = "Olivia"
@@ -788,11 +810,16 @@ VAR olivia_family_knowledge = 0
     it was really nice to have someone to talk to about awkward parent shit
     #pause:3
     you make it easy to say what I'm actually thinking.
-    ~conversation_happening = false
-        ->Jia_knot_1
+        *aww, thanks
+            ~conversation_happening = false
+            ->Jia_knot_1
 
 
 === Olivia_date_storylet ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     ~conversant_name = "Olivia"
     band t shirt or crop top?
     *what? #pause:.7
@@ -813,7 +840,7 @@ VAR olivia_family_knowledge = 0
                     ***if you insist... #pause:1.2
                         ->comments_on_fashion
             **(Rosa_bewildered)I can't believe you have energy for dates right now #pause:.7
-                -   awww don't judge #pause:1.2
+                    awww don't judge #pause:1.2
                     they're a fun distraction 
                     ***I'm not judging, just impressed #pause:1.2
                         ->comments_on_fashion
@@ -887,6 +914,10 @@ VAR olivia_family_knowledge = 0
                     ->Mikaela_knot_2
  
  === Olivia_book_storylet
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     ~conversant_name = "Olivia"
     Rooooooosaaaaaaaaa
     heeeeeeeeeeeeeelp
@@ -979,7 +1010,8 @@ VAR olivia_family_knowledge = 0
                 *no no no
                     **bring The Name of the Rose. it's a murder mystery set in a medieval Italian monastery
                         ->Olivia_reacts_book
-                    **bring The Dark Maidens. it's a Japanese light novel about a student who's murdered at an all girls school                 ->Olivia_reacts_book
+                    **bring The Dark Maidens. it's a Japanese light novel about a student who's murdered at an all girls school 
+                        ->Olivia_reacts_book
                     
         }
         
@@ -996,16 +1028,16 @@ VAR olivia_family_knowledge = 0
                 -   lol good luck
                     thanks for the rec!
                      ~conversation_happening = false
-                        ->DONE
+                        ->Olivia_TitleIxpath_Investigation
 
     
         
             
   === Olivia_TitleIXpath_witnesses ===
-        * @
-        ->Olivia_TitleIXpath_1_ridiculous_intro
+    * @
+        ->ridiculous_intro
     
-    = Olivia_TitleIXpath_1_ridiculous_intro
+    = ridiculous_intro
       ~conversant_name = "Olivia"
       #pause:0
     all right I just got home from making my report to the Title IX rep
@@ -1058,12 +1090,13 @@ VAR olivia_family_knowledge = 0
           ~conversation_happening = false
             ->Pradhya_initial_text
 
-=== Olivia_titleIXpath_witnesses_2 ===          
-    #pause:0
-    so? how was Pradhya the Advocate?
-    #pause:3.3
-    btw I keep misspelling advocate and my phone autocorrects it to avocado
-    #pause:2.8
+=== Olivia_titleIXpath_witnesses_2 ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
+    so? how was Pradhya the Advocate? #pause:3.3
+    btw I keep misspelling advocate and my phone autocorrects it to avocado #pause:2.8
     one of these days I won't catch it before I hit send
     *she was so thorough and professional
         **(Pradhya_comforting)it was comforting
@@ -1123,18 +1156,13 @@ VAR olivia_family_knowledge = 0
             
         = Olivia_witnesses
         #pause:1
-        first there's my roommate, Ally
-        #pause:1.3
-        they took me to the hospital the morning after
+        first there's my roommate, Ally #pause:1.3
+        she took me to the hospital the morning after
         #pause:2.2
-        then there's one of my professors. I wasn't turning in work for about two weeks and she was the only one who asked if I was okay
-        #pause:.5
-        so I told her
-        #pause:1.5
-        she can confirm that I said the same shit to her as I did to Irene
-        #pause:2
-        and then there's Mikaela of course
-        #pause:1.2
+        then there's one of my professors. I wasn't turning in work for about two weeks and she was the only one who asked if I was okay #pause:.5
+        so I told her #pause:1.5
+        she can confirm that I said the same shit to her as I did to Irene #pause:2
+        and then there's Mikaela of course #pause:1.2
         so those are the 3
         *will Mikaela agree to be interviewed twice?
             ->conversation_end
@@ -1147,6 +1175,10 @@ VAR olivia_family_knowledge = 0
         ->Rudy_knot_1
         
 === Olivia_TitleIXpath_Mikaela_in ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     whatever you said to Mikaela, it mustve worked
     she just texted me and said she'd be a witness for both of us
     good work, Agent Rosa
@@ -1184,6 +1216,10 @@ VAR olivia_family_knowledge = 0
                     ->Olivia_book_storylet
                     
 === Olivia_TitleIXpath_Mikaela_out ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     damn girl
     whatever you said to Mikaela really pissed her off
     now she's fucking us over by not testifying for EITHER of us
@@ -1221,22 +1257,22 @@ VAR olivia_family_knowledge = 0
             it'll be fine
             I really really hope it'll still be fine.
                 ~conversation_happening = false
-                   -> Olivia_TitleIxpath_Investigation
+                   -> Olivia_book_storylet
             }
         {Rosa_worried_Mikaela:
             she'll come around eventually, right?
             she's still our friend
             I think
                 ~conversation_happening = false
-                -> Olivia_TitleIxpath_Investigation
+                -> Olivia_book_storylet
             }
             
         
 === Olivia_TitleIxpath_Investigation ===
     * @
-        ->Olivia_investigation_ridiculous_intro
+        ->ridiculous_intro
     
-    = Olivia_investigation_ridiculous_intro
+    = ridiculous_intro
     #pause:0
     did you see the email??
     *what email?
