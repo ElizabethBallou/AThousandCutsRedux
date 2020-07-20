@@ -63,7 +63,6 @@ public class InkManager : MonoBehaviour
                 //Debug.Log("just read this text: "+text);
                 
                 float myPauseTag = 0;
-
                 //Elizabeth: this is where I'm trying out evaluating the pause tags
                 //take current tags
                 List<string> pauseTags = story.currentTags;
@@ -87,7 +86,16 @@ public class InkManager : MonoBehaviour
                 latestText = text;
 
                 currentConversant = story.variablesState["conversant_name"] as string;
-                isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
+
+                foreach (string tag in story.currentTags)
+                {
+                    if (tag.Contains("triggerdate"))
+                    {
+                        Debug.Log("I have read triggerdate");
+                        Services.DisplayManager.WriteDate(currentConversant);
+                    }
+                }
+                    isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
                 if(isRosaSpeaking){
                     AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
                 }else{
@@ -161,6 +169,13 @@ public class InkManager : MonoBehaviour
                 dotsShrinkingAlready = false;
                 Services.CharacterManager.characters[currentConversant].textingInProgressIcon.SetActive(false);
                 break;
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            var myCurrentPath = story.state.currentPathString;
+            string[] myPathBits = myCurrentPath.Split('.');
+            story.ChoosePathString(myPathBits[0].ToString() + ".debug_fast_forward");
         }
 
     }

@@ -8,8 +8,10 @@ public class GameController : MonoBehaviour
 {
     public GameObject conversantPrefab;
     public GameObject rosaPrefab;
+    public GameObject datePrefab;
     public Transform choicesParent;
     public TextAsset inkJsonAsset;
+    public TextAsset dateText;
     public List<TextMeshProUGUI> characterNotificationDisplays;
     public TextMeshProUGUI texterName;
     public RectTransform textingScreen;
@@ -89,6 +91,9 @@ public class GameController : MonoBehaviour
         Services.InkManager = new InkManager(inkJsonAsset);
 
         Services.DisplayManager = new DisplayManager(conversantPrefab,rosaPrefab,choicesParent);
+
+        Services.DateManager = new DateManager();
+        Services.DateManager.HandleDateText(dateText);
     }
      public void SelectChoice(int choice){
         Services.InkManager.SelectChoice(choice);

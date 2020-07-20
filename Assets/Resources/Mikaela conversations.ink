@@ -1,5 +1,6 @@
 
 === Mikaela_knot_1 ===
+    #triggerdate
     ~conversation_happening = true
     ~conversant_name = "Mikaela"
         Rosaaaaaa #pause:1
@@ -58,13 +59,13 @@
         * fine. give her my number. #pause:2.3
         -   ok. I will. are you mad at me?
             * * sort of #pause:3.6
-                ->Mikaela_is_sorry
+                ->debug_fast_forward
             * * of course not #pause:3.6
-                ->Mikaela_is_sorry
+                ->debug_fast_forward
             * * I'm mad, but not at you #pause:3.6
-                ->Mikaela_is_sorry
+                ->debug_fast_forward
                
-        = Mikaela_is_sorry
+        = debug_fast_forward
             I'm sorry any of this ever happened. and I hate to see both of you going through this
                 * me, too. #pause:3
                     -> dinner_or_not
@@ -82,6 +83,7 @@
             -> Olivia_knot_1
             
 === Mikaela_knot_2 ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -134,6 +136,7 @@
                 I've known some people who reported to the Title IX council and it never works out the way it should #pause:2.7
                 I just don't want to see you all dragged through the mud
                 }
+            /*
             {Olivia_knot_3.Rosa_wants_police_report:
                 this sucks to say, but do you know how few people actually get convicted of sexual assault?
                 I just don't want to see you all dragged through the mud #pause:2.7
@@ -141,10 +144,12 @@
             {Olivia_knot_3.Rosa_wants_article:
                 if you attack Duane that publicly, he might get dangerous
                 }
+            */
             * (stop_freaking_me_out)stop freaking me out #pause:2.2
                 ->Rosa_does_something
             * (cant_believe_saying)I can't believe you're saying this #pause:2
                 ->Rosa_does_something
+            
                 
     = Rosa_does_something
         {stop_freaking_me_out:
@@ -157,8 +162,8 @@
             }
         *we've made up our minds, okay
             **you're the one who gave Olivia my number in the first place #pause:2
-                ->option1_goodbye
-            
+                ->debug_fast_forward
+    /*        
     = Rosa_does_nothing
         Olivia seemed upset that you didn't want to do anything but I think you made the right call
         I've known some people who reported to the Title IX council and it never works out the way it should
@@ -172,8 +177,8 @@
         going to the police or Title IX would do you more harm than good
         * I hope Olivia doesn't hate me
             -> option2_goodbye
-        
-    = option1_goodbye
+        */
+    = debug_fast_forward
         I thought you all would just talk #pause:2.4
         not put yourselves out there like this #pause:2.6
         you know what, you're right, it isn't my place #pause:2.3
@@ -191,6 +196,7 @@
         {Olivia_knot_3.Rosa_wants_title_ix: -> Olivia_TitleIXpath_witnesses}
 
 === Mikaela_scared_testifying ===
+    #triggerdate
     * @
         ->ridiculous_intro
     

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
-using System.Linq;
+
 
 public class LockScreenController : MonoBehaviour
 {
@@ -25,17 +25,6 @@ public class LockScreenController : MonoBehaviour
     private float switchTimer = 0;
     private Color clearWhite = new Color(255, 255, 255, 0);
 
-    public TextAsset DateText;
-    private List<string> DateList;
-    private int dateListIndex = 0;
-
-
-    private void Awake()
-    {
-        DateList = DateText.text.Split('\n').ToList();
-        Debug.Log("The length of dateList is " + DateList.Count);
-
-    }
 
     void Start()
     {
@@ -49,7 +38,7 @@ public class LockScreenController : MonoBehaviour
         isFadingOut = true;
 
         //set date text to proper date
-        dateText.text = DateList[dateListIndex];
+        dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
 
         //hide quit button
         quitButton.image.color = clearWhite;
@@ -142,9 +131,8 @@ public class LockScreenController : MonoBehaviour
 
 
             //switch the date text so it's accurate
-            dateListIndex++;
-            Debug.Log("dateArrayIndex is " + dateListIndex);
-            dateText.text = DateList[dateListIndex];
+            Debug.Log("dateArrayIndex is " + Services.DateManager.dateListIndex);
+            dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex - 1];
 
             //begin by fading in the backdrop
             blackBackdrop.DOFade(1f, longFade);

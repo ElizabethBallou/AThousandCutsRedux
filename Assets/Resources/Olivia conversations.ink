@@ -6,6 +6,7 @@ VAR olivia_family_knowledge = 0
 
 
 === Olivia_knot_1 ===
+    #triggerdate
 ~conversant_name = "Olivia"
 ~know_conversant = false
     hi Rosa. this is Rosa, right? #pause:2.9
@@ -225,9 +226,9 @@ VAR olivia_family_knowledge = 0
         you were really open with me, so I'll tell you whatever you want to know
         * can you text me tomorrow about this? you gave me so much to think about #pause:2.8
         -   sure. sorry. I shouldve checked earlier
-            -> Rosa_says_goodbye
+            -> debug_fast_forward
             
-        = Rosa_says_goodbye
+        = debug_fast_forward
             *it's fine. I have a feeling we'll be talking for a while anyway
                 **we have time to get used to each other 
                     ***talk to you later, Olivia.
@@ -247,6 +248,7 @@ VAR olivia_family_knowledge = 0
                 -> Olivia_knot_2
 
 === Olivia_knot_2 ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -384,7 +386,7 @@ VAR olivia_family_knowledge = 0
                 shit I have to go  #pause:3.2
                 I wasn't paying attention to the time and now I'm late to class #pause:2
                 talk to you later?
-                -> end_second_knot
+                -> debug_fast_forward
                 
             = Rosa_doesnt_consider_anger
                 ~ anger_level = anger_level + 1
@@ -392,7 +394,7 @@ VAR olivia_family_knowledge = 0
                 ahhh no I have to go #pause:3.2
                 I wasn't paying attention to the time and now I'm late to class #pause:2
                 talk to you later?
-                -> end_second_knot
+                -> debug_fast_forward
                 
             = Rosa_doesnt_know_how_to_feel
                 ~anger_level = anger_level + 2
@@ -400,9 +402,9 @@ VAR olivia_family_knowledge = 0
                 ahhh no I have to go #pause:3.2
                 I wasn't paying attention to the time and now I'm late to class #pause:2
                 talk to you later?
-                -> end_second_knot
+                -> debug_fast_forward
         
-        = end_second_knot
+        = debug_fast_forward
             * okay
             {Rosa_angry_every_day:
                 **today I will be angry for you, too
@@ -418,6 +420,7 @@ VAR olivia_family_knowledge = 0
                         ****awkward. ok. talk tomorrow.
                             ->second_knot_rerouting
                         }
+            ->second_knot_rerouting
             
         = second_knot_rerouting
             ~ conversation_happening = false
@@ -425,6 +428,7 @@ VAR olivia_family_knowledge = 0
                     
                 
 === Olivia_knot_3 ===
+    #triggerdate
     ~conversant_name = "Olivia"
      * @
         ->Olivia_knot_3_ridiculous_intro
@@ -488,17 +492,17 @@ VAR olivia_family_knowledge = 0
                 -> Olivia_explains_actions_2
             *(Rosa_is_recalcitrant) I don't want to hear them
                 -> Olivia_explains_actions_2*/
-                    
+        /*            
         = Olivia_explains_actions_2
-            /*{Rosa_is_recalcitrant:
+            {Rosa_is_recalcitrant:
                 ok, you don't have to do anything, but at least listen to me #pause:3.8
-                }*/
+                }
             first, we can both make a report to the Title IX office #pause:2.8
             second, we can report to the police #pause:3.7
             third, we can write about what happened and try to get a website somewhere to publish it #pause:1.8
             that's my shortlist
                 -> Rosa_investigates_options
-                
+               
         = Rosa_investigates_options
             *tell me about reporting to Title IX #pause:4.4
                 -> Title_IX_explanation
@@ -506,15 +510,16 @@ VAR olivia_family_knowledge = 0
                 -> police_explanation
             *tell me about publishing what happened online #pause:2.8
                 ->publishing_online_explanation
-            //* {Rosa_investigates_options > 3} let's make a Title IX report
+            * {Rosa_investigates_options > 3} let's make a Title IX report
                 -> Rosa_wants_title_ix
-            //* {Rosa_investigates_options > 3} let's go to the police
+            * {Rosa_investigates_options > 3} let's go to the police
                 -> Rosa_wants_police_report
-            //* {Rosa_investigates_options > 3} let's talk to the media
+            * {Rosa_investigates_options > 3} let's talk to the media
                 -> Rosa_wants_article
-            //rosa* {Rosa_investigates_options > 3} I'm sorry, I can't risk any of this
+            rosa* {Rosa_investigates_options > 3} I'm sorry, I can't risk any of this
                 -> Rosa_wants_nothing
-                
+            
+        */      
             = Title_IX_explanation
                 we would both go to the Title IX office and explain what happened to whoever works there. then they'd decide if it's serious enough to bring a case against Duane #pause:2.1
                 and it has to be. right? #pause:3
@@ -529,11 +534,11 @@ VAR olivia_family_knowledge = 0
                     * are there drawbacks? #pause:4.5
                         -> why_not_title_ix_report
                     *(Rosa_resigned) {Title_IX_explanation_pros_cons > 2}I guess there's no better option... #pause:2
-                        -> system_choice_2
+                        -> debug_fast_forward
                     *(Rosa_scared) {Title_IX_explanation_pros_cons > 2} this scares the shit out of me but I'll do it #pause:2
-                        -> system_choice_2
+                        -> debug_fast_forward
                     *(Rosa_ready) {Title_IX_explanation_pros_cons > 2} alright let's drive duane into the fucking ground #pause:2
-                        ->system_choice_2
+                        ->debug_fast_forward
                     //* tell me about the other stuff you mentioned
                         //-> Rosa_investigates_options
                     
@@ -549,7 +554,7 @@ VAR olivia_family_knowledge = 0
                         it's our best shot
                         -> Title_IX_explanation_pros_cons
 
-
+/*
             = police_explanation
                 we would both go to the police office and file a police report #pause:2.8
                 then they'd decide whether to bring charges against Duane #pause:2.6
@@ -607,20 +612,20 @@ VAR olivia_family_knowledge = 0
                         -> publishing_explanation_pros_cons
                     
                ->Rosa_investigates_options
-        
+        */
         = Rosa_wants_title_ix
             that's what I was leaning towards, too. #pause:1
-            -> system_choice_2
+            -> debug_fast_forward
             
         = Rosa_wants_police_report
              that's what I was leaning towards, too. #pause:1
-            -> system_choice_2
+            -> debug_fast_forward
             
         = Rosa_wants_article
             that's what I was leaning towards, too. #pause:1
-            -> system_choice_2
+            -> debug_fast_forward
             
-        = system_choice_2
+        = debug_fast_forward
             wow, so #pause:2.8
             we're really gonna make a complaint
             * I guess... #pause:3.8
@@ -649,7 +654,7 @@ VAR olivia_family_knowledge = 0
                     ~ conversation_happening = false
                     -> Olivia_date_storylet
             
-        = Rosa_wants_nothing
+        /*= Rosa_wants_nothing
             are you serious
             youre not going to do anything
             you realize how this affects me, right?
@@ -695,8 +700,10 @@ VAR olivia_family_knowledge = 0
                 ~ conversation_happening = false
 
                 -> Olivia_date_storylet
+                */
                         
 === Olivia_mom_storylet ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -735,7 +742,7 @@ VAR olivia_family_knowledge = 0
                 ->olivias_dad
             
             *{olivia_family_knowledge == 3}ok this all sounds very personal. are you SURE you want me to come?
-                ->rosa_feels_awkward
+                ->debug_fast_forward
         
         = olivias_moms_career
         ~olivia_family_knowledge += 1
@@ -760,7 +767,7 @@ VAR olivia_family_knowledge = 0
                     I worked that shit out in therapy years ago
                     ->questions_about_mom
         
-        = rosa_feels_awkward
+        = debug_fast_forward
             *I mean we only met recently #pause:2.3 
                 -   oh. well of course you don't have to come #pause:2.5
                     I just thought itd be nice
@@ -788,6 +795,7 @@ VAR olivia_family_knowledge = 0
                             ->Olivia_mom_storylet_phone_followup
 
 === Olivia_mom_storylet_lunch_followup ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -803,6 +811,7 @@ VAR olivia_family_knowledge = 0
             -> Jia_knot_1
         
 === Olivia_mom_storylet_phone_followup ===
+    #triggerdate
     ~conversant_name = "Olivia"
     ~conversation_happening = true
     hey thanks for calling tonight
@@ -816,6 +825,7 @@ VAR olivia_family_knowledge = 0
 
 
 === Olivia_date_storylet ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -879,9 +889,9 @@ VAR olivia_family_knowledge = 0
         
         = shirt_choice_point
             *(crop_top)go for Hot and Confident
-                ->shirt_decision
+                ->debug_fast_forward
             *(band_shirt)go for Chill and Approachable
-                ->shirt_decision
+                ->debug_fast_forward
             *(overthinking)you're overthinking this
                 ->overthinking_it
                 
@@ -892,7 +902,7 @@ VAR olivia_family_knowledge = 0
             CHOOSE I AM DYING HERE
             *geez ok fine
                 ->shirt_choice_point
-        = shirt_decision
+        = debug_fast_forward
             #pause:.5
             excellent choice
             {crop_top:
@@ -1091,6 +1101,7 @@ VAR olivia_family_knowledge = 0
             ->Pradhya_initial_text
 
 === Olivia_titleIXpath_witnesses_2 ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -1175,6 +1186,7 @@ VAR olivia_family_knowledge = 0
         ->Rudy_knot_1
         
 === Olivia_TitleIXpath_Mikaela_in ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -1216,6 +1228,7 @@ VAR olivia_family_knowledge = 0
                     ->Olivia_book_storylet
                     
 === Olivia_TitleIXpath_Mikaela_out ===
+    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -1269,6 +1282,7 @@ VAR olivia_family_knowledge = 0
             
         
 === Olivia_TitleIxpath_Investigation ===
+    #triggerdate
     * @
         ->ridiculous_intro
     

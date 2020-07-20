@@ -57,4 +57,15 @@ public class DisplayManager
         textObj.transform.DOShakeScale(.5f, .03f, 10, 0f, true);
 
     }
+
+    public void WriteDate(string characterName)
+    {
+        Character character = Services.CharacterManager.characters[characterName];
+        Transform parent = character.transform;
+        GameObject textObj = GameObject.Instantiate(Services.GameController.datePrefab, parent);
+        textObj.GetComponent<TextMeshProUGUI>().text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
+
+        Services.DateManager.TimePassing();
+
+    }
 }

@@ -8,4 +8,5 @@ public class Services
     public static CharacterManager CharacterManager;
     public static InkManager InkManager;
     public static DisplayManager DisplayManager;
+    public static DateManager DateManager;
 }
