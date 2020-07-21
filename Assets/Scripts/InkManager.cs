@@ -46,7 +46,15 @@ public class InkManager : MonoBehaviour
     public bool conversationHappening;
     public InkManager(TextAsset jsonFile){
         inkJSONAsset = jsonFile;
+
         story = new Story(inkJSONAsset.text);
+        
+        //check to see if saved game exists
+        if (PlayerPrefs.HasKey("inkSaveState"))
+        {
+            var savedState = PlayerPrefs.GetString("inkSaveState");
+            story.state.LoadJson(savedState);
+        }
     }
 
     public void Update(){
@@ -205,6 +213,10 @@ public class InkManager : MonoBehaviour
         }
         justDidAChoice = true;
         AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
+
+        //saves game state
+        var savedState = story.state.ToJson();
+        PlayerPrefs.SetString("inkSaveState", savedState);
     }
     public void FakeChoice()
     {
@@ -234,6 +246,12 @@ public class InkManager : MonoBehaviour
         Services.CharacterManager.characters[currentConversant].textingInProgressIcon.transform.SetAsLastSibling();
         Services.CharacterManager.characters[currentConversant].textingInProgressIcon.transform.DOScale(new Vector3(.1f, .1f, .1f), .35f)
             .OnComplete(() => currentDotState = dotState.off);
+    }
+
+    public void ClearStory()
+    {
+        PlayerPrefs.DeleteKey("inkSaveState");
+        story.ResetState();
     }
             
    

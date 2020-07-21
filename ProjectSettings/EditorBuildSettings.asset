@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main_Rowan.unity
+    path: Assets/Scenes/MainScene.unity
     guid: 4550b04182b43b440aec609a87b8d86e
   m_configObjects: {}
