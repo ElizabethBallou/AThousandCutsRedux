@@ -101,6 +101,7 @@ public class InkManager : MonoBehaviour
                     {
                         Debug.Log("I have read triggerdate");
                         Services.DisplayManager.WriteDate(currentConversant);
+                        currentDotState = dotState.off;
                     }
                 }
                     isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
@@ -114,6 +115,9 @@ public class InkManager : MonoBehaviour
                 if(check == false && conversationHappening == true){
                     conversationHappening = false;
                     Services.GameController.lockScreen.OnLockScreenLock();
+                    Services.DisplayManager.WriteText(text, currentConversant, isRosaSpeaking);
+                    currentDotState = dotState.off;
+                    return;
                 }
                 if(check == true && conversationHappening == false){
                     conversationHappening = true;
@@ -130,6 +134,10 @@ public class InkManager : MonoBehaviour
             if(!madeChoices){
                 for(int i = 0; i < 4;i++){
                     if(i < story.currentChoices.Count){
+                        if(story.currentChoices[i].text == "@")
+                        {
+
+                        }
                         Services.DisplayManager.choices[i].text = (i+1)+". "+story.currentChoices[i].text;
                     }else{
                         Services.DisplayManager.choices[i].text = "";
@@ -142,7 +150,6 @@ public class InkManager : MonoBehaviour
             }
             
         }
-
         switch(currentDotState)
         {
             case dotState.showing:
@@ -182,8 +189,28 @@ public class InkManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             var myCurrentPath = story.state.currentPathString;
-            string[] myPathBits = myCurrentPath.Split('.');
-            story.ChoosePathString(myPathBits[0].ToString() + ".debug_fast_forward");
+            int tries = 0;
+
+            bool shouldContinue = !story.state.currentPathString.Contains(".") || story.state.currentPathString.Split('.')[1] != "debug_fast_forward";
+            while(shouldContinue)
+            {
+                tries++;
+                if (tries >= 100)
+                {
+                    Debug.Log("never found debug_fast_word, probably don't have one in this knot");
+                    break;
+                }
+                if (story.canContinue)
+                {
+                    story.ContinueMaximally();
+                    story.ChooseChoiceIndex(0);
+                }
+                //Debug.Log(story.state.currentPathString);
+                shouldContinue = !story.state.currentPathString.Contains(".")
+                    || story.state.currentPathString.Split('.')[1] != "debug_fast_forward";
+            }
+            /*string[] myPathBits = myCurrentPath.Split('.');
+            story.ChoosePathString(myPathBits[0].ToString() + ".debug_fast_forward");*/
         }
 
     }

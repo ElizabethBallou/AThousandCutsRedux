@@ -237,23 +237,26 @@ VAR olivia_family_knowledge = 0
                         ****(Rosa_says_nothing) - say nothing - #pause:2
                             ->final_goodbye_knot
                 
-        = final_goodbye_knot  
+        = final_goodbye_knot
+            ~ conversation_happening = false
             {Rosa_says_thanks:
                 I just felt like I had to.
+                ~ conversation_happening = false
                 }
             {Rosa_says_nothing:
                 until tomorrow
+                ~ conversation_happening = false
                 }
             ~ conversation_happening = false
                 -> Olivia_knot_2
 
 === Olivia_knot_2 ===
-    #triggerdate
     * @
         ->ridiculous_intro
     
     = ridiculous_intro
      ~conversant_name = "Olivia"
+    #triggerdate
     I thought for a while about what I should text you #pause:3
     like should I say "hello" as if we were talking about something normal #pause:2.8
     or be really gentle in case I freaked you out yesterday #pause:2

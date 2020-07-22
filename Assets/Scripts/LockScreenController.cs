@@ -114,6 +114,7 @@ public class LockScreenController : MonoBehaviour
         Application.Quit();
     }
     public void OnLockScreenLock(){
+        Debug.Log("unlockButtonPressed is " + unlockButtonPressed);
         if (unlockButtonPressed)
         {
             Services.GameController.characterWithOpenMessages = "";
