@@ -1,5 +1,4 @@
 === Pradhya_initial_text ===
-    #triggerdate
     ~conversant_name = "Pradhya"
     ~conversation_happening = true
     Hi Rosa. It's Pradhya, your Title IX advocate. Thanks for meeting up at Grit earlier today so I could tell you more about the incident report process! You asked me to text you a recap of what we discussed re: Title IX timeline, so here it is.

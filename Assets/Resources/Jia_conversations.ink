@@ -1,6 +1,5 @@
 
 === Jia_knot_1 ===
-    #triggerdate
  ~conversant_name = "Jia"
     hi! this is Jia. Rudy told me what was happeninG #pause:2.2
     I'm so sorry you got Duaned

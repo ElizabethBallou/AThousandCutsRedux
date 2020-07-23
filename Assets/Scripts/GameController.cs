@@ -52,7 +52,14 @@ public class GameController : MonoBehaviour
             textWaiting = false;
             if(characterWithOpenMessages == Services.InkManager.currentConversant){
                 Services.InkManager.Update();
-                texterName.text = Services.InkManager.currentConversant;
+                if (lockScreen.SwitchingEpisodes)
+                {
+                    Invoke("WaitToChangeNames", 3f);
+                }
+                else
+                {
+                    texterName.text = Services.InkManager.currentConversant;
+                }
             }
             
         }else if (lockScreen.SwitchingEpisodes == false)
@@ -113,6 +120,11 @@ public class GameController : MonoBehaviour
                 Services.CharacterManager.characters[character].transform.gameObject.SetActive(false);
                 Services.CharacterManager.characters[character].choices.gameObject.SetActive(false);
             }
+
+    }
+
+    public void WaitToChangeNames()
+    {
 
     }
 }

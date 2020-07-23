@@ -6,7 +6,7 @@ VAR olivia_family_knowledge = 0
 
 
 === Olivia_knot_1 ===
-    #triggerdate
+#triggerdate
 ~conversant_name = "Olivia"
 ~know_conversant = false
     hi Rosa. this is Rosa, right? #pause:2.9
@@ -255,8 +255,8 @@ VAR olivia_family_knowledge = 0
         ->ridiculous_intro
     
     = ridiculous_intro
-     ~conversant_name = "Olivia"
     #triggerdate
+     ~conversant_name = "Olivia"
     I thought for a while about what I should text you #pause:3
     like should I say "hello" as if we were talking about something normal #pause:2.8
     or be really gentle in case I freaked you out yesterday #pause:2
@@ -411,32 +411,29 @@ VAR olivia_family_knowledge = 0
             * okay
             {Rosa_angry_every_day:
                 **today I will be angry for you, too
-                    ->second_knot_rerouting
+                    ~ conversation_happening = false
+                    ->Olivia_knot_3
                 }
             {Rosa_doesnt_consider_anger:
                 **I'll keep trying not to go crazy, same as always
-                    ->second_knot_rerouting
+                ~ conversation_happening = false
+                    ->Olivia_knot_3
                 }
             {Rosa_doesnt_know_how_to_feel:
                 **I'll keep pushing all my emotions away, same as always. that's healthy, right?
                     ***that was a joke btw
                         ****awkward. ok. talk tomorrow.
-                            ->second_knot_rerouting
+                            ~ conversation_happening = false
+                            ->Olivia_knot_3
                         }
-            ->second_knot_rerouting
-            
-        = second_knot_rerouting
-            ~ conversation_happening = false
-                -   ->Olivia_knot_3
-                    
                 
 === Olivia_knot_3 ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     #triggerdate
-    ~conversant_name = "Olivia"
-     * @
-        ->Olivia_knot_3_ridiculous_intro
-        
-    = Olivia_knot_3_ridiculous_intro    
+     ~conversant_name = "Olivia"
     sorry it took me so long to text you again #pause:2.6
     I had a paper due for my humanities class  #pause:4.2
     I hate writing papers. I thought being in the E School meant no more papers but here we are #pause:3
@@ -706,7 +703,6 @@ VAR olivia_family_knowledge = 0
                 */
                         
 === Olivia_mom_storylet ===
-    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -798,7 +794,6 @@ VAR olivia_family_knowledge = 0
                             ->Olivia_mom_storylet_phone_followup
 
 === Olivia_mom_storylet_lunch_followup ===
-    #triggerdate
     * @
         ->ridiculous_intro
     
@@ -814,7 +809,6 @@ VAR olivia_family_knowledge = 0
             -> Jia_knot_1
         
 === Olivia_mom_storylet_phone_followup ===
-    #triggerdate
     ~conversant_name = "Olivia"
     ~conversation_happening = true
     hey thanks for calling tonight
@@ -828,12 +822,12 @@ VAR olivia_family_knowledge = 0
 
 
 === Olivia_date_storylet ===
-    #triggerdate
     * @
         ->ridiculous_intro
     
     = ridiculous_intro
-    ~conversant_name = "Olivia"
+    #triggerdate
+     ~conversant_name = "Olivia"
     band t shirt or crop top?
     *what? #pause:.7
         ~conversation_happening = true
@@ -861,70 +855,52 @@ VAR olivia_family_knowledge = 0
                         ->comments_on_fashion
             
         = comments_on_fashion
-            so her name is Rae
-            #pause:1.9
-            I met her on a dating app and we've been chatting for a few days
-            #pause:2.5
-            she's really into photography and she's on the ballroom dancing team, which I didn't know Fortuna even had
-            #pause:1.3
-            and she dyes her hair pretty colors and plays video games
-            #1.9
-            last night she suggested continuing our convo over coffee at Grit
-            #pause:1.5
+            so her name is Rae #pause:1.9
+            I met her on a dating app and we've been chatting for a few days #pause:2.5
+            she's really into photography and she's on the ballroom dancing team, which I didn't know Fortuna even had #pause:1.3
+            and she dyes her hair pretty colors and plays video games #1.9
+            last night she suggested continuing our convo over coffee at Grit #pause:1.5
             Grit has shit coffee imho but I'm still excited!
-            *(coffee_snob)haha yeah it tastes like hot pee dirt
-            *(coffee_whatever)I'm not a coffee snob but sure
+            *(coffee_snob)haha yeah it tastes like hot pee dirt #pause:1.7
+            *(coffee_whatever)I'm not a coffee snob but sure #pause:1.8
                 -   {coffee_snob:
-                    #pause:.4
-                    that is disgusting
-                    #pause:.6
-                    but also correct
+                    that is disgusting#pause:1.6
+                    but also correct #pause:2
                         }
                     {coffee_whatever:
-                    #pause:.7
-                    just trust me on this
+                    just trust me on this  #pause:2
                         }
-                    #pause:1
-                    so do I wear the crop top and look Hot and Confident
-                    #pause:1.3
+                    so do I wear the crop top and look Hot and Confident #pause:2.3
                     or the band shirt and look Chill and Approachable?
                     ->shirt_choice_point
         
         = shirt_choice_point
-            *(crop_top)go for Hot and Confident
+            *(crop_top)go for Hot and Confident #pause:1.9
                 ->debug_fast_forward
-            *(band_shirt)go for Chill and Approachable
+            *(band_shirt)go for Chill and Approachable #pause:1.9
                 ->debug_fast_forward
-            *(overthinking)you're overthinking this
+            *(overthinking)you're overthinking this #pause:1
                 ->overthinking_it
                 
         = overthinking_it
-            #pause:.6
-            that is a nonanswer!!
-            #pause:.7
+            that is a nonanswer!!#pause:1.7
             CHOOSE I AM DYING HERE
             *geez ok fine
                 ->shirt_choice_point
         = debug_fast_forward
-            #pause:.5
-            excellent choice
+            excellent choice  #pause:2.5
             {crop_top:
-                #pause:1.2
-                I will stun her with my BOLDNESS
+                I will stun her with my BOLDNESS #pause:2.2
                 }
             {band_shirt:
-                #pause:2
-                I will woo her with my relatable love of Portugal. The Man
+                I will woo her with my relatable love of Portugal. The Man #pause:2.2
                 }
-            #pause:1
-            thank you for your crucial input
-            #pause:1.4
+            thank you for your crucial input #pause:1.4
             all right gotta finish getting ready or I'll be late
-            *tell me how it goes!
-                - #pause:.5
-                    oh I will ;P
-                    ~conversation_happening = false
-                    ->Mikaela_knot_2
+                *tell me how it goes! #pause:.5
+                    - oh I will ;P
+                        ~conversation_happening = false
+                        ->Mikaela_knot_2
  
  === Olivia_book_storylet
     * @

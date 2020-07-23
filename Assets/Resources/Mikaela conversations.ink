@@ -1,6 +1,6 @@
 
 === Mikaela_knot_1 ===
-    #triggerdate
+#triggerdate
     ~conversation_happening = true
     ~conversant_name = "Mikaela"
         Rosaaaaaa #pause:1
@@ -83,11 +83,11 @@
             -> Olivia_knot_1
             
 === Mikaela_knot_2 ===
-    #triggerdate
     * @
         ->ridiculous_intro
     
     = ridiculous_intro
+    #triggerdate
     ~conversant_name = "Mikaela"
     hey. Olivia told me you all talked #pause:2.6
     thank you for answering her <3  #pause:2.5
@@ -196,11 +196,11 @@
         {Olivia_knot_3.Rosa_wants_title_ix: -> Olivia_TitleIXpath_witnesses}
 
 === Mikaela_scared_testifying ===
-    #triggerdate
     * @
         ->ridiculous_intro
     
     = ridiculous_intro
+    #triggerdate
     ~conversant_name = "Mikaela"
     so I got a call from a Title IX lady #pause:2
     she wants to interview me about your story AND Olivia's story? what is going on?
