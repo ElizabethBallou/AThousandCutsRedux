@@ -8,10 +8,11 @@ using UnityEngine.UI;
 
 public class LockScreenController : MonoBehaviour
 {
+    public static LockScreenController instance;
     public Image blackBackdrop;
     private Image unlockScreenGraphic;
     private TextMeshProUGUI dateText;
-    private TextMeshProUGUI notificationText;
+    public TextMeshProUGUI notificationText;
     private Button unlockButton;
     private Button quitButton;
     public float fadeTime = .5f;
@@ -25,9 +26,14 @@ public class LockScreenController : MonoBehaviour
     private float switchTimer = 0;
     private Color clearWhite = new Color(255, 255, 255, 0);
 
-
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
+        AudioManager.instance.playNextSong();
+
         blackBackdrop.gameObject.SetActive(false);
         blackBackdrop.color = Color.clear;
         unlockScreenGraphic = gameObject.transform.GetChild(0).GetComponent<Image>();
@@ -43,6 +49,8 @@ public class LockScreenController : MonoBehaviour
         //hide quit button
         quitButton.image.color = clearWhite;
         quitButton.gameObject.SetActive(false);
+
+        notificationText.color = clearWhite;
     }
 
     // Update is called once per frame
@@ -94,7 +102,7 @@ public class LockScreenController : MonoBehaviour
 
     public void OnUnlockButtonPress()
     {
-        AudioManager.instance.playTextingSound(AudioManager.instance.unlockSound);
+        AudioManager.instance.playTextingSound(AudioManager.instance.unlockSound, 1f);
         unlockButtonPressed = true;
         unlockButton.image.DOFade(0f, secondaryFadeTime);
         dateText.DOFade(0f, secondaryFadeTime).OnComplete(() => dateText.gameObject.SetActive(false));
@@ -114,6 +122,7 @@ public class LockScreenController : MonoBehaviour
         Application.Quit();
     }
     public void OnLockScreenLock(){
+        AudioManager.instance.FastForwardButtonClick();
         Debug.Log("unlockButtonPressed is " + unlockButtonPressed);
         if (unlockButtonPressed)
         {
@@ -142,10 +151,12 @@ public class LockScreenController : MonoBehaviour
            
              dateText.DOFade(1f, fadeTime).SetDelay(longFade);
              unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
-             unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-             notificationText.DOFade(1f, fadeTime).SetDelay(longFade)
+            unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
+             notificationText.DOFade(1f, fadeTime).SetDelay(longFade + 1f)
                 .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
             }
+
+        Invoke("PlayBuzzingSound", 3.5f);
 
             /*if(dateListIndex == currentDateList.Count)
             {
@@ -166,6 +177,11 @@ public class LockScreenController : MonoBehaviour
                 quitButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
             }*/
 
+    }
+
+    public void PlayBuzzingSound()
+    {
+        AudioManager.instance.playBuzzingsound(.5f);
     }
         
 

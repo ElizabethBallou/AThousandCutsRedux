@@ -63,7 +63,7 @@ public class InkManager : MonoBehaviour
         if(story.canContinue){//text is being drawn
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= lastPrint+timeBetweenPrints){
-                AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound);
+                AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound, .3f);
                 lastPrint = elapsedTime;
                 timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
 
@@ -106,10 +106,10 @@ public class InkManager : MonoBehaviour
                 }
                     isRosaSpeaking = (int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
                 if(isRosaSpeaking){
-                    AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
+                    AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound, .7f);
                 }else{
                     Services.CharacterManager.characters[currentConversant].textPreview.text = latestText;
-                    AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound);
+                    AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound, .3f);
                 }
                 bool check = (int)story.variablesState["conversation_happening"] == 1;
                 if(check == false && conversationHappening == true){
@@ -239,7 +239,7 @@ public class InkManager : MonoBehaviour
             Services.DisplayManager.choices[i].text = "";
         }
         justDidAChoice = true;
-        AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound);
+        AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound, .7f);
 
         //saves game state
         var savedState = story.state.ToJson();

@@ -1,6 +1,5 @@
 
 === Rudy_knot_1 ===
-    #triggerdate
  ~conversant_name = "Rudy"
  Hi Rosa. This is Rudy. Long time no talk! I hope you're doing well.#pause:4
  I got an email from a Title IX investigation committee - they want to interview me. I hope this is appropriate to ask, but I was wondering if you could tell me more? I'm happy to talk to them, I just don't know what this is about. #pause:2

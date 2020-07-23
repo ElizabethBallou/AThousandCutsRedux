@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,9 @@ public class PlayButtonScript : MonoBehaviour
 
     public void OnPlayButtonClick()
     {
+        LockScreenController.instance.notificationText.DOFade(1f, 1f);
+        AudioManager.instance.playBuzzingsound(.5f);
         gameObject.SetActive(false);
+
     }
 }

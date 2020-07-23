@@ -71,25 +71,30 @@ public class SettingsMenu : MonoBehaviour
     public void SettingsButtonClick()
     {
         currentMenuState = MenuState.generalSettings;
+        callClickSound();
     }
 
     public void SoundMenuClick()
     {
         currentMenuState = MenuState.soundMenu;
+        callClickSound();
     }
 
     public void RestartMenuClick()
     {
         currentMenuState = MenuState.restartMenu;
+        callClickSound();
     }
 
     public void QuitMenuClick()
     {
         currentMenuState = MenuState.quitMenu;
+        callClickSound();
     }
 
     public void YesQuit()
     {
+        callClickSound();
         currentMenuState = MenuState.noMenu;
         Application.Quit();
     }
@@ -97,10 +102,12 @@ public class SettingsMenu : MonoBehaviour
     public void NoQuit()
     {
         currentMenuState = MenuState.generalSettings;
+        callClickSound();
     }
 
     public void YesReset()
     {
+        callClickSound();
         Services.InkManager.ClearStory();
         currentMenuState = MenuState.noMenu;
         SceneManager.LoadScene("MainScene");
@@ -109,10 +116,17 @@ public class SettingsMenu : MonoBehaviour
     public void BackButton()
     {
         currentMenuState = MenuState.generalSettings;
+        callClickSound();
     }
 
     public void ReturnToGameButtonClick()
     {
         currentMenuState = MenuState.noMenu;
+        callClickSound();
+    }
+
+    public void callClickSound()
+    {
+        AudioManager.instance.playTextingSound(AudioManager.instance.clickSound, .4f);
     }
 }
