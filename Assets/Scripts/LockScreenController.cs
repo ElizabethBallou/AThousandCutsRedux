@@ -102,6 +102,7 @@ public class LockScreenController : MonoBehaviour
 
     public void OnUnlockButtonPress()
     {
+        AudioManager.instance.menuTriggered = false;
         AudioManager.instance.playTextingSound(AudioManager.instance.unlockSound, 1f);
         unlockButtonPressed = true;
         unlockButton.image.DOFade(0f, secondaryFadeTime);

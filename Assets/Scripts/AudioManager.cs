@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     private bool beginnerTimerDone = false;
 
     private bool isPaused = false;
+
+    [HideInInspector] public bool menuTriggered = true;
     private void Awake()
     {
         instance = this;
@@ -110,7 +112,7 @@ public class AudioManager : MonoBehaviour
 
     public void PauseButtonClick()
     {
-        playTextingSound(clickSound, .8f);
+        playTextingSound(clickSound, .4f);
         if (!isPaused)
         {
             music_audiosource.Pause();
@@ -125,7 +127,11 @@ public class AudioManager : MonoBehaviour
 
     public void FastForwardButtonClick()
     {
-        playTextingSound(clickSound, .4f);
+        if(menuTriggered)
+        {
+            playTextingSound(clickSound, .4f);
+        }
+        menuTriggered = true;
         StartCoroutine(AudioFadeEffect(music_audiosource, 1f, 0));
         Invoke("playNextSong", 1f);
     }
