@@ -185,7 +185,6 @@
         still, I have a bad feeling about this #pause:1.6
         are you there? #pause:1
         Rosa?
-            *debug option
             ~conversation_happening = false
                 -> Olivia_TitleIXpath_witnesses
         

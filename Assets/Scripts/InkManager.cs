@@ -132,7 +132,7 @@ public class InkManager : MonoBehaviour
                 currentDotState = dotState.shrinking;
             }
             if(!madeChoices){
-                for(int i = 0; i < 4;i++){
+                for(int i = 0; i < 3;i++){
                     if(i < story.currentChoices.Count){
                         if(story.currentChoices[i].text == "@")
                         {
@@ -235,7 +235,7 @@ public class InkManager : MonoBehaviour
         if(story.currentTags.Count > 0){
             //Debug.Log("current tag: "+story.currentTags[0]);
         }
-        for(int i = 0; i < 4;i++){
+        for(int i = 0; i < 3;i++){
             Services.DisplayManager.choices[i].text = "";
         }
         justDidAChoice = true;

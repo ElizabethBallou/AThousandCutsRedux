@@ -1,8 +1,23 @@
 === Pradhya_initial_text ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     #triggerdate
     ~conversant_name = "Pradhya"
-    ~conversation_happening = true
-    Hi Rosa. It's Pradhya, your Title IX advocate. Thanks for meeting up at Grit earlier today so I could tell you more about the incident report process! You asked me to text you a recap of what we discussed re: Title IX timeline, so here it is. #pause:7
+    Hi Rosa. It's Pradhya, your Title IX advocate. Thanks for meeting up at Grit earlier today so I could tell you more about the incident report process!
+        *sure
+            ~conversation_happening = true
+                ->Pradhya_2
+        *no, thank you!
+            ~conversation_happening = true
+                ->Pradhya_2
+        *you're welcome I guess?
+            ~conversation_happening = true
+                ->Pradhya_2
+        
+    = Pradhya_2    
+    You asked me to text you a recap of what we discussed re: Title IX timeline, so here it is. #pause:7
     Now that you've submitted an incident report, the Office of Equal Opportunity will appoint a lead investigator. The investigator will interview you and the responding party (that means the other person involved in the incident - I won't say their name over text for privacy reasons). The investigator will also talk to any witnesses you give us. Witnesses may have heard or seen something, or they may be people you talked to in detail about the incident. #pause:3
     Basically, they're folks who can confirm where you were and who you were with. #pause:5
     Once the lead investigator interviews everyone, they'll decide whether the responding party should be charged with a Title IX violation. If that happens, they'll schedule a hearing date and do any extra interviews. #pause:4
