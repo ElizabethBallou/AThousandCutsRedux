@@ -1,7 +1,8 @@
 
 === Jia_knot_1 ===
+    #triggerdate
  ~conversant_name = "Jia"
-    hi! this is Jia. Rudy told me what was happeninG #pause:2.2
+    hi! this is Jia. Rudy told me what was happening #pause:2.2
     I'm so sorry you got Duaned
     *I hate that Duane is now a verb, but yes #pause:3.2
      ~conversation_happening = true

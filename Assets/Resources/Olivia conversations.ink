@@ -10,7 +10,7 @@ VAR olivia_family_knowledge = 0
 ~conversant_name = "Olivia"
 ~know_conversant = false
     hi Rosa. this is Rosa, right? #pause:2.9
-    my name is Olivia. I'm a junior in the engineering school
+    my name is Olivia. I'm a junior in the engineering school #pause:2.6
     ~know_conversant = true
     we met once at Mikaela's birthday party #pause:2.6
     she gave me your number yesterday #pause:2.3
@@ -51,19 +51,14 @@ VAR olivia_family_knowledge = 0
                 what exactly did he do to you
                 -> Rosa_explains_what_happened
                 
-            * * nothing much. just the normal shitty stuff
+            * * nothing much. just the normal shitty stuff #pause:1.4
                 ~ anger_level = anger_level + 1
-                #pause:1.4
-                I hear you
-                #pause:3.6
+                I hear you  #pause:3.6
                 but was that all? because for me, it was more than 'nothing much'
-                * * * there was more.
-                #pause:1.8
-                haha yeah. isn't there always?
-                #pause:1.7
-                oh sorry that sounded bad
-                #pause:3
-                not funny 'haha' more like exhausted 'haha'
+                * * * there was more. #pause:1.8
+                    haha yeah. isn't there always? #pause:1.7
+                    oh sorry that sounded bad #pause:3
+                    not funny 'haha' more like exhausted 'haha'
             -   don't worry. it's fine.
                 -> Rosa_explains_what_happened
     
@@ -703,11 +698,12 @@ VAR olivia_family_knowledge = 0
                 */
                         
 === Olivia_mom_storylet ===
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
-    ~conversant_name = "Olivia"
+    #triggerdate
+     ~conversant_name = "Olivia"
     hey what are you doing tomorrow around 1? #pause:1.7
     my mom's coming up from the city for her monthly attempt at parenting #pause:2.4
     we usually go somewhere nice for lunch so maybe I can treat you to a fancy ass sandwich #pause:1.8
@@ -794,11 +790,12 @@ VAR olivia_family_knowledge = 0
                             ->Olivia_mom_storylet_phone_followup
 
 === Olivia_mom_storylet_lunch_followup ===
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
-    ~conversant_name = "Olivia"
+    #triggerdate
+     ~conversant_name = "Olivia"
     ~conversation_happening = true
     hey thanks again for coming! #pause:2.5
     you are a Mother Whisperer #pause:3
@@ -903,88 +900,87 @@ VAR olivia_family_knowledge = 0
                         ->Mikaela_knot_2
  
  === Olivia_book_storylet
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
-    ~conversant_name = "Olivia"
-    Rooooooosaaaaaaaaa
+    #triggerdate
+     ~conversant_name = "Olivia"
+    Rooooooosaaaaaaaaa #pause:1.4
     heeeeeeeeeeeeeelp
-    *whaaaaaaaaaat
+    *whaaaaaaaaaat #pause:3.1
         ~conversation_happening = true
         - I'm going to an e school women's get-to-know-you thing and I have to bring a book to swap
-            **(Rosa_excited)AW YISS BOOK PARTY
+            **(Rosa_excited)AW YISS BOOK PARTY #pause:2.4
                 ->Olivia_doesnt_like_books
-            **(can_Rosa_come)ooh great idea for a group hang
+            **(can_Rosa_come)ooh great idea for a group hang #pause:2.2
                 ->Olivia_doesnt_like_books
-            **(Rosa_confused)is that...a problem?
+            **(Rosa_confused)is that...a problem? #pause:1
                 ->Olivia_doesnt_like_books
                 
     = Olivia_doesnt_like_books
     {Rosa_excited:
-        hahah that was NOT my reaction when I found out
+        hahah that was NOT my reaction when I found out #pause:2.5
         }
     {can_Rosa_come:
-        hahah I don't think so. it's for e schoolers
-        sorry!
-        the thing is, though
+        hahah I don't think so. it's for e schoolers #pause:1
+        sorry! #pause:1.4
+        the thing is, though #pause:2.5
         }
     {Rosa_confused:
-        YES
+        YES #pause:2.5
         }
-        I don't like reading that much!
-        I mean I like comics
-        and I read the news online
-        but I haven't finished a book in I don't even know how long
+        I don't like reading that much! #pause:2.3
+        I mean I like comics #pause:1.9
+        and I read the news online #pause:2.9
+        but I haven't finished a book in I don't even know how long #pause:3.5
         I never tell that to humanities majors. they always say YOU ARE UNLEARNED or whatever
-        *(Rosa_understanding)it's fine, I can understand how other people don't like books that much
+        *(Rosa_understanding)it's fine, I can understand how other people don't like books that much #pause:1.3
             ->Olivia_asks_for_advice
-        *(Rosa_book_god)yeah we all worship the Book God. the ones who go hard subsist on manuscript pages alone
+        *(Rosa_book_god)yeah we all worship the Book God. the ones who go hard subsist on manuscript pages alone #pause:2.3
             ->Olivia_asks_for_advice
-        *(Rosa_says_unlearned)YOU ARE UNLEARNED
+        *(Rosa_says_unlearned)YOU ARE UNLEARNED #pause:1
             ->Olivia_asks_for_advice
             
     = Olivia_asks_for_advice
         {Rosa_understanding:
-            oh thank god
-            people can be so pretentious about it
+            oh thank god #pause:2.4
+            people can be so pretentious about it #pause:1.2
             }
         {Rosa_book_god:
-            ah yes and in the E School we worship the Volt Monster
-            we feed it batteries and in return it gives us good grades on the midterms
-            one day the Book God and the Volt Monster will go to war and we'll have to fight each other
-            tragic
-            also off-topic
+            ah yes and in the E School we worship the Volt Monster #pause:2.9
+            we feed it batteries and in return it gives us good grades on the midterms #pause:3.1
+            one day the Book God and the Volt Monster will go to war and we'll have to fight each other #pause:1
+            tragic #pause:1.2
+            also off-topic #pause:1.9
             here's what I actually wanted to ask:
             }
         {Rosa_says_unlearned:
-            well
-            I walked right into that one
-            still: RUDE
+            well #pause:2.1
+            I walked right into that one #pause:1.3
+            still: RUDE #pause:2
             but I'm gonna ask for help anyway!
             }
-        what book should I bring???
+        what book should I bring??? #pause:1.4
         what's Hip n Fresh these days
         *what genres do you like?
             -   idk, all of them? what do YOU like? I'm asking YOU 
-                **(sci_fi_fantasy)sci fi and fantasy!
+                **(sci_fi_fantasy)sci fi and fantasy! #pause:2.1
                     ->Rosa_gives_rec
-                **(literary_fiction)literary fiction!
+                **(literary_fiction)literary fiction! #pause:2.1
                     ->Rosa_gives_rec
-                **(mysteries_thrillers)mysteries and thrillers!
+                **(mysteries_thrillers)mysteries and thrillers! #pause:2.1
                     ->Rosa_gives_rec
                     
     = Rosa_gives_rec
         {sci_fi_fantasy:
-            please don't say Harry Potter
+            please don't say Harry Potter #pause:2.9
             JK Rowling can eat my ass, I'm not buying her books
             *Olivia there is so much more out there than HP 
                 **bring Parable of the Sower. it's about a Black girl who gets magical powers during the apocalypse
                         ->Olivia_reacts_book
-                
                 **bring The Three-Body Problem. it's about a Chinese physicist who gets weird signals from aliens
                         ->Olivia_reacts_book
-                
             }
         {literary_fiction:
             girl I barely know what that IS
@@ -1001,125 +997,110 @@ VAR olivia_family_knowledge = 0
                         ->Olivia_reacts_book
                     **bring The Dark Maidens. it's a Japanese light novel about a student who's murdered at an all girls school 
                         ->Olivia_reacts_book
-                    
-        }
+            }
         
         = Olivia_reacts_book
-        damnnn that actually sounds really good!
-        I'll order it then. and maybe even read the first chapter before I go swap it for something else
-        bet I won't even like what I swap it for
+        damnnn that actually sounds really good! #pause:3.1
+        I'll order it then. and maybe even read the first chapter before I go swap it for something else #pause:1.9
+        bet I won't even like what I swap it for #pause: 1.4
         I'll just give it to you!
-            *yes please. I won't stop collecting until my bookshelf collapses haha
-                -   that is a safety hazard, but you do you
+            *yes please. I won't stop collecting until my bookshelf collapses haha #pause:1.8
+                -   that is a safety hazard, but you do you #pause:1.2
                     thanks for the rec!
                     ~conversation_happening = false
-            *nahhh keep it. we'll make a book lover out of you yet
-                -   lol good luck
+                        ->Olivia_TitleIxpath_Investigation
+            *nahhh keep it. we'll make a book lover out of you yet #pause:1.2
+                -   lol good luck #pause:1.4
                     thanks for the rec!
                      ~conversation_happening = false
                         ->Olivia_TitleIxpath_Investigation
-
-    
-        
             
   === Olivia_TitleIXpath_witnesses ===
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
-      ~conversant_name = "Olivia"
-      #pause:0
-    all right I just got home from making my report to the Title IX rep
-    #pause:1.2
+    #triggerdate
+     ~conversant_name = "Olivia"
+    all right I just got home from making my report to the Title IX rep #pause:1.2
     you did yours, right?
-        * yeah, yesterday
-                ~conversation_happening = true
+        * yeah, yesterday #pause:2.9
+            ~conversation_happening = true
             ->Rosa_responds
     
         = Rosa_responds
-        #pause:2.9
             was it that Irene lady? the one who laughs weird and wears the wrong shade of foundation?
-            *(Rosa_chides) aww that's not nice 
+            *(Rosa_chides) aww that's not nice #pause:1
                 -> Olivia_answers
-            *(Rosa_agrees) yes! the very one!!
+            *(Rosa_agrees) yes! the very one!! #pause:2.5
                 -> Olivia_answers
             
         = Olivia_answers
             {Rosa_chides:
-                #pause:1
-                but it's true
+                but it's true #pause:1.3
                 }
             {Rosa_agrees:
-                #pause:1.7
-                haha I wonder if Irene is the only one who takes these statements
+                haha I wonder if Irene is the only one who takes these statements #pause:1.3
                 }
-                #pause:1.3
-            she pissed me off
-            #pause:2.4
-            she kept saying "we will treat this with the utmost seriousness" over and over
-            #pause:1.9
-            like...I get it, Irene
-            #pause:2.5
-            also she said I'd get a title ix advocate, whatever that is
-            #pause:2
+            she pissed me off #pause:2.4
+            she kept saying "we will treat this with the utmost seriousness" over and over #pause:1.9
+            like...I get it, Irene #pause:2.5
+            also she said I'd get a title ix advocate, whatever that is #pause:2
             did you get one too?
             *mhmm. I got an email this morning
-                **her name is Pradhya. she wants to meet at Grit so we can get to know each other
+                **her name is Pradhya. she wants to meet at Grit so we can get to know each other #pause:3.5
                         ->investigation_discussion
                         
         = investigation_discussion
-          #pause:3.5
-          that's kinda nice. then you can at least pretend like you're going to Grit to study or whatever
-          #pause:2.9
-          you can stay away from the sterile ass dean's hall
-          #pause:3
-          I swear, that place makes me feel like I'm in a funeral parlor
-          #pause:2
+          that's kinda nice. then you can at least pretend like you're going to Grit to study or whatever #pause:2.9
+          you can stay away from the sterile ass dean's hall #pause:3
+          I swear, that place makes me feel like I'm in a funeral parlor #pause:2
           tell me how it goes!
           ~conversation_happening = false
             ->Pradhya_initial_text
 
 === Olivia_titleIXpath_witnesses_2 ===
-    #triggerdate
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
+    #triggerdate
+     ~conversant_name = "Olivia"
     so? how was Pradhya the Advocate? #pause:3.3
     btw I keep misspelling advocate and my phone autocorrects it to avocado #pause:2.8
     one of these days I won't catch it before I hit send
-    *she was so thorough and professional
-        **(Pradhya_comforting)it was comforting
+    *she was so thorough and professional 
+        **(Pradhya_comforting)it was comforting #pause:2.3
             ->advocate_discussion
-        **(Pradhya_intimidating)it was intimidating
+        **(Pradhya_intimidating)it was intimidating #pause:3.3
             ->advocate_discussion
     = advocate_discussion
     {Pradhya_comforting:
-        hell yeah Pradhya the avocado knows her shit
+        hell yeah Pradhya the avocado knows her shit #pause:2
         }
     {Pradhya_intimidating:
-        better for her to know what she's talking about than the alternative...
+        better for her to know what she's talking about than the alternative...#pause:2
         }
-        I got an avocado too btw
-        their name is Shay. they called me this morning to go over the whole 'process' clusterfuckery and it is a lottttt
-        but I trust them
+        I got an avocado too btw #pause:3.9
+        their name is Shay. they called me this morning to go over the whole 'process' clusterfuckery and it is a lottttt #pause:1.4
+        but I trust them #pause:3.1
         they're a local lawyer and they work with assault/gender discrimination victims
-        one thing they said got my attention. there's gonna be a lead investigator and that person will interview duane
-          and people we give as witnesses
-          I didn't realize we could just like
-          give them the names of ANYONE who knows about what happened
-          could be really helpful for us
+        one thing they said got my attention. there's gonna be a lead investigator and that person will interview duane #pause:4.2
+          and people we give as witnesses #pause:1.9
+          I didn't realize we could just like #pause:2.4
+          give them the names of ANYONE who knows about what happened #pause:1.7
+          could be really helpful for us #pause:1.6
           did Pradhya tell you all that?
-          *she did
+          *she did #pause:2.5
             -   good. anyone you're thinking of?
-            ->Rosa_lists_witnesses
+                ->Rosa_lists_witnesses
             
         = Rosa_lists_witnesses
             * {not Mikaela_witness} Mikaela was there
-                **she knows when we got there and when we left
+                **she knows when we got there and when we left #pause:2
                     -> Mikaela_witness
             * {not Rudy_witness} this guy, Rudy, hosted the party
-                **he was outside for a while and saw Duane and me talking
+                **he was outside for a while and saw Duane and me talking #pause:2
                     -> Rudy_witness
             * {Mikaela_witness} {Rudy_witness} -> any_final_witnesses
             = Mikaela_witness
@@ -1136,40 +1117,39 @@ VAR olivia_family_knowledge = 0
         
         = any_final_witnesses
         anyone else?
-        * not that I can think of
+        * not that I can think of #pause:1.8
             -> move_to_Olivia
             
         = move_to_Olivia
         2 people, that's pretty good
-        * what about you?
+        * what about you? #pause:1.3
             ->Olivia_witnesses
             
         = Olivia_witnesses
-        #pause:1
+        
         first there's my roommate, Ally #pause:1.3
-        she took me to the hospital the morning after
-        #pause:2.2
-        then there's one of my professors. I wasn't turning in work for about two weeks and she was the only one who asked if I was okay #pause:.5
-        so I told her #pause:1.5
+        she took me to the hospital the morning after #pause:2.2
+        then there's one of my professors. I wasn't turning in work for about two weeks and she was the only one who asked if I was okay #pause1:.5
+        so I told her #pause:2.5
         she can confirm that I said the same shit to her as I did to Irene #pause:2
         and then there's Mikaela of course #pause:1.2
         so those are the 3
-        *will Mikaela agree to be interviewed twice?
+        *will Mikaela agree to be interviewed twice? #pause:1.1
             ->conversation_end
             
         = conversation_end
-        I dunno
+        I dunno #pause:2
         we can only hope I guess...
-        ~conversation_happening = false
-
-        ->Rudy_knot_1
+            ~conversation_happening = false
+                ->Rudy_knot_1
         
 === Olivia_TitleIXpath_Mikaela_in ===
-    #triggerdate
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
+    #triggerdate
+     ~conversant_name = "Olivia"
     whatever you said to Mikaela, it mustve worked
     she just texted me and said she'd be a witness for both of us
     good work, Agent Rosa
@@ -1207,11 +1187,12 @@ VAR olivia_family_knowledge = 0
                     ->Olivia_book_storylet
                     
 === Olivia_TitleIXpath_Mikaela_out ===
-    #triggerdate
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
+    #triggerdate
+     ~conversant_name = "Olivia"
     damn girl
     whatever you said to Mikaela really pissed her off
     now she's fucking us over by not testifying for EITHER of us
@@ -1261,12 +1242,12 @@ VAR olivia_family_knowledge = 0
             
         
 === Olivia_TitleIxpath_Investigation ===
-    #triggerdate
-    * @
+     * @
         ->ridiculous_intro
     
     = ridiculous_intro
-    #pause:0
+    #triggerdate
+     ~conversant_name = "Olivia"
     did you see the email??
     *what email?
         ->case_judgment

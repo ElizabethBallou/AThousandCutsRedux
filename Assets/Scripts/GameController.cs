@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Assertions.Must;
 
 public class GameController : MonoBehaviour
 {
@@ -17,8 +18,14 @@ public class GameController : MonoBehaviour
     public RectTransform textingScreen;
     public LockScreenController lockScreen;
     public GameObject oliviaBlur;
+    public GameObject rudyBlur;
+    public GameObject jiaBlur;
+    public GameObject pradhyaBlur;
     public Button oliviaButton;
-    public GameObject mikaelaButton;
+    public Button mikaelaButton;
+    public Button rudyButton;
+    public Button jiaButton;
+    public Button pradhyaButton;
     public bool isTexting;
     public bool textWaiting;
     public float textingSpeed;
@@ -72,13 +79,33 @@ public class GameController : MonoBehaviour
                     oliviaBlur.SetActive(false);
                     oliviaButton.interactable = true;
                     oliviaButton.gameObject.transform.SetSiblingIndex(0);
-                    mikaelaButton.gameObject.transform.SetSiblingIndex(2);
+                    //mikaelaButton.gameObject.transform.SetSiblingIndex(2);
+                }
+                if (talkingTo == "Jia")
+                {
+                    jiaBlur.SetActive(false);
+                    jiaButton.interactable = true;
+                    jiaButton.gameObject.transform.SetSiblingIndex(0);
+                }
+                if (talkingTo == "Rudy")
+                {
+                    rudyBlur.SetActive(false);
+                    rudyButton.interactable = true;
+                    rudyButton.gameObject.transform.SetSiblingIndex(0);
                 }
                 if (talkingTo == "Mikaela")
                 {
                     mikaelaButton.gameObject.transform.SetSiblingIndex(0);
-                    oliviaButton.gameObject.transform.SetSiblingIndex(2);
+                    //oliviaButton.gameObject.transform.SetSiblingIndex(2);
                 }
+
+                if(talkingTo == "Pradhya")
+                {
+                    pradhyaBlur.SetActive(false);
+                    pradhyaButton.interactable = true;
+                    pradhyaButton.gameObject.transform.SetSiblingIndex(0);
+                }
+                
                 Services.CharacterManager.characters[talkingTo].textNotification.text = talkingTo+"(1)";
                 Services.CharacterManager.characters[talkingTo].textPreview.text = Services.InkManager.latestText;
                 textWaiting = true;
@@ -125,6 +152,6 @@ public class GameController : MonoBehaviour
 
     public void WaitToChangeNames()
     {
-
+        texterName.text = Services.InkManager.currentConversant;
     }
 }

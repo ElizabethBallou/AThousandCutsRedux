@@ -127,20 +127,27 @@ public class AudioManager : MonoBehaviour
 
     public void FastForwardButtonClick()
     {
+        float timeAmount = 0;
         if(menuTriggered)
         {
             playTextingSound(clickSound, .4f);
+            timeAmount = .5f;
         }
+        else
+        {
+            timeAmount = 3f;
+        }
+        Debug.Log("TimeAmount is " + timeAmount);
         menuTriggered = true;
-        StartCoroutine(AudioFadeEffect(music_audiosource, 1f, 0));
-        Invoke("playNextSong", 1f);
+        StartCoroutine(AudioFadeEffect(music_audiosource, timeAmount, 0));
+        Invoke("playNextSong", timeAmount);
     }
 
     public void RewindButtonClick()
     {
         playTextingSound(clickSound, .4f);
-        StartCoroutine(AudioFadeEffect(music_audiosource, 1f, 0));
-        Invoke("playPreviousSong", 1f);
+        StartCoroutine(AudioFadeEffect(music_audiosource, .5f, 0));
+        Invoke("playPreviousSong", .5f);
     }
 
 }

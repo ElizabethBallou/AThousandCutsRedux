@@ -26,6 +26,8 @@ public class LockScreenController : MonoBehaviour
     private float switchTimer = 0;
     private Color clearWhite = new Color(255, 255, 255, 0);
 
+    private float endEpisodeTimer = 0;
+    private bool startEndtimer = false;
     private void Awake()
     {
         instance = this;
@@ -98,6 +100,17 @@ public class LockScreenController : MonoBehaviour
                 blackBackdrop.color = Color.clear;
             }
         }
+
+        if (startEndtimer)
+        {
+            endEpisodeTimer += Time.deltaTime;
+            if (endEpisodeTimer >= 2f)
+            {
+                startEndtimer = false;
+                endEpisodeTimer = 0;
+                onEndtimerEnd();
+            }
+        }
     }
 
     public void OnUnlockButtonPress()
@@ -122,42 +135,51 @@ public class LockScreenController : MonoBehaviour
     {
         Application.Quit();
     }
-    public void OnLockScreenLock(){
+    public void OnLockScreenLock() {
         AudioManager.instance.FastForwardButtonClick();
         Debug.Log("unlockButtonPressed is " + unlockButtonPressed);
         if (unlockButtonPressed)
         {
-            Services.GameController.characterWithOpenMessages = "";
-            unlockButtonPressed = false;
-            Debug.Log("Calling OnLockScreenLock");
-            SwitchingEpisodes = true;
-            unlockButton.image.color = clearWhite;
+            startEndtimer = true;
+        }
+    }
 
-            //set the proper UI objects active so they can get FADED
-            blackBackdrop.gameObject.SetActive(true);
-            dateText.gameObject.SetActive(true);
-            notificationText.gameObject.SetActive(true);
-            unlockScreenGraphic.gameObject.SetActive(true);
-            unlockButton.gameObject.SetActive(true);
+            
+
+    public void onEndtimerEnd()
+    {
+        Services.GameController.characterWithOpenMessages = "";
+        unlockButtonPressed = false;
+        Debug.Log("Calling OnLockScreenLock");
+        SwitchingEpisodes = true;
+        unlockButton.image.color = clearWhite;
+
+        //set the proper UI objects active so they can get FADED
+        blackBackdrop.gameObject.SetActive(true);
+        dateText.gameObject.SetActive(true);
+        notificationText.gameObject.SetActive(true);
+        unlockScreenGraphic.gameObject.SetActive(true);
+        unlockButton.gameObject.SetActive(true);
 
 
-            //switch the date text so it's accurate
-            Debug.Log("dateArrayIndex is " + Services.DateManager.dateListIndex);
-            dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex - 1];
+        //switch the date text so it's accurate
+        Debug.Log("dateArrayIndex is " + Services.DateManager.dateListIndex);
+        dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex - 1];
 
-            //begin by fading in the backdrop
-            blackBackdrop.DOFade(1f, longFade);
+        //begin by fading in the backdrop
+        blackBackdrop.DOFade(1f, longFade);
 
-            //now fade in the lock screen components
-           
-             dateText.DOFade(1f, fadeTime).SetDelay(longFade);
-             unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
-            unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-             notificationText.DOFade(1f, fadeTime).SetDelay(longFade + 1f)
-                .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
-            }
+        //now fade in the lock screen components
 
+        dateText.DOFade(1f, fadeTime).SetDelay(longFade);
+        unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
+        unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
+        notificationText.DOFade(1f, fadeTime).SetDelay(longFade + 1f)
+           .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
         Invoke("PlayBuzzingSound", 3.5f);
+    }
+
+        
 
             /*if(dateListIndex == currentDateList.Count)
             {
@@ -178,7 +200,6 @@ public class LockScreenController : MonoBehaviour
                 quitButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
             }*/
 
-    }
 
     public void PlayBuzzingSound()
     {
