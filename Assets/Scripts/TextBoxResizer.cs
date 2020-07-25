@@ -12,7 +12,7 @@ public class TextBoxResizer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        text = transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        text = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
         
         stretcher = transform.GetChild(0).GetComponent<RectTransform>();
         

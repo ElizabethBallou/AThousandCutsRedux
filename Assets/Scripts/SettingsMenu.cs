@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+    public static SettingsMenu instance;
     public GameObject settingsMenu;
     public GameObject soundMenu;
     public GameObject restartMenu;
@@ -24,6 +27,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         currentMenuState = MenuState.noMenu;
     }
 
@@ -129,4 +133,5 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioManager.instance.playTextingSound(AudioManager.instance.clickSound, .4f);
     }
+
 }

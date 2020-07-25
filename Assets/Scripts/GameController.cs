@@ -147,7 +147,6 @@ public class GameController : MonoBehaviour
                 Services.CharacterManager.characters[character].transform.gameObject.SetActive(false);
                 Services.CharacterManager.characters[character].choices.gameObject.SetActive(false);
             }
-
     }
 
     public void WaitToChangeNames()

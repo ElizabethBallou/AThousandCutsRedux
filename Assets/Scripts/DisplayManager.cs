@@ -47,7 +47,7 @@ public class DisplayManager
         }
         textObj.transform.localPosition = new Vector2(0,character.height);
         
-        TextMeshProUGUI textDisplay = textObj.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI textDisplay = textObj.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
         textDisplay.text = text;
         character.texts.Add(text);
         character.height -= 0;
