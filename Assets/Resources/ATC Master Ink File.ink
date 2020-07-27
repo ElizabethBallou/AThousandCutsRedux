@@ -2,7 +2,7 @@ INCLUDE Olivia conversations.ink
 INCLUDE Mikaela conversations.ink
 INCLUDE Duane conversations.ink
 INCLUDE Rudy_conversations.ink
-INCLUDE Jia_conversations.ink
+INCLUDE Yujin_conversations.ink
 INCLUDE Pradhya_conversations.ink
 
 
@@ -14,9 +14,9 @@ VAR current_speaker = "conversant"
 VAR current_date = ""
 VAR conversation_happening = true
 VAR anger_level = 0
-VAR jia_trust_level = 0
+VAR yujin_trust_level = 0
 VAR mikaela_trust_level = 0
-VAR convinced_jia = false
+VAR convinced_yujin = false
 VAR convinced_mikaela = false
 VAR TitleIX_taking_Rosas_case = false
 VAR is_rosa = false

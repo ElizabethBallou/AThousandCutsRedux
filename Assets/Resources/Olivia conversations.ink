@@ -23,7 +23,7 @@ VAR olivia_family_knowledge = 0
         okay good #pause:1.3
         well #pause:2.4
         I'm not sure how to start talking about this #pause:2.2
-        do you know Duane? he's a junior in the business school, I think?
+        do you know Duane? he's a junior in the egineering school
         *...yes, I know Duane  #pause:2.6
         *Fuck Duane. we don't talk  #pause:2.6
         *Duane and I aren't friends anymore  #pause:2.6
@@ -803,7 +803,7 @@ VAR olivia_family_knowledge = 0
     you must be a good luck charm <3
         *you bet I am
             ~conversation_happening = false
-            -> Jia_knot_1
+            -> Yujin_knot_1
         
 === Olivia_mom_storylet_phone_followup ===
     ~conversant_name = "Olivia"
@@ -815,7 +815,7 @@ VAR olivia_family_knowledge = 0
     you make it easy to say what I'm actually thinking.
         *aww, thanks
             ~conversation_happening = false
-            ->Jia_knot_1
+            ->Yujin_knot_1
 
 
 === Olivia_date_storylet ===
@@ -1239,6 +1239,8 @@ VAR olivia_family_knowledge = 0
                 ~conversation_happening = false
                 -> Olivia_book_storylet
             }
+        ~conversation_happening = false
+            ->Olivia_book_storylet
             
         
 === Olivia_TitleIxpath_Investigation ===
@@ -1250,13 +1252,13 @@ VAR olivia_family_knowledge = 0
      ~conversant_name = "Olivia"
     did you see the email??
     *what email? #pause:2
-        {convinced_jia == true:
+        {convinced_yujin == true:
             ->case_judgment_both
             }
         {convinced_mikaela == true:
             ->case_judgment_both
             }
-        {convinced_jia == false && convinced_mikaela == false:
+        {convinced_yujin == false && convinced_mikaela == false:
             ->case_judgment_one
             }
     

@@ -17,7 +17,6 @@ public class DateManager
     public void HandleDateText(TextAsset thisText)
     {
         DateList = thisText.text.Split('\n').ToList();
-        Debug.Log("The length of dateList is " + DateList.Count);
     }
 
     public void TimePassing()

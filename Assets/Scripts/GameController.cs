@@ -19,12 +19,12 @@ public class GameController : MonoBehaviour
     public LockScreenController lockScreen;
     public GameObject oliviaBlur;
     public GameObject rudyBlur;
-    public GameObject jiaBlur;
+    public GameObject yujinBlur;
     public GameObject pradhyaBlur;
     public Button oliviaButton;
     public Button mikaelaButton;
     public Button rudyButton;
-    public Button jiaButton;
+    public Button yujinButton;
     public Button pradhyaButton;
     public bool isTexting;
     public bool textWaiting;
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         Services.CharacterManager.characters["Mikaela"].textingInProgressIcon = textingInProgressIcons[1];
         Services.CharacterManager.characters["Duane"].textingInProgressIcon = textingInProgressIcons[2];
         Services.CharacterManager.characters["Rudy"].textingInProgressIcon = textingInProgressIcons[3];
-        Services.CharacterManager.characters["Jia"].textingInProgressIcon = textingInProgressIcons[4];
+        Services.CharacterManager.characters["Yujin"].textingInProgressIcon = textingInProgressIcons[4];
         Services.CharacterManager.characters["Pradhya"].textingInProgressIcon = textingInProgressIcons[5];
         
         foreach (GameObject textingIcon in textingInProgressIcons)
@@ -81,11 +81,11 @@ public class GameController : MonoBehaviour
                     oliviaButton.gameObject.transform.SetSiblingIndex(0);
                     //mikaelaButton.gameObject.transform.SetSiblingIndex(2);
                 }
-                if (talkingTo == "Jia")
+                if (talkingTo == "Yujin")
                 {
-                    jiaBlur.SetActive(false);
-                    jiaButton.interactable = true;
-                    jiaButton.gameObject.transform.SetSiblingIndex(0);
+                    yujinBlur.SetActive(false);
+                    yujinButton.interactable = true;
+                    yujinButton.gameObject.transform.SetSiblingIndex(0);
                 }
                 if (talkingTo == "Rudy")
                 {
@@ -133,7 +133,7 @@ public class GameController : MonoBehaviour
         Services.InkManager.SelectChoice(choice);
     }
     public void SelectCharacter(string character){
-        Debug.Log(character);
+        //Debug.Log(character);
         Services.CharacterManager.characters[character].transform.gameObject.SetActive(true);
         Services.CharacterManager.characters[character].choices.gameObject.SetActive(true);
         Services.CharacterManager.characters[character].textNotification.text = character;

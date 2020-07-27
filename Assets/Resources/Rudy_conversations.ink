@@ -9,16 +9,15 @@
  Hi Rosa. This is Rudy. Long time no talk! I hope you're doing well.#pause:4
  I got an email from a Title IX investigation committee - they want to interview me. I hope this is appropriate to ask, but I was wondering if you could tell me more? I'm happy to talk to them, I just don't know what this is about. #pause:2
  All the email said was that something happened during my Halloween party, and it was related to you?
- 
- *Hi Rudy. I'm fine I guess. #pause:3.5
-  ~conversation_happening = true
-    ->Rosa_polite
- *damn that's all the email said? #pause:2.5
-  ~conversation_happening = true
-    ->Rosa_disbelieving
- *oh god here we go again #pause:3.5
-  ~conversation_happening = true
-    ->Rosa_overwhelmed
+    *Hi Rudy. I'm fine I guess. #pause:3.5
+        ~conversation_happening = true
+        ->Rosa_polite
+    *damn that's all the email said? #pause:2.5
+        ~conversation_happening = true
+        ->Rosa_disbelieving
+    *oh god here we go again #pause:3.5
+        ~conversation_happening = true
+        ->Rosa_overwhelmed
  
     = Rosa_polite
         Hey, no need to be polite. If you're in the middle of a Title IX thing, life is uhhhh probably hard

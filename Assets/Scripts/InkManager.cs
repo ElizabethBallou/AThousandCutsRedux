@@ -28,6 +28,8 @@ public class InkManager : MonoBehaviour
     private float showTimer = 0;
     // Start is called before the first frame update
 
+    private bool inSpeedyMode = false;
+
     public enum dotState
     {
         showing,
@@ -84,7 +86,15 @@ public class InkManager : MonoBehaviour
                         }
                     }
                 }
-                timeBetweenPrints = myPauseTag;
+                if (!inSpeedyMode)
+                {
+                    timeBetweenPrints = myPauseTag;
+                }
+                else
+                {
+                    timeBetweenPrints = 0;
+                }
+
                 if (myPauseTag > 0)
                 {
                     currentDotState = dotState.showing;
@@ -139,7 +149,7 @@ public class InkManager : MonoBehaviour
                             Services.DisplayManager.choices[i].text = "";
                             break;
                         }else{
-                            Services.DisplayManager.choices[i].text = (i+1)+". "+story.currentChoices[i].text;
+                            Services.DisplayManager.choices[i].text = "--- " +story.currentChoices[i].text + " ---";
                         }
                         
                     }else{
@@ -191,6 +201,9 @@ public class InkManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
         {
+            inSpeedyMode = true;
+            Debug.Log("IM IN SPEEDY MODE");
+            /*
             var myCurrentPath = story.state.currentPathString;
             int tries = 0;
 
@@ -212,8 +225,8 @@ public class InkManager : MonoBehaviour
                 shouldContinue = !story.state.currentPathString.Contains(".")
                     || story.state.currentPathString.Split('.')[1] != "debug_fast_forward";
             }
-            /*string[] myPathBits = myCurrentPath.Split('.');
-            story.ChoosePathString(myPathBits[0].ToString() + ".debug_fast_forward");*/
+            
+            */
         }
 
     }
