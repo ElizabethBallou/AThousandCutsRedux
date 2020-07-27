@@ -1,35 +1,56 @@
 
 === Duane_knot_1 ===
+* @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
+    #triggerdate
     ~conversant_name = "unknown"
-    hi rosa
-    long time no talk 
-    youre such a ccut 
-    cunt 
+    hi rosa #pause:2.5
+    long time no talk #pause:2.9
+    youre such a ccut #pause:1
+    cunt #pause:2
     fucking cunt 
-    * who are you?
+    * who are you? #pause:2.6
         -> unknown_makes_threats
-    * Duane?
+    * Duane? #pause:2.6
         -> unknown_makes_threats
     = unknown_makes_threats
-       i know what youre doing
-       you and that other bitch
-       *(stop_texting_me) stop texting me 
-       *(report_Title_IX) I'm going to report this to Title IX 
-       *(call_police) I'm calling the police
-       -    -> unknown_makes_threats_2
+        {TitleIX_taking_Rosas_case == true:
+             i know what youre doing #pause:1.4
+            you and olvia
+            }
+        {TitleIX_taking_Rosas_case == false:
+            i know what olvia is doing #pause:1.9
+            and you helped
+            }
+       *(stop_texting_me) stop texting me #pause:1.9
+           -> unknown_makes_threats_2
+       *(report_Title_IX) I'm going to report this to Title IX  #pause:2.4
+              -> unknown_makes_threats_2
+       *(call_police) I'm calling the police #pause:2.9
+              -> unknown_makes_threats_2
        
     = unknown_makes_threats_2
-        {stop_texting_me: dont tell me what to do}
-        {report_Title_IX: thats all your kind ever does. report report report}
-        {call_police: thats all your kind ever does. threats after threats after threats}
-        youre insane do you know that
-        literally insan
+        {stop_texting_me:
+            dont tell me what to do #pause:3
+            }
+        {report_Title_IX:
+            thats all you do. report report report #pause:3
+            }
+        {call_police:
+            thats all you do. threats after threats after threats #pause:3
+            }
+        youre insane do you know that #pause:1.8
+        literally insan #pause:1
         insane
-        * what are you on 
+        * are you on something?
             -> unknown_makes_threats_3
-        * [say nothing]
+        * ok we don't have time to unpack all that
             -> unknown_makes_threats_3
+
     = unknown_makes_threats_3
         your not going to win this
-        ->DONE
+        ~conversation_happening = false
+            ->post_threat_text
        

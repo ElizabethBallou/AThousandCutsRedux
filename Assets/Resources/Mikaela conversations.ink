@@ -188,12 +188,12 @@
             ~conversation_happening = false
                 -> Olivia_TitleIXpath_witnesses
         
-    = option2_goodbye
+   /* = option2_goodbye
         she doesn't, I promise
         she'll come around soon
         in the meantime...things are going to get hard for her.
          ~conversation_happening = false
-        {Olivia_knot_3.Rosa_wants_title_ix: -> Olivia_TitleIXpath_witnesses}
+        {Olivia_knot_3.Rosa_wants_title_ix: -> Olivia_TitleIXpath_witnesses}*/
 
 === Mikaela_scared_testifying ===
     * @
@@ -211,7 +211,7 @@
     = Mikaela_is_witness
     I'm not though. I didn't see what happened either time 
     *no, but both of us talked to you and told you details pretty soon after stuff happened
-        **that's what makes you a witness #pause:.5
+        **that's what makes you a witness #pause:1.1
             - ok but #pause:2.8
             I told you I don't know about Title IX in the first place
                     ***(Rosa_upset)are you seriously still thinking about yourself?? #pause:1.5
@@ -224,7 +224,7 @@
         no no I'm not #pause:1.7
         thinking about myself I mean #pause:1.3
         I'm just telling you my opinion
-        *(cares_about_opinion) well...thanks I guess
+        *(cares_about_opinion) well...thanks I guess #pause:3
                 ~mikaela_trust_level += 1
             -> Rosa_reacts_to_Mikaela_2
         *(doesnt_care_about_opinion) I don't care about your opinion. jesus #pause:3
@@ -268,12 +268,12 @@
             - well okay #pause:3
                 I've told you about my dad leaving but I don't think I ever told you about the guys my mom dated after #pause:2.7
                 she was in a bad place. WE were in a bad place. we didn't have a lot of money and she worked so much #pause:4.5
-                she dated one guy, Jordan, for a year. he was a cop. at first he acted sweet and responsible - really lawful good, etc. - but he turned out to be a piece of shit #pause:3.2
-                he stole money and pawned the TV and drank all the time. and when we got the locks changed he drunkenly beat the back door down #pause:2.3 
-                my mom tried everything. she reported him to the police but he WAS the police #pause:2
+                she dated one guy, Jordan, for a year. he was a cop. at first he acted sweet and responsible - really lawful good, etc. - but he turned out to be a piece of shit #pause:4.2
+                he stole money and pawned the TV and drank all the time. and when we got the locks changed he drunkenly beat the back door down #pause:3.3 
+                my mom tried everything. she reported him to the police but he WAS the police #pause:2.8
                 and every time she tried something he'd get angrier #pause:3.6
-                we stayed with family friends for a while and didn't tell him. when he found out, he showed up and fired his gun into the air #pause:2.8
-                eventually we moved away and my mom dated different shitty guys. though none of them were as shitty as Jordan #pause:1.5
+                we stayed with family friends for a while and didn't tell him. when he found out, he showed up and fired his gun into the air #pause:3.8
+                eventually we moved away and my mom dated different shitty guys. though none of them were as shitty as Jordan #pause:2.5
                 Jordan never paid for what he did. never. #pause:2
                 and he never will, because these systems are broken #pause:3
                 Title IX is the same. have you ever heard of it WORKING for students who report? because I haven't. all I've heard are horror stories #pause:2.7
@@ -314,7 +314,7 @@
         I'll do the interview
         *(good_friend)you're a really good friend, Mikaela. #pause:2
             ->Mikaela_goodbye
-        *(mac_n_cheese)I will get you so much mac n cheese
+        *(mac_n_cheese)I will get you so much mac n cheese #pause:2.4
             ->Mikaela_goodbye
         }
     {mikaela_trust_level == 2:

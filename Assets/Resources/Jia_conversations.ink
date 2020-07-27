@@ -2,7 +2,7 @@
 === Jia_knot_1 ===
     #triggerdate
  ~conversant_name = "Jia"
-    hi! this is Jia. Rudy told me what was happening #pause:2.2
+    hi! this is Jia. I'm Rudy's friend. he told me what was happening #pause:2.8
     I'm so sorry you got Duaned
     *I hate that Duane is now a verb, but yes #pause:3.2
      ~conversation_happening = true
@@ -41,7 +41,7 @@
             first let me say: I don't know if I wanna be interviewed for your case. I'm not bold #pause:2
             at least not in the formal case-filing way #pause:2.3
             but I do want you to know that Duane is problematic AF so that you don't doubt yourself #pause:4.5
-            he basically drove me home from Into the Woods rehearsal one night and then came inside even though I wanted to go to bed. and then he would not! fucking!! leave!!!
+            he basically drove me home from Into the Woods rehearsal one night and then came inside even though I wanted to go to bed. and then he would not! fucking!! leave!!! #pause:3.2
             we ended up having sex. idk why, I was stressed. but in the middle of it he took the condom off #pause:3
             I was like EXCUSE ME SIR U NEED TO STOP. but he wouldn't #pause:2.4
             sorry if this is tmi, I'm pretty frank about sex stuff
@@ -132,7 +132,7 @@
             {jia_trust_level == 2:
                 I might regret this but okay. #pause:4
                 I'm in
-                *thank you so much
+                *thank you so much #pause:1.9
                     ->Jia_helping
                 }
             {jia_trust_level == 3:

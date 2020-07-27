@@ -79,7 +79,7 @@
     = Rudy_goodbye
     {Rosa_thankful:
         You're very welcome. #pause:3.4
-        Actually I think there's someone else you should talk to.
+        Actually I think there's someone else you should talk to. #pause:2.9
         ->Rudy_mentions_Jia
         }
     {Rosa_questioning:

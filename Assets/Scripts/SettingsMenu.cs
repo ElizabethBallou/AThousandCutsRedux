@@ -63,7 +63,7 @@ public class SettingsMenu : MonoBehaviour
                 quitMenu.gameObject.SetActive(false);
                 break;
             case MenuState.quitMenu:
-                settingsMenu.gameObject.SetActive(true);
+                settingsMenu.gameObject.SetActive(false);
                 soundMenu.gameObject.SetActive(false);
                 restartMenu.gameObject.SetActive(false);
                 quitMenu.gameObject.SetActive(true);

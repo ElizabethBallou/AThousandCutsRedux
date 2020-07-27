@@ -247,7 +247,6 @@ VAR olivia_family_knowledge = 0
 
 === Olivia_knot_2 ===
     * @
-    #pause:3
         ->ridiculous_intro
     
     = ridiculous_intro
@@ -1151,30 +1150,30 @@ VAR olivia_family_knowledge = 0
     = ridiculous_intro
     #triggerdate
      ~conversant_name = "Olivia"
-    whatever you said to Mikaela, it mustve worked
-    she just texted me and said she'd be a witness for both of us
+    whatever you said to Mikaela, it mustve worked #pause:2.4
+    she just texted me and said she'd be a witness for both of us #pause:1.8
     good work, Agent Rosa
-        *(Rosa_glad)I'm glad she could see our perspective
+        *(Rosa_glad)I'm glad she could see our perspective #pause:2.3
             ~conversation_happening = true
             ->do_the_right_thing
-        *(Rosa_upset)don't congratulate me. it felt manipulative
+        *(Rosa_upset)don't congratulate me. it felt manipulative #pause:1.5
             ->do_the_right_thing
             
     = do_the_right_thing
         {Rosa_glad:
-            me too. I thought she might pussy out
-            imho, if someone asks you to testify in a title ix case, you SHOULD do it. you have the chance to help a person in an incredibly shitty situation
+            me too. I thought she might pussy out #pause:3.2
+            imho, if someone asks you to testify in a title ix case, you SHOULD do it. you have the chance to help a person in an incredibly shitty situation #pause:2.3
             anything else is cowardly
-                *Mikaela had her reasons for hesitating
+                *Mikaela had her reasons for hesitating #pause:2.4
                     ->conclusion
             }
         {Rosa_upset:
             what? how?
                 *because she's suffered too
-                    **in different ways, but...it still counts
+                    **in different ways, but...it still counts #pause:3.8
                             imho, if someone asks you to testify in a title ix case, you SHOULD do it. you have the chance to help a person in an incredibly shitty situation
                             anything else is cowardly
-                                ***Mikaela had her reasons for hesitating
+                                ***Mikaela had her reasons for hesitating #pause:2.4
                                     ->conclusion
             }
     = conclusion
@@ -1250,76 +1249,293 @@ VAR olivia_family_knowledge = 0
     #triggerdate
      ~conversant_name = "Olivia"
     did you see the email??
-    *what email?
-        ->case_judgment
+    *what email? #pause:2
+        {convinced_jia == true:
+            ->case_judgment_both
+            }
+        {convinced_mikaela == true:
+            ->case_judgment_both
+            }
+        {convinced_jia == false && convinced_mikaela == false:
+            ->case_judgment_one
+            }
     
-    = case_judgment
-    {convinced_jia == true && convinced_mikaela == true:
-        #pause:1
-        from the Title IX people
-        #pause:.7
+    = case_judgment_both
+        from the Title IX people #pause:2
         they're taking BOTH of our cases!!
         ~TitleIX_taking_Rosas_case = true
-        }
-    {convinced_jia == true:
-        #pause:1
-        from the Title IX people
-        #pause:.7
-        they're taking BOTH of our cases!!
-        ~TitleIX_taking_Rosas_case = true
-        }
-    {convinced_mikaela == true:
-        #pause:1
-        from the Title IX people
-        #pause:.7
-        they're taking BOTH of our cases!!
-        ~TitleIX_taking_Rosas_case = true
-        }
-    {convinced_mikaela == false && convinced_jia == false:
-        #pause:1
-        from the Title IX people
-        #pause:.8
-        my case is moving forward!!
-        #pause:3
-        but...yours isn't
-        #pause:1.4
-        I'm really sorry, Rosa. you can still testify as a witness in mine I think
-        }
-    {TitleIX_taking_Rosas_case == true:
-        *(shocked)ARE YOU SERIOUS
+        *(shocked)ARE YOU SERIOUS #pause:1
             ->taking_Rosas_case
-        *(Rosa_terrified)well this is terrifying
+        *(Rosa_terrified)well this is terrifying #pause:2.3
             ->taking_Rosas_case
-        *(get_this_far)I didn't think we'd actually get this far
+        *(get_this_far)I didn't think we'd actually get this far #pause:1.9
             ->taking_Rosas_case
-        }
-    {TitleIX_taking_Rosas_case == false:
-        *(relieved)that is a relief tbh
-            ->not_taking_Rosas_case
-        *(disappointed)but I was so ready to go the whole way
-            ->not_taking_Rosas_case
-        }
+            
     = taking_Rosas_case
         {shocked:
-        #.9
-        YES I AM 
-        }
+            YES I AM #pause:3.3
+            }
         {Rosa_terrified:
-        #1.5
-        are you joking???? I cant sit still right now Im so excited
-        }
+            are you joking???? I cant sit still right now Im so excited #pause:3.3
+            }
         {get_this_far:
-        #pause:1.6
-        I was trying not to get ahead of myself
-        #pause:1
-        THEY THINK WE'RE TELLING THE TRUTH
-        #pause:.8
-        I mean maybe they think that
-        #pause:.4
-        whatever, this is a victory
-        }
-        ->DONE
+            I was trying not to get ahead of myself #pause:1.8
+            THEY THINK WE'RE TELLING THE TRUTH #pause:2.5
+            I mean maybe they think that #pause:1.3
+            whatever! this is a victory #pause:3.3
+            }
+        what's your schedule like today? we should meet up at Jolly Molly's #pause: 3.7
+        one of the bartenders was in the Into the Woods orchestra w me and she gives me free shots #pause:2
+        WHICH WE WILL NEED FOR A CELEBRATION
+        *(yes_jm)fuck it let's go now
+            ->celebrating
+        *(no_fake_jm)I don't have a fake, remember?
+            ->celebrating
+        *(tea_please)can we drink tea in my apartment instead...?
+            ->celebrating
+    
+    = celebrating
+        {yes_jm:
+            you are bold and I like that #pause:1.9
+            see you there!!!
+            ~conversation_happening = false
+                ->Duane_knot_1
+            }
+        {no_fake_jm:
+            then come over to my place and we'll have some shots there instead :)
+            *if you insist!
+                come over any time after 8
+                I'm so happy
+                I hope you are too
+                    ~conversation_happening = false
+                        ->Duane_knot_1
+            *can we drink tea in my apartment instead...?
+                uggghhhhh FINE but I will bring a flask of whiskey
+                I'm making mine a hot toddy
+                I won't make you drink one, don't worry
+                see you sooooooooon
+                    ~conversation_happening = false
+                        ->Duane_knot_1
+            }
+        {tea_please:
+            ggghhhhh FINE but I will bring a flask of whiskey
+                I'm making mine a hot toddy
+                I won't make you drink one, don't worry
+                see you sooooooooon
+                    ~conversation_happening = false
+                        ->Duane_knot_1
+            }
+            
+    = case_judgment_one
+        from the Title IX people #pause:2
+        my case is moving forward!! #pause:4
+        but...yours isn't
+        *(relieved)that is a relief tbh #pause:2.1
+            ->not_taking_Rosas_case
+        *(disappointed)but I was so ready to do this... #pause:1.4
+            ->not_taking_Rosas_case
+        *(angry)fuck them.
+            ->not_taking_Rosas_case
+    
     = not_taking_Rosas_case
-    ->DONE
-          
+    {relieved:
+        is it really? #pause:2.1
+        I wasn't expecting you to say that #pause:2.4
+            ->come_over
+        }
+    {disappointed:
+        I know :( #pause:3.6
+        I was afraid this might happen but I really hoped it wouldn't. #pause:2.4
+            ->come_over
+        }
+    {angry:
+        wait fuck who? me? the investigator?
+            *everyone #pause:2
+                I'm so sorry Rosa. #pause:3.5
+                what happened to you IS worth investigating and I'm sorry someone couldn't see that. #pause:2.4
+                    ->come_over
+        }
+    = come_over
+        wanna come over to my dorm tonight? #pause:1.6
+        Ally is at her boyfriend's #pause:2.4
+        we can watch David Attenborough documentaries #pause:2.1
+        which is what I do when I'm sad btw
+            *(love_that)I'd love that #pause:1.2
+                ->response_come_over
+            *(no_thank_you)no thanks, I'm fine #pause:1.8
+                ->response_come_over
+            *(too_painful)that would be too painful
+                ->response_come_over
+                
+    = response_come_over
+    {love_that:
+        great :) #pause:2.1
+        come any time after 8! #pause:2.9
+        heck, come whenever. you're always welcome here
+            ~conversation_happening = false
+                ->Duane_knot_1
+        }
+    {no_thank_you:
+        I feel like that isn't true #pause:1.9
+        but I won't push you #pause:2.5
+        I'll be here if you want to call
+            ~conversation_happening = false
+                ->Duane_knot_1
+        }
+    {too_painful:
+        yeah I get it.
+        I'll see you soon then
+            ~conversation_happening = false
+                ->Duane_knot_1
+        }
+    ->Duane_knot_1
+    
+=== post_threat_text ===
+ * @
+        ->ridiculous_intro
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Olivia"
+    he texted me
+    im sure itw as him
+    an unknown number texted me "youll wish you didnt do this"
+    *he texted me too
+        I can't believe it #pause:1.6
+        what did he say?
+            **(insane)he said I was insane
+                ->what_Duane_said
+            **(wont_win)he said we won't win this
+                ->what_Duane_said
+            **(not_important)it's not important
+                ->what_Duane_said
+    = what_Duane_said
+    {insane:
+        you're NOT
+        }
+    {wont_win:
+        was he threatening you?
+        jesus ffffff
+        }
+    {not_important:
+        rosa this is very important
+        }
+        we have to do something
+        right?
+        tell someone
+        *who?
+            **(police)the police? #pause:2.7
+                ->who_tell
+            **(title_ix)the title ix office? #pause:1.4
+                ->who_tell
+            **(martial_arts)your friends on the martial arts team?
+                ->who_tell
+    = who_tell
+        {police:
+            I can't think of any charges they could file #pause:1.6
+            but why not right? #pause:2.1
+            I'll call later when I'm calmer #pause:3
+            }
+        {title_ix:
+            yeah I guess #pause:1.9
+            I'm not sure what they can do but #pause:1.3
+            I'll email later #pause:1.2
+            when I'm calmer #pause:3
+            }
+        {martial_arts:
+            come on take this seriously #pause:1.8
+            I'm freaking out #pause:3
+            }
+        do we have to worry? #pause:2.4
+        about duane hurting us I mean
+        *it's smart to worry #pause:2
+            exhausting too #pause:2.5
+                and the case hasn't even been heard yet #pause:2.9
+                    ->think_duane_might_kill
+        *he won't actually do anything 
+            **he's not that stupid...I think #pause:2.4
+                -   it's not a question of stupidity #pause:1.8
+                    (tho he's no genius) #pause:2.1
+                    it's whether he gets mad enough #pause:2.9
+                        ->think_duane_might_kill
+            
+    = think_duane_might_kill
+        rosa, do you think #pause:3.4
+        that if there were no laws, no police, nothing to stop him #pause:4
+        duane would just kill us?
+        *(he_would)he would #pause:1.9
+            ->might_kill_2
+        *(he_wouldnt)he wouldn't #pause:2.1
+            ->might_kill_2
+        
+    = might_kill_2
+        {he_would:
+            that's what I think too. #pause:2.9
+            }
+        {he_wouldnt:
+            I wish I could agree with you #pause:1.8
+            I bet he'd do it
+            }
+        and if you could get away with killing him #pause:1.4
+        no consequences #pause:1.2
+        would you?
+        *yes #pause:2
+            me too #pause:2.9
+            that makes us bad people I think #pause:2.2
+            but also I don't care
+                ->conclusion
+        *no #pause:2
+            you're better than me then #pause:1.8
+            I'd off him #pause:2.4
+            that makes me a bad person I think
+                ->conclusion
+        *I don't know #pause:2
+            oh. I do #pause:2.2
+            I'd off him
+            that makes me a bad person I think
+                ->conclusion
+    
+    = conclusion
+        I'm gonna go hide under the covers for a while
+        {police:
+            then I'll call the police
+            }
+        {title_ix:
+            then I'll email Shay
+            }
+        {martial_arts:
+            then...dunno what
+            punch my pillow maybe
+            }
+        this may sound too sappy but...I'm so glad to have you, Rosa
+        *I hope I'm enough
+            ~conversation_happening = false
+                -> fake_conversational_end
+        *I'm glad to have you too
+            ~conversation_happening = false
+                -> fake_conversational_end
+    
+    = fake_conversational_end    
+        ->DONE
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
