@@ -136,9 +136,12 @@ public class InkManager : MonoBehaviour
                     if(i < story.currentChoices.Count){
                         if(story.currentChoices[i].text == "@")
                         {
-
+                            Services.DisplayManager.choices[i].text = "";
+                            break;
+                        }else{
+                            Services.DisplayManager.choices[i].text = (i+1)+". "+story.currentChoices[i].text;
                         }
-                        Services.DisplayManager.choices[i].text = (i+1)+". "+story.currentChoices[i].text;
+                        
                     }else{
                         Services.DisplayManager.choices[i].text = "";
                     }

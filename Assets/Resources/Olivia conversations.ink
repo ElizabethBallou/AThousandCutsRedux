@@ -247,6 +247,7 @@ VAR olivia_family_knowledge = 0
 
 === Olivia_knot_2 ===
     * @
+    #pause:3
         ->ridiculous_intro
     
     = ridiculous_intro

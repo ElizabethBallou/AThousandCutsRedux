@@ -36,6 +36,9 @@ public class DisplayManager
     }
     // Start is called before the first frame update
     public void WriteText(string text, string characterName, bool isRosa){
+        if(text == ""){
+            return;
+        }
         Character character = Services.CharacterManager.characters[characterName];
         Transform parent = character.transform;
         GameObject textObj;
