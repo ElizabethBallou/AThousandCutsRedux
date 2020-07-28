@@ -1,4 +1,8 @@
 === Yujin_knot_1 ===
+* @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
     #triggerdate
  ~conversant_name = "Yujin"
     hi! this is Yujin. I'm Rudy's friend. he told me what was happening #pause:2.8
@@ -11,8 +15,10 @@
         ->yujin_asks_questions
     
     = yujin_asks_questions
-        so you're filing a Title IX complaint? You and someone else? that's so brave
-        *(Rosa_feels_brave)oh yes we want to take him down #pause:1.6
+        so you're filing a Title IX complaint? you and Olivia? #pause:2.8
+        I remember her from Into the Woods. she's so funny and doesn't take anyone's bs #pause:1.7
+        you're both really brave
+        *(Rosa_feels_brave) we want to take him down #pause:1.6
             ->Yujin_asks_questions_2
         *(Rosa_eh_brave)I guess so #pause:2.2
             ->Yujin_asks_questions_2
@@ -158,5 +164,97 @@
             then I don't have time to change my mind #pause:3.5
             whatever happens...I hope Duane gets what's coming to him.
             ~conversation_happening = false
-                ->Mikaela_scared_testifying
+                ->yujin_talks_to_olivia
+
+=== yujin_talks_to_olivia ===
+* @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Yujin"
+    hey lady! I've been talking to Olivia too #pause:2.5
+    looks like I'll get interviewed twice: once for your case and once for hers #pause:2
+    which is pointless because I'll say the same thing #pause:1.9
+    guess that's just how the cookie crumbles #pause:1.2
+    or rather #pause:2.7
+    how the cookie has to behave when thrown into the wild world of Title IX
+    *I have to be interviewed for Olivia's case, and she has to be interviewed for mine 
+        **my advocate says the cases can't be combined #pause:1.6
+            makes sense #pause:2.9
+            wouldn't want Duane to get a Dramatic Courtroom Monologue where he can be like "MY RIGHTS, THEY HAVE BEEN VIOLATED" #pause:1.7
+            which he WOULD do lol #pause: 2.2
+            I'm a drama queen and game recognizes game #pause:2
+            better not to give him any loopholes.
+                ~conversation_happening = false
+                    ->Mikaela_scared_testifying
+    
+=== duane_threat_follow_up ===
+* @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Yujin"
+    sorry I didn't answer the phone when you called. I'm in rehearsal for Spring Awakening #pause:2.1
+    we're on break so I just listened to your voicemail about Duane #pause:1.9
+    first, I'm so so sorry. What a manipulative dickweasel #pause:2.7
+    second, no he hasn't texted me anything. but I'm terrified that he will #pause:2.1
+    does he know I'm testifying for you n Olivia?
+    *I...think so
+        **the lead investigator sent out a pdf that summarized everything she did, including the people she interviewed
+                ***she anonymized witnesses but Duane can probably figure it out #pause:1.2
+                    fuck fuck fuck #pause:1.7
+                    if he says anything publicly about me idk what I'll do
+                        ****(wont_hurt)even if he does, that won't hurt us #pause:1.7
+                            ->discuss_fear
+                        ****(understand_worry)I understand why you're worried :/ #pause:1.3
+                            ->discuss_fear
+                        
+    = discuss_fear
+    {wont_hurt:
+        yes! yes it will! #pause:3
+        }
+    {understand_worry:
+        do you? #pause:3
+        }
+        my parents pay for most of my tuition. if they find out and they don't approve, they might stop paying #pause:2.1
+        it's a threat they've made before
+        *(not_healthy)that doesn't sound healthy #pause:2.8
+            ->react_parents
+        *(really_sorry)I'm really really sorry you have to worry about that #pause:2.8
+            ->react_parents
+        *(really_mad)I'm gonna kill Duane #pause:1.9
+            ->react_parents
+    
+    = react_parents
+        {not_healthy:
+            my parents do love me and idk if they mean that threat #pause:2.2
+            but...I think about it a lot #pause:3
+            look it's complicated and I don't super want to get into it #pause:1.8
+            }
+        {really_sorry:
+            hey a lot of folks have to worry about so much more #pause:1.9
+            it's HUGE that my parents pay my tuition #pause:1.7
+            but yeah it's complicated #pause:1.8
+            }
+        {really_mad:
+            don't text stuff like that. seriously #pause:2.9
+            what if Duane sues us and we have to turn over our messages? #pause:2.5
+            (my big brother is a lawyer so I think about this stuff) #pause:1.8
+            }
+        okay break's over, gotta *keep dancin* #pause:1.8
+        I'll text you if he tries anything
+            *thanks
+                ~conversation_happening = false
+                    ->Pradhya_pre_meeting
+            
         
+    
+    
+    
+    
+    
+    
+    
+    
