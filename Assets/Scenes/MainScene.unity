@@ -1645,7 +1645,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2027451330}
-        m_MethodName: OnPlayButtonClick
+        m_MethodName: OnAboutClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6345,7 +6345,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2027451330}
-        m_MethodName: OnPlayButtonClick
+        m_MethodName: ReturnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19494,6 +19494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f5180eda646c64aa2bab32eb53e13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aboutScreen: {fileID: 197776633}
+  blackBackdrop: {fileID: 433951165}
 --- !u!222 &2027451331
 CanvasRenderer:
   m_ObjectHideFlags: 0
