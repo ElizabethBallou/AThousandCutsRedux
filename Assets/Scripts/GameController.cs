@@ -18,10 +18,12 @@ public class GameController : MonoBehaviour
     public RectTransform textingScreen;
     public LockScreenController lockScreen;
     public GameObject oliviaBlur;
+    public GameObject duaneBlur;
     public GameObject rudyBlur;
     public GameObject yujinBlur;
     public GameObject pradhyaBlur;
     public Button oliviaButton;
+    public Button duaneButton;
     public Button mikaelaButton;
     public Button rudyButton;
     public Button yujinButton;
@@ -89,6 +91,7 @@ public class GameController : MonoBehaviour
                 }
                 if (talkingTo == "Rudy")
                 {
+                    Debug.Log("IM TALKIN TO RUDY");
                     rudyBlur.SetActive(false);
                     rudyButton.interactable = true;
                     rudyButton.gameObject.transform.SetSiblingIndex(0);
@@ -104,6 +107,13 @@ public class GameController : MonoBehaviour
                     pradhyaBlur.SetActive(false);
                     pradhyaButton.interactable = true;
                     pradhyaButton.gameObject.transform.SetSiblingIndex(0);
+                }
+
+                if(talkingTo == "unknown" || talkingTo == "Duane")
+                {
+                    duaneBlur.SetActive(false);
+                    duaneButton.interactable = true;
+                    duaneButton.gameObject.transform.SetSiblingIndex(0);
                 }
                 
                 Services.CharacterManager.characters[talkingTo].textNotification.text = talkingTo+"(1)";

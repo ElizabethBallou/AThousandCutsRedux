@@ -85,6 +85,10 @@ public class InkManager : MonoBehaviour
                             //Debug.Log("Has a tag of "+myPauseTag);
                         }
                     }
+                    if(tag.Contains("yujin"))
+                    {
+                        //do something
+                    }
                 }
                 if (!inSpeedyMode)
                 {
@@ -109,7 +113,7 @@ public class InkManager : MonoBehaviour
                 {
                     if (tag.Contains("triggerdate"))
                     {
-                        Debug.Log("I have read triggerdate");
+                        //Debug.Log("I have read triggerdate");
                         Services.DisplayManager.WriteDate(currentConversant);
                         currentDotState = dotState.off;
                     }
@@ -274,7 +278,7 @@ public class InkManager : MonoBehaviour
         }
         madeChoices = false;
         Debug.Log("Ï JUST FAKE WENT");
-        Debug.Log(story.canContinue);
+        //Debug.Log(story.canContinue);
     }
 
     public void GrowDots()

@@ -1071,9 +1071,11 @@ VAR olivia_family_knowledge = 0
     one of these days I won't catch it before I hit send
     *she was so thorough and professional 
         **(Pradhya_comforting)it was comforting #pause:2.3
-            ->advocate_discussion
+            ~conversation_happening = true
+                ->advocate_discussion
         **(Pradhya_intimidating)it was intimidating #pause:3.3
-            ->advocate_discussion
+            ~conversation_happening = true
+                ->advocate_discussion
     = advocate_discussion
     {Pradhya_comforting:
         hell yeah Pradhya the avocado knows her shit #pause:2

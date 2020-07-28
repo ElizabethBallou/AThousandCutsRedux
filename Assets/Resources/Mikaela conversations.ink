@@ -1,15 +1,16 @@
 
 === Mikaela_knot_1 ===
 #triggerdate
-    ~conversation_happening = true
     ~conversant_name = "Mikaela"
         Rosaaaaaa #pause:1
         two things #pause:3.6
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you #pause:1.7
         you're always so busy!
         * depends. where do you want to go? #pause:2.7
+            ~conversation_happening = true
             -> Rosa_is_nervous_about_dinner
         * wish I could, but I have a problem set due at 9:00 tonight :/ #pause:1
+            ~conversation_happening = true
             ->Rosa_doesnt_have_time
             
     = Rosa_is_nervous_about_dinner
