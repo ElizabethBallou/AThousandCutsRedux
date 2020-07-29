@@ -85,9 +85,13 @@ public class InkManager : MonoBehaviour
                             //Debug.Log("Has a tag of "+myPauseTag);
                         }
                     }
-                    if(tag.Contains("yujin"))
+                    if(tag.Contains("noyujin"))
                     {
-                        //do something
+                        RemoveYujinDates();
+                    }
+                    if(tag.Contains("yesyujin"))
+                    {
+                        RemoveYujinName();
                     }
                 }
                 if (!inSpeedyMode)
@@ -153,7 +157,7 @@ public class InkManager : MonoBehaviour
                             Services.DisplayManager.choices[i].text = "";
                             break;
                         }else{
-                            Services.DisplayManager.choices[i].text = "--- " +story.currentChoices[i].text + " ---";
+                            Services.DisplayManager.choices[i].text = "--- " +story.currentChoices[i].text;
                         }
                         
                     }else{
@@ -277,7 +281,7 @@ public class InkManager : MonoBehaviour
             story.Continue();
         }
         madeChoices = false;
-        Debug.Log("Ï JUST FAKE WENT");
+        //Debug.Log("Ï JUST FAKE WENT");
         //Debug.Log(story.canContinue);
     }
 
@@ -300,7 +304,35 @@ public class InkManager : MonoBehaviour
         PlayerPrefs.DeleteKey("inkSaveState");
         story.ResetState();
     }
-            
+
+    public void RemoveYujinDates()
+    {
+        for(int i = 0; i < Services.DateManager.DateList.Count; i++)
+        {
+            if (Services.DateManager.DateList[i].Contains("Yujin"))
+            {
+                Services.DateManager.DateList.Remove(Services.DateManager.DateList[i]);
+            }
+        }
+           
+        Debug.Log("I have read noyujin and am removing all tags with Yujin's name from DateList. New count is " + Services.DateManager.DateList.Count);
+    }
+
+    public void RemoveYujinName()
+    {
+        for (int i = 0; i < Services.DateManager.DateList.Count; i++)
+        {
+            if (Services.DateManager.DateList[i].Contains("Yujin"))
+            {
+               string[] placeholderDateArray = Services.DateManager.DateList[i].Split(' ');
+                string cleanedDate = placeholderDateArray[0] + placeholderDateArray[1];
+                Services.DateManager.DateList.RemoveAt(i);
+                Services.DateManager.DateList.Insert(i, cleanedDate);
+            }
+        }
+
+        Debug.Log("I have read yesyujin and am removing Yujin's name from the date tags so that it isn't printed");
+    }          
    
 }
 

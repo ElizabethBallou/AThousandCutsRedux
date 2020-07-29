@@ -18,12 +18,12 @@ public class GameController : MonoBehaviour
     public RectTransform textingScreen;
     public LockScreenController lockScreen;
     public GameObject oliviaBlur;
-    public GameObject duaneBlur;
+    public GameObject unknownBlur;
     public GameObject rudyBlur;
     public GameObject yujinBlur;
     public GameObject pradhyaBlur;
     public Button oliviaButton;
-    public Button duaneButton;
+    public Button unknownButton;
     public Button mikaelaButton;
     public Button rudyButton;
     public Button yujinButton;
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         
         Services.CharacterManager.characters["Olivia"].textingInProgressIcon = textingInProgressIcons[0];
         Services.CharacterManager.characters["Mikaela"].textingInProgressIcon = textingInProgressIcons[1];
-        Services.CharacterManager.characters["Duane"].textingInProgressIcon = textingInProgressIcons[2];
+        Services.CharacterManager.characters["Unknown"].textingInProgressIcon = textingInProgressIcons[2];
         Services.CharacterManager.characters["Rudy"].textingInProgressIcon = textingInProgressIcons[3];
         Services.CharacterManager.characters["Yujin"].textingInProgressIcon = textingInProgressIcons[4];
         Services.CharacterManager.characters["Pradhya"].textingInProgressIcon = textingInProgressIcons[5];
@@ -109,11 +109,11 @@ public class GameController : MonoBehaviour
                     pradhyaButton.gameObject.transform.SetSiblingIndex(0);
                 }
 
-                if(talkingTo == "unknown" || talkingTo == "Duane")
+                if(talkingTo == "Unknown")
                 {
-                    duaneBlur.SetActive(false);
-                    duaneButton.interactable = true;
-                    duaneButton.gameObject.transform.SetSiblingIndex(0);
+                    unknownBlur.SetActive(false);
+                    unknownButton.interactable = true;
+                    unknownButton.gameObject.transform.SetSiblingIndex(0);
                 }
                 
                 Services.CharacterManager.characters[talkingTo].textNotification.text = talkingTo+"(1)";

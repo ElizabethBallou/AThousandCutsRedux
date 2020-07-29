@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 
     //soundtrack variables
     public AudioClip[] soundtrackSongs;
-    public int soundtrackSongIndex = 0;
+    public int soundtrackSongIndex = 3;
     public TextMeshProUGUI currentSongText;
 
     public AudioClip textReceivedSound;

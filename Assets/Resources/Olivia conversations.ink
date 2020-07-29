@@ -192,7 +192,7 @@ VAR olivia_family_knowledge = 0
                 -> title_ix_office_explainer
             * (Rosa_trepidatious) who said anything about going to the title IX office??? #pause:3.4
                 -> Olivia_explains_ideal_outcome 
-            * (Rosa_negative) I am never fucking talking to the title IX office about this #pause:1.8
+            * (Rosa_negative) everything I've heard about the title IX office  is bad #pause:1.8
                 -> Olivia_explains_ideal_outcome
                 
         = title_ix_office_explainer
@@ -1159,6 +1159,7 @@ VAR olivia_family_knowledge = 0
             ~conversation_happening = true
             ->do_the_right_thing
         *(Rosa_upset)don't congratulate me. it felt manipulative #pause:1.5
+            ~conversation_happening = true
             ->do_the_right_thing
             
     = do_the_right_thing
@@ -1199,10 +1200,13 @@ VAR olivia_family_knowledge = 0
     whatever you said to Mikaela really pissed her off
     now she's fucking us over by not testifying for EITHER of us
         *(Rosa_no_blame)don't blame me
+            ~conversation_happening = true
             ->Olivia_angry_at_Mikaela
         *(Rosa_betrayed)I can't believe her
+            ~conversation_happening = true
             ->Olivia_angry_at_Mikaela
         *(Rosas_ruminating)she had her reasons
+            ~conversation_happening = true
             ->Olivia_angry_at_Mikaela
         
     = Olivia_angry_at_Mikaela
@@ -1254,6 +1258,7 @@ VAR olivia_family_knowledge = 0
      ~conversant_name = "Olivia"
     did you see the email??
     *what email? #pause:2
+        ~conversation_happening = true
         {convinced_yujin == true:
             ->case_judgment_both
             }
@@ -1404,6 +1409,7 @@ VAR olivia_family_knowledge = 0
     im sure itw as him
     an unknown number texted me "youll wish you didnt do this"
     *he texted me too
+        ~conversation_happening = true
         I can't believe it #pause:1.6
         what did he say?
             **(insane)he said I was insane
@@ -1513,13 +1519,11 @@ VAR olivia_family_knowledge = 0
         this may sound too sappy but...I'm so glad to have you, Rosa
         *I hope I'm enough
             ~conversation_happening = false
-                -> fake_conversational_end
+                -> duane_threat_follow_up
         *I'm glad to have you too
             ~conversation_happening = false
-                -> fake_conversational_end
+                -> duane_threat_follow_up
     
-    = fake_conversational_end    
-        ->DONE
     
     
     

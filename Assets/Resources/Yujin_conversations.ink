@@ -153,12 +153,14 @@
                 }
                 
         = yujin_not_helping
+            #noyujin
             your fight is not my fight #pause:2.1
             now good DAY 
             ~conversation_happening = false
                 ->Mikaela_scared_testifying
 
         = yujin_helping
+            #yesyujin
             ~convinced_yujin = true
             I hope they interview me fast   #pause:1.9
             then I don't have time to change my mind #pause:3.5
@@ -179,7 +181,8 @@
     guess that's just how the cookie crumbles #pause:1.2
     or rather #pause:2.7
     how the cookie has to behave when thrown into the wild world of Title IX
-    *I have to be interviewed for Olivia's case, and she has to be interviewed for mine 
+    *I have to be interviewed for Olivia's case, and she has to be interviewed for mine
+        ~conversation_happening = true
         **my advocate says the cases can't be combined #pause:1.6
             makes sense #pause:2.9
             wouldn't want Duane to get a Dramatic Courtroom Monologue where he can be like "MY RIGHTS, THEY HAVE BEEN VIOLATED" #pause:1.7
@@ -202,6 +205,7 @@
     second, no he hasn't texted me anything. but I'm terrified that he will #pause:2.1
     does he know I'm testifying for you n Olivia?
     *I...think so
+        ~conversation_happening = true
         **the lead investigator sent out a pdf that summarized everything she did, including the people she interviewed
                 ***she anonymized witnesses but Duane can probably figure it out #pause:1.2
                     fuck fuck fuck #pause:1.7

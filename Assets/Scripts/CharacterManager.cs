@@ -24,9 +24,9 @@ public class CharacterManager
         characters.Add("Mikaela",new Character("Mikaela",GameObject.Find("Mikaela").transform,choicesParent.GetChild(1)));
         characters["Mikaela"].textNotification = characterDisplayText[1];
         characters["Mikaela"].textPreview = characterDisplayText[1].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
-        characters.Add("Duane", new Character("Duane",GameObject.Find("Duane").transform,choicesParent.GetChild(2)));
-        characters["Duane"].textNotification = characterDisplayText[2];
-        characters["Duane"].textPreview = characterDisplayText[2].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        characters.Add("Unknown", new Character("Unknown",GameObject.Find("Unknown").transform,choicesParent.GetChild(2)));
+        characters["Unknown"].textNotification = characterDisplayText[2];
+        characters["Unknown"].textPreview = characterDisplayText[2].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         characters.Add("Rudy", new Character("Rudy", GameObject.Find("Rudy").transform, choicesParent.GetChild(3)));
         characters["Rudy"].textNotification = characterDisplayText[3];
         characters["Rudy"].textPreview = characterDisplayText[3].transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();

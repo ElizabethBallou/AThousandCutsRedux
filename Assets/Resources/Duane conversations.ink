@@ -5,7 +5,7 @@
     
     = ridiculous_intro
     #triggerdate
-    ~conversant_name = "unknown"
+    ~conversant_name = "Unknown"
     hi rosa #pause:2.5
     long time no talk #pause:2.9
     youre such a ccut #pause:1
