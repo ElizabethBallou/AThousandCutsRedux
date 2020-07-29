@@ -87,11 +87,19 @@ public class InkManager : MonoBehaviour
                     }
                     if(tag.Contains("noyujin"))
                     {
-                        RemoveYujinDates();
+                        RemoveDatesByTag("Yujin");
                     }
                     if(tag.Contains("yesyujin"))
                     {
-                        RemoveYujinName();
+                        RemoveTagsFromUsedDates("Yujin");
+                    }
+                    if(tag.Contains("IXyes"))
+                    {
+                        RemoveTagsFromUsedDates("IX");
+                    }
+                    if(tag.Contains("IXno"))
+                    {
+                        RemoveDatesByTag("IX");
                     }
                 }
                 if (!inSpeedyMode)
@@ -305,24 +313,24 @@ public class InkManager : MonoBehaviour
         story.ResetState();
     }
 
-    public void RemoveYujinDates()
+    public void RemoveDatesByTag(string tag)
     {
         for(int i = 0; i < Services.DateManager.DateList.Count; i++)
         {
-            if (Services.DateManager.DateList[i].Contains("Yujin"))
+            if (Services.DateManager.DateList[i].Contains(tag))
             {
                 Services.DateManager.DateList.Remove(Services.DateManager.DateList[i]);
             }
         }
            
-        Debug.Log("I have read noyujin and am removing all tags with Yujin's name from DateList. New count is " + Services.DateManager.DateList.Count);
+        Debug.Log("I have read " + tag + " and am removing all dates with that tag from DateList. New count is " + Services.DateManager.DateList.Count);
     }
 
-    public void RemoveYujinName()
+    public void RemoveTagsFromUsedDates(string tag)
     {
         for (int i = 0; i < Services.DateManager.DateList.Count; i++)
         {
-            if (Services.DateManager.DateList[i].Contains("Yujin"))
+            if (Services.DateManager.DateList[i].Contains(tag))
             {
                string[] placeholderDateArray = Services.DateManager.DateList[i].Split(' ');
                 string cleanedDate = placeholderDateArray[0] + placeholderDateArray[1];
@@ -331,7 +339,7 @@ public class InkManager : MonoBehaviour
             }
         }
 
-        Debug.Log("I have read yesyujin and am removing Yujin's name from the date tags so that it isn't printed");
+        Debug.Log("I have read " + tag + " and am removing Yujin's name from the date tags so that it isn't printed");
     }          
    
 }

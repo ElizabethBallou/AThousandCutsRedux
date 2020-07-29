@@ -32,7 +32,46 @@
                 ~conversation_happening = false
                     ->Olivia_titleIXpath_witnesses_2
                     
-                    
+=== Pradhya_no_case
+ * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Pradhya"
+    Hi Rosa. I just left you a voicemail, but I remember you saying you don't check your voicemail much. I'll repeat the most important parts of it here. #pause:3.8
+    I'm sorry the investigator decided not to hear your case. I'm not involved in the investigation, so I can't guess why she made that decision. #pause:4
+    I know that what happened affected you deeply. The decision not to go forward doesn't invalidate your pain. #pause:2.2
+    You can come visit me in the Deans' Office any time if you just want to talk.
+        *(appreciated)I appreciate that #pause:1.7
+            ~conversation_happening = true
+            ->Pradhya_answers
+        *(no_office)I don't want to come back to the Deans' Office #pause:2.2
+            ~conversation_happening = true
+            ->Pradhya_answers
+        *(screw_you)screw all of you #pause:3
+            ~conversation_happening = true
+            ->Pradhya_answers
+            
+    = Pradhya_answers
+    {appreciated:
+        Of course.
+            ~conversation_happening = false
+            ->Duane_knot_1
+        }
+    {no_office:
+        I understand that. #pause:2.8
+        For what it's worth, I'll still be here.
+            ~conversation_happening = false
+            ->Duane_knot_1
+        }
+    {screw_you:
+        I understand why you'd say that. #pause:2.8
+        For what it's worth, I'll still be here.
+            ~conversation_happening = false
+            ->Duane_knot_1
+        }
+        
 === Pradhya_pre_meeting ===
  * @
         ->ridiculous_intro

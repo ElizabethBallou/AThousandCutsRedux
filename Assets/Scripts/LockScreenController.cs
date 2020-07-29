@@ -13,8 +13,9 @@ public class LockScreenController : MonoBehaviour
     private Image unlockScreenGraphic;
     private TextMeshProUGUI dateText;
     public TextMeshProUGUI notificationText;
-    private Button unlockButton;
-    private Button quitButton;
+    public TextMeshProUGUI endgameText;
+    public Button unlockButton;
+    public Button quitButton;
     public float fadeTime = .5f;
     public float secondaryFadeTime = .2f;
     public float longFade = 3f;
@@ -41,8 +42,6 @@ public class LockScreenController : MonoBehaviour
         unlockScreenGraphic = gameObject.transform.GetChild(0).GetComponent<Image>();
         dateText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         notificationText = gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        quitButton = gameObject.transform.GetChild(3).GetComponent<Button>();
-        unlockButton = gameObject.transform.GetChild(4).GetComponent<Button>();
         isFadingOut = true;
 
         //set date text to proper date
@@ -51,6 +50,9 @@ public class LockScreenController : MonoBehaviour
         //hide quit button
         quitButton.image.color = clearWhite;
         quitButton.gameObject.SetActive(false);
+
+        endgameText.color = clearWhite;
+        endgameText.gameObject.SetActive(false);
 
         notificationText.color = clearWhite;
     }
@@ -148,57 +150,65 @@ public class LockScreenController : MonoBehaviour
 
     public void onEndtimerEnd()
     {
-        Services.GameController.characterWithOpenMessages = "";
-        unlockButtonPressed = false;
-        Debug.Log("Calling OnLockScreenLock");
-        SwitchingEpisodes = true;
-        unlockButton.image.color = clearWhite;
+        Debug.Log("DateList at DateListIndex is " + Services.DateManager.DateList[Services.DateManager.dateListIndex]);
 
-        //set the proper UI objects active so they can get FADED
-        blackBackdrop.gameObject.SetActive(true);
-        dateText.gameObject.SetActive(true);
-        notificationText.gameObject.SetActive(true);
-        unlockScreenGraphic.gameObject.SetActive(true);
-        unlockButton.gameObject.SetActive(true);
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "March 4" || Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 20")
+        {
+            Debug.Log("IM IN HERE");
+            unlockButton.gameObject.SetActive(false);
+            blackBackdrop.gameObject.SetActive(true);
+            blackBackdrop.DOFade(1f, longFade).OnComplete(() => blackBackdrop.DOFade(0f, longFade)).OnComplete(() => blackBackdrop.gameObject.SetActive(false));
+
+            quitButton.gameObject.SetActive(true);
+            quitButton.gameObject.transform.SetAsLastSibling();
+            quitButton.image.DOFade(.6f, fadeTime).SetDelay(longFade);
+
+            unlockScreenGraphic.gameObject.SetActive(true);
+            unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(1f);
+
+            endgameText.gameObject.SetActive(true);
+            endgameText.DOFade(1f, fadeTime).SetDelay(longFade);
+        }
+        else
+        {
+            Debug.Log(Services.DateManager.DateList[Services.DateManager.dateListIndex] + " does not equal February 4");
+            Services.GameController.characterWithOpenMessages = "";
+            unlockButtonPressed = false;
+            Debug.Log("Calling OnLockScreenLock");
+            SwitchingEpisodes = true;
+            unlockButton.image.color = clearWhite;
+
+            //set the proper UI objects active so they can get FADED
+            blackBackdrop.gameObject.SetActive(true);
+            dateText.gameObject.SetActive(true);
+            notificationText.gameObject.SetActive(true);
+            unlockScreenGraphic.gameObject.SetActive(true);
+            unlockButton.gameObject.SetActive(true);
 
 
-        //switch the date text so it's accurate
-        Debug.Log("dateArrayIndex is " + Services.DateManager.dateListIndex);
-        dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex - 1];
+            //switch the date text so it's accurate
+            dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex - 1];
 
-        //begin by fading in the backdrop
-        blackBackdrop.DOFade(1f, longFade);
+            //begin by fading in the backdrop
+            blackBackdrop.DOFade(1f, longFade);
 
-        //now fade in the lock screen components
+            //now fade in the lock screen components
 
-        dateText.DOFade(1f, fadeTime).SetDelay(longFade);
-        unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
-        unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-        notificationText.DOFade(1f, fadeTime).SetDelay(longFade + 1f)
-           .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
-        Invoke("PlayBuzzingSound", 3.5f);
+            dateText.DOFade(1f, fadeTime).SetDelay(longFade);
+            unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
+            unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
+            notificationText.DOFade(1f, fadeTime).SetDelay(longFade + 1f)
+               .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
+            Invoke("PlayBuzzingSound", 3.5f);
+        }  
+
     }
 
-        
 
-            /*if(dateListIndex == currentDateList.Count)
-            {
-            //switch the date list
-                currentDateList.Clear();
-                currentDateList = TitleIXDateList;
-                dateListIndex = 0;
-            }*/
 
-            /*if (dateListIndex == 5)
-            {
-                quitButton.gameObject.SetActive(true);
-                unlockButton.gameObject.SetActive(false);
-                notificationText.gameObject.SetActive(false);
-                quitButton.gameObject.transform.SetAsLastSibling();
-                dateText.DOFade(1f, fadeTime).SetDelay(longFade);
-                unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
-                quitButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-            }*/
+
+
+
 
 
     public void PlayBuzzingSound()

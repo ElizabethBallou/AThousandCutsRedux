@@ -1281,6 +1281,7 @@ VAR olivia_family_knowledge = 0
             ->taking_Rosas_case
             
     = taking_Rosas_case
+        #IXyes
         {shocked:
             YES I AM #pause:3.3
             }
@@ -1336,6 +1337,7 @@ VAR olivia_family_knowledge = 0
             }
             
     = case_judgment_one
+        #IXno
         from the Title IX people #pause:2
         my case is moving forward!! #pause:4
         but...yours isn't
@@ -1382,20 +1384,20 @@ VAR olivia_family_knowledge = 0
         come any time after 8! #pause:2.9
         heck, come whenever. you're always welcome here
             ~conversation_happening = false
-                ->Duane_knot_1
+                ->Pradhya_no_case
         }
     {no_thank_you:
         I feel like that isn't true #pause:1.9
         but I won't push you #pause:2.5
         I'll be here if you want to call
             ~conversation_happening = false
-                ->Duane_knot_1
+                ->Pradhya_no_case
         }
     {too_painful:
         yeah I get it.
         I'll see you soon then
             ~conversation_happening = false
-                ->Duane_knot_1
+                ->Pradhya_no_case
         }
     ->Duane_knot_1
     
