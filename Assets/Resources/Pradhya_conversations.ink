@@ -122,13 +122,12 @@
                         Okay, if that's what you want. I'm just here to support - you don't have to take my advice. #pause:2.6
                             ->pradhya_pep_talk
                     
-            
     = pradhya_pep_talk
         I'll be honest with you. The next few days are going to be super anxiety-inducing. But then it'll be over.
         Call me if you need anything!
             *thanks
                 ~conversation_happening = false
-                ->DONE
+                ->olivia_pep_talk_rosa_case
     
     
     

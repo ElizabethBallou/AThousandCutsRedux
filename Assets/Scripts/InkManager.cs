@@ -95,11 +95,13 @@ public class InkManager : MonoBehaviour
                     }
                     if(tag.Contains("IXyes"))
                     {
-                        RemoveTagsFromUsedDates("IX");
+                        RemoveDatesByTag("IXno");
+                        RemoveTagsFromUsedDates("IXyes");
                     }
                     if(tag.Contains("IXno"))
                     {
-                        RemoveDatesByTag("IX");
+                        RemoveDatesByTag("IXyes");
+                        RemoveTagsFromUsedDates("IXno");
                     }
                 }
                 if (!inSpeedyMode)
@@ -126,6 +128,7 @@ public class InkManager : MonoBehaviour
                     if (tag.Contains("triggerdate"))
                     {
                         //Debug.Log("I have read triggerdate");
+                        Debug.Log("I'm calling writeDate");
                         Services.DisplayManager.WriteDate(currentConversant);
                         currentDotState = dotState.off;
                     }
@@ -333,7 +336,7 @@ public class InkManager : MonoBehaviour
             if (Services.DateManager.DateList[i].Contains(tag))
             {
                string[] placeholderDateArray = Services.DateManager.DateList[i].Split(' ');
-                string cleanedDate = placeholderDateArray[0] + placeholderDateArray[1];
+                string cleanedDate = placeholderDateArray[0] + " " + placeholderDateArray[1];
                 Services.DateManager.DateList.RemoveAt(i);
                 Services.DateManager.DateList.Insert(i, cleanedDate);
             }

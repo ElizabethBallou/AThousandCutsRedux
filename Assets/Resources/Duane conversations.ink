@@ -12,8 +12,10 @@
     cunt #pause:2
     fucking cunt 
     * who are you? #pause:2.6
+        ~conversation_happening = true
         -> unknown_makes_threats
     * Duane? #pause:2.6
+        ~conversation_happening = true
         -> unknown_makes_threats
     = unknown_makes_threats
         {TitleIX_taking_Rosas_case == true:

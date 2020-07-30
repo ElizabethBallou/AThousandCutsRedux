@@ -229,18 +229,11 @@ VAR olivia_family_knowledge = 0
                     ***talk to you later, Olivia.
                         ****(Rosa_says_thanks) and thanks for saying something to me #pause:2.4
                             ->final_goodbye_knot
-                        ****(Rosa_says_nothing) - say nothing - #pause:2
-                            ->final_goodbye_knot
                 
         = final_goodbye_knot
             ~ conversation_happening = false
             {Rosa_says_thanks:
                 I just felt like I had to.
-                ~ conversation_happening = false
-                }
-            {Rosa_says_nothing:
-                until tomorrow
-                ~ conversation_happening = false
                 }
             ~ conversation_happening = false
                 -> Olivia_knot_2
@@ -1521,12 +1514,123 @@ VAR olivia_family_knowledge = 0
         this may sound too sappy but...I'm so glad to have you, Rosa
         *I hope I'm enough
             ~conversation_happening = false
-                -> duane_threat_follow_up
+            {TitleIX_taking_Rosas_case == true && convinced_yujin == true:
+                -> yujin_reacts_to_Duane_threat
+            }
+            {TitleIX_taking_Rosas_case  == true && convinced_yujin == false:
+                ->Pradhya_pre_meeting
+            }
+            {TitleIX_taking_Rosas_case == false:
+                ->olivia_nervous_pre_trial
+            }
+            
         *I'm glad to have you too
             ~conversation_happening = false
-                -> duane_threat_follow_up
+            {TitleIX_taking_Rosas_case == true && convinced_yujin == true:
+                -> yujin_reacts_to_Duane_threat
+            }
+            {TitleIX_taking_Rosas_case  == true && convinced_yujin == false:
+                ->Pradhya_pre_meeting
+            }
+            {TitleIX_taking_Rosas_case == false:
+                ->olivia_nervous_pre_trial
+            }
+    
+=== olivia_nervous_pre_trial ===
+* @
+        ->ridiculous_intro
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Olivia"
+    heyyyy hope the last week of classes has gone okay #pause:2.3
+    just figured I'd check in since...you know #pause:1.9
+    the hearing is next week #pause:2.1
+    you're still gonna testify for me, right?
+    *(yes_def)of course! #pause:1.3
+        ~conversation_happening = true
+            ->explain_reaction
+    *(could_be_busy)mmm might be busy #pause:2.1
+        ~conversation_happening = true
+            ->explain_reaction
+    *(feel_strange)it'll feel strange, but yeah #pause:1
+        ~conversation_happening = true
+            ->explain_reaction
+    
+    = explain_reaction
+    {yes_def:
+        okay good #pause:2.3
+        I don't know I just thought #pause:2.5
+        maybe you'd change your mind #pause:1.9
+        }
+    {could_be_busy:
+        don't joke like that #pause:2.4
+        this isn't funny to me #pause:1.9
+        }
+    {feel_strange:
+        oh #pause:2.8
+        since your case isn't going forward? #pause:2.4
+        please don't hold it against me #pause:1.9
+        }
+    I'm so scared #pause:3.5
+    especially since nothing happened to duane after he sent us those texts #pause:2.2
+    this hearing better be worth the trouble
+    *it will be #pause:1.5
+        I want to believe that #pause:1.7
+        but...it's hard these days.
+            ~conversation_happening = false
+            ->DONE
+    *I'm scared, too #pause:2.1
+        yeah this isn't easy for either of us, is it? #pause:1.5
+        one more week #pause:1.7
+        then we can be free
+            ~conversation_happening = false
+            ->DONE
+    *we should prepare ourselves for losing #pause:1.4
+        I know but #pause:1.9
+        I can barely think about it #pause:2.9
+        I have to believe we'll win. or I don't know how to get through this.
+            ~conversation_happening = false
+            ->DONE
     
     
+=== olivia_pep_talk_rosa_case ===
+* @
+        ->ridiculous_intro
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Olivia"
+    hello brave rosa #pause: 1.9
+    where the offense is let the great axe fall
+    *pardon me? #pause:2.2
+        ~conversation_happening = true
+        ->explains_quote
+    *you've finally lost it #pause:2.2
+        ~conversation_happening = true
+        ->explains_quote
+
+    = explains_quote
+        it's from hamlet! what kind of english major are you?? #pause:2.9
+        I wanted to give you a pep talk so I googled "literary quotes about revenge" #pause:2.1
+        this one mentioned a great axe #pause:1.8
+        seemed appropriate
+        *that's very sweet #pause:2
+            a great axe is not supposed to be sweet! #pause:1.1
+            whatever #pause:2.5
+                ->good_luck
+        *weird, but okay #pause:1.9
+            look I am doing my best #pause:2.5
+                ->good_luck
+        *...the villain says that #pause:1.8
+            ahhh is that who claudius is? #pause:1.1
+            oops #pause:1.8
+            I stand by my effort though #pause:2.5
+                ->good_luck
+    = good_luck
+    since you're going first, I wanted to say good luck #pause:1.5
+    text me during breaks! #pause:2.9
+    both of us have strong cases. something will come of this
+        ~conversation_happening = false
+            ->DONE
     
     
     

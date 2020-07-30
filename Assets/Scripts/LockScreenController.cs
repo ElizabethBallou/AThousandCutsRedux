@@ -46,6 +46,7 @@ public class LockScreenController : MonoBehaviour
 
         //set date text to proper date
         dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
+        Debug.Log("dateListIndex is " + Services.DateManager.dateListIndex);
 
         //hide quit button
         quitButton.image.color = clearWhite;
@@ -150,11 +151,11 @@ public class LockScreenController : MonoBehaviour
 
     public void onEndtimerEnd()
     {
-        Debug.Log("DateList at DateListIndex is " + Services.DateManager.DateList[Services.DateManager.dateListIndex]);
+        Debug.Log("DateListIndex is " + Services.DateManager.dateListIndex);
 
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "March 4" || Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 20")
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 23" || Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 24")
         {
-            Debug.Log("IM IN HERE");
+            //go into End Mode
             unlockButton.gameObject.SetActive(false);
             blackBackdrop.gameObject.SetActive(true);
             blackBackdrop.DOFade(1f, longFade).OnComplete(() => blackBackdrop.DOFade(0f, longFade)).OnComplete(() => blackBackdrop.gameObject.SetActive(false));
@@ -171,7 +172,7 @@ public class LockScreenController : MonoBehaviour
         }
         else
         {
-            Debug.Log(Services.DateManager.DateList[Services.DateManager.dateListIndex] + " does not equal February 4");
+            //continue the transition
             Services.GameController.characterWithOpenMessages = "";
             unlockButtonPressed = false;
             Debug.Log("Calling OnLockScreenLock");
@@ -188,6 +189,7 @@ public class LockScreenController : MonoBehaviour
 
             //switch the date text so it's accurate
             dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex - 1];
+            
 
             //begin by fading in the backdrop
             blackBackdrop.DOFade(1f, longFade);
