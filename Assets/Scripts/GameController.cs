@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
         {
             textingIcon.SetActive(false);
         }
+        SaveSystem.LoadGame();
     }
 
     // Update is called once per frame
