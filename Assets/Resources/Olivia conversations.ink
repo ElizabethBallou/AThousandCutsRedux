@@ -1,7 +1,4 @@
-VAR rosa_knew_duane = ""
-VAR rosa_consented_to_kiss = ""
-VAR rosa_alcohol_level = 0 //levels of drunkenness: 0 (sober), 1 (tipsy), 2 (drunk)
-VAR rosa_resistance_level = 0 //levels of resistance: 0 (said no once), 1 (said no multiple times), 2 (pushed Duane away)
+
 VAR olivia_family_knowledge = 0
 
 
@@ -69,7 +66,6 @@ VAR olivia_family_knowledge = 0
             ** he was in a class with me. we'd worked on a project together
             -> Rosa_Duane_acquaintances
         = Rosa_Duane_strangers
-            ~ rosa_knew_duane = "false"
             *he was dressed as Burt Macklin from Parks and Rec
                 **and I hate to say this now, but he was killing it 
                     ***looked a lot like Chris Pratt 
@@ -77,7 +73,6 @@ VAR olivia_family_knowledge = 0
             -> Duane_kissed_Rosa
         
         = Rosa_Duane_acquaintances
-            ~ rosa_knew_duane = "true"
             *he pulled his weight in the group project. he said smart stuff in class
                 **I didn't know him that well but he seemed nice enough
             -> Duane_kissed_Rosa
@@ -93,14 +88,12 @@ VAR olivia_family_knowledge = 0
                                 ->didnt_consent_kiss
 
         = Rosa_consented_kiss
-            ~ rosa_consented_to_kiss = "true"
             *but then he started doing other things
                 **touching me over my clothes, and then underneath them
                     ***that was too much, so
                         ->why_Rosa_didnt_want_sex
                         
         = didnt_consent_kiss
-            ~ rosa_consented_to_kiss = "false"
             *I wasn't giving him any signals that I wanted him to kiss me anyway
                 **I really thought we were just talking
                     ***but he kept putting his hands on me 
@@ -121,12 +114,11 @@ VAR olivia_family_knowledge = 0
                 = Rosa_reaction
                     *so then I
                         **  shut my eyes and stopped moving and waited it out
-                        ~ rosa_resistance_level = 0
                             ***he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
                                 ****I wish I'd done something else but idk what I was supposed to do
                                     ->Duane_says_keep_secret
                         **  said what the fuck, I'm not joking
-                        ~ rosa_resistance_level = 1
+                        ~ perfect_victim_score += 1
                             ***he said come on, we both know why we've been sitting out here waiting for everyone else to leave
                                 ****and I was like ???
                                     *****"we" don't know anything about that, my dude
@@ -135,7 +127,7 @@ VAR olivia_family_knowledge = 0
                                                     ********and that did it. he stopped.
                                                     ->Duane_says_keep_secret
                         **  shoved him. not hard, but enough to make him notice
-                    ~ rosa_resistance_level = 2
+                    ~ perfect_victim_score += 2
                             ***he got this weird look
                                 ****he said "I didn't think you'd be into rape play" or something
                                     *****he kept trying to kiss me while he held my hands down
@@ -159,23 +151,22 @@ VAR olivia_family_knowledge = 0
         -   it's fine. I'm the one who texted you, anyway #pause:4
             can I ask you something? #pause:2.8
             were you drinking at that party?
-            * * no. I don't drink #pause:3.2
-                ~rosa_alcohol_level = 0
-            * *yeah, but I wasn't drinking so much that I was out of it #pause:1.8
-                ~rosa_alcohol_level = 1
-            * *it was Halloween haha. I was pretty drunk #pause:2.9
-                ~rosa_alcohol_level = 2
+            * * (no_drinking)no. I don't drink #pause:3.2
+                ~ perfect_victim_score += 2
+            * * (drinking_little)yeah, but I wasn't drinking so much that I was out of it #pause:1.8
+                ~ perfect_victim_score += 1
+            * * (drinking_lot)it was Halloween haha. I was pretty drunk #pause:2.9
         - -   -> Olivia_remarks_on_drunkenness_level
 
     = Olivia_remarks_on_drunkenness_level
-      {rosa_alcohol_level == 0:
+      {no_drinking:
         good. it'll be easier to report this if you weren't drinking
         }
-      {rosa_alcohol_level == 1:
+      {drinking_little:
         hmm could be worse #pause:4.3
         it would be easier to report this if you were sober but who's sober on Halloween?
         }
-      {rosa_alcohol_level == 2:
+      {drinking_lot:
         damn. that'll make this harder to report
         }
       * report to who? #pause:1.9
@@ -1145,6 +1136,7 @@ VAR olivia_family_knowledge = 0
     = ridiculous_intro
     #triggerdate
      ~conversant_name = "Olivia"
+     ~perfect_victim_score += 2
     whatever you said to Mikaela, it mustve worked #pause:2.4
     she just texted me and said she'd be a witness for both of us #pause:1.8
     good work, Agent Rosa

@@ -162,6 +162,7 @@
         = yujin_helping
             #yesyujin
             ~convinced_yujin = true
+            ~perfect_victim_score += 3
             I hope they interview me fast   #pause:1.9
             then I don't have time to change my mind #pause:3.5
             whatever happens...I hope Duane gets what's coming to him.

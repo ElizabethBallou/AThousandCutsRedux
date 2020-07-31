@@ -69,7 +69,7 @@ public class DisplayManager
         textObj.GetComponent<TextMeshProUGUI>().text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
 
         Services.DateManager.TimePassing();
-        Debug.Log("TimePassing is getting called. dateListIndex is " + Services.DateManager.dateListIndex);
+        //Debug.Log("TimePassing is getting called. dateListIndex is " + Services.DateManager.dateListIndex);
 
     }
 }

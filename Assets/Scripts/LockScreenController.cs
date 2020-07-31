@@ -107,7 +107,7 @@ public class LockScreenController : MonoBehaviour
         if (startEndtimer)
         {
             endEpisodeTimer += Time.deltaTime;
-            if (endEpisodeTimer >= 2f)
+            if (endEpisodeTimer > 2f)
             {
                 startEndtimer = false;
                 endEpisodeTimer = 0;
@@ -140,7 +140,6 @@ public class LockScreenController : MonoBehaviour
     }
     public void OnLockScreenLock() {
         AudioManager.instance.FastForwardButtonClick();
-        Debug.Log("unlockButtonPressed is " + unlockButtonPressed);
         if (unlockButtonPressed)
         {
             startEndtimer = true;
@@ -175,7 +174,6 @@ public class LockScreenController : MonoBehaviour
             //continue the transition
             Services.GameController.characterWithOpenMessages = "";
             unlockButtonPressed = false;
-            Debug.Log("Calling OnLockScreenLock");
             SwitchingEpisodes = true;
             unlockButton.image.color = clearWhite;
 
@@ -188,7 +186,7 @@ public class LockScreenController : MonoBehaviour
 
 
             //switch the date text so it's accurate
-            dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex - 1];
+            dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
             
 
             //begin by fading in the backdrop

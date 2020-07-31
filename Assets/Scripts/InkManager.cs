@@ -4,11 +4,11 @@ using UnityEngine;
 using Ink.Runtime;
 using DG.Tweening;
 
-public enum NewStoryState{
+/*public enum NewStoryState{
     EpisodeStart,
     StartNextInteraction,
     WaitForInteraction
-}
+}*/
 //this should literally just read the ink and output the text
 public class InkManager : MonoBehaviour
 {

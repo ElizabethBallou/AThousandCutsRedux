@@ -20,6 +20,7 @@ VAR convinced_yujin = false
 VAR convinced_mikaela = false
 VAR TitleIX_taking_Rosas_case = false
 VAR is_rosa = false
+VAR perfect_victim_score = 0
 
 -> Mikaela_knot_1
 
