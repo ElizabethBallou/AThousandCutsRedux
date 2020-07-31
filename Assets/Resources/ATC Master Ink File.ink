@@ -18,7 +18,7 @@ VAR yujin_trust_level = 0
 VAR mikaela_trust_level = 0
 VAR convinced_yujin = false
 VAR convinced_mikaela = false
-VAR TitleIX_taking_Rosas_case = false
+VAR TitleIX_taking_Rosas_case = ""
 VAR is_rosa = false
 VAR perfect_victim_score = 0
 

@@ -1257,7 +1257,7 @@ VAR olivia_family_knowledge = 0
     = case_judgment_both
         from the Title IX people #pause:2
         they're taking BOTH of our cases!!
-        ~TitleIX_taking_Rosas_case = true
+        ~TitleIX_taking_Rosas_case = "yes"
         *(shocked)ARE YOU SERIOUS #pause:1
             ->taking_Rosas_case
         *(Rosa_terrified)well this is terrifying #pause:2.3
@@ -1323,6 +1323,7 @@ VAR olivia_family_knowledge = 0
             
     = case_judgment_one
         #IXno
+        ~TitleIX_taking_Rosas_case = "no"
         from the Title IX people #pause:2
         my case is moving forward!! #pause:4
         but...yours isn't

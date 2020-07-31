@@ -8,6 +8,7 @@ using DG.Tweening;
 //handles displaying text
 public class DisplayManager
 {
+    private bool firstTimeCyclingThrough = true;
     public DisplayManager(GameObject conversantPrefab, GameObject rosaPrefab, Transform choiceParent){
         this.conversantPrefab = conversantPrefab;
         this.rosaPrefab = rosaPrefab;
@@ -63,13 +64,13 @@ public class DisplayManager
 
     public void WriteDate(string characterName)
     {
+        
         Character character = Services.CharacterManager.characters[characterName];
         Transform parent = character.transform;
         GameObject textObj = GameObject.Instantiate(Services.GameController.datePrefab, parent);
         textObj.GetComponent<TextMeshProUGUI>().text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
 
-        Services.DateManager.TimePassing();
-        //Debug.Log("TimePassing is getting called. dateListIndex is " + Services.DateManager.dateListIndex);
-
+        Services.GameController.DateChangeTriggerer();
     }
+
 }

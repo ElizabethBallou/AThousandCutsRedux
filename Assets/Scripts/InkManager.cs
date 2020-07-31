@@ -15,7 +15,7 @@ public class InkManager : MonoBehaviour
     public string currentConversant;
     public bool isRosaSpeaking;
     private TextAsset inkJSONAsset;
-    private Story story;
+    public Story story;
 
 
     //state stuff
@@ -127,8 +127,6 @@ public class InkManager : MonoBehaviour
                 {
                     if (tag.Contains("triggerdate"))
                     {
-                        //Debug.Log("I have read triggerdate");
-                        Debug.Log("I'm calling writeDate");
                         Services.DisplayManager.WriteDate(currentConversant);
                         currentDotState = dotState.off;
                     }

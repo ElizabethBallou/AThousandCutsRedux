@@ -14,8 +14,10 @@ public class LockScreenController : MonoBehaviour
     private TextMeshProUGUI dateText;
     public TextMeshProUGUI notificationText;
     public TextMeshProUGUI endgameText;
+    public TextMeshProUGUI outcomeText;
     public Button unlockButton;
     public Button quitButton;
+    public Button outcomeButton;
     public float fadeTime = .5f;
     public float secondaryFadeTime = .2f;
     public float longFade = 3f;
@@ -29,6 +31,14 @@ public class LockScreenController : MonoBehaviour
 
     private float endEpisodeTimer = 0;
     private bool startEndtimer = false;
+
+    public TextAsset victimScoreTextFile;
+    private string[] victimScoreArray;
+    private int victimScoreCountFromInk = 5;
+    private string victimScoreString = "";
+    private List<string> outcomeList = new List<string>();
+    private int outcomeListIndex = 0;
+    
     private void Awake()
     {
         instance = this;
@@ -46,16 +56,23 @@ public class LockScreenController : MonoBehaviour
 
         //set date text to proper date
         dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
-        Debug.Log("dateListIndex is " + Services.DateManager.dateListIndex);
+        Debug.Log("We begin. dateListIndex is " + Services.DateManager.dateListIndex);
 
         //hide quit button
         quitButton.image.color = clearWhite;
         quitButton.gameObject.SetActive(false);
 
+        outcomeButton.gameObject.SetActive(false);
+        outcomeText.gameObject.SetActive(false);
+
         endgameText.color = clearWhite;
         endgameText.gameObject.SetActive(false);
 
         notificationText.color = clearWhite;
+
+        victimScoreArray = victimScoreTextFile.text.Split('\n');
+        Debug.Log(victimScoreArray[0]);
+
     }
 
     // Update is called once per frame
@@ -150,7 +167,6 @@ public class LockScreenController : MonoBehaviour
 
     public void onEndtimerEnd()
     {
-        Debug.Log("DateListIndex is " + Services.DateManager.dateListIndex);
 
         if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 23" || Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 24")
         {
@@ -169,6 +185,18 @@ public class LockScreenController : MonoBehaviour
             endgameText.gameObject.SetActive(true);
             endgameText.DOFade(1f, fadeTime).SetDelay(longFade);
         }
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "February 3")
+        {
+            SetWitnessOwnCaseStatus();
+            PickVictimScoreText();
+            blackBackdrop.gameObject.SetActive(true);
+            blackBackdrop.DOFade(1f, longFade).SetDelay(longFade);
+            outcomeButton.gameObject.SetActive(true);
+            outcomeText.gameObject.SetActive(true);
+            outcomeText.text = outcomeList[0];
+            outcomeButton.image.DOFade(.6f, longFade + 2f).SetDelay(longFade);
+            outcomeText.DOFade(1f, longFade + 1f).SetDelay(longFade);
+        }
         else
         {
             //continue the transition
@@ -184,10 +212,9 @@ public class LockScreenController : MonoBehaviour
             unlockScreenGraphic.gameObject.SetActive(true);
             unlockButton.gameObject.SetActive(true);
 
-
             //switch the date text so it's accurate
             dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
-            
+            Debug.Log("I'm inside OnEndTimerEnd. The lock screen text has just been changed to " + Services.DateManager.dateListIndex);
 
             //begin by fading in the backdrop
             blackBackdrop.DOFade(1f, longFade);
@@ -216,6 +243,32 @@ public class LockScreenController : MonoBehaviour
         AudioManager.instance.playBuzzingsound(.5f);
     }
         
+    public void PickVictimScoreText()
+    {
+        victimScoreCountFromInk = (int) Services.InkManager.story.variablesState["perfect_victim_score"];
+        victimScoreString = victimScoreArray[victimScoreCountFromInk];
+        outcomeList.Add(victimScoreString);
+    }
 
+    public void SetWitnessOwnCaseStatus()
+    {
+        string caseChoice = Services.InkManager.story.variablesState["TitleIX_taking_Rosas_case"] as string;
+        Debug.Log("caseChoice is " + caseChoice);
+        if (caseChoice == "no")
+        {
+            outcomeList.Insert(0, "Since the Title IX investigator declined to hear your case, you testified in Olivia's case.");
+        }
+        if (caseChoice == "yes")
+        {
+            outcomeList.Insert(0, "You showed up at the Deans' Office at 9:00 A.M. sharp on the day of your hearing.");
+        }
+    }
+
+    public void onContinueButtonClick()
+    {
+        outcomeListIndex++;
+        outcomeText.DOFade(0f, .5f).OnComplete(() => outcomeText.text = outcomeList[outcomeListIndex]);
+        outcomeText.DOFade(1f, .5f).SetDelay(.5f);
+    }
 }
 

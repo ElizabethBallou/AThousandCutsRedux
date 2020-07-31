@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
                 Services.InkManager.Update();
                 if (lockScreen.SwitchingEpisodes)
                 {
-                    Invoke("WaitToChangeNames", 3f);
+                    StartCoroutine(WaitToChangeNames());
                 }
                 else
                 {
@@ -159,8 +159,22 @@ public class GameController : MonoBehaviour
             }
     }
 
-    public void WaitToChangeNames()
+    public IEnumerator WaitToChangeNames()
     {
+        yield return new WaitForSeconds(3);
         texterName.text = Services.InkManager.currentConversant;
+        Debug.Log("Now setting new texter name");
+    }
+
+    public void DateChangeTriggerer()
+    {
+        StartCoroutine(WaitToChangeDates());
+    }
+
+    public IEnumerator WaitToChangeDates()
+    {
+        yield return new WaitForSeconds(2);
+        Services.DateManager.TimePassing();
+        Debug.Log("Inside WaitToChangeDates. Calling TimePassing");
     }
 }
