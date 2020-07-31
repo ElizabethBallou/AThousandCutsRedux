@@ -3,6 +3,7 @@
 #triggerdate
     ~conversant_name = "Mikaela"
     ~TitleIX_taking_Rosas_case = "no"
+    ~same_room_as_duane = "yes"
         Rosaaaaaa #pause:1
         two things #pause:3.6
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you #pause:1.7

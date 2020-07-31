@@ -1,4 +1,3 @@
-
 VAR olivia_family_knowledge = 0
 
 
@@ -118,6 +117,7 @@ VAR olivia_family_knowledge = 0
                                 ****I wish I'd done something else but idk what I was supposed to do
                                     ->Duane_says_keep_secret
                         **  said what the fuck, I'm not joking
+                        ~duane_resistance = 1
                         ~ perfect_victim_score += 1
                             ***he said come on, we both know why we've been sitting out here waiting for everyone else to leave
                                 ****and I was like ???
@@ -127,6 +127,7 @@ VAR olivia_family_knowledge = 0
                                                     ********and that did it. he stopped.
                                                     ->Duane_says_keep_secret
                         **  shoved him. not hard, but enough to make him notice
+                        ~duane_resistance = 2
                     ~ perfect_victim_score += 2
                             ***he got this weird look
                                 ****he said "I didn't think you'd be into rape play" or something
@@ -153,10 +154,14 @@ VAR olivia_family_knowledge = 0
             were you drinking at that party?
             * * (no_drinking)no. I don't drink #pause:3.2
                 ~ perfect_victim_score += 2
+                    -> Olivia_remarks_on_drunkenness_level
             * * (drinking_little)yeah, but I wasn't drinking so much that I was out of it #pause:1.8
+                ~alcohol_level = 1
                 ~ perfect_victim_score += 1
+                    -> Olivia_remarks_on_drunkenness_level
             * * (drinking_lot)it was Halloween haha. I was pretty drunk #pause:2.9
-        - -   -> Olivia_remarks_on_drunkenness_level
+                ~alcohol_level = 2
+                    -> Olivia_remarks_on_drunkenness_level
 
     = Olivia_remarks_on_drunkenness_level
       {no_drinking:

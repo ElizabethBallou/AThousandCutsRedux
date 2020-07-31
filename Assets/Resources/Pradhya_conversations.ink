@@ -85,9 +85,11 @@
     If you choose that option, we'll teleconference between the rooms. #pause:1.9
     What do you think?
     *(same_room)the same room is fine #pause:2.8
+        ~same_room_as_duane = "yes"
         ~conversation_happening = true
         ->room_choice
     *(different_rooms)different rooms, please #pause:2.8
+        ~same_room_as_duane = "no"
         ~conversation_happening = true
         ->room_choice
     

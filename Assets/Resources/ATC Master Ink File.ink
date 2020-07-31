@@ -21,6 +21,9 @@ VAR convinced_mikaela = false
 VAR TitleIX_taking_Rosas_case = ""
 VAR is_rosa = false
 VAR perfect_victim_score = 0
+VAR duane_resistance = 0
+VAR alcohol_level = 0
+VAR same_room_as_duane = ""
 
 -> Mikaela_knot_1
 
