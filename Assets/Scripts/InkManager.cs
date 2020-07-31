@@ -55,7 +55,7 @@ public class InkManager : MonoBehaviour
         if (PlayerPrefs.HasKey("inkSaveState"))
         {
             var savedState = PlayerPrefs.GetString("inkSaveState");
-            story.state.LoadJson(savedState);
+            //story.state.LoadJson(savedState);
         }
     }
 
@@ -64,7 +64,7 @@ public class InkManager : MonoBehaviour
 
         if(story.canContinue){//text is being drawn
             elapsedTime += Time.deltaTime;
-            if (elapsedTime >= lastPrint+timeBetweenPrints){
+            if (inSpeedyMode || elapsedTime >= lastPrint+timeBetweenPrints){
                 AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound, .3f);
                 lastPrint = elapsedTime;
                 timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
@@ -260,10 +260,18 @@ public class InkManager : MonoBehaviour
         return s;
     }
     public void SelectChoice(int choiceNum){
+        SelectChoice(choiceNum,false);
+    }
+    public void SelectChoice(int choiceNum, bool loadingGame){
         if(story.canContinue){
             return;
         }
+        if(loadingGame == false){
+            SaveSystem.SaveChoice(choiceNum);
+            SaveSystem.SaveGame();
+        }
         story.ChooseChoiceIndex(choiceNum);
+        
         //Debug.Log("you have this many tags: "+story.currentTags.Count);
         if(story.currentTags.Count > 0){
             //Debug.Log("current tag: "+story.currentTags[0]);
@@ -311,7 +319,10 @@ public class InkManager : MonoBehaviour
     public void ClearStory()
     {
         PlayerPrefs.DeleteKey("inkSaveState");
+        SaveSystem.save = new Save();
+        SaveSystem.SaveGame();
         story.ResetState();
+
     }
 
     public void RemoveDatesByTag(string tag)
