@@ -1578,20 +1578,59 @@ VAR olivia_family_knowledge = 0
         I want to believe that #pause:1.7
         but...it's hard these days.
             ~conversation_happening = false
-            ->DONE
+            ->olivia_pep_talk_rosa_witness
     *I'm scared, too #pause:2.1
         yeah this isn't easy for either of us, is it? #pause:1.5
         one more week #pause:1.7
         then we can be free
             ~conversation_happening = false
-            ->DONE
+            ->olivia_pep_talk_rosa_witness
     *we should prepare ourselves for losing #pause:1.4
         I know but #pause:1.9
         I can barely think about it #pause:2.9
         I have to believe we'll win. or I don't know how to get through this.
             ~conversation_happening = false
-            ->DONE
-    
+            ->olivia_pep_talk_rosa_witness
+
+=== olivia_pep_talk_rosa_witness ===
+* @
+        ->ridiculous_intro
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Olivia"
+    hello brave rosa #pause: 1.9
+    where the offense is let the great axe fall
+    *pardon me? #pause:2.2
+        ~conversation_happening = true
+        ->explains_quote
+    *you've finally lost it #pause:2.2
+        ~conversation_happening = true
+        ->explains_quote
+
+    = explains_quote
+        it's from hamlet! what kind of english major are you?? #pause:3.5
+        I wanted to give you a pep talk before you testify so I googled "literary quotes about revenge" #pause:2.1
+        this one mentioned a great axe #pause:1.8
+        seemed appropriate
+        *that's very sweet #pause:2
+            a great axe is not supposed to be sweet! #pause:1.1
+            whatever #pause:2.5
+                ->good_luck
+        *weird, but okay #pause:1.9
+            look I am doing my best #pause:2.5
+                ->good_luck
+        *...the villain says that #pause:1.8
+            ahhh is that who claudius is? #pause:1.1
+            oops #pause:1.8
+            I stand by my effort though #pause:2.5
+                ->good_luck
+    = good_luck
+    *shouldn't I be giving YOU a pep talk? it's your case, I'm just a witness #pause:2.4
+        nahhhh that's not how it works #pause:2.7
+        you gotta know I wouldn't be here without you #pause:2.5
+        we got this. text me during breaks!
+        ~conversation_happening = false
+            ->DONE    
     
 === olivia_pep_talk_rosa_case ===
 * @
@@ -1630,6 +1669,16 @@ VAR olivia_family_knowledge = 0
     text me during breaks! #pause:2.9
     both of us have strong cases. something will come of this
         ~conversation_happening = false
+        
+        
+=== olivia_wrap_up ===
+* @
+        ->ridiculous_intro
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Olivia"
+    this is the final chat, eh?
+        *yes
             ->DONE
     
     

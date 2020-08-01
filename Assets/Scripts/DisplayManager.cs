@@ -69,8 +69,16 @@ public class DisplayManager
         Transform parent = character.transform;
         GameObject textObj = GameObject.Instantiate(Services.GameController.datePrefab, parent);
         textObj.GetComponent<TextMeshProUGUI>().text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
-
-        Services.GameController.DateChangeTriggerer();
+        Debug.Log("im here yo");
+        if (Services.GameController.loading)
+        {
+            Services.GameController.DateChangeTriggerer(0f);
+        }
+        else
+        {
+            Services.GameController.DateChangeTriggerer();
+        }
+        
     }
 
 }

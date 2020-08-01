@@ -32,6 +32,7 @@ public static class SaveSystem
             if(thisSave.vN != versionNumber){
                 return false;
             }
+            Services.GameController.loading = true;
             save = thisSave;
             //Debug.Log(load);
             //Debug.Log(save.choices.Count);

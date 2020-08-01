@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
     public GameObject[] textingInProgressIcons;
 
     public bool haltNameChange = false;
+    public bool loading;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour
             textingIcon.SetActive(false);
         }
         SaveSystem.LoadGame();
+        loading = false;
 
     }
 
@@ -173,12 +175,18 @@ public class GameController : MonoBehaviour
 
     public void DateChangeTriggerer()
     {
-        StartCoroutine(WaitToChangeDates());
+        StartCoroutine(WaitToChangeDates(2f));
     }
 
-    public IEnumerator WaitToChangeDates()
+    public void DateChangeTriggerer(float time)
     {
-        yield return new WaitForSeconds(2);
+        StartCoroutine(WaitToChangeDates(time));
+    }
+
+    public IEnumerator WaitToChangeDates(float time)
+    {
+        yield return new WaitForSeconds(time);
         Services.DateManager.TimePassing();
     }
+
 }

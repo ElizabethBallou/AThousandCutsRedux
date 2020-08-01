@@ -260,9 +260,89 @@
                 ~conversation_happening = false
                     ->Pradhya_pre_meeting
             
+=== Yujin_post_hearing ===
+* @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Yujin"
+    hello my queen!!! #pause:1.5
+    the birds are singing #pause:1.8
+    the crops are watered #pause:1.4
+    THE CASE IS DONE #pause:1.2
+    how's it feel?
+    *(rosa_relieved)such a relief #pause: 2.1
+        ~conversation_happening = true
+        ->yujin_responds
+    *(rosa_doesnt_feel_different)I don't feel any different #pause:1.3
+        ~conversation_happening = true
+        ->yujin_responds
+    *(rosa_disappointed)I'm disappointed #pause:1.8
+        ~conversation_happening = true
+        ->yujin_responds
+    
+    = yujin_responds
+    {rosa_relieved:
+        yessss that's the spirit #pause:2.7
+        breathe in breathe out release that tension, right?
+        }
+    {rosa_doesnt_feel_different:
+        really? #pause:2.9
+        maybe it's like having your birthday. you don't feel any different #pause:2.6
+        even if you can go enlist in the military or drink or w/e
+        }
+    {rosa_disappointed:
+        I'm really sorry :/ #pause:3
+        but at least you don't have to see Duane's fishy face any more #pause:2.8
+        I swear that boy looks more like a mackerel than a person
+        }
+    *how are YOU feeling? #pause:2
+        {perfect_victim_score <= 3:
+            I feel okay, I guess #pause:3.3
+            I really really hoped Duane would get suspended at least #pause:2.1
+            I guess this is...something? #pause:2.5
+            even if it's not on his record...
+                *yeah. #pause:3.3
+                    ->yujin_actions
+            }
+        {perfect_victim_score > 3 && perfect_victim_score < 7:
+            pretty good! #pause:3.6
+            there are consequences for Duane, even if they're not what I wanted #pause:3
+            which was for him to get suspended or expelled #pause:2.8
+            but I can make my peace with this
+                *good! #pause:3.3
+                    ->yujin_actions
+            }
+        {perfect_victim_score >= 7:
+            SO GOOD, my friend #pause:3.9
+            I wanted Duane expelled or suspended but I didn't think that would actually HAPPEN #pause:3
+            it legitimizes what we all went through, y'know
+                *exactly! #pause: 3.3
+                    ->yujin_actions
+            }
         
-    
-    
+        = yujin_actions
+        {perfect_victim_score <= 3:
+            now that it's all over...I've been thinking about talking to my parents #pause:3
+            I'll probably chicken out but I thought I'd mention it to you #pause:3.1
+            }
+        {perfect_victim_score > 3 && perfect_victim_score < 7:
+            also this morning I called my brother and told him about everything #pause:2.5
+            Duane, being a witness...all of it #pause:2.3
+            he was surprised but really warm! #pause:3.2
+            and he said if I wanted to talk to our parents about it, he'd support me #pause:3.1
+            }
+        {perfect_victim_score >= 7:
+            also I've decided #pause:2.8
+            I'm gonna tell my parents about all this #pause:2.6
+            Duane, testifying, everything #pause:3
+            it's a big step but the hearing outcome makes me hopeful #pause:3.1
+            }
+            without you and Olivia, I'd never have even considered it #pause:1.8
+            so stay golden, lovely one <3 #pause:2.2
+            I'm glad you're into my life now
+            ->DONE
     
     
     
