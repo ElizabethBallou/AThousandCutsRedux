@@ -110,7 +110,7 @@ public class InkManager : MonoBehaviour
                 }
                 else
                 {
-                    timeBetweenPrints = 0;
+                    timeBetweenPrints = 0f;
                 }
 
                 if (myPauseTag > 0)
@@ -166,7 +166,7 @@ public class InkManager : MonoBehaviour
                             Services.DisplayManager.choices[i].text = "";
                             break;
                         }else{
-                            Services.DisplayManager.choices[i].text = "--- " +story.currentChoices[i].text;
+                            Services.DisplayManager.choices[i].text = "- " +story.currentChoices[i].text;
                         }
                         
                     }else{
@@ -218,7 +218,14 @@ public class InkManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            inSpeedyMode = true;
+            if (!inSpeedyMode)
+            {
+                inSpeedyMode = true;
+            }
+            else
+            {
+                inSpeedyMode = false;
+            }
             /*
             var myCurrentPath = story.state.currentPathString;
             int tries = 0;

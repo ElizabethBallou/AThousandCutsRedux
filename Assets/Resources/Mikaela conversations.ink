@@ -2,8 +2,6 @@
 === Mikaela_knot_1 ===
 #triggerdate
     ~conversant_name = "Mikaela"
-    ~TitleIX_taking_Rosas_case = "no"
-    ~same_room_as_duane = "yes"
         Rosaaaaaa #pause:1
         two things #pause:3.6
         first, do you have dinner plans? I have space today between class and rehearsal and I want to see you #pause:1.7
@@ -19,7 +17,7 @@
         The Krak? I know you don't like the dining hall #pause:2.5
         plus I could use a burger
             * yeah, the Krak works #pause:2.1
-                - okay, perfect! see you at 6
+                - okay, perfect! see you at 6 #pause:2.5
                     -> Mikaela_second_question
         
     = Rosa_doesnt_have_time
@@ -46,12 +44,12 @@
             }
         we met playing in the pit for Into the Woods. she was the first violinist and she killed it
         *this doesn't sound like a downer! #pause:1.2
-            -   I'm getting there #pause:2
-                Olivia and I were talking yesterday and  #pause:4
-                she mentioned that she had a bad run-in with Duane #pause:3
-                she wasn't sure what to do, so I thought I could give her your number? #pause:2.6
-                then you guys can talk and figure it out?
-                * * ...fuck #pause:1.3
+            I'm getting there #pause:2
+            Olivia and I were talking yesterday and  #pause:4
+            she mentioned that she had a bad run-in with Duane #pause:3
+            she wasn't sure what to do, so I thought I could give her your number? #pause:2.6
+            then you guys can talk and figure it out?
+                * * ...wow #pause:1.3
                     -> Mikaela_begs_Rosa
                 
     = Mikaela_begs_Rosa
@@ -135,10 +133,8 @@
             ->Mikaela_doesnt_support_action
             
         = Mikaela_doesnt_support_action
-            {Olivia_knot_3.Rosa_wants_title_ix:
-                I've known some people who reported to the Title IX council and it never works out the way it should #pause:2.7
-                I just don't want to see you all dragged through the mud
-                }
+            I've known some people who reported to the Title IX council and it never works out the way it should #pause:2.7
+            it seems like death by a thousand cuts
             /*
             {Olivia_knot_3.Rosa_wants_police_report:
                 this sucks to say, but do you know how few people actually get convicted of sexual assault?

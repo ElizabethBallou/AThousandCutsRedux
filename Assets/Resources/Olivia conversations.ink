@@ -21,7 +21,7 @@ VAR olivia_family_knowledge = 0
         I'm not sure how to start talking about this #pause:2.2
         do you know Duane? he's a junior in the egineering school
         *...yes, I know Duane  #pause:2.6
-        *Fuck Duane. we don't talk  #pause:2.6
+        *screw Duane. we don't talk  #pause:2.6
         *Duane and I aren't friends anymore  #pause:2.6
         - -> something_happened_to_unknown
         
@@ -35,9 +35,9 @@ VAR olivia_family_knowledge = 0
             so now I'm afraid there's a pattern #pause:2.2
             what would you call the thing with Duane?
             * * a bad night #pause:1.5
-                -   -   a bad night huh? #pause:2.7
-                        what made your night bad?
-                            -> Rosa_explains_what_happened
+                a bad night huh? #pause:2.7
+                what made your night bad?
+                    -> Rosa_explains_what_happened
                 
             * * a sexual assault #pause:3
                 I'm so sorry that happened to you. #pause:2.5
@@ -116,7 +116,7 @@ VAR olivia_family_knowledge = 0
                             ***he got bored after a few minutes. no fun to grope someone who's playing dead, I guess
                                 ****I wish I'd done something else but idk what I was supposed to do
                                     ->Duane_says_keep_secret
-                        **  said what the fuck, I'm not joking
+                        **  said what the hell, I'm not joking
                         ~duane_resistance = 1
                         ~ perfect_victim_score += 1
                             ***he said come on, we both know why we've been sitting out here waiting for everyone else to leave
@@ -327,7 +327,7 @@ VAR olivia_family_knowledge = 0
                 maybe this is tmi, but I could feel it. it was a deep ache like period cramps. but I wasn't on my period #pause:3.3
                 I woke him up and said he had to go right away. he wouldn't stop grinning. he was so pleased with himself #pause:3.5
                 then I told my roommate what happened. Ally said we needed to go to the hospital and get a rape kit done. and we did #pause:3.6
-                the nurse was so fucking businesslike. she kept telling me to relax because if I did it would be over faster #pause:4
+                the nurse was so damn businesslike. she kept telling me to relax because if I did it would be over faster #pause:4
                 now I'm crying. something to do with talking about the little details #pause:2
                 give me a sec
                 * (Rosa_is_empathetic) I am so so sorry, Olivia #pause:2
@@ -377,7 +377,7 @@ VAR olivia_family_knowledge = 0
                 
             = Rosa_doesnt_consider_anger
                 ~ anger_level = anger_level + 1
-                well that's fucked #pause:2.4
+                well that's messed up #pause:2.4
                 ahhh no I have to go #pause:3.2
                 I wasn't paying attention to the time and now I'm late to class #pause:2
                 talk to you later?
@@ -521,7 +521,7 @@ VAR olivia_family_knowledge = 0
                         -> debug_fast_forward
                     *(Rosa_scared) {Title_IX_explanation_pros_cons > 2} this scares the shit out of me but I'll do it #pause:2
                         -> debug_fast_forward
-                    *(Rosa_ready) {Title_IX_explanation_pros_cons > 2} alright let's drive duane into the fucking ground #pause:2
+                    *(Rosa_ready) {Title_IX_explanation_pros_cons > 2} alright let's drive duane into the ground #pause:2
                         ->debug_fast_forward
                     //* tell me about the other stuff you mentioned
                         //-> Rosa_investigates_options
@@ -1188,7 +1188,7 @@ VAR olivia_family_knowledge = 0
      ~conversant_name = "Olivia"
     damn girl
     whatever you said to Mikaela really pissed her off
-    now she's fucking us over by not testifying for EITHER of us
+    now she's screwing us over by not testifying for EITHER of us
         *(Rosa_no_blame)don't blame me
             ~conversation_happening = true
             ->Olivia_angry_at_Mikaela
@@ -1290,7 +1290,7 @@ VAR olivia_family_knowledge = 0
         what's your schedule like today? we should meet up at Jolly Molly's #pause: 3.7
         one of the bartenders was in the Into the Woods orchestra w me and she gives me free shots #pause:2
         WHICH WE WILL NEED FOR A CELEBRATION
-        *(yes_jm)fuck it let's go now
+        *(yes_jm)let's go now!
             ->celebrating
         *(no_fake_jm)I don't have a fake, remember?
             ->celebrating
