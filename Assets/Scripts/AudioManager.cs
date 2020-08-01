@@ -73,7 +73,7 @@ public class AudioManager : MonoBehaviour
     public void playNextSong()
     {
         music_audiosource.clip = soundtrackSongs[soundtrackSongIndex];
-        currentSongText.text = "Current song:" + "\n" + music_audiosource.clip.name + " (Ketsa)";
+        currentSongText.text = "Current song:" + "\n" + music_audiosource.clip.name + " (Chad Crouch)";
         music_audiosource.Play();
         soundtrackSongIndex++;
         if (soundtrackSongIndex == soundtrackSongs.Length)
@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
     public void playPreviousSong()
     {
         music_audiosource.clip = soundtrackSongs[soundtrackSongIndex];
-        currentSongText.text = "Current song:" + "\n" + music_audiosource.clip.name + " (Ketsa)";
+        currentSongText.text = "Current song:" + "\n" + music_audiosource.clip.name + " (Chad Crouch)";
         music_audiosource.Play();
         soundtrackSongIndex--;
         if (soundtrackSongIndex < 0)
@@ -137,7 +137,6 @@ public class AudioManager : MonoBehaviour
         {
             timeAmount = 3f;
         }
-        Debug.Log("TimeAmount is " + timeAmount);
         menuTriggered = true;
         StartCoroutine(AudioFadeEffect(music_audiosource, timeAmount, 0));
         Invoke("playNextSong", timeAmount);

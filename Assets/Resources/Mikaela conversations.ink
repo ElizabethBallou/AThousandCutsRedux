@@ -336,7 +336,7 @@
         }
     = Mikaela_goodbye
         {good_friend:
-        ~convinced_mikaela = true
+        ~convinced_mikaela = "yes"
         thanks <3 #pause:2.3 
         we're all in this together #pause:1.9
         thank YOU for reminding me of that.
@@ -344,7 +344,7 @@
             ->Olivia_TitleIXpath_Mikaela_in
             }
         {mac_n_cheese:
-        ~convinced_mikaela = true
+        ~convinced_mikaela = "yes"
         ahahaha I think that'd be bribery!#pause:1.9
         but I won't say no either...#pause:2
         everyone who gets interviewed for Title IX should get complimentary mac n cheese#pause:2.6
@@ -353,22 +353,25 @@
             ->Olivia_TitleIXpath_Mikaela_in
             }
         {asking_a_lot:
-        ~convinced_mikaela = true
+        ~convinced_mikaela = "yes"
         at least you realize it #pause:2
         whew. gonna go take a walk and clear my head. talk later
         ~conversation_happening = false
             ->Olivia_TitleIXpath_Mikaela_in
             }
         {not_asking:
-        ~convinced_mikaela = true
-        not all of us are so ready to fight, okay?#pause:2
+        ~convinced_mikaela = "no"
+        how could you say that?#pause:2.5
+        never mind I take it back. it isn't worth it to do this for you #pause:3
         whew. gonna go take a walk and clear my head. talk later
         ~conversation_happening = false
-            ->Olivia_TitleIXpath_Mikaela_in
+            ->Olivia_TitleIXpath_Mikaela_out
             }
         {are_you_serious:
-        are you kidding? I'm not abandoning you #pause:4
-        you are not the only one involved here! god, you're being like those shitty directors who talk as if every production is about them and them alone#pause:2.1
+        ~convinced_mikaela = "no"
+        are you kidding? I'm not abandoning you #pause:2
+        you are not the only one involved here! #pause:4
+        you're like shitty directors who talk as if every production is about them and them alone#pause:2.1
         when in reality it takes so many people just to turn the stagelights on at the right time#pause:2
         I need some time. I'm overwhelmed
             ~conversation_happening = false

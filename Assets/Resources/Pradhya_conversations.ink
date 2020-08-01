@@ -96,16 +96,16 @@
     = room_choice
         All right, I'll tell the panel head. #pause:3.7
         Your panel has two students, a professor, and two deans. The investigator screened them ahead of time to make sure none of them know you. #pause:2.9
-        {convinced_yujin == false && convinced_mikaela == false:
+        {convinced_yujin == "no" && convinced_mikaela == "no":
             You'll testify first, then Rudy will go. #pause:4.8
             }
-        {convinced_yujin == false && convinced_mikaela == true:
+        {convinced_yujin == "no" && convinced_mikaela == "yes":
             You'll testify first, then Rudy, then Mikaela. #pause:4.8
             }
-        {convinced_yujin == true && convinced_mikaela == false:
+        {convinced_yujin == "yes" && convinced_mikaela == "no":
             You'll testify first, then Rudy, then Yujin. #pause:4.8
             }
-        {convinced_yujin == true && convinced_mikaela == true:
+        {convinced_yujin == "yes" && convinced_mikaela == "yes":
             You'll testify first, then Rudy, then Mikaela, then Yujin. #pause:4.8
             }
         Panel members can ask questions after each of you delivers your statement. The responding party and his advocate can ask questions, too, but they have to give questions to the panel first. #pause: 3.5

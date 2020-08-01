@@ -20,7 +20,7 @@ public static class SaveSystem
             writer.WriteLine(json);
             writer.Close();
         }
-        Debug.Log(json);
+        //Debug.Log(json);
    }
    public static bool LoadGame(){
        string path  =Application.persistentDataPath+"/save.json";
@@ -33,16 +33,16 @@ public static class SaveSystem
                 return false;
             }
             save = thisSave;
-            Debug.Log(load);
-            Debug.Log(save.choices.Count);
+            //Debug.Log(load);
+            //Debug.Log(save.choices.Count);
             for(var i = 0; i < save.choices.Count;i++){
                 while(Services.InkManager.story.canContinue){
                     Services.InkManager.Update();
                 }
-                Debug.Log("AT FIRST CHOICE");
+                //Debug.Log("AT FIRST CHOICE");
                 Services.InkManager.SelectChoice(save.choices[i],true);
             }
-            Debug.Log("LOAD SUCCESSFUL");
+            //Debug.Log("LOAD SUCCESSFUL");
             //load the save here yo!
             //put all the text in the right place then 
             return true;

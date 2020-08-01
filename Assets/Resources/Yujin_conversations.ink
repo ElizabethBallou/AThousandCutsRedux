@@ -111,7 +111,7 @@
                 ->yujin_explains_3
             *(Rosa_kind)then all I can do is ask politely for you to be interviewed #pause:2.4
                 ->yujin_explains_3
-            *(Rosa_numbers)it's not just me, remember? there's a third person and she'll be there too #pause:3.7
+            *(Rosa_numbers)it's not just me though. Olivia wil be there too #pause:3.7
                 ->yujin_explains_3
 
         = yujin_explains_3
@@ -134,10 +134,9 @@
                     ->yujin_not_helping
                     }
             {yujin_trust_level == 2:
-                I might regret this but okay. #pause:4
-                I'm in
-                *thank you so much #pause:1.9
-                    ->yujin_helping
+                I'm sorry. you seem like a nice person. #pause:4
+                but I can't help you with this #pause:1.9
+                    ->yujin_not_helping
                 }
             {yujin_trust_level == 3:
                 I might regret this but okay. #pause:4
@@ -154,14 +153,21 @@
                 
         = yujin_not_helping
             #noyujin
+            ~convinced_yujin = "no"
+            {yujin_trust_level <=1:
             your fight is not my fight #pause:2.1
-            now good DAY 
+            now good DAY
+            }
+            {yujin_trust_level == 2:
+            I hope you understand #2.2
+            maybe one day I'll be more like you
+            }
             ~conversation_happening = false
                 ->Mikaela_scared_testifying
 
         = yujin_helping
             #yesyujin
-            ~convinced_yujin = true
+            ~convinced_yujin = "yes"
             ~perfect_victim_score += 3
             I hope they interview me fast   #pause:1.9
             then I don't have time to change my mind #pause:3.5

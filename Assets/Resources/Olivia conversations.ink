@@ -464,7 +464,7 @@ VAR olivia_family_knowledge = 0
 
     = Olivia_explains_actions_1
         ah yeah #pause:3.2
-        about Duane suffering #pause:4
+        about Duane paying for what he did #pause:4
         I thought about different stuff we could do #pause:2
         like go to the police maybe #pause:3.2
         or write an anonymous story and post it online#pause:4.2
@@ -1249,13 +1249,16 @@ VAR olivia_family_knowledge = 0
     did you see the email??
     *what email? #pause:2
         ~conversation_happening = true
-        {convinced_yujin == true:
+        {convinced_yujin == "yes" && convinced_mikaela == "yes":
             ->case_judgment_both
             }
-        {convinced_mikaela == true:
+        {convinced_mikaela == "yes" && convinced_yujin == "no":
             ->case_judgment_both
             }
-        {convinced_yujin == false && convinced_mikaela == false:
+        {convinced_mikaela == "no" && convinced_yujin == "yes":
+            ->case_judgment_both
+            }
+        {convinced_yujin == "no" && convinced_mikaela == "no":
             ->case_judgment_one
             }
     
@@ -1512,25 +1515,24 @@ VAR olivia_family_knowledge = 0
         this may sound too sappy but...I'm so glad to have you, Rosa
         *I hope I'm enough
             ~conversation_happening = false
-            {TitleIX_taking_Rosas_case == true && convinced_yujin == true:
+            {TitleIX_taking_Rosas_case == "yes" && convinced_yujin == "yes":
                 -> yujin_reacts_to_Duane_threat
             }
-            {TitleIX_taking_Rosas_case  == true && convinced_yujin == false:
+            {TitleIX_taking_Rosas_case  == "yes" && convinced_yujin == "no":
                 ->Pradhya_pre_meeting
             }
-            {TitleIX_taking_Rosas_case == false:
+            {TitleIX_taking_Rosas_case == "no":
                 ->olivia_nervous_pre_trial
             }
             
         *I'm glad to have you too
-            ~conversation_happening = false
-            {TitleIX_taking_Rosas_case == true && convinced_yujin == true:
+            {TitleIX_taking_Rosas_case == "yes" && convinced_yujin == "yes":
                 -> yujin_reacts_to_Duane_threat
             }
-            {TitleIX_taking_Rosas_case  == true && convinced_yujin == false:
+            {TitleIX_taking_Rosas_case  == "yes" && convinced_yujin == "no":
                 ->Pradhya_pre_meeting
             }
-            {TitleIX_taking_Rosas_case == false:
+            {TitleIX_taking_Rosas_case == "no":
                 ->olivia_nervous_pre_trial
             }
     

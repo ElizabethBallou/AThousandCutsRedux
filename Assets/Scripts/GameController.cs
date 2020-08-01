@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
     public string characterWithOpenMessages;
     public GameObject[] textingInProgressIcons;
 
+    public bool haltNameChange = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,11 +66,15 @@ public class GameController : MonoBehaviour
                 Services.InkManager.Update();
                 if (lockScreen.SwitchingEpisodes)
                 {
-                    StartCoroutine(WaitToChangeNames());
+                    //StartCoroutine(WaitToChangeNames());
                 }
                 else
                 {
-                    texterName.text = Services.InkManager.currentConversant;
+                    if (!haltNameChange)
+                    {
+                        texterName.text = Services.InkManager.currentConversant;
+                        //Debug.Log("I am switching the texterName, and not from the coroutine. haltNameChange is false");
+                    }
                 }
             }
             
@@ -82,7 +88,6 @@ public class GameController : MonoBehaviour
                     oliviaBlur.SetActive(false);
                     oliviaButton.interactable = true;
                     oliviaButton.gameObject.transform.SetSiblingIndex(0);
-                    //mikaelaButton.gameObject.transform.SetSiblingIndex(2);
                 }
                 if (talkingTo == "Yujin")
                 {
@@ -92,7 +97,6 @@ public class GameController : MonoBehaviour
                 }
                 if (talkingTo == "Rudy")
                 {
-                    Debug.Log("IM TALKIN TO RUDY");
                     rudyBlur.SetActive(false);
                     rudyButton.interactable = true;
                     rudyButton.gameObject.transform.SetSiblingIndex(0);
@@ -164,7 +168,6 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         texterName.text = Services.InkManager.currentConversant;
-        Debug.Log("Now setting new texter name");
     }
 
     public void DateChangeTriggerer()
@@ -176,6 +179,5 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         Services.DateManager.TimePassing();
-        Debug.Log("Inside WaitToChangeDates. Calling TimePassing");
     }
 }

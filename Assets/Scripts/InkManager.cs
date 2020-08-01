@@ -219,7 +219,6 @@ public class InkManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             inSpeedyMode = true;
-            Debug.Log("IM IN SPEEDY MODE");
             /*
             var myCurrentPath = story.state.currentPathString;
             int tries = 0;
@@ -333,9 +332,7 @@ public class InkManager : MonoBehaviour
             {
                 Services.DateManager.DateList.Remove(Services.DateManager.DateList[i]);
             }
-        }
-           
-        Debug.Log("I have read " + tag + " and am removing all dates with that tag from DateList. New count is " + Services.DateManager.DateList.Count);
+        }   
     }
 
     public void RemoveTagsFromUsedDates(string tag)
@@ -350,8 +347,6 @@ public class InkManager : MonoBehaviour
                 Services.DateManager.DateList.Insert(i, cleanedDate);
             }
         }
-
-        Debug.Log("I have read " + tag + " and am removing Yujin's name from the date tags so that it isn't printed");
     }          
    
 }

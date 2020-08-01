@@ -55,7 +55,6 @@ public class LockScreenController : MonoBehaviour
 
         //set date text to proper date
         dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
-        Debug.Log("We begin. dateListIndex is " + Services.DateManager.dateListIndex);
 
         //hide quit button
         quitButton.image.color = clearWhite;
@@ -70,7 +69,6 @@ public class LockScreenController : MonoBehaviour
         notificationText.color = clearWhite;
 
         victimScoreArray = victimScoreTextFile.text.Split('\n');
-        Debug.Log(victimScoreArray[0]);
 
     }
 
@@ -119,9 +117,11 @@ public class LockScreenController : MonoBehaviour
                 blackBackdrop.color = Color.clear;
             }
         }
+       
 
         if (startEndtimer)
         {
+            
             endEpisodeTimer += Time.deltaTime;
             if (endEpisodeTimer > 2f)
             {
@@ -129,6 +129,11 @@ public class LockScreenController : MonoBehaviour
                 endEpisodeTimer = 0;
                 onEndtimerEnd();
             }
+        }
+        else
+        {
+            Services.GameController.haltNameChange = false;
+            //Debug.Log("haltNameChange is being set false");
         }
     }
 
@@ -156,6 +161,7 @@ public class LockScreenController : MonoBehaviour
     }
     public void OnLockScreenLock() {
         AudioManager.instance.FastForwardButtonClick();
+        Services.GameController.haltNameChange = true;
         if (unlockButtonPressed)
         {
             startEndtimer = true;
@@ -167,7 +173,7 @@ public class LockScreenController : MonoBehaviour
     public void onEndtimerEnd()
     {
 
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 23" || Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "April 24")
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "March 4")
         {
             //go into End Mode
             unlockButton.gameObject.SetActive(false);
@@ -184,7 +190,7 @@ public class LockScreenController : MonoBehaviour
             endgameText.gameObject.SetActive(true);
             endgameText.DOFade(1f, fadeTime).SetDelay(longFade);
         }
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "February 3")
+        /*if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "February 3")
         {
             SetOutcomeText();
             blackBackdrop.gameObject.SetActive(true);
@@ -194,7 +200,7 @@ public class LockScreenController : MonoBehaviour
             outcomeText.text = outcomeList[0];
             outcomeButton.image.DOFade(.6f, longFade + 2f).SetDelay(longFade);
             outcomeText.DOFade(1f, longFade + 1f).SetDelay(longFade);
-        }
+        }*/
         else
         {
             //continue the transition
@@ -212,7 +218,7 @@ public class LockScreenController : MonoBehaviour
 
             //switch the date text so it's accurate
             dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
-            Debug.Log("I'm inside OnEndTimerEnd. The lock screen text has just been changed to " + Services.DateManager.dateListIndex);
+            //Debug.Log("I'm inside OnEndTimerEnd. The lock screen text has just been changed to " + Services.DateManager.dateListIndex);
 
             //begin by fading in the backdrop
             blackBackdrop.DOFade(1f, longFade);
@@ -220,10 +226,9 @@ public class LockScreenController : MonoBehaviour
             //now fade in the lock screen components
 
             dateText.DOFade(1f, fadeTime).SetDelay(longFade);
-            unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade);
+            unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade).OnComplete(() => blackBackdrop.gameObject.SetActive(false));
             unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-            notificationText.DOFade(1f, fadeTime).SetDelay(longFade + 1f)
-               .OnComplete(() => blackBackdrop.gameObject.SetActive(false));
+            notificationText.DOFade(1f, fadeTime).SetDelay(longFade);
             Invoke("PlayBuzzingSound", 3.5f);
         }  
 
@@ -293,7 +298,7 @@ public class LockScreenController : MonoBehaviour
 
         //check to see how much Rosa resisted Duane
         int resistanceCount = (int)Services.InkManager.story.variablesState["duane_resistance"];
-        
+        Debug.Log("resistanceCount is " + resistanceCount);
         //add a different string depending on the resistanceCount
         switch(resistanceCount)
         {
@@ -323,6 +328,29 @@ public class LockScreenController : MonoBehaviour
                 outcomeList.Add("When you say you were drunk, one of the panel members asks, 'Did you black out?' You admit that a few parts of the night are fuzzy.");
                 outcomeList.Add("The panelist frowns. 'How sure are you that the man who touched you is this gentleman?' he says. You tell him you are sure - you remember that part so very clearly - but he looks unconvinced.");
                 break;
+        }
+
+        //now let's see if Yujin and/or Mikaela are testifying
+        string mikaelaTestifying = Services.InkManager.story.variablesState["convinced_mikaela"] as string;
+        string yujinTestifying = Services.InkManager.story.variablesState["convinced_yujin"] as string;
+        if (caseChoice == "yes")
+        {
+            if (mikaelaTestifying == "yes" && yujinTestifying == "yes")
+            {
+                outcomeList.Add("");
+            }
+            if (mikaelaTestifying == "no" && yujinTestifying == "yes")
+            {
+                outcomeList.Add("");
+            }
+            if (mikaelaTestifying == "yes" && yujinTestifying == "no")
+            {
+                outcomeList.Add("");
+            }
+        }
+        if (caseChoice == "no")
+        {
+            outcomeList.Add("");
         }
 
         //check the perfect victim score and cast it to an int

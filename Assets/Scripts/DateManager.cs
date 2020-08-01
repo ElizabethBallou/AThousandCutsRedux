@@ -22,6 +22,5 @@ public class DateManager
     public void TimePassing()
     {
         dateListIndex++;
-        Debug.Log("Time is passing. Now the dateListIndex is " + dateListIndex);
     }
 }
