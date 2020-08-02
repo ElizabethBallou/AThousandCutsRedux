@@ -7,6 +7,7 @@ using UnityEditor;
 public static class SaveSystem
 {
    public static int versionNumber = 3;
+   public static float lastSaveTime;
    public static Save save = new Save();
    public static void SaveGame(){
        save.vN = versionNumber;
@@ -22,6 +23,7 @@ public static class SaveSystem
             writer.WriteLine(json);
             writer.Close();
         }
+        lastSaveTime = Time.time;
         //Debug.Log(json);
    }
    public static bool LoadGame(){
