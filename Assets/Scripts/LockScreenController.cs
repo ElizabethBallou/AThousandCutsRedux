@@ -17,7 +17,7 @@ public class LockScreenController : MonoBehaviour
     public TextMeshProUGUI outcomeText;
     public Button unlockButton;
     public Button quitButton;
-    public Button outcomeButton;
+    public Button outcomeContinueButton;
     public float fadeTime = .5f;
     public float secondaryFadeTime = .2f;
     public float longFade = 3f;
@@ -32,11 +32,14 @@ public class LockScreenController : MonoBehaviour
     private float endEpisodeTimer = 0;
     private bool startEndtimer = false;
 
+    public string outcomeDate;
+    public string endDate;
     public TextAsset victimScoreTextFile;
     private string[] victimScoreArray;
     private string victimScoreString = "";
     private List<string> outcomeList = new List<string>();
     private int outcomeListIndex = 0;
+    private bool outcomeShown = false;
     
     private void Awake()
     {
@@ -60,7 +63,9 @@ public class LockScreenController : MonoBehaviour
         quitButton.image.color = clearWhite;
         quitButton.gameObject.SetActive(false);
 
-        outcomeButton.gameObject.SetActive(false);
+        outcomeText.color = clearWhite;
+        outcomeContinueButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = clearWhite;
+        outcomeContinueButton.gameObject.SetActive(false);
         outcomeText.gameObject.SetActive(false);
 
         endgameText.color = clearWhite;
@@ -127,7 +132,7 @@ public class LockScreenController : MonoBehaviour
             {
                 startEndtimer = false;
                 endEpisodeTimer = 0;
-                onEndtimerEnd();
+                ScreenStateDeterminer();
             }
         }
         else
@@ -160,7 +165,13 @@ public class LockScreenController : MonoBehaviour
         Application.Quit();
     }
     public void OnLockScreenLock() {
-        AudioManager.instance.FastForwardButtonClick();
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() != outcomeDate)
+        {
+            if(!outcomeShown)
+            {
+                AudioManager.instance.FastForwardButtonClick();
+            }
+        }
         Services.GameController.haltNameChange = true;
         if (unlockButtonPressed)
         {
@@ -170,71 +181,92 @@ public class LockScreenController : MonoBehaviour
 
             
 
-    public void onEndtimerEnd()
+    public void ScreenStateDeterminer()
     {
 
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "March 4")
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == endDate)
         {
-            //go into End Mode
-            unlockButton.gameObject.SetActive(false);
-            blackBackdrop.gameObject.SetActive(true);
-            blackBackdrop.DOFade(1f, longFade).OnComplete(() => blackBackdrop.DOFade(0f, longFade)).OnComplete(() => blackBackdrop.gameObject.SetActive(false));
-
-            quitButton.gameObject.SetActive(true);
-            quitButton.gameObject.transform.SetAsLastSibling();
-            quitButton.image.DOFade(.6f, fadeTime).SetDelay(longFade);
-
-            unlockScreenGraphic.gameObject.SetActive(true);
-            unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(1f);
-
-            endgameText.gameObject.SetActive(true);
-            endgameText.DOFade(1f, fadeTime).SetDelay(longFade);
+            EndGameScreenSetup();
         }
-        /*if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "February 3")
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == outcomeDate)
         {
+            //give the player the outcome of all of Rosa's choices
             SetOutcomeText();
-            blackBackdrop.gameObject.SetActive(true);
-            blackBackdrop.DOFade(1f, longFade).SetDelay(longFade);
-            outcomeButton.gameObject.SetActive(true);
-            outcomeText.gameObject.SetActive(true);
-            outcomeText.text = outcomeList[0];
-            outcomeButton.image.DOFade(.6f, longFade + 2f).SetDelay(longFade);
-            outcomeText.DOFade(1f, longFade + 1f).SetDelay(longFade);
-        }*/
+            OutcomeScreenSetup();
+        }
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "nothing")
+        {
+            dateText.gameObject.SetActive(false);
+            unlockButton.gameObject.SetActive(false);
+            notificationText.gameObject.SetActive(false);
+        }
         else
         {
-            //continue the transition
-            Services.GameController.characterWithOpenMessages = "";
-            unlockButtonPressed = false;
-            SwitchingEpisodes = true;
-            unlockButton.image.color = clearWhite;
-
-            //set the proper UI objects active so they can get FADED
-            blackBackdrop.gameObject.SetActive(true);
-            dateText.gameObject.SetActive(true);
-            notificationText.gameObject.SetActive(true);
-            unlockScreenGraphic.gameObject.SetActive(true);
-            unlockButton.gameObject.SetActive(true);
-
-            //switch the date text so it's accurate
-            dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
-            //Debug.Log("I'm inside OnEndTimerEnd. The lock screen text has just been changed to " + Services.DateManager.dateListIndex);
-
-            //begin by fading in the backdrop
-            blackBackdrop.DOFade(1f, longFade);
-
-            //now fade in the lock screen components
-
-            dateText.DOFade(1f, fadeTime).SetDelay(longFade);
-            unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade).OnComplete(() => blackBackdrop.gameObject.SetActive(false));
-            unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
-            notificationText.DOFade(1f, fadeTime).SetDelay(longFade);
-            Invoke("PlayBuzzingSound", 3.5f);
+            RefreshScreenForNewEpisode();
         }  
 
     }
 
+    public void OutcomeScreenSetup()
+    {
+        AudioManager.instance.PauseForOutcomeSong();
+        blackBackdrop.gameObject.SetActive(true);
+        blackBackdrop.DOFade(1f, longFade);
+        outcomeContinueButton.gameObject.SetActive(true);
+        outcomeText.gameObject.SetActive(true);
+        outcomeText.text = "\t" + outcomeList[0];
+        outcomeContinueButton.image.DOFade(.6f, longFade + 2f).SetDelay(longFade);
+        outcomeContinueButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().DOFade(.6f, longFade + 2f).SetDelay(longFade);
+        outcomeText.DOFade(1f, longFade + 1f).SetDelay(longFade);
+        outcomeShown = true;
+    }
+    public void EndGameScreenSetup()
+    {
+        //go into End Mode
+        unlockButton.gameObject.SetActive(false);
+        blackBackdrop.gameObject.SetActive(true);
+        blackBackdrop.DOFade(1f, longFade).OnComplete(() => blackBackdrop.DOFade(0f, longFade)).OnComplete(() => blackBackdrop.gameObject.SetActive(false));
 
+        quitButton.gameObject.SetActive(true);
+        quitButton.gameObject.transform.SetAsLastSibling();
+        quitButton.image.DOFade(.6f, fadeTime).SetDelay(longFade);
+
+        unlockScreenGraphic.gameObject.SetActive(true);
+        unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(1f);
+
+        endgameText.gameObject.SetActive(true);
+        endgameText.DOFade(1f, fadeTime).SetDelay(longFade);
+    }
+    public void RefreshScreenForNewEpisode()
+    {
+        //continue the transition
+        Services.GameController.characterWithOpenMessages = "";
+        unlockButtonPressed = false;
+        SwitchingEpisodes = true;
+        unlockButton.image.color = clearWhite;
+
+        //set the proper UI objects active so they can get FADED
+        blackBackdrop.gameObject.SetActive(true);
+        dateText.gameObject.SetActive(true);
+        notificationText.gameObject.SetActive(true);
+        unlockScreenGraphic.gameObject.SetActive(true);
+        unlockButton.gameObject.SetActive(true);
+
+        //switch the date text so it's accurate
+        dateText.text = Services.DateManager.DateList[Services.DateManager.dateListIndex];
+        //Debug.Log("I'm inside OnEndTimerEnd. The lock screen text has just been changed to " + Services.DateManager.dateListIndex);
+
+        //begin by fading in the backdrop
+        blackBackdrop.DOFade(1f, longFade);
+
+        //now fade in the lock screen components
+
+        dateText.DOFade(1f, fadeTime).SetDelay(longFade);
+        unlockScreenGraphic.DOFade(1f, fadeTime).SetDelay(longFade).OnComplete(() => blackBackdrop.gameObject.SetActive(false));
+        unlockButton.image.DOFade(1f, fadeTime).SetDelay(longFade);
+        notificationText.DOFade(1f, fadeTime).SetDelay(longFade);
+        Invoke("PlayBuzzingSound", 3.5f);
+    }
     public void PlayBuzzingSound()
     {
         AudioManager.instance.playBuzzingsound(.5f);
@@ -363,9 +395,20 @@ public class LockScreenController : MonoBehaviour
 
     public void onContinueButtonClick()
     {
-        outcomeListIndex++;
-        outcomeText.DOFade(0f, .5f).OnComplete(() => outcomeText.text = outcomeList[outcomeListIndex]);
-        outcomeText.DOFade(1f, .5f).SetDelay(.5f);
+        if (outcomeListIndex == outcomeList.Count - 1)
+        {
+            outcomeText.text = "This is the end.";
+            outcomeContinueButton.image.DOFade(0f, longFade).OnComplete(() => outcomeContinueButton.gameObject.SetActive(false));
+            outcomeContinueButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().DOFade(0f, longFade).OnComplete(() => RefreshScreenForNewEpisode());
+            outcomeText.DOFade(0f, longFade + 1f).OnComplete(() => outcomeText.gameObject.SetActive(false));
+        }
+        else
+        {
+            AudioManager.instance.playTextingSound(AudioManager.instance.clickSound, .4f);
+            outcomeListIndex++;
+            outcomeText.DOFade(0f, .5f).OnComplete(() => outcomeText.text = "\t" + outcomeList[outcomeListIndex]);
+            outcomeText.DOFade(1f, .5f).SetDelay(.5f);
+        }
     }
 }
 

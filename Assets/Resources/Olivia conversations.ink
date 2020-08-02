@@ -1679,8 +1679,24 @@ VAR olivia_family_knowledge = 0
     ~conversant_name = "Olivia"
     this is the final chat, eh?
         *yes
-            ->DONE
+            ~conversation_happening = true
     
+    = ending
+    I see. what a time it's been!
+    what great chums we are now
+        ~conversation_happening = false
+        ->extra_knot
+
+
+=== extra_knot ===
+* @
+        ->ridiculous_intro
+    = ridiculous_intro
+    #triggerdate
+    ~conversant_name = "Olivia"
+    yep yep here we goooo
+        ->DONE
+
     
     
     

@@ -3869,7 +3869,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 171.35}
-  m_SizeDelta: {x: 600, y: 400}
+  m_SizeDelta: {x: 700, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &374770782
 MonoBehaviour:
@@ -3919,8 +3919,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5428,6 +5428,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 86e7689615e408f4e9fee68ae406b16f, type: 3}
   soundtrackSongIndex: 3
   currentSongText: {fileID: 132878333}
+  outcomeSong: {fileID: 8300000, guid: 6e8f3c992e7fdde4d87ca5cd859a3db3, type: 3}
   textReceivedSound: {fileID: 8300000, guid: d980eb111846342408c8922f8301a47a, type: 3}
   textSentSound: {fileID: 8300000, guid: a8661444e9996154db6d69f6a7c8eb4e, type: 3}
   unlockSound: {fileID: 8300000, guid: 42db309e3da7a8f4a9d616758963873c, type: 3}
@@ -12484,11 +12485,13 @@ MonoBehaviour:
   outcomeText: {fileID: 374770782}
   unlockButton: {fileID: 1140198606}
   quitButton: {fileID: 1803378803}
-  outcomeButton: {fileID: 2077762479}
+  outcomeContinueButton: {fileID: 2077762479}
   fadeTime: 1.5
   secondaryFadeTime: 0.4
   longFade: 3
   SwitchingEpisodes: 0
+  outcomeDate: February 3
+  endDate: February 4
   victimScoreTextFile: {fileID: 4900000, guid: 7397081f7f3a6d44091b8a14462488bd, type: 3}
 --- !u!1 &1361239041
 GameObject:
@@ -14546,6 +14549,7 @@ MonoBehaviour:
   - {fileID: 96841700}
   - {fileID: 793116092}
   haltNameChange: 0
+  loading: 0
 --- !u!1 &1640828055
 GameObject:
   m_ObjectHideFlags: 0

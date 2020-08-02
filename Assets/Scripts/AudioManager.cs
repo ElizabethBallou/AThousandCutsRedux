@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] soundtrackSongs;
     public int soundtrackSongIndex = 3;
     public TextMeshProUGUI currentSongText;
+    public AudioClip outcomeSong;
 
     public AudioClip textReceivedSound;
     public AudioClip textSentSound;
@@ -81,6 +82,21 @@ public class AudioManager : MonoBehaviour
             soundtrackSongIndex = 0;
         }
         StartCoroutine(AudioFadeEffect(music_audiosource, .5f, 1f));
+    }
+
+    public void PauseForOutcomeSong()
+    {
+        StartCoroutine(AudioFadeEffect(music_audiosource, .5f, 0f));
+        StartCoroutine(PlayOutcomeSong());
+       
+    }
+
+    public IEnumerator PlayOutcomeSong()
+    {
+        yield return new WaitForSeconds(2);
+        music_audiosource.clip = outcomeSong;
+        music_audiosource.Play();
+        StartCoroutine(AudioFadeEffect(music_audiosource, 10f, .8f));
     }
 
     public void playPreviousSong()

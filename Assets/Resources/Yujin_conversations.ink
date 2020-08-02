@@ -342,7 +342,8 @@
             without you and Olivia, I'd never have even considered it #pause:1.8
             so stay golden, lovely one <3 #pause:2.2
             I'm glad you're into my life now
-            ->DONE
+                ~conversation_happening = false
+                ->olivia_wrap_up
     
     
     
