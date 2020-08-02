@@ -165,7 +165,7 @@ public class LockScreenController : MonoBehaviour
         Application.Quit();
     }
     public void OnLockScreenLock() {
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() != outcomeDate)
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex-1].Trim() != outcomeDate)
         {
             if(!outcomeShown)
             {
@@ -178,23 +178,22 @@ public class LockScreenController : MonoBehaviour
             startEndtimer = true;
         }
     }
-
             
 
     public void ScreenStateDeterminer()
     {
 
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == endDate)
+        if (Services.DateManager.DateList[Services.DateManager.dateListIndex-1].Trim() == endDate)
         {
             EndGameScreenSetup();
         }
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == outcomeDate)
+        else if (Services.DateManager.DateList[Services.DateManager.dateListIndex-1].Trim() == outcomeDate)
         {
             //give the player the outcome of all of Rosa's choices
             SetOutcomeText();
             OutcomeScreenSetup();
         }
-        if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "nothing")
+        else if (Services.DateManager.DateList[Services.DateManager.dateListIndex].Trim() == "nothing")
         {
             dateText.gameObject.SetActive(false);
             unlockButton.gameObject.SetActive(false);
@@ -369,20 +368,39 @@ public class LockScreenController : MonoBehaviour
         {
             if (mikaelaTestifying == "yes" && yujinTestifying == "yes")
             {
-                outcomeList.Add("");
+                outcomeList.Add("Later, Yujin testifies. She cries when she speaks, and yells. Duane can't look at her.");
+                outcomeList.Add("Then it's Mikaela's turn. She confirms that yes, you were at Rudy's party, and yes, you told her what Duane did.");
+                outcomeList.Add("Third is Rudy. He says he can place you on the back porch with Duane.");
+                outcomeList.Add("Finally, Olivia testifies. She tells the panel everything you already know.");
             }
             if (mikaelaTestifying == "no" && yujinTestifying == "yes")
             {
-                outcomeList.Add("");
+                outcomeList.Add("Later, Yujin testifies. She cries when she speaks, and yells. Duane can't look at her.");
+                outcomeList.Add("Then, Rudy speaks. He says he can place you on the back porch with Duane.");
+                outcomeList.Add("Finally, Olivia testifies. She tells the panel everything you already know.");
+
             }
             if (mikaelaTestifying == "yes" && yujinTestifying == "no")
             {
-                outcomeList.Add("");
+                outcomeList.Add("Later, Mikaela testifies. She confirms that yes, you were at Rudy's party, and yes, you told her what Duane did.");
+                outcomeList.Add("Then, Rudy speaks. He says he can place you on the back porch with Duane.");
+                outcomeList.Add("Finally, Olivia testifies. She tells the panel everything you already know.");
             }
+
+            outcomeList.Add("After lunch, Duane testifies. He says you wanted to be kissed, that he thought you liked it.");
+            outcomeList.Add("He says you don't understand what this investigation has put him through.");
+            outcomeList.Add("It is painful, to hear him say that.");
+            outcomeList.Add("At last, it's over. You go home and sleep well into the next day.");
+            outcomeList.Add("Olivia's hearing has already started, and at noon you go back to the Deans' Office. It's a different panel this time. You repeat everything you said yesterday.");
+            outcomeList.Add("Then you leave. Olivia's hearing continues, but you don't know what to do, so you sit on a bench outside the Deans' Office.");
+            outcomeList.Add("Hours pass.");
+            outcomeList.Add("Then, after the sun has set, you get a text from Olivia with the combined verdict.");
         }
         if (caseChoice == "no")
         {
-            outcomeList.Add("");
+            outcomeList.Add("Then you leave. Olivia's hearing continues, but you don't know what to do, so you sit on a bench outside the Deans' Office.");
+            outcomeList.Add("Hours pass.");
+            outcomeList.Add("Then, after the sun has set, you get a text from Olivia with the verdict.");
         }
 
         //check the perfect victim score and cast it to an int
@@ -397,7 +415,6 @@ public class LockScreenController : MonoBehaviour
     {
         if (outcomeListIndex == outcomeList.Count - 1)
         {
-            outcomeText.text = "This is the end.";
             outcomeContinueButton.image.DOFade(0f, longFade).OnComplete(() => outcomeContinueButton.gameObject.SetActive(false));
             outcomeContinueButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().DOFade(0f, longFade).OnComplete(() => RefreshScreenForNewEpisode());
             outcomeText.DOFade(0f, longFade + 1f).OnComplete(() => outcomeText.gameObject.SetActive(false));

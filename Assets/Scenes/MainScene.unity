@@ -12490,8 +12490,8 @@ MonoBehaviour:
   secondaryFadeTime: 0.4
   longFade: 3
   SwitchingEpisodes: 0
-  outcomeDate: February 3
-  endDate: February 4
+  outcomeDate: April 24
+  endDate: April 27
   victimScoreTextFile: {fileID: 4900000, guid: 7397081f7f3a6d44091b8a14462488bd, type: 3}
 --- !u!1 &1361239041
 GameObject:

@@ -1526,6 +1526,7 @@ VAR olivia_family_knowledge = 0
             }
             
         *I'm glad to have you too
+            ~conversation_happening = false
             {TitleIX_taking_Rosas_case == "yes" && convinced_yujin == "yes":
                 -> yujin_reacts_to_Duane_threat
             }
@@ -1630,7 +1631,7 @@ VAR olivia_family_knowledge = 0
         you gotta know I wouldn't be here without you #pause:2.5
         we got this. text me during breaks!
         ~conversation_happening = false
-            ->DONE    
+            ->olivia_wrap_up    
     
 === olivia_pep_talk_rosa_case ===
 * @
@@ -1669,6 +1670,12 @@ VAR olivia_family_knowledge = 0
     text me during breaks! #pause:2.9
     both of us have strong cases. something will come of this
         ~conversation_happening = false
+        {convinced_yujin == "yes":
+            ->Yujin_post_hearing
+            }
+        {convinced_yujin == "no":
+            ->olivia_wrap_up
+            }
         
         
 === olivia_wrap_up ===
@@ -1677,16 +1684,97 @@ VAR olivia_family_knowledge = 0
     = ridiculous_intro
     #triggerdate
     ~conversant_name = "Olivia"
-    this is the final chat, eh?
-        *yes
+    it's over #pause:3
+    {perfect_victim_score <= 2:
+        and all he got was a slap on the wrist #pause:2
+        }
+    {perfect_victim_score == 3:
+        and all he got was a slap on the wrist and some mandated therapy#pause:2
+        }
+    {perfect_victim_score == 4:
+        and all he got was a slap on the wrist and some mandated therapy#pause:2
+        }
+    {perfect_victim_score == 5:
+        I wanted more but at least it's going on his record#pause:2
+        }
+    {perfect_victim_score == 6:
+        I wanted more but at least it's going on his record#pause:2
+        }
+    {perfect_victim_score == 7:
+        and he's suspended#pause:2
+        }
+    {perfect_victim_score == 8:
+        and he's suspended#pause:2
+        }
+    {perfect_victim_score == 9:
+        and he's expelled#pause:2 
+        }
+    I can't believe it
+        *I can't either #pause:2.5
             ~conversation_happening = true
+                ->surprised_ending
+        *I had a feeling it would always turn out this way #pause:2.5
+            ~conversation_happening = true
+                ->meant_to_be
     
-    = ending
-    I see. what a time it's been!
-    what great chums we are now
-        ~conversation_happening = false
-        ->extra_knot
-
+    = surprised_ending
+    {perfect_victim_score >= 7:
+        it made a difference #pause:2.3
+        I'm still in shock #pause:2.9
+        something we did made a difference #pause:2.9
+        }
+    {perfect_victim_score <=4:
+        was it a waste of time? #pause:1.5
+        all of this #pause:1.9
+        did it matter? #pause:2.4
+        I have to believe it mattered #pause:2.7
+        }
+    {perfect_victim_score == 5:
+        if Duane ever applies to grad school...they'll know #pause:1.4
+        that's something #pause:2.7
+        }
+    {perfect_victim_score == 6:
+        if Duane ever applies to grad school...they'll know #pause:1.4
+        that's something #pause:2.9
+        }
+        ->ending_final
+        
+    = meant_to_be
+    {perfect_victim_score >= 7:
+        you mean you knew we'd hand him his ass??? #pause:2.9
+        damn Rosa you shoulda shared that months ago! #pause:3.1
+        I would have stressed so much less hahaaa #pase:2.8
+        }
+    {perfect_victim_score <=4:
+        you mean you knew it wasn't going to be worth it? #pause:1.9
+        wish you woulda shared #pause:2.9
+        }
+    {perfect_victim_score == 5:
+        you mean you knew we'd feel kinda 'meh' about it all? #pause:2
+        pretty underwhelming hahaaa #pause:2.9
+        }
+    {perfect_victim_score == 6:
+        you mean you knew we'd feel kinda 'meh' about it all? #pause:2
+        pretty underwhelming hahaa #pause:2.8
+        }
+        ->ending_final
+    
+    = ending_final
+    anyway I don't want to talk about Duane anymore #pause:2.7
+    let's flush him down the toilet yknow #pause:2.6
+    instead what I wanted to say was #pause:1.8
+    it's almost summer #pause:2
+    school will be out #pause:2.4
+    are we going to keep talking? #pause:3
+    I really, really don't want to stop talking to you, Rosa.
+        *do you even have to ask? #pause:1.9
+            ok thank GOD #pause:3.1
+            I've never made friends with someone like this before #pause:3
+            and no offense but I hope it never happens again #pause:1.8
+            you're my ride or die #pause:2.6
+            no matter what happens...don't forget that.
+                ~conversation_happening = false
+                    ->extra_knot
 
 === extra_knot ===
 * @
