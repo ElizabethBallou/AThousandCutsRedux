@@ -28,7 +28,7 @@ public class InkManager : MonoBehaviour
     private float showTimer = 0;
     // Start is called before the first frame update
 
-    private bool inSpeedyMode = false;
+    public bool inSpeedyMode = false;
 
     public enum dotState
     {
