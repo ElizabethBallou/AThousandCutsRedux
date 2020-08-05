@@ -78,8 +78,9 @@
                         ->yujin_explains_hesitation
                         
         = yujin_explains_hesitation
-            the problem is my parents. they're really religious and really strict. #pause:4
-            if they find out about the Duane situation, I'm fucked. they're not gonna see the complexity in it and I'd rather jump in a pit of snakes than try to explain it all #pause:2.2
+            I just don't know if I'm in a place rn to do that. #pause:4
+            also if my dad finds out about the Duane situation, I'm fucked. he's not gonna see the complexity in it and I'd rather jump in a pit of snakes than try to explain it all #pause:2.2
+            dads, am I right #pause:2.1
             and before you say anything #pause:3.2
             I know Title IX complaints are supposed to be confidential and all. but what if Duane thinks he's being shit on and goes public? #pause:3.5
             then my name would maybe be out there and that is really scary to me #pause:1.8
@@ -229,8 +230,8 @@
     {understand_worry:
         do you? #pause:3
         }
-        my parents pay for most of my tuition. if they find out and they don't approve, they might stop paying #pause:2.1
-        it's a threat they've made before
+        my dad pays for most of my tuition. if he finds out and he doesn't get it, he might stop paying #pause:2.1
+        he threatened to do that when I had to tell him I got caught drinking last year
         *(not_healthy)that doesn't sound healthy #pause:2.8
             ->react_parents
         *(really_sorry)I'm really really sorry you have to worry about that #pause:2.8
@@ -240,13 +241,13 @@
     
     = react_parents
         {not_healthy:
-            my parents do love me and idk if they mean that threat #pause:2.2
+            my dad does love me and idk if he means that threat #pause:2.2
             but...I think about it a lot #pause:3
             look it's complicated and I don't super want to get into it #pause:1.8
             }
         {really_sorry:
             hey a lot of folks have to worry about so much more #pause:1.9
-            it's HUGE that my parents pay my tuition #pause:1.7
+            it's HUGE that my dad pays my tuition #pause:1.7
             but yeah it's complicated #pause:1.8
             }
         {really_mad:
@@ -324,18 +325,18 @@
         
         = yujin_actions
         {perfect_victim_score <= 3:
-            now that it's all over...I've been thinking about talking to my parents #pause:3
+            now that it's all over...I've been thinking about talking to my dad #pause:3
             I'll probably chicken out but I thought I'd mention it to you #pause:3.1
             }
         {perfect_victim_score > 3 && perfect_victim_score < 7:
             also this morning I called my brother and told him about everything #pause:2.5
             Duane, being a witness...all of it #pause:2.3
             he was surprised but really warm! #pause:3.2
-            and he said if I wanted to talk to our parents about it, he'd support me #pause:3.1
+            and he said if I wanted to talk to our dad about it, he'd support me #pause:3.1
             }
         {perfect_victim_score >= 7:
             also I've decided #pause:2.8
-            I'm gonna tell my parents about all this #pause:2.6
+            I'm gonna tell my dad about all this #pause:2.6
             Duane, testifying, everything #pause:3
             it's a big step but the hearing outcome makes me hopeful #pause:3.1
             }
