@@ -50,8 +50,11 @@ public class DisplayManager
             Services.CharacterManager.characters[Services.InkManager.currentConversant].textingInProgressIcon.transform.SetAsLastSibling();
         }
         textObj.transform.localPosition = new Vector2(0,character.height);
-        
-        TextMeshProUGUI textDisplay = textObj.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        //if using regular prefab
+        TextMeshProUGUI textDisplay = textObj.GetComponentInChildren<TextMeshProUGUI>();
+        //if using mod prefab
+        //TextMeshProUGUI textDisplay = textObj.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
         textDisplay.text = text;
         character.texts.Add(text);
         character.height -= 0;
