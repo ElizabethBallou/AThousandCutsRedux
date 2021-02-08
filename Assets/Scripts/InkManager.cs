@@ -67,7 +67,8 @@ public class InkManager : MonoBehaviour
             if (inSpeedyMode || elapsedTime >= lastPrint+timeBetweenPrints){
                 AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound, .3f);
                 lastPrint = elapsedTime;
-                timeBetweenPrints = Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed;
+                timeBetweenPrints = (Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed)*SettingsMenu.instance.textSpeed;
+                //Debug.Log("timeBetweenPrints is " + timeBetweenPrints);
 
                 string text = GetNextContent();
                 //Debug.Log("just read this text: "+text);
@@ -106,7 +107,7 @@ public class InkManager : MonoBehaviour
                 }
                 if (!inSpeedyMode)
                 {
-                    timeBetweenPrints = myPauseTag;
+                    myPauseTag = timeBetweenPrints;// * mySpeedPreference;
                 }
                 else
                 {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
@@ -12,7 +13,14 @@ public class SettingsMenu : MonoBehaviour
     public GameObject soundMenu;
     public GameObject restartMenu;
     public GameObject quitMenu;
+    public GameObject textSpeedMenu;
     public GameObject blackBackdrop;
+    public GameObject speedIndicator;
+    [HideInInspector]
+    public float textSpeed;
+    public RectTransform[] speedIndicatorPositions;
+    public TextMeshProUGUI[] speedTextObjects;
+    private RectTransform currentSpeedIndicatorPosition;
 
     public enum MenuState
     {
@@ -20,15 +28,28 @@ public class SettingsMenu : MonoBehaviour
         generalSettings,
         soundMenu,
         restartMenu,
-        quitMenu
+        quitMenu,
+        textSpeedMenu
     }
 
     public MenuState currentMenuState;
+
+    public enum textSpeedState
+    {
+        slow,
+        normal,
+        fast
+    }
+
+    public textSpeedState currentTextSpeedState;
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         currentMenuState = MenuState.noMenu;
+        currentTextSpeedState = textSpeedState.normal;
+        currentSpeedIndicatorPosition = speedIndicator.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -42,6 +63,7 @@ public class SettingsMenu : MonoBehaviour
                 soundMenu.gameObject.SetActive(false);
                 restartMenu.gameObject.SetActive(false);
                 quitMenu.gameObject.SetActive(false);
+                textSpeedMenu.gameObject.SetActive(false);
                 break;
             case MenuState.generalSettings:
                 blackBackdrop.gameObject.SetActive(true);
@@ -49,26 +71,80 @@ public class SettingsMenu : MonoBehaviour
                 soundMenu.gameObject.SetActive(false);
                 restartMenu.gameObject.SetActive(false);
                 quitMenu.gameObject.SetActive(false);
+                textSpeedMenu.gameObject.SetActive(false);
                 break;
             case MenuState.soundMenu:
                 settingsMenu.gameObject.SetActive(false);
                 soundMenu.gameObject.SetActive(true);
                 restartMenu.gameObject.SetActive(false);
                 quitMenu.gameObject.SetActive(false);
+                textSpeedMenu.gameObject.SetActive(false);
                 break;
             case MenuState.restartMenu:
                 settingsMenu.gameObject.SetActive(false);
                 soundMenu.gameObject.SetActive(false);
                 restartMenu.gameObject.SetActive(true);
                 quitMenu.gameObject.SetActive(false);
+                textSpeedMenu.gameObject.SetActive(false);
                 break;
             case MenuState.quitMenu:
                 settingsMenu.gameObject.SetActive(false);
                 soundMenu.gameObject.SetActive(false);
                 restartMenu.gameObject.SetActive(false);
+                textSpeedMenu.gameObject.SetActive(false);
                 quitMenu.gameObject.SetActive(true);
                 break;
+            case MenuState.textSpeedMenu:
+                settingsMenu.gameObject.SetActive(false);
+                soundMenu.gameObject.SetActive(false);
+                restartMenu.gameObject.SetActive(false);
+                quitMenu.gameObject.SetActive(false);
+                textSpeedMenu.gameObject.SetActive(true);
+                break;
 
+        }
+
+        switch (currentTextSpeedState)
+        {
+            case textSpeedState.slow:
+                textSpeed = 2f;
+                currentSpeedIndicatorPosition.localPosition = speedIndicatorPositions[0].localPosition;
+                speedTextObjects[0].fontStyle = FontStyles.Bold;
+                speedTextObjects[1].fontStyle = FontStyles.Normal;
+                speedTextObjects[2].fontStyle = FontStyles.Normal;
+                if (currentMenuState == MenuState.textSpeedMenu)
+                {
+                    speedTextObjects[0].gameObject.GetComponentInParent<Button>().interactable = false;
+                    speedTextObjects[1].gameObject.GetComponentInParent<Button>().interactable = true;
+                    speedTextObjects[2].gameObject.GetComponentInParent<Button>().interactable = true;
+                }
+                break;
+            case textSpeedState.normal:
+                textSpeed = 1f;
+                currentSpeedIndicatorPosition.localPosition = speedIndicatorPositions[1].localPosition;
+                speedTextObjects[0].fontStyle = FontStyles.Normal;
+                speedTextObjects[1].fontStyle = FontStyles.Bold;
+                speedTextObjects[2].fontStyle = FontStyles.Normal;
+                if (currentMenuState == MenuState.textSpeedMenu)
+                {
+                    speedTextObjects[0].gameObject.GetComponentInParent<Button>().interactable = true;
+                    speedTextObjects[1].gameObject.GetComponentInParent<Button>().interactable = false;
+                    speedTextObjects[2].gameObject.GetComponentInParent<Button>().interactable = true;
+                }
+                break;
+            case textSpeedState.fast:
+                textSpeed = .5f;
+                currentSpeedIndicatorPosition.localPosition = speedIndicatorPositions[2].localPosition;
+                speedTextObjects[0].fontStyle = FontStyles.Normal;
+                speedTextObjects[1].fontStyle = FontStyles.Normal;
+                speedTextObjects[2].fontStyle = FontStyles.Bold;
+                if (currentMenuState == MenuState.textSpeedMenu)
+                {
+                    speedTextObjects[0].gameObject.GetComponentInParent<Button>().interactable = true;
+                    speedTextObjects[1].gameObject.GetComponentInParent<Button>().interactable = true;
+                    speedTextObjects[2].gameObject.GetComponentInParent<Button>().interactable = false;
+                }               
+                break;
         }
     }
 
@@ -93,6 +169,12 @@ public class SettingsMenu : MonoBehaviour
     public void QuitMenuClick()
     {
         currentMenuState = MenuState.quitMenu;
+        callClickSound();
+    }
+
+    public void TextSpeedMenuClick()
+    {
+        currentMenuState = MenuState.textSpeedMenu;
         callClickSound();
     }
 
@@ -126,6 +208,24 @@ public class SettingsMenu : MonoBehaviour
     public void ReturnToGameButtonClick()
     {
         currentMenuState = MenuState.noMenu;
+        callClickSound();
+    }
+
+    public void PressSlowSpeed()
+    {
+        currentTextSpeedState = textSpeedState.slow;
+        callClickSound();
+    }
+
+    public void PressNormalSpeed()
+    {
+        currentTextSpeedState = textSpeedState.normal;
+        callClickSound();
+    }
+
+    public void PressFastSpeed()
+    {
+        currentTextSpeedState = textSpeedState.fast;
         callClickSound();
     }
 
