@@ -44,7 +44,7 @@ public class SettingsMenu : MonoBehaviour
     public textSpeedState currentTextSpeedState;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
         currentMenuState = MenuState.noMenu;
