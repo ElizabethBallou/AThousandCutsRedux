@@ -145,6 +145,7 @@ public class InkManager : MonoBehaviour
                     Services.GameController.lockScreen.OnLockScreenLock();
                     Services.DisplayManager.WriteText(text, currentConversant, isRosaSpeaking);
                     currentDotState = dotState.off;
+                    justDidAChoice = false;
                     return;
                 }
                 if(check == true && conversationHappening == false){
