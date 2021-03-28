@@ -45,7 +45,7 @@
         = Yujin_describes_incident
             first let me say: I don't know if I wanna be interviewed for your case. I'm not bold #pause:2
             at least not in the formal case-filing way #pause:2.3
-            but I do want you to know that Duane is problematic AF so that you don't doubt yourself #pause:4.5
+            but I do want you to know that Duane is a problem so that you don't doubt yourself #pause:4.5
             he basically drove me home from Into the Woods rehearsal one night and then came inside even though I wanted to go to bed. and then he would not! fucking!! leave!!! #pause:3.2
             we ended up having sex. idk why, I was stressed. but in the middle of it he took the condom off #pause:3
             I was like EXCUSE ME SIR U NEED TO STOP. but he wouldn't #pause:2.4
@@ -112,7 +112,7 @@
                 ->yujin_explains_3
             *(Rosa_kind)then all I can do is ask politely for you to be interviewed #pause:2.4
                 ->yujin_explains_3
-            *(Rosa_numbers)it's not just me though. Olivia wil be there too #pause:3.7
+            *(Rosa_numbers)it's not just me though. Olivia will be there too #pause:3.7
                 ->yujin_explains_3
 
         = yujin_explains_3

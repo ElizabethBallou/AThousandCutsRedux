@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     //soundtrack variables
     public AudioClip[] soundtrackSongs;
-    public int soundtrackSongIndex = 3;
+    public int soundtrackSongIndex = 0;
     public TextMeshProUGUI currentSongText;
     public AudioClip outcomeSong;
 
@@ -26,7 +27,11 @@ public class AudioManager : MonoBehaviour
 
     private bool isPaused = false;
 
+    public Button pauseButton;
+
     [HideInInspector] public bool menuTriggered = true;
+
+    [HideInInspector] public bool soundEffectsShouldPlay = true;
     private void Awake()
     {
         instance = this;
@@ -58,23 +63,30 @@ public class AudioManager : MonoBehaviour
     {
         if (beginnerTimerDone)
         {
-            effect_audiosource.clip = audioClip;
-            effect_audiosource.volume = volume;
-            effect_audiosource.Play();
+            if (soundEffectsShouldPlay)
+            {
+                effect_audiosource.clip = audioClip;
+                effect_audiosource.volume = volume;
+                effect_audiosource.Play();
+            }
+
         }
 
     }
 
     public void playBuzzingsound(float volume)
     {
-        effect_audiosource.clip = phoneBuzzingSound;
-        effect_audiosource.Play();
+        if (soundEffectsShouldPlay)
+        {
+            effect_audiosource.clip = phoneBuzzingSound;
+            effect_audiosource.Play();
+        }
     }
 
     public void playNextSong()
     {
         music_audiosource.clip = soundtrackSongs[soundtrackSongIndex];
-        currentSongText.text = "Current song:" + "\n" + music_audiosource.clip.name + " (Chad Crouch)";
+        currentSongText.text = "Current song: " + music_audiosource.clip.name + " (Chad Crouch)";
         music_audiosource.Play();
         soundtrackSongIndex++;
         if (soundtrackSongIndex == soundtrackSongs.Length)
@@ -133,11 +145,13 @@ public class AudioManager : MonoBehaviour
         {
             music_audiosource.Pause();
             isPaused = true;
+            pauseButton.image.color = Color.black;
         }
         else
         {
             music_audiosource.UnPause();
             isPaused = false;
+            pauseButton.image.color = Color.white;
         }
     }
 

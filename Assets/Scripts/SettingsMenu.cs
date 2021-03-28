@@ -15,12 +15,20 @@ public class SettingsMenu : MonoBehaviour
     public GameObject quitMenu;
     public GameObject textSpeedMenu;
     public GameObject blackBackdrop;
+
+    //objects that control the speed indicator button text and circle
     public GameObject speedIndicator;
     [HideInInspector]
     public float textSpeed;
     public RectTransform[] speedIndicatorPositions;
     public TextMeshProUGUI[] speedTextObjects;
     private RectTransform currentSpeedIndicatorPosition;
+
+    //objects that control the sound effect button text and circle
+    public GameObject soundEffectIndicator;
+    public RectTransform[] soundEffectIndicatorPositions;
+    public TextMeshProUGUI[] soundEffectIndicatorTextObjects;
+    private RectTransform currentSoundEffectIndicatorPosition;
 
     public enum MenuState
     {
@@ -50,6 +58,10 @@ public class SettingsMenu : MonoBehaviour
         currentMenuState = MenuState.noMenu;
         currentTextSpeedState = textSpeedState.normal;
         currentSpeedIndicatorPosition = speedIndicator.GetComponent<RectTransform>();
+        currentSoundEffectIndicatorPosition = soundEffectIndicator.GetComponent<RectTransform>();
+
+        //sound effects are on by default
+        soundEffectIndicatorTextObjects[0].fontStyle = FontStyles.Bold;
     }
 
     // Update is called once per frame
@@ -133,7 +145,7 @@ public class SettingsMenu : MonoBehaviour
                 }
                 break;
             case textSpeedState.fast:
-                textSpeed = .5f;
+                textSpeed = .1f;
                 currentSpeedIndicatorPosition.localPosition = speedIndicatorPositions[2].localPosition;
                 speedTextObjects[0].fontStyle = FontStyles.Normal;
                 speedTextObjects[1].fontStyle = FontStyles.Normal;
@@ -232,6 +244,22 @@ public class SettingsMenu : MonoBehaviour
     public void callClickSound()
     {
         AudioManager.instance.playTextingSound(AudioManager.instance.clickSound, .4f);
+    }
+
+    public void PressSoundEffectsOff()
+    {
+        soundEffectIndicatorTextObjects[0].fontStyle = FontStyles.Normal;
+        soundEffectIndicatorTextObjects[1].fontStyle = FontStyles.Bold;
+        currentSoundEffectIndicatorPosition.localPosition = soundEffectIndicatorPositions[1].localPosition;
+        AudioManager.instance.soundEffectsShouldPlay = false;
+    }
+
+    public void PressSoundEffectsOn()
+    {
+        soundEffectIndicatorTextObjects[0].fontStyle = FontStyles.Bold;
+        soundEffectIndicatorTextObjects[1].fontStyle = FontStyles.Normal;
+        currentSoundEffectIndicatorPosition.localPosition = soundEffectIndicatorPositions[0].localPosition;
+        AudioManager.instance.soundEffectsShouldPlay = true;
     }
 
 }

@@ -24,6 +24,7 @@ VAR perfect_victim_score = 0
 VAR duane_resistance = 0
 VAR alcohol_level = 0
 VAR same_room_as_duane = ""
+VAR music_mood = ""
 
 -> Mikaela_knot_1
 
