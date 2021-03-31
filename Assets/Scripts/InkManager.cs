@@ -70,7 +70,7 @@ public class InkManager : MonoBehaviour
                 timeBetweenPrints = (Random.Range(0.5f,1.0f)/Services.GameController.textingSpeed)*SettingsMenu.instance.textSpeed;
                 //Debug.Log("timeBetweenPrints is " + timeBetweenPrints);
 
-                string text = GetNextContent();
+                string text = GetNextContent();//more text is happening
                 //Debug.Log("just read this text: "+text);
                 
                 float myPauseTag = 0;
@@ -122,6 +122,7 @@ public class InkManager : MonoBehaviour
                 
                 latestText = text;
 
+                //set current conversant
                 currentConversant = story.variablesState["conversant_name"] as string;
 
                 foreach (string tag in story.currentTags)
@@ -140,12 +141,17 @@ public class InkManager : MonoBehaviour
                     AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound, .3f);
                 }
                 bool check = (int)story.variablesState["conversation_happening"] == 1;
+                //if the current state of conversationHappening is false, but the game was just running
                 if(check == false && conversationHappening == true){
+                    Debug.Log("AAAAH "+text);
                     conversationHappening = false;
                     Services.GameController.lockScreen.OnLockScreenLock();
                     Services.DisplayManager.WriteText(text, currentConversant, isRosaSpeaking);
                     currentDotState = dotState.off;
                     justDidAChoice = false;
+                    /*if(isRosaSpeaking == false){
+                        SimulateNextText();
+                    }*/
                     return;
                 }
                 if(check == true && conversationHappening == false){
@@ -304,6 +310,7 @@ public class InkManager : MonoBehaviour
         {
             story.ChooseChoiceIndex(0);
             story.Continue();
+            Services.InkManager.SimulateNextText();
         }
         madeChoices = false;
         //Debug.Log("Ï JUST FAKE WENT");
@@ -356,7 +363,62 @@ public class InkManager : MonoBehaviour
                 Services.DateManager.DateList.Insert(i, cleanedDate);
             }
         }
-    }          
+    }
+    public void SimulateNextText(){
+        if(story.canContinue == false){return;}
+        string text = GetNextContent();//more text is happening
+                //Debug.Log("just read this text: "+text);
+                
+                float myPauseTag = 0;
+                //Elizabeth: this is where I'm trying out evaluating the pause tags
+                //take current tags
+                List<string> pauseTags = story.currentTags;
+                foreach(string tag in story.currentTags){
+                    if(tag.Contains("noyujin"))
+                    {
+                        RemoveDatesByTag("Yujin");
+                    }
+                    if(tag.Contains("yesyujin"))
+                    {
+                        RemoveTagsFromUsedDates("Yujin");
+                    }
+                    if(tag.Contains("IXyes"))
+                    {
+                        RemoveDatesByTag("IXno");
+                        RemoveTagsFromUsedDates("IXyes");
+                    }
+                    if(tag.Contains("IXno"))
+                    {
+                        RemoveDatesByTag("IXyes");
+                        RemoveTagsFromUsedDates("IXno");
+                    }
+                }
+
+                
+                latestText = text;
+
+                //set current conversant
+                currentConversant = story.variablesState["conversant_name"] as string;
+
+                foreach (string tag in story.currentTags)
+                {
+                    if (tag.Contains("triggerdate"))
+                    {
+                        Services.DisplayManager.WriteDate(currentConversant);
+                        currentDotState = dotState.off;
+                    }
+                }
+                    isRosaSpeaking = false;//(int)story.variablesState["is_rosa"] == 1 || justDidAChoice;
+                if(isRosaSpeaking){
+                    AudioManager.instance.playTextingSound(AudioManager.instance.textSentSound, .7f);
+                }else{
+                    Services.CharacterManager.characters[currentConversant].textPreview.text = latestText;
+                    AudioManager.instance.playTextingSound(AudioManager.instance.textReceivedSound, .3f);
+                }
+                bool check = (int)story.variablesState["conversation_happening"] == 1;
+                //if the current state of conversationHappening is false, but the game was just running
+                Services.DisplayManager.WriteText(text, currentConversant, isRosaSpeaking);
+    }
    
 }
 
