@@ -105,7 +105,7 @@
                 ~yujin_trust_level += 1
                 }
             {Rosa_expresses_solidarity:
-                yeah and that means a lot. but also I barely know you. so I can't someone else's idea steer me
+                yeah and that means a lot. but also I barely know you. so I can't let someone else's idea steer me
                 ~yujin_trust_level += 2
                 }
             *(Rosa_manipulative)you don't want to regret this 10 years later, right? #pause:2

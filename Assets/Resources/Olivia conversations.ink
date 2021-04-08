@@ -179,8 +179,8 @@ VAR olivia_family_knowledge = 0
       
     = report_to_who
         the title IX office #pause:3.5
-        they throw out reports if someone's had literally anything to drink #pause:2.7
-        it becomes a bad hookup blah blah blah
+        I heard they throw out reports if someone's had literally anything to drink #pause:2.7
+        they'll call it a bad hookup blah blah blah
             -> Rosa_reacts_to_title_ix_mention
             
         = Rosa_reacts_to_title_ix_mention

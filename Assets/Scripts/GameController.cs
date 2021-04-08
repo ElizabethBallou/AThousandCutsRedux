@@ -183,6 +183,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(WaitToChangeDates(time));
     }
 
+    //this function waits a specified # of seconds, then switches the date to the next string on DateList.
     public IEnumerator WaitToChangeDates(float time)
     {
         yield return new WaitForSeconds(time);
