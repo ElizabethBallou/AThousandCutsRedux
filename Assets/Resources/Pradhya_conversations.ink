@@ -61,7 +61,8 @@
             
     = Pradhya_answers
     {appreciated:
-        Of course.
+        Of course. #pause:1.5
+        I'll be here.
             ~conversation_happening = false
             ->Duane_knot_1
         }

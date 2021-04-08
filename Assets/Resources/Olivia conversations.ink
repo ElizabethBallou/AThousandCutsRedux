@@ -795,6 +795,11 @@ VAR olivia_family_knowledge = 0
             -> Yujin_knot_1
         
 === Olivia_mom_storylet_phone_followup ===
+    * @
+        ->ridiculous_intro
+    
+    = ridiculous_intro
+    #triggerdate
     ~conversant_name = "Olivia"
     ~conversation_happening = true
     hey thanks for calling tonight
