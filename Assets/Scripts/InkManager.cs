@@ -52,11 +52,11 @@ public class InkManager : MonoBehaviour
         story = new Story(inkJSONAsset.text);
         
         //check to see if saved game exists
-        if (PlayerPrefs.HasKey("inkSaveState"))
+        /*if (PlayerPrefs.HasKey("inkSaveState"))
         {
             var savedState = PlayerPrefs.GetString("inkSaveState");
             //story.state.LoadJson(savedState);
-        }
+        }*/
     }
 
     public void Update(){

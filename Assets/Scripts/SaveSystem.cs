@@ -16,22 +16,24 @@ public static class SaveSystem
         string path = Application.persistentDataPath+"/save.json";
         save.dateIndex = Services.DateManager.dateListIndex;
         save.episodeEnd = Services.InkManager.conversationHappening;
-        if(!File.Exists(path)){
+        PlayerPrefs.SetString("save",json);
+        PlayerPrefs.Save();
+        /*if(!File.Exists(path)){
             System.IO.File.WriteAllText(path,json);
         }else{
             StreamWriter writer = new StreamWriter(path, false);
             writer.WriteLine(json);
             writer.Close();
-        }
+        }*/
         lastSaveTime = Time.time;
         //Debug.Log(json);
    }
    public static bool LoadGame(){
        string path  =Application.persistentDataPath+"/save.json";
-        if(File.Exists(path)){
-            StreamReader reader = new StreamReader(path);
-            string load = reader.ReadToEnd().Trim();
-            reader.Close();
+        if(PlayerPrefs.HasKey("save")){
+            //StreamReader reader = new StreamReader(path);
+            string load = PlayerPrefs.GetString("save");//reader.ReadToEnd().Trim();
+            //reader.Close();
             Save thisSave = JsonUtility.FromJson<Save>(load) as Save;
             if(thisSave.vN != versionNumber){
                 return false;
@@ -67,11 +69,13 @@ public static class SaveSystem
    }
    #if UNITY_EDITOR
     [MenuItem("Save/Clear")]
-    public static void ClearSave(){
-        string path = Application.persistentDataPath+"/save.json";
-        System.IO.File.Delete(path);
-    }
     #endif
+    public static void ClearSave(){
+        PlayerPrefs.DeleteKey("save");
+        //string path = Application.persistentDataPath+"/save.json";
+        //System.IO.File.Delete(path);
+    }
+    
     public static void SaveChoice(int which){
         save.choices.Add((byte)which);
     }

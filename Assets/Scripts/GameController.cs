@@ -62,6 +62,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.Alpha1) && Input.GetKeyDown(KeyCode.Alpha0)){
+            SaveSystem.ClearSave();
+        }
         if(isTexting){
             textingScreen.localPosition += (Vector3.zero - textingScreen.localPosition)*0.1f;
             textWaiting = false;
