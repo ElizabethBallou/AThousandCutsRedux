@@ -1458,11 +1458,11 @@ MonoBehaviour:
   m_text: "\tA Thousand Cuts was written, designed, and developed by Elizabeth Ballou,
     with programming assistance from Rowan Wood, art by Alina Constantin, and UI
     design by Tea-Powered Games. All music is by Chad Crouch and used under an Attribution-NonCommercial
-    3.0 International License. This demo was made possible by a grant from Alex Meyers.
-    Additional guidance came from Matt Boch, Winnie Song, and the rest of the NYU
-    Game Center.\n\n\tA Thousand Cuts is based on the stories of many students who
-    have filed sexual misconduct claims. It is not representative of a single instance,
-    university, or group of people."
+    3.0 International License. Cultural consulting from So-Jung Youn. Additional
+    guidance came from Matt Boch, Winnie Song, and the rest of the NYU Game Center.\n\n\tA
+    Thousand Cuts is based on the stories of many students who have filed sexual
+    misconduct claims. It is not representative of a single instance, university,
+    or group of people."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0dc2ee428cf561b479ec3fdf1396be00, type: 2}
   m_sharedMaterial: {fileID: -7771685072970614719, guid: 0dc2ee428cf561b479ec3fdf1396be00,
@@ -1532,10 +1532,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 98395478}
-    characterCount: 606
+    characterCount: 588
     spriteCount: 0
-    spaceCount: 100
-    wordCount: 100
+    spaceCount: 94
+    wordCount: 94
     linkCount: 0
     lineCount: 14
     pageCount: 1

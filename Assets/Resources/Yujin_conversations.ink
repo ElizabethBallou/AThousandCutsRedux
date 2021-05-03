@@ -40,12 +40,27 @@
         Duane is a Sex Pest and he needs to be stopped #pause:3.2
         he made me feel so unsafe. it threw off my entire last semester tbh
         *what happened? #pause:3.7
-            -> Yujin_describes_incident
+            -> Yujin_describes_incident_1
             
-        = Yujin_describes_incident
+        = Yujin_describes_incident_1
             first let me say: I don't know if I wanna be interviewed for your case. I'm not bold #pause:2
             at least not in the formal case-filing way #pause:2.3
-            but I do want you to know that Duane is a problem so that you don't doubt yourself #pause:4.5
+            but I do want you to know that Duane is a problem so that you don't doubt yourself #pause:2.8
+            ...you're not gonna go telling everyone a story that makes me feel ashamed, right?
+                *(rosa_would_never)never #pause:3.6
+                    ->Yujin_describes_incident_2
+                *(rosa_would_few)only the people who NEED to hear this story #pause:3.6
+                    ->Yujin_describes_incident_2
+            
+        =Yujin_describes_incident_2
+            {rosa_would_never:
+                I had to ask. This may sound like it comes out of me easy, but that's just because we're talking over text. #pause:2
+                remember that. #pause:4.5
+                }
+            {rosa_would_few:
+                then you better have good judgement. This may sound like it comes out of me easy, but that's just because we're talking over text. #pause:2
+                remember that. #pause:4.5
+                }
             he basically drove me home from Into the Woods rehearsal one night and then came inside even though I wanted to go to bed. and then he would not! fucking!! leave!!! #pause:3.2
             we ended up having sex. idk why, I was stressed. but in the middle of it he took the condom off #pause:3
             I was like EXCUSE ME SIR U NEED TO STOP. but he wouldn't #pause:2.4
@@ -80,7 +95,8 @@
         = yujin_explains_hesitation
             I just don't know if I'm in a place rn to do that. #pause:4
             also if my dad finds out about the Duane situation, I'm fucked. he's not gonna see the complexity in it and I'd rather jump in a pit of snakes than try to explain it all #pause:2.2
-            dads, am I right #pause:2.1
+            dads, am I right #pause:3.4
+            my mom might understand, but it's a gamble. we don't talk about sex. #pause:2.1
             and before you say anything #pause:3.2
             I know Title IX complaints are supposed to be confidential and all. but what if Duane thinks he's being shit on and goes public? #pause:3.5
             then my name would maybe be out there and that is really scary to me #pause:1.8
@@ -100,7 +116,7 @@
                 }
             {Rosa_reminds_hurt:
                 yeah. people like that don't stop #pause:3
-                but I've done enough therapy to know I don't have to take responsibility for everything Duane might do #pause:2
+                but I don't have to take responsibility for everything Duane might do #pause:2
                 neither do you. you know that, right?
                 ~yujin_trust_level += 1
                 }
@@ -186,9 +202,7 @@
     hey lady! I've been talking to Olivia too #pause:2.5
     looks like I'll get interviewed twice: once for your case and once for hers #pause:2
     which is pointless because I'll say the same thing #pause:1.9
-    guess that's just how the cookie crumbles #pause:1.2
-    or rather #pause:2.7
-    how the cookie has to behave when thrown into the wild world of Title IX
+    guess that's just how things have to work
     *I have to be interviewed for Olivia's case, and she has to be interviewed for mine
         ~conversation_happening = true
         **my advocate says the cases can't be combined #pause:1.6
@@ -230,7 +244,7 @@
     {understand_worry:
         do you? #pause:3
         }
-        my dad pays for most of my tuition. if he finds out and he doesn't get it, he might stop paying #pause:2.1
+        my parents pay for most of my tuition. if my dad finds out and he doesn't get it, he might stop paying #pause:2.1
         he threatened to do that when I had to tell him I got caught drinking last year
         *(not_healthy)that doesn't sound healthy #pause:2.8
             ->react_parents
@@ -325,20 +339,20 @@
         
         = yujin_actions
         {perfect_victim_score <= 3:
-            now that it's all over...I've been thinking about talking to my dad #pause:3
-            I'll probably chicken out but I thought I'd mention it to you #pause:3.1
+            now that it's all over...I've been thinking about talking to my mom #pause:3
+            as a first step towards getting my parents to understand #pause:3.1
             }
         {perfect_victim_score > 3 && perfect_victim_score < 7:
-            also this morning I called my brother and told him about everything #pause:2.5
-            Duane, being a witness...all of it #pause:2.3
-            he was surprised but really warm! #pause:3.2
-            and he said if I wanted to talk to our dad about it, he'd support me #pause:3.1
+            also this morning I called my mom and told her about this #pause:2.5
+            although I left out a lot of the details #pause:2.3
+            she was obvs surprised but she listened! #pause:3.2
+            and she said if I really wanted to, she would help me tell my dad #pause:3.1
             }
         {perfect_victim_score >= 7:
             also I've decided #pause:2.8
-            I'm gonna tell my dad about all this #pause:2.6
-            Duane, testifying, everything #pause:3
-            it's a big step but the hearing outcome makes me hopeful #pause:3.1
+            I'm gonna tell both my parents about all this #pause:2.6
+            Duane, testifying, you #pause:3
+            it'll be hard with my dad especially but the hearing outcome makes me hopeful #pause:3.1
             }
             without you and Olivia, I'd never have even considered it #pause:1.8
             so stay golden, lovely one <3 #pause:2.2

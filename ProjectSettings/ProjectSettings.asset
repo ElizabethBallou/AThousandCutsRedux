@@ -46,8 +46,8 @@ PlayerSettings:
     duration: 4
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 540
-  defaultScreenHeight: 960
+  defaultScreenWidth: 450
+  defaultScreenHeight: 800
   defaultScreenWidthWeb: 439
   defaultScreenHeightWeb: 780
   m_StereoRenderingPath: 0
@@ -115,8 +115,6 @@ PlayerSettings:
   switchNVNShaderPoolsGranularity: 33554432
   switchNVNDefaultPoolsGranularity: 16777216
   switchNVNOtherPoolsGranularity: 16777216
-  stadiaPresentMode: 0
-  stadiaTargetFramerate: 0
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
   m_SupportedAspectRatios:
