@@ -149,6 +149,7 @@ public class InkManager : MonoBehaviour
                     Services.DisplayManager.WriteText(text, currentConversant, isRosaSpeaking);
                     currentDotState = dotState.off;
                     justDidAChoice = false;
+                    SaveSystem.SaveGame();
                     /*if(isRosaSpeaking == false){
                         SimulateNextText();
                     }*/
